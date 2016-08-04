@@ -1,18 +1,12 @@
 import React from 'react';
-import { Router, Router, hashHistory, IndexRoute } from 'react-router';
 import { connect } from 'react-redux';
 
 import NavBar from './navBar.jsx';
-import SearchBar from './navBar.jsx';
-import Listings from './navBar.jsx';
-
 
 let Main = () => {
   return (
     <div>
       <NavBar />
-      <SearchBar />
-      <Listings />
     </div>
   );
 };
@@ -30,6 +24,6 @@ const mapDispatchToProps = (dispatch) => {
 Main = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Listings);
+)(Main);
 
 module.exports = Main;
