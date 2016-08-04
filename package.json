@@ -1,0 +1,44 @@
+{
+  "name": "discollect",
+  "version": "1.0.0",
+  "description": "App for giving away your things",
+  "main": "n/a",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack --progress --colors --watch",
+    "start": "nodemon /server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evanmoncuso/Discollect-App.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/evanmoncuso/Discollect-App/issues"
+  },
+  "homepage": "https://github.com/evanmoncuso/Discollect-App#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.6.1",
+    "redux": "^3.5.2",
+    "redux-logger": "^2.6.1",
+    "redux-thunk": "^2.1.0",
+    "webpack": "^1.13.1"
+  },
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.11.4",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-class-properties": "^6.11.5",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "html-webpack-plugin": "^2.22.0"
+  }
+}
