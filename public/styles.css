@@ -1,3 +1,49 @@
+/*
+====================
+Nav Bar header
+====================
+ */
+nav {
+  width: 960px;
+  margin: 0 auto;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #000;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+.auth_points {
+  text-align:right;
+}
+
+.nav_title {
+  text-align: center;
+  font-size:24px;
+}
+
+.login,
+.signup {
+  padding-right: 24px;
+}
+
+/*
+====================
+Main Container
+====================
+ */
+.main_container {
+  width: 960px;
+  margin: 0 auto;
+}
+
+/*
+====================
+Inputs - Login / Signup
+====================
+ */
+
 input {
   display: block;
 }

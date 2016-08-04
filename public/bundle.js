@@ -29280,7 +29280,16 @@
 	  return _react2.default.createElement(
 	    'div',
 	    null,
-	    _react2.default.createElement(_NavBar2.default, null)
+	    _react2.default.createElement(_NavBar2.default, null),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'main_container' },
+	      _react2.default.createElement(
+	        'p',
+	        null,
+	        'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+	      )
+	    )
 	  );
 	};
 
@@ -29320,27 +29329,31 @@
 	      _reactRouter.Link,
 	      { to: '/' },
 	      _react2.default.createElement(
-	        'h1',
-	        null,
+	        'h2',
+	        { className: 'nav_title' },
 	        'Home'
 	      )
 	    ),
 	    _react2.default.createElement(
-	      _reactRouter.Link,
-	      { to: '/login' },
+	      'div',
+	      { className: 'auth_points' },
 	      _react2.default.createElement(
-	        'span',
-	        { className: 'button login' },
-	        'login'
-	      )
-	    ),
-	    _react2.default.createElement(
-	      _reactRouter.Link,
-	      { to: '/signup' },
+	        _reactRouter.Link,
+	        { to: '/login' },
+	        _react2.default.createElement(
+	          'span',
+	          { className: 'button login' },
+	          'login'
+	        )
+	      ),
 	      _react2.default.createElement(
-	        'span',
-	        { className: 'button signup' },
-	        'signup'
+	        _reactRouter.Link,
+	        { to: '/signup' },
+	        _react2.default.createElement(
+	          'span',
+	          { className: 'button signup' },
+	          'signup'
+	        )
 	      )
 	    ),
 	    _react2.default.createElement(_reactRouter.Link, { to: '/dashboard' })
