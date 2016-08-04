@@ -11,7 +11,7 @@ let App = () => {
       <Route to='/login' component={login}></Route>
       <Route to='/signup' component={signup}></Route>
       <Route to='/dashboard' component={dashboard}></Route>
-      <Route to='/create' component={create}></Route>
+      <Route to='/createlisting' component={create}></Route>
     </Router>
   );
 };
