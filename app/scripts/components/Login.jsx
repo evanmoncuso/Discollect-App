@@ -1,10 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import NavBar from './NavBar.jsx';
+
 let Login = () => {
   let username, password;
   return (
     <div>
+      <NavBar />
       <h2>Login</h2>
       <form onSubmit={(e) => {
           e.preventDefault();

@@ -29270,9 +29270,9 @@
 
 	var _reactRedux = __webpack_require__(177);
 
-	var _navBar = __webpack_require__(264);
+	var _NavBar = __webpack_require__(264);
 
-	var _navBar2 = _interopRequireDefault(_navBar);
+	var _NavBar2 = _interopRequireDefault(_NavBar);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29280,7 +29280,7 @@
 	  return _react2.default.createElement(
 	    'div',
 	    null,
-	    _react2.default.createElement(_navBar2.default, null)
+	    _react2.default.createElement(_NavBar2.default, null)
 	  );
 	};
 
@@ -29343,24 +29343,7 @@
 	        'signup'
 	      )
 	    ),
-	    _react2.default.createElement(
-	      _reactRouter.Link,
-	      { to: '/dashboard' },
-	      _react2.default.createElement(
-	        'span',
-	        { className: 'button signup' },
-	        'dashboard'
-	      )
-	    ),
-	    _react2.default.createElement(
-	      _reactRouter.Link,
-	      { to: '/createlisting' },
-	      _react2.default.createElement(
-	        'span',
-	        { className: 'button signup' },
-	        'signup'
-	      )
-	    )
+	    _react2.default.createElement(_reactRouter.Link, { to: '/dashboard' })
 	  );
 	};
 
@@ -29393,6 +29376,10 @@
 
 	var _reactRedux = __webpack_require__(177);
 
+	var _NavBar = __webpack_require__(264);
+
+	var _NavBar2 = _interopRequireDefault(_NavBar);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Login = function Login() {
@@ -29401,6 +29388,7 @@
 	  return _react2.default.createElement(
 	    'div',
 	    null,
+	    _react2.default.createElement(_NavBar2.default, null),
 	    _react2.default.createElement(
 	      'h2',
 	      null,
@@ -29471,6 +29459,10 @@
 
 	var _reactRedux = __webpack_require__(177);
 
+	var _NavBar = __webpack_require__(264);
+
+	var _NavBar2 = _interopRequireDefault(_NavBar);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Signup = function Signup() {
@@ -29482,6 +29474,7 @@
 	  return _react2.default.createElement(
 	    'div',
 	    null,
+	    _react2.default.createElement(_NavBar2.default, null),
 	    _react2.default.createElement(
 	      'h2',
 	      null,

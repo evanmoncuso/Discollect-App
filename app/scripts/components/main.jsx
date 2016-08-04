@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import NavBar from './navBar.jsx';
+import NavBar from './NavBar.jsx';
 
 let Main = () => {
   return (
