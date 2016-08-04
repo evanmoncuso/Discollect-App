@@ -13,7 +13,7 @@ import { reducer } from './reducers/reducer';
 
 const store = createStore(reducer, applyMiddleware(...middleware));
 
-import App from './components/app.jsx';
+import App from './components/App.jsx';
 
 const ProvidedApp = () => {
   return (
