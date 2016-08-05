@@ -23441,6 +23441,10 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -23461,22 +23465,29 @@
 
 	var _Signup2 = _interopRequireDefault(_Signup);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _Dashboard = __webpack_require__(267);
 
-	// <Route to='/dashboard' component={dashboard}></Route>
-	// <Route to='/create' component={create}></Route>
+	var _Dashboard2 = _interopRequireDefault(_Dashboard);
+
+	var _CreateListing = __webpack_require__(268);
+
+	var _CreateListing2 = _interopRequireDefault(_CreateListing);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var App = function App() {
 	  return _react2.default.createElement(
 	    _reactRouter.Router,
 	    { history: _reactRouter.hashHistory },
-	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _Main2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _Login2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _Signup2.default })
+	    _react2.default.createElement(_reactRouter.Route, { to: '/', component: _Main2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { to: '/login', component: _Login2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { to: '/signup', component: _Signup2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { to: '/dashboard', component: _Dashboard2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { to: '/createlisting', component: _CreateListing2.default })
 	  );
 	};
 
-	module.exports = App;
+	exports.default = App;
 
 /***/ },
 /* 202 */
@@ -29264,6 +29275,10 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -29303,13 +29318,17 @@
 
 	Main = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-	module.exports = Main;
+	exports.default = Main;
 
 /***/ },
 /* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
 	var _react = __webpack_require__(1);
 
@@ -29360,28 +29379,17 @@
 	  );
 	};
 
-	// const mapStateToProps = (state) => {
-	//   return {
-	//   }
-	// }
-	//
-	// const mapDispatchToProps = (dispatch) => {
-	//   return {
-	//   }
-	// }
-	//
-	// NavBar = connect(
-	//   mapStateToProps,
-	//   mapDispatchToProps
-	// )(NavBar);
-
-	module.exports = NavBar;
+	exports.default = NavBar;
 
 /***/ },
 /* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
 	var _react = __webpack_require__(1);
 
@@ -29458,7 +29466,7 @@
 	//   mapDispatchToProps
 	// )(Login);
 
-	module.exports = Login;
+	exports.default = Login;
 
 /***/ },
 /* 266 */
@@ -29479,99 +29487,302 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Signup = function Signup() {
-	  var username = void 0,
-	      password = void 0,
-	      confirm = void 0,
-	      email = void 0,
-	      zip = void 0;
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(_NavBar2.default, null),
-	    _react2.default.createElement(
-	      'h2',
-	      null,
-	      'Signup'
-	    ),
-	    _react2.default.createElement(
-	      'form',
-	      { onSubmit: function onSubmit(e) {
-	          e.preventDefault();
-	          if (!username.value.trim() && !password.value.trim() && !email.value.trim()) {
-	            return;
-	          }
-	          console.log('here is the username', username.value);
-	          console.log('Here is the password:', password.value);
-	          console.log('here is the password confirm', confirm.value);
-	          console.log('Here is the email:', email.value);
-	          console.log('here is the zip', zip.value);
-	        } },
-	      _react2.default.createElement(
-	        'label',
-	        null,
-	        'username'
-	      ),
-	      _react2.default.createElement('input', { ref: function ref(node) {
-	          return username = node;
-	        } }),
-	      _react2.default.createElement(
-	        'label',
-	        null,
-	        'password'
-	      ),
-	      _react2.default.createElement('input', { ref: function ref(node) {
-	          return password = node;
-	        } }),
-	      _react2.default.createElement(
-	        'label',
-	        null,
-	        'password confirm'
-	      ),
-	      _react2.default.createElement('input', { ref: function ref(node) {
-	          return confirm = node;
-	        } }),
-	      _react2.default.createElement(
-	        'label',
-	        null,
-	        'email'
-	      ),
-	      _react2.default.createElement('input', { ref: function ref(node) {
-	          return email = node;
-	        } }),
-	      _react2.default.createElement(
-	        'label',
-	        null,
-	        'zip code'
-	      ),
-	      _react2.default.createElement('input', { ref: function ref(node) {
-	          return zip = node;
-	        } }),
-	      _react2.default.createElement(
-	        'button',
-	        { type: 'submit' },
-	        'create'
-	      )
-	    )
-	  );
+	        var username = void 0,
+	            password = void 0,
+	            confirm = void 0,
+	            email = void 0,
+	            zip = void 0;
+	        return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(_NavBar2.default, null),
+	                _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        'Signup'
+	                ),
+	                _react2.default.createElement(
+	                        'form',
+	                        { onSubmit: function onSubmit(e) {
+	                                        e.preventDefault();
+	                                        if (!username.value.trim() && !password.value.trim() && !email.value.trim()) {
+	                                                return;
+	                                        }
+	                                        console.log('here is the username', username.value);
+	                                        console.log('Here is the password:', password.value);
+	                                        console.log('here is the password confirm', confirm.value);
+	                                        console.log('Here is the email:', email.value);
+	                                        console.log('here is the zip', zip.value);
+	                                } },
+	                        _react2.default.createElement(
+	                                'label',
+	                                null,
+	                                'username'
+	                        ),
+	                        _react2.default.createElement('input', { ref: function ref(node) {
+	                                        return username = node;
+	                                } }),
+	                        _react2.default.createElement(
+	                                'label',
+	                                null,
+	                                'password'
+	                        ),
+	                        _react2.default.createElement('input', { ref: function ref(node) {
+	                                        return password = node;
+	                                } }),
+	                        _react2.default.createElement(
+	                                'label',
+	                                null,
+	                                'password confirm'
+	                        ),
+	                        _react2.default.createElement('input', { ref: function ref(node) {
+	                                        return confirm = node;
+	                                } }),
+	                        _react2.default.createElement(
+	                                'label',
+	                                null,
+	                                'email'
+	                        ),
+	                        _react2.default.createElement('input', { ref: function ref(node) {
+	                                        return email = node;
+	                                } }),
+	                        _react2.default.createElement(
+	                                'label',
+	                                null,
+	                                'zip code'
+	                        ),
+	                        _react2.default.createElement('input', { ref: function ref(node) {
+	                                        return zip = node;
+	                                } }),
+	                        _react2.default.createElement(
+	                                'button',
+	                                { type: 'submit' },
+	                                'create'
+	                        )
+	                )
+	        );
 	};
 
-	// const mapStateToProps = (state) => {
-	//   return {
-	//   }
-	// }
-	//
-	// const mapDispatchToProps = (dispatch) => {
-	//   return {
-	//
-	//   }
-	// }
-	//
-	// Signup = connect(
-	//   mapStateToProps,
-	//   mapDispatchToProps
-	// )(Signup);
-
 	module.exports = Signup;
+
+/***/ },
+/* 267 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(35);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _NavBar = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./NavBar\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var _NavBar2 = _interopRequireDefault(_NavBar);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	// import { Link } from 'react-router';
+
+	var Dashboard = function (_React$Component) {
+	  _inherits(Dashboard, _React$Component);
+
+	  function Dashboard(props) {
+	    _classCallCheck(this, Dashboard);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Dashboard).call(this, props));
+	  }
+
+	  _createClass(Dashboard, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_NavBar2.default, null),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            'Dashboard'
+	          ),
+	          _react2.default.createElement('img', { src: 'https://huxley.wwu.edu/sites/huxley.wwu.edu/files/default_images/user-icon.png' }),
+	          _react2.default.createElement('div', { className: 'about' }),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'activeListings' },
+	              'activeListings'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'pendingOrders' },
+	              'pendingOrders'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'listingsHistory' },
+	              'listingsHistory'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'ordersHistory' },
+	              'ordersHistory'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Dashboard;
+	}(_react2.default.Component);
+
+	exports.default = Dashbaord;
+
+/***/ },
+/* 268 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(35);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _NavBar = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./NavBar\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var _NavBar2 = _interopRequireDefault(_NavBar);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	// import { Link } from 'react-router';
+
+	var CreateListing = function (_React$Component) {
+	  _inherits(CreateListing, _React$Component);
+
+	  function CreateListing(props) {
+	    _classCallCheck(this, CreateListing);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(CreateListing).call(this, props));
+	  }
+
+	  _createClass(CreateListing, [{
+	    key: 'postListing',
+	    value: function postListing(event) {
+	      event.preventDefault();
+	      var loginData = {
+	        title: _reactDom2.default.findDOMNode(this.refs.title).value,
+	        location: _reactDom2.default.findDOMNode(this.refs.location).value,
+	        zipcode: _reactDom2.default.findDOMNode(this.refs.zipcode).value,
+	        description: _reactDom2.default.findDOMNode(this.refs.body).value,
+	        email: _reactDom2.default.findDOMNode(this.refs.email).value,
+	        username: 'anonymous' //this.props.username
+	      };
+	      console.log(loginData);
+	      // this.props.route.socket.emit('user-login', loginData);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_NavBar2.default, null),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            'Create a Listing'
+	          ),
+	          _react2.default.createElement(
+	            'form',
+	            null,
+	            _react2.default.createElement(
+	              'fieldset',
+	              null,
+	              _react2.default.createElement(
+	                'legend',
+	                null,
+	                'New Listing'
+	              ),
+	              'Listing Title:',
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement('input', { ref: 'title', type: 'text' }),
+	              _react2.default.createElement('br', null),
+	              'Location:',
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement('input', { ref: 'location', type: 'text' }),
+	              _react2.default.createElement('br', null),
+	              'Zip Code:',
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement('input', { ref: 'zipcode', type: 'text' }),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement('br', null),
+	              'Listing Body:',
+	              _react2.default.createElement('textarea', { ref: 'description' }),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement(
+	                'legend',
+	                null,
+	                'Contact Info'
+	              ),
+	              'Email Address:',
+	              _react2.default.createElement('input', { ref: 'email', type: 'email' }),
+	              _react2.default.createElement('input', { onClick: function onClick(event) {
+	                  return _this2.postListing(event);
+	                }, type: 'submit', value: 'Submit' })
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return CreateListing;
+	}(_react2.default.Component);
+
+	exports.default = CreateListing;
 
 /***/ }
 /******/ ]);

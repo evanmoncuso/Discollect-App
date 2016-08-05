@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import NavBar from './NavBar';
-// import { Link } from 'react-router';
+import NavBar from './NavBar.jsx';
 
 class CreateListing extends React.Component {
   constructor (props) {
@@ -14,7 +13,7 @@ class CreateListing extends React.Component {
       location: ReactDOM.findDOMNode(this.refs.location).value,
       zipcode: ReactDOM.findDOMNode(this.refs.zipcode).value,
       description: ReactDOM.findDOMNode(this.refs.body).value,
-      email: ReactDOM.findDOMNode(this.refs.email).value,    
+      email: ReactDOM.findDOMNode(this.refs.email).value,
       username: 'anonymous'//this.props.username
     }
     console.log(loginData);
@@ -24,7 +23,7 @@ class CreateListing extends React.Component {
     return(
       <div>
         <NavBar />
-        <div>
+        <div className="main_container">
           <h1>Create a Listing</h1>
           <form>
             <fieldset>

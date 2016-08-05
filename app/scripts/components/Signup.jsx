@@ -7,7 +7,7 @@ import NavBar from './NavBar.jsx';
 let Signup = () => {
   let username, password, confirm, email, zip;
   return (
-    <div>
+    <div className="main_container">
       <NavBar />
       <h2>Signup</h2>
       <form onSubmit={(e) => {
@@ -44,21 +44,5 @@ let Signup = () => {
     </div>
   );
 };
-
-// const mapStateToProps = (state) => {
-//   return {
-//   }
-// }
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//
-//   }
-// }
-//
-// Signup = connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(Signup);
 
 module.exports = Signup;
