@@ -2,7 +2,7 @@ var Sequelize = require('sequelize');
 var db = require('../config/database.js');
 
 
-var User = db.define('User', {
+var User = db.define('user', {
   username: {type: Sequelize.STRING(20), unique: true},
   password: {type: Sequelize.STRING(20)},
   email: Sequelize.STRING,
@@ -11,4 +11,18 @@ var User = db.define('User', {
   zipcode: Sequelize.INTEGER, 
 });
 
-module.export = User;
+User.sync({force: false})
+  .then(() => {
+    return User.create({
+      username: 'ConMomma',
+      password: 'guest',
+      email: 'Crad',
+      rating: 3,
+      picReference: 'http://vk.com/images/gifts/256/70.jpg',
+      zipcode: 29135
+    });
+  });
+
+
+
+module.exports = User;

@@ -3,7 +3,8 @@ var User = require('./userModel.js');
 module.exports = {
 
   getUser : function(req, res) {
-    User.findOne({where : { username : req.body.username}})
+    console.log(req.query);
+    User.findOne({where : { username : req.query.name}})
       .then(user => {
         res.send(user);
       });
