@@ -23479,11 +23479,11 @@
 	  return _react2.default.createElement(
 	    _reactRouter.Router,
 	    { history: _reactRouter.hashHistory },
-	    _react2.default.createElement(_reactRouter.Route, { to: '/', component: _Main2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { to: '/login', component: _Login2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { to: '/signup', component: _Signup2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { to: '/dashboard', component: _Dashboard2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { to: '/createlisting', component: _CreateListing2.default })
+	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _Main2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _Login2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _Signup2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/dashboard', component: _Dashboard2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/createlisting', component: _CreateListing2.default })
 	  );
 	};
 
@@ -29302,7 +29302,7 @@
 	      _react2.default.createElement(
 	        'p',
 	        null,
-	        'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+	        'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim venium, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
 	      )
 	    )
 	  );
@@ -29355,23 +29355,49 @@
 	    ),
 	    _react2.default.createElement(
 	      'div',
-	      { className: 'auth_points' },
+	      { className: 'nav_points' },
 	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/login' },
+	        'div',
+	        { className: 'app_points' },
 	        _react2.default.createElement(
-	          'span',
-	          { className: 'button login' },
-	          'login'
+	          _reactRouter.Link,
+	          { to: '/dashboard' },
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'button dashboard' },
+	            'dash'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/createListing' },
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'button create' },
+	            'create'
+	          )
 	        )
 	      ),
 	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/signup' },
+	        'div',
+	        { className: 'auth_points' },
 	        _react2.default.createElement(
-	          'span',
-	          { className: 'button signup' },
-	          'signup'
+	          _reactRouter.Link,
+	          { to: '/login' },
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'button login' },
+	            'login'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/signup' },
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'button signup' },
+	            'signup'
+	          )
 	        )
 	      )
 	    ),
@@ -29408,7 +29434,7 @@
 	      password = void 0;
 	  return _react2.default.createElement(
 	    'div',
-	    null,
+	    { className: 'main_container' },
 	    _react2.default.createElement(_NavBar2.default, null),
 	    _react2.default.createElement(
 	      'h2',
@@ -29487,80 +29513,80 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Signup = function Signup() {
-	        var username = void 0,
-	            password = void 0,
-	            confirm = void 0,
-	            email = void 0,
-	            zip = void 0;
-	        return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(_NavBar2.default, null),
-	                _react2.default.createElement(
-	                        'h2',
-	                        null,
-	                        'Signup'
-	                ),
-	                _react2.default.createElement(
-	                        'form',
-	                        { onSubmit: function onSubmit(e) {
-	                                        e.preventDefault();
-	                                        if (!username.value.trim() && !password.value.trim() && !email.value.trim()) {
-	                                                return;
-	                                        }
-	                                        console.log('here is the username', username.value);
-	                                        console.log('Here is the password:', password.value);
-	                                        console.log('here is the password confirm', confirm.value);
-	                                        console.log('Here is the email:', email.value);
-	                                        console.log('here is the zip', zip.value);
-	                                } },
-	                        _react2.default.createElement(
-	                                'label',
-	                                null,
-	                                'username'
-	                        ),
-	                        _react2.default.createElement('input', { ref: function ref(node) {
-	                                        return username = node;
-	                                } }),
-	                        _react2.default.createElement(
-	                                'label',
-	                                null,
-	                                'password'
-	                        ),
-	                        _react2.default.createElement('input', { ref: function ref(node) {
-	                                        return password = node;
-	                                } }),
-	                        _react2.default.createElement(
-	                                'label',
-	                                null,
-	                                'password confirm'
-	                        ),
-	                        _react2.default.createElement('input', { ref: function ref(node) {
-	                                        return confirm = node;
-	                                } }),
-	                        _react2.default.createElement(
-	                                'label',
-	                                null,
-	                                'email'
-	                        ),
-	                        _react2.default.createElement('input', { ref: function ref(node) {
-	                                        return email = node;
-	                                } }),
-	                        _react2.default.createElement(
-	                                'label',
-	                                null,
-	                                'zip code'
-	                        ),
-	                        _react2.default.createElement('input', { ref: function ref(node) {
-	                                        return zip = node;
-	                                } }),
-	                        _react2.default.createElement(
-	                                'button',
-	                                { type: 'submit' },
-	                                'create'
-	                        )
-	                )
-	        );
+	  var username = void 0,
+	      password = void 0,
+	      confirm = void 0,
+	      email = void 0,
+	      zip = void 0;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'main_container' },
+	    _react2.default.createElement(_NavBar2.default, null),
+	    _react2.default.createElement(
+	      'h2',
+	      null,
+	      'Signup'
+	    ),
+	    _react2.default.createElement(
+	      'form',
+	      { onSubmit: function onSubmit(e) {
+	          e.preventDefault();
+	          if (!username.value.trim() && !password.value.trim() && !email.value.trim()) {
+	            return;
+	          }
+	          console.log('here is the username', username.value);
+	          console.log('Here is the password:', password.value);
+	          console.log('here is the password confirm', confirm.value);
+	          console.log('Here is the email:', email.value);
+	          console.log('here is the zip', zip.value);
+	        } },
+	      _react2.default.createElement(
+	        'label',
+	        null,
+	        'username'
+	      ),
+	      _react2.default.createElement('input', { ref: function ref(node) {
+	          return username = node;
+	        } }),
+	      _react2.default.createElement(
+	        'label',
+	        null,
+	        'password'
+	      ),
+	      _react2.default.createElement('input', { ref: function ref(node) {
+	          return password = node;
+	        } }),
+	      _react2.default.createElement(
+	        'label',
+	        null,
+	        'password confirm'
+	      ),
+	      _react2.default.createElement('input', { ref: function ref(node) {
+	          return confirm = node;
+	        } }),
+	      _react2.default.createElement(
+	        'label',
+	        null,
+	        'email'
+	      ),
+	      _react2.default.createElement('input', { ref: function ref(node) {
+	          return email = node;
+	        } }),
+	      _react2.default.createElement(
+	        'label',
+	        null,
+	        'zip code'
+	      ),
+	      _react2.default.createElement('input', { ref: function ref(node) {
+	          return zip = node;
+	        } }),
+	      _react2.default.createElement(
+	        'button',
+	        { type: 'submit' },
+	        'create'
+	      )
+	    )
+	  );
 	};
 
 	module.exports = Signup;
@@ -29575,89 +29601,60 @@
 	  value: true
 	});
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(35);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	var _NavBar = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./NavBar\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _NavBar = __webpack_require__(264);
 
 	var _NavBar2 = _interopRequireDefault(_NavBar);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	// import { Link } from 'react-router';
-
-	var Dashboard = function (_React$Component) {
-	  _inherits(Dashboard, _React$Component);
-
-	  function Dashboard(props) {
-	    _classCallCheck(this, Dashboard);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Dashboard).call(this, props));
-	  }
-
-	  _createClass(Dashboard, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
+	var Dashboard = function Dashboard() {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(_NavBar2.default, null),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'main_container' },
+	      _react2.default.createElement(
+	        'h1',
+	        null,
+	        'Dashboard'
+	      ),
+	      _react2.default.createElement('img', { src: 'https://huxley.wwu.edu/sites/huxley.wwu.edu/files/default_images/user-icon.png' }),
+	      _react2.default.createElement('div', { className: 'about' }),
+	      _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_NavBar2.default, null),
 	        _react2.default.createElement(
 	          'div',
-	          null,
-	          _react2.default.createElement(
-	            'h1',
-	            null,
-	            'Dashboard'
-	          ),
-	          _react2.default.createElement('img', { src: 'https://huxley.wwu.edu/sites/huxley.wwu.edu/files/default_images/user-icon.png' }),
-	          _react2.default.createElement('div', { className: 'about' }),
-	          _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'activeListings' },
-	              'activeListings'
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'pendingOrders' },
-	              'pendingOrders'
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'listingsHistory' },
-	              'listingsHistory'
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'ordersHistory' },
-	              'ordersHistory'
-	            )
-	          )
+	          { className: 'activeListings' },
+	          'activeListings'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'pendingOrders' },
+	          'pendingOrders'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'listingsHistory' },
+	          'listingsHistory'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'ordersHistory' },
+	          'ordersHistory'
 	        )
-	      );
-	    }
-	  }]);
+	      )
+	    )
+	  );
+	};
 
-	  return Dashboard;
-	}(_react2.default.Component);
-
-	exports.default = Dashbaord;
+	exports.default = Dashboard;
 
 /***/ },
 /* 268 */
@@ -29679,7 +29676,7 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _NavBar = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./NavBar\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _NavBar = __webpack_require__(264);
 
 	var _NavBar2 = _interopRequireDefault(_NavBar);
 
@@ -29690,8 +29687,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	// import { Link } from 'react-router';
 
 	var CreateListing = function (_React$Component) {
 	  _inherits(CreateListing, _React$Component);
@@ -29728,7 +29723,7 @@
 	        _react2.default.createElement(_NavBar2.default, null),
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'main_container' },
 	          _react2.default.createElement(
 	            'h1',
 	            null,

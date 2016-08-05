@@ -2,6 +2,7 @@ var Listing = require('./listingModel.js');
 
 module.exports = {
 
-  getListing: function(req, res){
+  getAllListings: function(req, res){
+    Listing.findAll()
   },
 }
