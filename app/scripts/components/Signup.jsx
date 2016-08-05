@@ -10,6 +10,7 @@ const Signup = () => {
   let confirm;
   let email;
   let zip;
+
   return (
     <div className="main_container">
       <NavBar />
@@ -27,6 +28,7 @@ const Signup = () => {
             console.log('passwords do not match');
             return;
           }
+          zipcodeArrayBuilder(zip.value);
           createUser(username.value, password.value, email.value, zip.value);
         }}>
 

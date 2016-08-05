@@ -1,4 +1,6 @@
 var Listing = require('./listingModel.js');
+// require('es6-promise').polyfill(); // only need if fetch is brought back to be done here
+// require('isomorphic-fetch');
 
 module.exports = {
 
@@ -16,26 +18,17 @@ module.exports = {
 
   getFilteredListings: function(req, res) {
     // var tempArr is returned array from
-    var request = 'https://www.zipcodeapi.com/rest/ZuYPOXpKUE8RDdLyX8t3MuU3bDjg70N6uMWjKl4E0dwDqicoqFrdamhl0AC7Bqe6/radius.json/'
-              + user.zipcode + '/50/miles';
-      $.ajax({
-         url: request,
-         type: 'GET'
-         data: {
-            format: 'json'
-         },
-         error: function() {
-            console.log('An error has occurred');
-         },
-         dataType: 'jsonp',
-         success: function(data) {
-            var zipcodeArray = data;
-         },
-      });
-
-      //async issue? need data before this can run:
-
-        Listing.findAll({ 
+    // var request = 'https://www.zipcodeapi.com/rest/ZuYPOXpKUE8RDdLyX8t3MuU3bDjg70N6uMWjKl4E0dwDqicoqFrdamhl0AC7Bqe6/radius.json/'
+    //           + user.zipcode + '/50/miles';
+    //   fetch(request)
+    //   .then(function(response) {
+    //     if (response.status >= 400) {
+    //       throw new Error('Bad response');
+    //     }
+    //     return response.json();
+    //   })
+      .then(function(zipcodes) {
+        var listings = Listing.findAll({ 
           where: {
             //category of listing matches filter category
             listing.category: req.category,
@@ -45,12 +38,15 @@ module.exports = {
           limit: 20,
           order: [['createdAt', 'DESC']]
         })
+
+        //results of findALL passed as listings - but need
+        //access to zipcodes still
       .then(function(listings) {
         var tempArray = [];
         //loop through all listings, check if they're in zipcodeArray
         //if they are, add to tempArray
         for (var i = 0; i < listings.length; i++) {
-          if (zipcodeArray.indexOf(listings[i]) > -1) {
+          if (zipcodes.indexOf(listings[i]) > -1) {
             tempArray.push(listings[i])
           }
         }
