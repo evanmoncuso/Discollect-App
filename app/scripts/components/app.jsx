@@ -5,22 +5,19 @@ import { connect } from 'react-redux';
 import Main from './Main.jsx';
 import Login from './Login.jsx';
 import Signup from './Signup.jsx';
-
-
-
-// <Route to='/dashboard' component={dashboard}></Route>
-// <Route to='/create' component={create}></Route>
+import Dashboard from './Dashboard.jsx';
+import CreateListing from './CreateListing.jsx';
 
 let App = () => {
   return (
     <Router history={hashHistory}>
       <Route to='/' component={Main}></Route>
-      <Route to='/login' component={login}></Route>
-      <Route to='/signup' component={signup}></Route>
-      <Route to='/dashboard' component={dashboard}></Route>
-      <Route to='/createlisting' component={create}></Route>
+      <Route to='/login' component={Login}></Route>
+      <Route to='/signup' component={Signup}></Route>
+      <Route to='/dashboard' component={Dashboard}></Route>
+      <Route to='/createlisting' component={CreateListing}></Route>
     </Router>
   );
 };
 
-module.exports = App;
+export default App;

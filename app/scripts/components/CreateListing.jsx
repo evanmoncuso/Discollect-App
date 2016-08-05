@@ -14,7 +14,7 @@ class CreateListing extends React.Component {
       location: ReactDOM.findDOMNode(this.refs.location).value,
       zipcode: ReactDOM.findDOMNode(this.refs.zipcode).value,
       description: ReactDOM.findDOMNode(this.refs.body).value,
-      email: ReactDOM.findDOMNode(this.refs.email).value,    
+      email: ReactDOM.findDOMNode(this.refs.email).value,
       username: 'anonymous'//this.props.username
     }
     console.log(loginData);

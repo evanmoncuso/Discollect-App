@@ -15,19 +15,4 @@ let NavBar = () => {
   );
 };
 
-// const mapStateToProps = (state) => {
-//   return {
-//   }
-// }
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//   }
-// }
-//
-// NavBar = connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(NavBar);
-
-module.exports = NavBar;
+export default NavBar;
