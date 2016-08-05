@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 
 import NavBar from './NavBar.jsx';
 
+import { sendUserToServer } from '../actions/userActions.js';
 
+console.log(sendUserToServer);
 let Signup = () => {
   let username, password, confirm, email, zip;
   return (
