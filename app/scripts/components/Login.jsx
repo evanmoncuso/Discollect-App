@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 
 import NavBar from './NavBar.jsx';
 
-let Login = () => {
+import { checkUserLogin } from '../actions/userActions.js';
+
+let Login = ({ dispatchLogin }) => {
   let username, password;
   return (
     <div className="main_container">
@@ -14,8 +16,10 @@ let Login = () => {
           if (!username.value.trim() && !password.value.trim()) {
             return;
           }
-          console.log(username.value);
-          console.log(password.value);
+          dispatchLogin(username.value, password.value);
+
+          username.value = '';
+          password.value = '';
         }}>
 
         <label>username</label>
@@ -30,20 +34,24 @@ let Login = () => {
   );
 };
 
-// const mapStateToProps = (state) => {
-//   return {
-//   }
-// }
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//
-//   }
-// }
-//
-// Login = connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(Login);
+const mapStateToProps = (state) => {
+  return {
+
+  }
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatchLogin: (user, pass) => {
+      dispatch(checkUserLogin(user, pass));
+    }
+  }
+}
+
+Login = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);
 
 export default Login;

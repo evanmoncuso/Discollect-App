@@ -5,7 +5,6 @@ import NavBar from './NavBar.jsx';
 
 import { sendUserToServer } from '../actions/userActions.js';
 
-console.log(sendUserToServer);
 let Signup = () => {
   let username, password, confirm, email, zip;
   return (
@@ -19,11 +18,12 @@ let Signup = () => {
               !email.value.trim()) {
             return;
           }
-          console.log('here is the username', username.value);
-          console.log('Here is the password:', password.value);
-          console.log('here is the password confirm', confirm.value);
-          console.log('Here is the email:', email.value);
-          console.log('here is the zip', zip.value);
+
+          if (password.value !== confirm.value) {
+            console.log('passwords do not match');
+            return;
+          }
+          sendUserToServer(username.value, password.value, email.value, zip.value);
         }}>
 
         <label>username</label>
