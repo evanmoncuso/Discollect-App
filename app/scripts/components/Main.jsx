@@ -14,19 +14,19 @@ let Main = () => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
-}
-
-Main = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Main);
+// const mapStateToProps = (state) => {
+//   return {
+//   };
+// }
+//
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//   }
+// }
+//
+// Main = connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(Main);
 
 export default Main;

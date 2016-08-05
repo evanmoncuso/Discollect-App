@@ -1,14 +1,12 @@
 const initState = {
   valid: false,
   username: null,
-  password: null
-}
+  password: null,
+};
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case 'LOGIN_VALID':
-      console.log('123',action.valid)
-      console.log('234',action.username)
       return Object.assign({}, state, {
         valid: action.valid,
         username: action.username,
@@ -24,5 +22,5 @@ const reducer = (state = initState, action) => {
 };
 
 module.exports = {
-  reducer: reducer,
+  reducer,
 };

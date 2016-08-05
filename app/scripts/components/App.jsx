@@ -1,6 +1,5 @@
 import React from 'react';
-import { Router, Route, IndexRoute, hashHistory } from 'react-router';
-import { connect } from 'react-redux';
+import { Router, Route, hashHistory } from 'react-router';
 
 import Main from './Main.jsx';
 import Login from './Login.jsx';
@@ -8,14 +7,14 @@ import Signup from './Signup.jsx';
 import Dashboard from './Dashboard.jsx';
 import CreateListing from './CreateListing.jsx';
 
-let App = () => {
+const App = () => {
   return (
     <Router history={hashHistory}>
-      <Route path='/' component={Main}></Route>
-      <Route path='/login' component={Login}></Route>
-      <Route path='/signup' component={Signup}></Route>
-      <Route path='/dashboard' component={Dashboard}></Route>
-      <Route path='/createlisting' component={CreateListing}></Route>
+      <Route path="/" component={Main} />
+      <Route path="/login" component={Login} />
+      <Route path="/signup" component={Signup} />
+      <Route path="/dashboard" component={Dashboard} />
+      <Route path="/createlisting" component={CreateListing} />
     </Router>
   );
 };

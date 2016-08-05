@@ -1,60 +1,61 @@
-import fetch from 'isomorphic-fetch'
+import fetch from 'isomorphic-fetch';
+
+const optomisticCheckUser = (valid, username) => {
+  return {
+    type: 'LOGIN_VALID',
+    valid,
+    username,
+  };
+};
 
 const userActions = {
   sendUserToServer: (username, password, email, zip) => {
-    let url = 'http://localhost:3000/api/signup'
-    let data = JSON.stringify({
-      username: username,
-      password: password,
-      email: email,
+    const url = 'http://localhost:3000/api/signup';
+    const data = JSON.stringify({
+      username,
+      password,
+      email,
       zipcode: zip,
     });
     fetch(url, {
-    	method: 'POST',
-    	body: data,
-      headers: new Headers({
-		      'Content-Type': 'application/json'
-	       })
+      method: 'POST',
+      body: data,
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
     .then((res) => {
-      console.log('the response from fetch', res)
+      console.log('the response from fetch', res);
     })
     .catch((err) => {
-      if(err) {
-        console.log(err);
+      if (err) {
+        console.log('error', err);
       }
-    })
+    });
   },
   checkUserLogin: (username, password) => {
     return (dispatch) => {
-      let data = JSON.stringify({username: username, password: password});
-      let url = 'http://localhost:3000/api/login';
+      const data = JSON.stringify({ username, password });
+      const url = 'http://localhost:3000/api/login';
       fetch(url, {
-      	method: 'POST',
-      	body: data,
-        headers: new Headers({
-  		      'Content-Type': 'application/json'
-  	       })
+        method: 'POST',
+        body: data,
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
       .then((res) => res.json())
       .then((jsonRes) => {
         dispatch(optomisticCheckUser(jsonRes.valid, jsonRes.username));
       })
       .catch((err) => {
-        if(err) {
+        if (err) {
           console.log(err);
         }
-      })
-    }
-  }
+      });
+    };
+  },
 };
 
-const optomisticCheckUser = (valid, username) => {
-  return {
-    type: 'LOGIN_VALID',
-    valid: valid,
-    username: username
-  }
-}
 
 module.exports = userActions;

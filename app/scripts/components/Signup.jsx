@@ -1,17 +1,21 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import NavBar from './NavBar.jsx';
 
 import { sendUserToServer } from '../actions/userActions.js';
 
-let Signup = () => {
-  let username, password, confirm, email, zip;
+const Signup = () => {
+  let username;
+  let password;
+  let confirm;
+  let email;
+  let zip;
   return (
     <div className="main_container">
       <NavBar />
       <h2>Signup</h2>
-      <form onSubmit={(e) => {
+      <form
+        onSubmit={(e) => {
           e.preventDefault();
           if (!username.value.trim() &&
               !password.value.trim() &&
@@ -27,19 +31,19 @@ let Signup = () => {
         }}>
 
         <label>username</label>
-        <input ref={(node) => username = node } />
+        <input ref={(node) => { username = node; }} />
 
         <label>password</label>
-        <input ref={(node) => password = node } />
+        <input ref={(node) => { password = node; }} />
 
         <label>password confirm</label>
-        <input ref={(node) => confirm = node } />
+        <input ref={(node) => { confirm = node; }} />
 
         <label>email</label>
-        <input ref={(node) => email = node } />
+        <input ref={(node) => { email = node; }} />
 
         <label>zip code</label>
-        <input ref={(node) => zip = node } />
+        <input ref={(node) => { zip = node; }} />
 
         <button type="submit">create</button>
       </form>
