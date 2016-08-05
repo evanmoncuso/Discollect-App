@@ -5,30 +5,32 @@ var saltRounds = 10;
 
 var User = db.define('user', {
   username: {type: Sequelize.STRING(20), unique: true},
-  password: {type: Sequelize.STRING(20)},
+  password: {type: Sequelize.STRING},
   email: Sequelize.STRING,
   rating: Sequelize.INTEGER,
   picReference: Sequelize.STRING,
   zipcode: Sequelize.INTEGER, 
 });
 
-User.beforeCreate(function(user, options) {
+
+User.beforeCreate(function(user, options, done) {
+  var password = user.password;
   bcrypt.genSalt(saltRounds, function(err, salt) {
     if (err) {
-      return console.error('err', err);
+      return console.error(err);
     }
-    bcrypt.hash(user.password, salt, function(err, hash) {
-    console.log('after beforeCreate first line oogabooga');
+    bcrypt.hash(password, salt, function(err, hash) {
       if (err) {
-        return console.error('err', err);
+        return console.error(err);
       }
-      console.log('hash is ', hash)
+      console.log('hash is ', hash, user.password)
       user.password = hash;
+      done(null, user);
     })
-  })
+  });
 })
 
-User.sync({force: false})
+User.sync({force: true})
   .then(() => {
     return User.create({
       username: 'David1',
