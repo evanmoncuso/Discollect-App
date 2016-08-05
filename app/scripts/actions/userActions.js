@@ -44,9 +44,9 @@ const userActions = {
           'Content-Type': 'application/json',
         },
       })
-      .then((res) => res.json())
-      .then((jsonRes) => {
-        dispatch(optomisticCheckUser(jsonRes.valid, jsonRes.username));
+      .then((res) => {
+        console.log('server response!', res);
+        dispatch(optomisticCheckUser(res.valid, res.username));
       })
       .catch((err) => {
         if (err) {
