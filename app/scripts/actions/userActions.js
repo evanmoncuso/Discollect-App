@@ -9,7 +9,7 @@ const optomisticCheckUser = (valid, username) => {
 };
 
 const userActions = {
-  sendUserToServer: (username, password, email, zip) => {
+  createUser: (username, password, email, zip) => {
     const url = 'http://localhost:3000/api/signup';
     const data = JSON.stringify({
       username,

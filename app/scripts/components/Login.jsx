@@ -18,7 +18,7 @@ let Login = ({ dispatchLogin }) => {
           if (!username.value.trim() && !password.value.trim()) {
             return;
           }
-
+          
           dispatchLogin(username.value, password.value);
 
           username.value = '';

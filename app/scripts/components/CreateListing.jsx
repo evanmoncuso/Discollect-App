@@ -22,11 +22,10 @@ const CreateListing = () => {
             }
 
             const data = {
-              title,
-              location,
-              zip,
-              desc,
-              category,
+              title: title.value,
+              location: location.value,
+              zip: zip.value,
+              desc: desc.value,
             };
             console.log(data);
           }}>

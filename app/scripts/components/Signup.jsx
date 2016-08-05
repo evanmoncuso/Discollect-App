@@ -2,7 +2,7 @@ import React from 'react';
 
 import NavBar from './NavBar.jsx';
 
-import { sendUserToServer } from '../actions/userActions.js';
+import { createUser } from '../actions/userActions.js';
 
 const Signup = () => {
   let username;
@@ -27,7 +27,7 @@ const Signup = () => {
             console.log('passwords do not match');
             return;
           }
-          sendUserToServer(username.value, password.value, email.value, zip.value);
+          createUser(username.value, password.value, email.value, zip.value);
         }}>
 
         <label>username</label>
