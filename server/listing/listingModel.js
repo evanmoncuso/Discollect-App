@@ -29,7 +29,7 @@ Listing.sync({force: true})
     return Listing.create({
       title: 'Bedroom Closet',
       giver: 1,
-      zipcode: 29135, 
+      zipcode: 29135,  
       status: 1,
       picReference: 1,
       category: 'furniture',
