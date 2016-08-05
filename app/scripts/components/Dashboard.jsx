@@ -5,7 +5,7 @@ let Dashboard = () => {
   return(
     <div>
       <NavBar />
-      <div>
+      <div className="main_container">
         <h1>Dashboard</h1>
         <img src="https://huxley.wwu.edu/sites/huxley.wwu.edu/files/default_images/user-icon.png"/>
         <div className="about"></div>

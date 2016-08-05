@@ -14,8 +14,8 @@ let App = () => {
       <Route path='/' component={Main}></Route>
       <Route path='/login' component={Login}></Route>
       <Route path='/signup' component={Signup}></Route>
-      <Route to='/dashboard' component={Dashboard}></Route>
-      <Route to='/createlisting' component={CreateListing}></Route>
+      <Route path='/dashboard' component={Dashboard}></Route>
+      <Route path='/createlisting' component={CreateListing}></Route>
     </Router>
   );
 };

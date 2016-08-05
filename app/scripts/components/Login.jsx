@@ -6,7 +6,7 @@ import NavBar from './NavBar.jsx';
 let Login = () => {
   let username, password;
   return (
-    <div>
+    <div className="main_container">
       <NavBar />
       <h2>Login</h2>
       <form onSubmit={(e) => {

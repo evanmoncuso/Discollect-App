@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import NavBar from './NavBar.jsx';
-// import { Link } from 'react-router';
 
 class CreateListing extends React.Component {
   constructor (props) {
@@ -24,7 +23,7 @@ class CreateListing extends React.Component {
     return(
       <div>
         <NavBar />
-        <div>
+        <div className="main_container">
           <h1>Create a Listing</h1>
           <form>
             <fieldset>
