@@ -19,5 +19,32 @@ module.exports = {
         };
         res.json(message);
       });
+  },
+
+  login: function(req, res) {
+    res.send('Congrats. You are logged in.');
+  },
+
+  signup: function(req, res) {
+    console.log('boomboom')
+    User.findOne({
+      where: {username: req.body.username}
+    })
+    .then(function(user) {
+      if (!user) {
+        User.create(req.body)
+        .then(function() {
+          res.status(200);
+        })
+      } else {
+        console.error('That username is already in use.');
+        res.status(200).send('That username is already in use.')
+      }
+    })
+  },
+
+  logout: function(req, res) {
+    res.logout();
+    res.redirect('/');
   }
 };
