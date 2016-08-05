@@ -1,8 +1,8 @@
-var express = require('express');
-var app = express();
-var apiRoutes = require('./config/routes.js')(app, express);
+const express = require('express');
+const app = express();
+const apiRoutes = require('./config/routes.js')(app, express);
 
-var port = 3000;
+const port = 3000;
 
 require('./config/database.js');
 require('./config/middleware.js')(app, express);

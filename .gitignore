@@ -1,6 +1,6 @@
 node_modules
 
-public/bundle.js
+bundle.js
 
 .tags
 .tags1

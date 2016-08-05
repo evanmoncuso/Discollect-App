@@ -6,16 +6,19 @@ import NavBar from './NavBar.jsx';
 import { checkUserLogin } from '../actions/userActions.js';
 
 let Login = ({ dispatchLogin }) => {
-  let username, password;
+  let username;
+  let password;
   return (
     <div className="main_container">
       <NavBar />
       <h2>Login</h2>
-      <form onSubmit={(e) => {
+      <form
+        onSubmit={(e) => {
           e.preventDefault();
           if (!username.value.trim() && !password.value.trim()) {
             return;
           }
+          
           dispatchLogin(username.value, password.value);
 
           username.value = '';
@@ -23,10 +26,10 @@ let Login = ({ dispatchLogin }) => {
         }}>
 
         <label>username</label>
-        <input ref={(node) => username = node } />
+        <input ref={(node) => { username = node; }} />
 
         <label>password</label>
-        <input ref={(node) => password = node } />
+        <input ref={(node) => { password = node; }} />
 
         <button type="submit">add</button>
       </form>
@@ -37,17 +40,17 @@ let Login = ({ dispatchLogin }) => {
 const mapStateToProps = (state) => {
   return {
 
-  }
-}
+  };
+};
 
 
 const mapDispatchToProps = (dispatch) => {
   return {
     dispatchLogin: (user, pass) => {
       dispatch(checkUserLogin(user, pass));
-    }
-  }
-}
+    },
+  };
+};
 
 Login = connect(
   mapStateToProps,

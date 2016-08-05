@@ -26,15 +26,16 @@ module.exports = {
   },
 
   signup: function(req, res) {
+    console.log('boomboom')
     User.findOne({
       where: {username: req.body.username}
     })
     .then(function(user) {
       if (!user) {
         User.create(req.body)
-        .then(function(user) {
-          res.send(user);
-        });
+        .then(function() {
+          res.status(200);
+        })
       } else {
         console.error('That username is already in use.');
         res.status(200).send('That username is already in use.')

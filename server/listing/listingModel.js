@@ -3,13 +3,15 @@ var db = require('../config/database.js');
 var User = require('../user/userModel.js');
 
 var Listing = db.define('Listing', {
-  title: Sequelize.STRING(20),
-  giver: Sequelize.INTEGER,
+  title: {type: Sequelize.STRING(20)},
+  giver: { type: Sequelize.INTEGER },
+
   // taker: {
   //   type: Sequelize.INTEGER,
   //   references: 'users',
   //   referencesKey: 'id',
   // },
+
   zipcode: Sequelize.INTEGER,
   status: Sequelize.BOOLEAN,
   picReference: Sequelize.STRING,
