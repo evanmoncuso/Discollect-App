@@ -8,7 +8,7 @@ var User = db.define('User', {
   email: Sequelize.STRING,
   rating: Sequelize.INTEGER,
   picReference: Sequelize.STRING,
-  zipcode: Sequelize.INTEGER,
+  zipcode: Sequelize.INTEGER, 
 });
 
 module.export = User;
