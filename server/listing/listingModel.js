@@ -24,7 +24,7 @@ var Listing = db.define('Listing', {
 // TODO add a foreign key to listing referencing the user that created it
 // Listing.hasOne(User,{ foreignKey: 'id'})
 
-Listing.sync({force: true})
+Listing.sync({force: false})
   .then(() => {
     return Listing.create({
       title: 'Bedroom Closet',

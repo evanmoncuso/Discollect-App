@@ -29705,7 +29705,8 @@
 	        title: _reactDom2.default.findDOMNode(this.refs.title).value,
 	        location: _reactDom2.default.findDOMNode(this.refs.location).value,
 	        zipcode: _reactDom2.default.findDOMNode(this.refs.zipcode).value,
-	        description: _reactDom2.default.findDOMNode(this.refs.body).value,
+	        description: _reactDom2.default.findDOMNode(this.refs.description).value,
+	        category: _reactDom2.default.findDOMNode(this.refs.categories).value,
 	        email: _reactDom2.default.findDOMNode(this.refs.email).value,
 	        username: 'anonymous' //this.props.username
 	      };
@@ -29753,7 +29754,220 @@
 	              _react2.default.createElement('input', { ref: 'zipcode', type: 'text' }),
 	              _react2.default.createElement('br', null),
 	              _react2.default.createElement('br', null),
-	              'Listing Body:',
+	              'Categories:',
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement(
+	                'select',
+	                { ref: 'categories' },
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'all-categories' },
+	                  'All Categories'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'appliances' },
+	                  'Appliances'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'mobile-apps' },
+	                  'Apps & Games'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'arts-crafts' },
+	                  'Arts, Crafts & Sewing'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'automotive' },
+	                  'Automotive'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'baby-products' },
+	                  'Baby'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'beauty' },
+	                  'Beauty & Personal Care'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'books' },
+	                  'Books'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'popular' },
+	                  'CDs & Vinyl'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'mobile' },
+	                  'Cell Phones & Accessories'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'fashion' },
+	                  'Clothing, Shoes & Jewelry'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'fashion-womens' },
+	                  '   Women'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'fashion-mens' },
+	                  '   Men'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'fashion-girls' },
+	                  '   Girls'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'fashion-boys' },
+	                  '   Boys'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'fashion-baby' },
+	                  '   Baby'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'collectibles' },
+	                  'Collectibles & Fine Art'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'computers' },
+	                  'Computers'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'digital-music' },
+	                  'Digital Music'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'electronics' },
+	                  'Electronics'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'grocery' },
+	                  'Grocery & Gourmet Food'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'handmade' },
+	                  'Handmade'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'hpc' },
+	                  'Health, Household & Baby Care'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'local-services' },
+	                  'Home & Business Services'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'garden' },
+	                  'Home & Kitchen'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'industrial' },
+	                  'Industrial & Scientific'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'digital-text' },
+	                  'Kindle Store'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'fashion-luggage' },
+	                  'Luggage & Travel Gear'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'luxury-beauty' },
+	                  'Luxury Beauty'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'magazines' },
+	                  'Magazine Subscriptions'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'movies-tv' },
+	                  'Movies & TV'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'musical-instruments' },
+	                  'Musical Instruments'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'office-products' },
+	                  'Office Products'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'lawngarden' },
+	                  'Patio, Lawn & Garden'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'pets' },
+	                  'Pet Supplies'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'pantry' },
+	                  'Prime Pantry'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'software' },
+	                  'Software'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'sporting' },
+	                  'Sports & Outdoors'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'tools' },
+	                  'Tools & Home Improvement'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'toys-and-games' },
+	                  'Toys & Games'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'videogames' },
+	                  'Video Games'
+	                )
+	              ),
+	              _react2.default.createElement('br', null),
+	              'Description:',
+	              _react2.default.createElement('br', null),
 	              _react2.default.createElement('textarea', { ref: 'description' }),
 	              _react2.default.createElement('br', null),
 	              _react2.default.createElement('br', null),
