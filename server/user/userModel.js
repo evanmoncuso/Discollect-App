@@ -15,12 +15,12 @@ var User = db.define('user', {
 User.beforeCreate(function(user, options) {
   bcrypt.genSalt(saltRounds, function(err, salt) {
     if (err) {
-      return console.error('errrrrrrrrrrrrrrrrrrrrrrrrrrrr', err);
+      return console.error('err', err);
     }
     bcrypt.hash(user.password, salt, function(err, hash) {
     console.log('after beforeCreate first line oogabooga');
       if (err) {
-        return console.error('errrrrrrrrrrrrrrrrrrrrrrrr', err);
+        return console.error('err', err);
       }
       console.log('hash is ', hash)
       user.password = hash;
@@ -31,12 +31,12 @@ User.beforeCreate(function(user, options) {
 User.sync({force: false})
   .then(() => {
     return User.create({
-      username: 'ConMomma',
-      password: 'guest',
-      email: 'Crad',
-      rating: 3,
-      picReference: 'http://vk.com/images/gifts/256/70.jpg',
-      zipcode: 29135
+      username: 'David1',
+      password: 'david1',
+      email: 'david@david.com',
+      rating: 1,
+      picReference: 'http://vk.com/images/gifts/256/71.jpg',
+      zipcode: 65008
     });
   });
 
