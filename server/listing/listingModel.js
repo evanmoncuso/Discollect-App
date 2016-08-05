@@ -4,20 +4,12 @@ var User = require('../user/userModel.js');
 
 var Listing = db.define('Listing', {
   title: {type: Sequelize.STRING(20)},
-  // giver: {
-  //   type: Sequelize.INTEGER,
-  //   references: {
-  //     model: User,
-  //     key: id,
-  //   }
-  // },
+  giver: { type: Sequelize.INTEGER },
 
   // taker: {
   //   type: Sequelize.INTEGER,
-  //   references: {
-  //     model: User,
-  //     key: id,
-  //   }
+  //   references: 'users',
+  //   referencesKey: 'id',
   // },
 
   zipcode: Sequelize.INTEGER,
@@ -25,7 +17,25 @@ var Listing = db.define('Listing', {
   picReference: Sequelize.STRING,
   category: Sequelize.STRING,
   description: Sequelize.STRING,
-  createdAt: Sequelize.DATEONLY,
   condition: Sequelize.INTEGER
 
-})
+});
+
+// TODO add a foreign key to listing referencing the user that created it
+// Listing.hasOne(User,{ foreignKey: 'id'})
+
+Listing.sync({force: true})
+  .then(() => {
+    return Listing.create({
+      title: 'Bedroom Closet',
+      giver: 1,
+      zipcode: 29135,
+      status: 1,
+      picReference: 1,
+      category: 'furniture',
+      description: 'family fun time zoo party',
+      condition: 5,
+    });
+  });
+
+module.exports = Listing;
