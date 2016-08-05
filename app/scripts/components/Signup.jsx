@@ -45,20 +45,4 @@ let Signup = () => {
   );
 };
 
-// const mapStateToProps = (state) => {
-//   return {
-//   }
-// }
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//
-//   }
-// }
-//
-// Signup = connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(Signup);
-
 module.exports = Signup;
