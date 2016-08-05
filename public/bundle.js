@@ -23479,11 +23479,11 @@
 	  return _react2.default.createElement(
 	    _reactRouter.Router,
 	    { history: _reactRouter.hashHistory },
-	    _react2.default.createElement(_reactRouter.Route, { to: '/', component: _Main2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { to: '/login', component: _Login2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { to: '/signup', component: _Signup2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { to: '/dashboard', component: _Dashboard2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { to: '/createlisting', component: _CreateListing2.default })
+	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _Main2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _Login2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _Signup2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/dashboard', component: _Dashboard2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/createlisting', component: _CreateListing2.default })
 	  );
 	};
 
@@ -29302,7 +29302,7 @@
 	      _react2.default.createElement(
 	        'p',
 	        null,
-	        'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+	        'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim venium, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
 	      )
 	    )
 	  );
@@ -29355,23 +29355,49 @@
 	    ),
 	    _react2.default.createElement(
 	      'div',
-	      { className: 'auth_points' },
+	      { className: 'nav_points' },
 	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/login' },
+	        'div',
+	        { className: 'app_points' },
 	        _react2.default.createElement(
-	          'span',
-	          { className: 'button login' },
-	          'login'
+	          _reactRouter.Link,
+	          { to: '/dashboard' },
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'button dashboard' },
+	            'dash'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/createListing' },
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'button create' },
+	            'create'
+	          )
 	        )
 	      ),
 	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/signup' },
+	        'div',
+	        { className: 'auth_points' },
 	        _react2.default.createElement(
-	          'span',
-	          { className: 'button signup' },
-	          'signup'
+	          _reactRouter.Link,
+	          { to: '/login' },
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'button login' },
+	            'login'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/signup' },
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'button signup' },
+	            'signup'
+	          )
 	        )
 	      )
 	    ),
@@ -29408,7 +29434,7 @@
 	      password = void 0;
 	  return _react2.default.createElement(
 	    'div',
-	    null,
+	    { className: 'main_container' },
 	    _react2.default.createElement(_NavBar2.default, null),
 	    _react2.default.createElement(
 	      'h2',
@@ -29487,80 +29513,80 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Signup = function Signup() {
-	        var username = void 0,
-	            password = void 0,
-	            confirm = void 0,
-	            email = void 0,
-	            zip = void 0;
-	        return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(_NavBar2.default, null),
-	                _react2.default.createElement(
-	                        'h2',
-	                        null,
-	                        'Signup'
-	                ),
-	                _react2.default.createElement(
-	                        'form',
-	                        { onSubmit: function onSubmit(e) {
-	                                        e.preventDefault();
-	                                        if (!username.value.trim() && !password.value.trim() && !email.value.trim()) {
-	                                                return;
-	                                        }
-	                                        console.log('here is the username', username.value);
-	                                        console.log('Here is the password:', password.value);
-	                                        console.log('here is the password confirm', confirm.value);
-	                                        console.log('Here is the email:', email.value);
-	                                        console.log('here is the zip', zip.value);
-	                                } },
-	                        _react2.default.createElement(
-	                                'label',
-	                                null,
-	                                'username'
-	                        ),
-	                        _react2.default.createElement('input', { ref: function ref(node) {
-	                                        return username = node;
-	                                } }),
-	                        _react2.default.createElement(
-	                                'label',
-	                                null,
-	                                'password'
-	                        ),
-	                        _react2.default.createElement('input', { ref: function ref(node) {
-	                                        return password = node;
-	                                } }),
-	                        _react2.default.createElement(
-	                                'label',
-	                                null,
-	                                'password confirm'
-	                        ),
-	                        _react2.default.createElement('input', { ref: function ref(node) {
-	                                        return confirm = node;
-	                                } }),
-	                        _react2.default.createElement(
-	                                'label',
-	                                null,
-	                                'email'
-	                        ),
-	                        _react2.default.createElement('input', { ref: function ref(node) {
-	                                        return email = node;
-	                                } }),
-	                        _react2.default.createElement(
-	                                'label',
-	                                null,
-	                                'zip code'
-	                        ),
-	                        _react2.default.createElement('input', { ref: function ref(node) {
-	                                        return zip = node;
-	                                } }),
-	                        _react2.default.createElement(
-	                                'button',
-	                                { type: 'submit' },
-	                                'create'
-	                        )
-	                )
-	        );
+	  var username = void 0,
+	      password = void 0,
+	      confirm = void 0,
+	      email = void 0,
+	      zip = void 0;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'main_container' },
+	    _react2.default.createElement(_NavBar2.default, null),
+	    _react2.default.createElement(
+	      'h2',
+	      null,
+	      'Signup'
+	    ),
+	    _react2.default.createElement(
+	      'form',
+	      { onSubmit: function onSubmit(e) {
+	          e.preventDefault();
+	          if (!username.value.trim() && !password.value.trim() && !email.value.trim()) {
+	            return;
+	          }
+	          console.log('here is the username', username.value);
+	          console.log('Here is the password:', password.value);
+	          console.log('here is the password confirm', confirm.value);
+	          console.log('Here is the email:', email.value);
+	          console.log('here is the zip', zip.value);
+	        } },
+	      _react2.default.createElement(
+	        'label',
+	        null,
+	        'username'
+	      ),
+	      _react2.default.createElement('input', { ref: function ref(node) {
+	          return username = node;
+	        } }),
+	      _react2.default.createElement(
+	        'label',
+	        null,
+	        'password'
+	      ),
+	      _react2.default.createElement('input', { ref: function ref(node) {
+	          return password = node;
+	        } }),
+	      _react2.default.createElement(
+	        'label',
+	        null,
+	        'password confirm'
+	      ),
+	      _react2.default.createElement('input', { ref: function ref(node) {
+	          return confirm = node;
+	        } }),
+	      _react2.default.createElement(
+	        'label',
+	        null,
+	        'email'
+	      ),
+	      _react2.default.createElement('input', { ref: function ref(node) {
+	          return email = node;
+	        } }),
+	      _react2.default.createElement(
+	        'label',
+	        null,
+	        'zip code'
+	      ),
+	      _react2.default.createElement('input', { ref: function ref(node) {
+	          return zip = node;
+	        } }),
+	      _react2.default.createElement(
+	        'button',
+	        { type: 'submit' },
+	        'create'
+	      )
+	    )
+	  );
 	};
 
 	module.exports = Signup;
@@ -29575,89 +29601,60 @@
 	  value: true
 	});
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(35);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	var _NavBar = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./NavBar\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _NavBar = __webpack_require__(264);
 
 	var _NavBar2 = _interopRequireDefault(_NavBar);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	// import { Link } from 'react-router';
-
-	var Dashboard = function (_React$Component) {
-	  _inherits(Dashboard, _React$Component);
-
-	  function Dashboard(props) {
-	    _classCallCheck(this, Dashboard);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Dashboard).call(this, props));
-	  }
-
-	  _createClass(Dashboard, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
+	var Dashboard = function Dashboard() {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(_NavBar2.default, null),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'main_container' },
+	      _react2.default.createElement(
+	        'h1',
+	        null,
+	        'Dashboard'
+	      ),
+	      _react2.default.createElement('img', { src: 'https://huxley.wwu.edu/sites/huxley.wwu.edu/files/default_images/user-icon.png' }),
+	      _react2.default.createElement('div', { className: 'about' }),
+	      _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_NavBar2.default, null),
 	        _react2.default.createElement(
 	          'div',
-	          null,
-	          _react2.default.createElement(
-	            'h1',
-	            null,
-	            'Dashboard'
-	          ),
-	          _react2.default.createElement('img', { src: 'https://huxley.wwu.edu/sites/huxley.wwu.edu/files/default_images/user-icon.png' }),
-	          _react2.default.createElement('div', { className: 'about' }),
-	          _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'activeListings' },
-	              'activeListings'
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'pendingOrders' },
-	              'pendingOrders'
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'listingsHistory' },
-	              'listingsHistory'
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'ordersHistory' },
-	              'ordersHistory'
-	            )
-	          )
+	          { className: 'activeListings' },
+	          'activeListings'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'pendingOrders' },
+	          'pendingOrders'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'listingsHistory' },
+	          'listingsHistory'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'ordersHistory' },
+	          'ordersHistory'
 	        )
-	      );
-	    }
-	  }]);
+	      )
+	    )
+	  );
+	};
 
-	  return Dashboard;
-	}(_react2.default.Component);
-
-	exports.default = Dashbaord;
+	exports.default = Dashboard;
 
 /***/ },
 /* 268 */
@@ -29679,7 +29676,7 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _NavBar = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./NavBar\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _NavBar = __webpack_require__(264);
 
 	var _NavBar2 = _interopRequireDefault(_NavBar);
 
@@ -29690,8 +29687,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	// import { Link } from 'react-router';
 
 	var CreateListing = function (_React$Component) {
 	  _inherits(CreateListing, _React$Component);
@@ -29710,7 +29705,8 @@
 	        title: _reactDom2.default.findDOMNode(this.refs.title).value,
 	        location: _reactDom2.default.findDOMNode(this.refs.location).value,
 	        zipcode: _reactDom2.default.findDOMNode(this.refs.zipcode).value,
-	        description: _reactDom2.default.findDOMNode(this.refs.body).value,
+	        description: _reactDom2.default.findDOMNode(this.refs.description).value,
+	        category: _reactDom2.default.findDOMNode(this.refs.categories).value,
 	        email: _reactDom2.default.findDOMNode(this.refs.email).value,
 	        username: 'anonymous' //this.props.username
 	      };
@@ -29728,7 +29724,7 @@
 	        _react2.default.createElement(_NavBar2.default, null),
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'main_container' },
 	          _react2.default.createElement(
 	            'h1',
 	            null,
@@ -29758,7 +29754,220 @@
 	              _react2.default.createElement('input', { ref: 'zipcode', type: 'text' }),
 	              _react2.default.createElement('br', null),
 	              _react2.default.createElement('br', null),
-	              'Listing Body:',
+	              'Categories:',
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement(
+	                'select',
+	                { ref: 'categories' },
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'all-categories' },
+	                  'All Categories'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'appliances' },
+	                  'Appliances'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'mobile-apps' },
+	                  'Apps & Games'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'arts-crafts' },
+	                  'Arts, Crafts & Sewing'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'automotive' },
+	                  'Automotive'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'baby-products' },
+	                  'Baby'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'beauty' },
+	                  'Beauty & Personal Care'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'books' },
+	                  'Books'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'popular' },
+	                  'CDs & Vinyl'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'mobile' },
+	                  'Cell Phones & Accessories'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'fashion' },
+	                  'Clothing, Shoes & Jewelry'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'fashion-womens' },
+	                  '   Women'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'fashion-mens' },
+	                  '   Men'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'fashion-girls' },
+	                  '   Girls'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'fashion-boys' },
+	                  '   Boys'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'fashion-baby' },
+	                  '   Baby'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'collectibles' },
+	                  'Collectibles & Fine Art'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'computers' },
+	                  'Computers'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'digital-music' },
+	                  'Digital Music'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'electronics' },
+	                  'Electronics'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'grocery' },
+	                  'Grocery & Gourmet Food'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'handmade' },
+	                  'Handmade'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'hpc' },
+	                  'Health, Household & Baby Care'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'local-services' },
+	                  'Home & Business Services'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'garden' },
+	                  'Home & Kitchen'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'industrial' },
+	                  'Industrial & Scientific'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'digital-text' },
+	                  'Kindle Store'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'fashion-luggage' },
+	                  'Luggage & Travel Gear'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'luxury-beauty' },
+	                  'Luxury Beauty'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'magazines' },
+	                  'Magazine Subscriptions'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'movies-tv' },
+	                  'Movies & TV'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'musical-instruments' },
+	                  'Musical Instruments'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'office-products' },
+	                  'Office Products'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'lawngarden' },
+	                  'Patio, Lawn & Garden'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'pets' },
+	                  'Pet Supplies'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'pantry' },
+	                  'Prime Pantry'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'software' },
+	                  'Software'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'sporting' },
+	                  'Sports & Outdoors'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'tools' },
+	                  'Tools & Home Improvement'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'toys-and-games' },
+	                  'Toys & Games'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'videogames' },
+	                  'Video Games'
+	                )
+	              ),
+	              _react2.default.createElement('br', null),
+	              'Description:',
+	              _react2.default.createElement('br', null),
 	              _react2.default.createElement('textarea', { ref: 'description' }),
 	              _react2.default.createElement('br', null),
 	              _react2.default.createElement('br', null),
