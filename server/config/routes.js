@@ -13,7 +13,7 @@ module.exports = function(app, express) {
   router.post('/logout', userControl.logout);
 
   // router.get('/listing', listingControl.getListing);
-  // router.get('/getFilteredListings', listingControl.getFilteredListings);
+  router.get('/getFilteredListings', listingControl.getFilteredListings);
   router.get('/getAllListings', listingControl.getAllListings);
 
   return router;
