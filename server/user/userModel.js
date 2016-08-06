@@ -29,18 +29,4 @@ User.beforeCreate(function(user, options, done) {
   })
 })
 
-User.sync({force: false})
-  .then(() => {
-    return User.create({
-      username: 'David1',
-      password: 'david1',
-      email: 'david@david.com',
-      rating: 1,
-      picReference: 'http://vk.com/images/gifts/256/71.jpg',
-      zipcode: 65008
-    });
-  });
-
-
-
 module.exports = User;

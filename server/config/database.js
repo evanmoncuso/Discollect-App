@@ -1,5 +1,7 @@
 var Sequelize = require('sequelize');
-var db = new Sequelize('dbdiscollect', 'root', 'cake');
+const secrets = require('../../secrets.js');
+
+var db = new Sequelize('dbdiscollect', 'root', secrets.dbpassword);
 
 db
   .authenticate()
