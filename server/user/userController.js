@@ -21,6 +21,8 @@ module.exports = {
       });
   },
 
+  //login handles login and, if successful, returns zipcode with res.send for our
+  //use in zipcodeArrayBuilder
   login: function(req, res) {
     res.json(req.user.zipcode);
   },
