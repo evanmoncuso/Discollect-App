@@ -72,12 +72,20 @@
 	
 	var _App2 = _interopRequireDefault(_App);
 	
+	var _itemActions = __webpack_require__(266);
+	
+	var _itemActions2 = _interopRequireDefault(_itemActions);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	// --- redux additions --- //
 	var middleware = [_reduxThunk2.default, (0, _reduxLogger2.default)()];
 	
+	// --- redux additions --- //
+	
+	
 	var store = (0, _redux.createStore)(_reducer.reducer, _redux.applyMiddleware.apply(undefined, middleware));
+	
+	store.dispatch(_itemActions2.default.populateInitialListings());
 	
 	var ProvidedApp = function ProvidedApp() {
 	  return _react2.default.createElement(
@@ -23473,19 +23481,19 @@
 	
 	var _Main2 = _interopRequireDefault(_Main);
 	
-	var _Login = __webpack_require__(268);
+	var _Login = __webpack_require__(269);
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
-	var _Signup = __webpack_require__(270);
+	var _Signup = __webpack_require__(271);
 	
 	var _Signup2 = _interopRequireDefault(_Signup);
 	
-	var _Dashboard = __webpack_require__(271);
+	var _Dashboard = __webpack_require__(272);
 	
 	var _Dashboard2 = _interopRequireDefault(_Dashboard);
 	
-	var _CreateListing = __webpack_require__(272);
+	var _CreateListing = __webpack_require__(273);
 	
 	var _CreateListing2 = _interopRequireDefault(_CreateListing);
 	
@@ -29309,7 +29317,7 @@
 	
 	var _ListView2 = _interopRequireDefault(_ListView);
 	
-	var _itemActions = __webpack_require__(265);
+	var _itemActions = __webpack_require__(266);
 	
 	var _itemActions2 = _interopRequireDefault(_itemActions);
 	
@@ -29426,11 +29434,11 @@
 	
 	var _reactRedux = __webpack_require__(177);
 	
-	var _ListEntry = __webpack_require__(274);
+	var _ListEntry = __webpack_require__(265);
 	
 	var _ListEntry2 = _interopRequireDefault(_ListEntry);
 	
-	var _itemActions = __webpack_require__(265);
+	var _itemActions = __webpack_require__(266);
 	
 	var _itemActions2 = _interopRequireDefault(_itemActions);
 	
@@ -29467,8 +29475,6 @@
 	  );
 	};
 	
-	// TODO :: MAP ENTRYS WITH FILTER!!!
-	
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
 	    items: state.items.items
@@ -29497,7 +29503,64 @@
 	  value: true
 	});
 	
-	var _isomorphicFetch = __webpack_require__(266);
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(177);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var ListEntry = function ListEntry(props) {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement('div', null),
+	    _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(
+	        'h5',
+	        null,
+	        props.entry.title
+	      ),
+	      _react2.default.createElement(
+	        'p',
+	        null,
+	        props.entry.description
+	      ),
+	      _react2.default.createElement(
+	        'p',
+	        null,
+	        props.entry.createdAt
+	      )
+	    )
+	  );
+	};
+	
+	exports.default = ListEntry;
+	
+	// SCHEMA FIELDS
+	// title: 'Bedroom Closet',
+	//  giver: 1,
+	//  zipcode: 29135,  
+	//  status: 1,
+	//  picReference: 1,
+	//  category: 'furniture',
+	//  description: 'family fun time zoo party',
+	//  condition: 5,
+
+/***/ },
+/* 266 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _isomorphicFetch = __webpack_require__(267);
 	
 	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 	
@@ -29506,8 +29569,7 @@
 	var optimisticSetItems = function optimisticSetItems(items) {
 	  return {
 	    type: 'GET_INITIAL_ITEMS',
-	    items: items
-	  };
+	    items: items };
 	};
 	
 	var itemActions = {
@@ -29530,13 +29592,29 @@
 	        }
 	      });
 	    };
+	  },
+	  postNewListing: function postNewListing(listingData) {
+	    return function (dispatch) {
+	      var url = 'http://localhost:3000/api/createNewListing';
+	      (0, _isomorphicFetch2.default)(url, {
+	        method: 'POST',
+	        body: JSON.stringify(listingData),
+	        headers: {
+	          'Content-Type': 'application/json'
+	        }
+	      }).then(function (res) {
+	        console.log(res, dispatch);
+	      }).catch(function (err) {
+	        console.log(err);
+	      });
+	    };
 	  }
 	};
 	
 	exports.default = itemActions;
 
 /***/ },
-/* 266 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29545,11 +29623,11 @@
 	// on the global object (window or self)
 	//
 	// Return that as the export for use in Webpack, Browserify etc.
-	__webpack_require__(267);
+	__webpack_require__(268);
 	module.exports = self.fetch.bind(self);
 
 /***/ },
-/* 267 */
+/* 268 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -29994,7 +30072,7 @@
 	})(typeof self !== 'undefined' ? self : undefined);
 
 /***/ },
-/* 268 */
+/* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30013,29 +30091,28 @@
 	
 	var _NavBar2 = _interopRequireDefault(_NavBar);
 	
-	var _userActions = __webpack_require__(269);
+	var _userActions = __webpack_require__(270);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var zipcodeArrayBuilder = function zipcodeArrayBuilder(zipcode) {
-	  var api = 'ZuYPOXpKUE8RDdLyX8t3MuU3bDjg70N6uMWjKl4E0dwDqicoqFrdamhl0AC7Bqe6';
-	  var request = 'https://www.zipcodeapi.com/rest/' + api + '/radius.json/' + zipcode + '/50/miles';
-	  fetch(request).then(function (response) {
-	    if (response.status >= 400) {
-	      throw new Error('Bad zipcodes response');
-	    }
-	    return response.json();
-	  });
-	  // .then(function(zipcodes) {
-	  //   this.setState({
-	  //     zipcodeArray: zipcodes
-	  //   })
-	  // })
-	};
 	
 	var Login = function Login(_ref) {
 	  var dispatchLogin = _ref.dispatchLogin;
 	
+	  var zipcodeArrayBuilder = function zipcodeArrayBuilder(zipcode) {
+	    var api = 'ZuYPOXpKUE8RDdLyX8t3MuU3bDjg70N6uMWjKl4E0dwDqicoqFrdamhl0AC7Bqe6';
+	    var request = 'https://www.zipcodeapi.com/rest/' + api + '/radius.json/' + zipcode + '/50/miles';
+	    fetch(request).then(function (response) {
+	      if (response.status >= 400) {
+	        throw new Error('Bad zipcodes response');
+	      }
+	      return response.json();
+	    });
+	    // .then(function(zipcodes) {
+	    //   this.setState({
+	    //     zipcodeArray: zipcodes
+	    //   })
+	    // })
+	  };
 	  var username = void 0;
 	  var password = void 0;
 	  return _react2.default.createElement(
@@ -30061,24 +30138,24 @@
 	          password.value = '';
 	          console.log(username.value);
 	          console.log(password.value);
-	          zipcodeArrayBuilder(zipcode);
-	        } },
+	        }
+	      },
 	      _react2.default.createElement(
 	        'label',
-	        null,
+	        { htmlFor: 'username' },
 	        'username'
 	      ),
 	      _react2.default.createElement('input', { ref: function ref(node) {
 	          username = node;
-	        } }),
+	        }, id: 'username' }),
 	      _react2.default.createElement(
 	        'label',
-	        null,
+	        { htmlFor: 'password' },
 	        'password'
 	      ),
 	      _react2.default.createElement('input', { ref: function ref(node) {
 	          password = node;
-	        } }),
+	        }, id: 'password' }),
 	      _react2.default.createElement(
 	        'button',
 	        { type: 'submit' },
@@ -30088,9 +30165,16 @@
 	  );
 	};
 	
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {};
+	Login.propTypes = {
+	  dispatchLogin: _react2.default.PropTypes.func
 	};
+	
+	// const mapStateToProps = (state) => {
+	//   return {
+	
+	//   };
+	// };
+	
 	
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 	  return {
@@ -30100,17 +30184,15 @@
 	  };
 	};
 	
-	Login = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Login);
-	
-	exports.default = Login;
+	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(Login);
 
 /***/ },
-/* 269 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _isomorphicFetch = __webpack_require__(266);
+	var _isomorphicFetch = __webpack_require__(267);
 	
 	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 	
@@ -30119,8 +30201,7 @@
 	var optimisticCheckUser = function optimisticCheckUser(zip) {
 	  return {
 	    type: 'LOGIN_VALID',
-	    zip: zip
-	  };
+	    zip: zip };
 	};
 	
 	var userActions = {
@@ -30175,7 +30256,7 @@
 	module.exports = userActions;
 
 /***/ },
-/* 270 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30188,7 +30269,7 @@
 	
 	var _NavBar2 = _interopRequireDefault(_NavBar);
 	
-	var _userActions = __webpack_require__(269);
+	var _userActions = __webpack_require__(270);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -30198,22 +30279,6 @@
 	  var confirm = void 0;
 	  var email = void 0;
 	  var zip = void 0;
-	
-	  zipcodeArrayBuilder = function zipcodeArrayBuilder(zipcode) {
-	    var api = 'ZuYPOXpKUE8RDdLyX8t3MuU3bDjg70N6uMWjKl4E0dwDqicoqFrdamhl0AC7Bqe6';
-	    var request = 'https://www.zipcodeapi.com/rest/' + api + '/radius.json/' + zipcode + '/50/miles';
-	    fetch(request).then(function (response) {
-	      if (response.status >= 400) {
-	        throw new Error('Bad zipcodes response');
-	      }
-	      return response.json();
-	    });
-	    // .then(function(zipcodes) {
-	    //   this.setState({
-	    //     zipcodeArray: zipcodes
-	    //   })
-	    // })
-	  };
 	
 	  return _react2.default.createElement(
 	    'div',
@@ -30237,53 +30302,53 @@
 	            console.log('passwords do not match');
 	            return;
 	          }
-	          zipcodeArrayBuilder(zip.value);
 	          (0, _userActions.createUser)(username.value, password.value, email.value, zip.value);
-	        } },
+	        }
+	      },
 	      _react2.default.createElement(
 	        'label',
-	        null,
-	        'username'
+	        { htmlFor: 'username' },
+	        'Username'
 	      ),
 	      _react2.default.createElement('input', { ref: function ref(node) {
 	          username = node;
-	        } }),
+	        }, id: 'username', type: 'text', required: true }),
 	      _react2.default.createElement(
 	        'label',
-	        null,
-	        'password'
+	        { htmlFor: 'password1' },
+	        'Password'
 	      ),
 	      _react2.default.createElement('input', { ref: function ref(node) {
 	          password = node;
-	        } }),
+	        }, id: 'password1', type: 'password', required: true }),
 	      _react2.default.createElement(
 	        'label',
-	        null,
-	        'password confirm'
+	        { htmlFor: 'password2' },
+	        'Confirm Password'
 	      ),
 	      _react2.default.createElement('input', { ref: function ref(node) {
 	          confirm = node;
-	        } }),
+	        }, id: 'password2', type: 'password', required: true }),
 	      _react2.default.createElement(
 	        'label',
-	        null,
-	        'email'
+	        { htmlFor: 'email' },
+	        'Email'
 	      ),
 	      _react2.default.createElement('input', { ref: function ref(node) {
 	          email = node;
-	        } }),
+	        }, id: 'email', type: 'email', required: true }),
 	      _react2.default.createElement(
 	        'label',
-	        null,
-	        'zip code'
+	        { htmlFor: 'zip' },
+	        'Zip Code'
 	      ),
 	      _react2.default.createElement('input', { ref: function ref(node) {
 	          zip = node;
-	        } }),
+	        }, id: 'zip', required: true }),
 	      _react2.default.createElement(
 	        'button',
 	        { type: 'submit' },
-	        'create'
+	        'Create'
 	      )
 	    )
 	  );
@@ -30292,7 +30357,7 @@
 	module.exports = Signup;
 
 /***/ },
-/* 271 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30316,7 +30381,6 @@
 	var Dashboard = function Dashboard(_ref) {
 	  var username = _ref.username;
 	  var valid = _ref.valid;
-	
 	  return _react2.default.createElement(
 	    'div',
 	    null,
@@ -30374,12 +30438,15 @@
 	  return {};
 	};
 	
-	Dashboard = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Dashboard);
+	Dashboard.propTypes = {
+	  username: _react2.default.PropTypes.string,
+	  valid: _react2.default.PropTypes.bool
+	};
 	
-	exports.default = Dashboard;
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Dashboard);
 
 /***/ },
-/* 272 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30392,22 +30459,27 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _reactRedux = __webpack_require__(177);
+	
 	var _NavBar = __webpack_require__(263);
 	
 	var _NavBar2 = _interopRequireDefault(_NavBar);
 	
-	var _Categories = __webpack_require__(273);
+	var _categories = __webpack_require__(274);
 	
-	var _Categories2 = _interopRequireDefault(_Categories);
+	var _categories2 = _interopRequireDefault(_categories);
+	
+	var _actions = __webpack_require__(275);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var CreateListing = function CreateListing() {
+	var CreateListing = function CreateListing(props) {
 	  var title = void 0;
-	  var location = void 0;
 	  var zip = void 0;
-	  var desc = void 0;
+	  var image = void 0;
 	  var category = void 0;
+	  var description = void 0;
+	  var condition = void 0;
 	  return _react2.default.createElement(
 	    'div',
 	    null,
@@ -30426,59 +30498,104 @@
 	          onSubmit: function onSubmit(e) {
 	            e.preventDefault();
 	
-	            if (!title.value.trim() && !location.value.trim() && !zip.value.trim()) {
-	              console.log('empty inputs');
-	              return;
-	            }
+	            // if (!title.value.trim() && !zip.value.trim()) {
+	            //   console.log('empty inputs');
+	            //   return;
+	            // }
 	
 	            var data = {
 	              title: title.value,
-	              location: location.value,
 	              zip: zip.value,
-	              desc: desc.value
+	              image: image.value,
+	              category: category.value,
+	              description: description.value,
+	              condition: condition.value
 	            };
-	            console.log(data);
-	          } },
+	            // console.log(data);
+	            props.dispatchCreateNewListing(data);
+	          }
+	        },
 	        _react2.default.createElement(
 	          'label',
-	          null,
+	          { htmlFor: 'title' },
 	          'Title'
 	        ),
 	        _react2.default.createElement('input', { ref: function ref(node) {
 	            title = node;
-	          } }),
+	          }, id: 'title', required: true }),
 	        _react2.default.createElement(
 	          'label',
-	          null,
-	          'Location'
-	        ),
-	        _react2.default.createElement('input', { ref: function ref(node) {
-	            location = node;
-	          } }),
-	        _react2.default.createElement(
-	          'label',
-	          null,
+	          { htmlFor: 'zip' },
 	          'Zip Code'
 	        ),
 	        _react2.default.createElement('input', { ref: function ref(node) {
 	            zip = node;
-	          } }),
+	          }, id: 'zip', required: true }),
 	        _react2.default.createElement(
 	          'label',
-	          null,
+	          { htmlFor: 'category' },
 	          'Categories'
 	        ),
 	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(_Categories2.default, null),
+	        _react2.default.createElement(_categories2.default, { ref: function ref(node) {
+	            category = node;
+	          }, id: 'category' }),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          'label',
-	          null,
+	          { htmlFor: 'condition' },
+	          'Condition'
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'select',
+	          { ref: function ref(node) {
+	              condition = node;
+	            }, id: 'condition', required: true },
+	          _react2.default.createElement(
+	            'option',
+	            { value: '5' },
+	            'New'
+	          ),
+	          _react2.default.createElement(
+	            'option',
+	            { value: '4' },
+	            'Excellent'
+	          ),
+	          _react2.default.createElement(
+	            'option',
+	            { value: '3' },
+	            'Good'
+	          ),
+	          _react2.default.createElement(
+	            'option',
+	            { value: '2' },
+	            'Fair'
+	          ),
+	          _react2.default.createElement(
+	            'option',
+	            { value: '1' },
+	            'Salvage'
+	          )
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'label',
+	          { htmlFor: 'image' },
+	          'Image'
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { ref: function ref(node) {
+	            image = node;
+	          }, type: 'file', accept: 'image/*' }),
+	        _react2.default.createElement(
+	          'label',
+	          { htmlFor: 'description' },
 	          'Description'
 	        ),
 	        _react2.default.createElement('textarea', { ref: function ref(node) {
-	            desc = node;
-	          } }),
+	            description = node;
+	          }, id: 'description', required: true }),
 	        _react2.default.createElement(
 	          'button',
 	          { type: 'submit' },
@@ -30488,11 +30605,24 @@
 	    )
 	  );
 	};
+	// import { bindActionCreators } from 'redux';
 	
-	exports.default = CreateListing;
+	
+	CreateListing.propTypes = {
+	  dispatchCreateNewListing: _react2.default.PropTypes.func
+	};
+	
+	function mapDispatchToProps(dispatch) {
+	  return {
+	    dispatchCreateNewListing: function dispatchCreateNewListing(data) {
+	      dispatch((0, _actions.postNewListing)(data));
+	    }
+	  };
+	}
+	exports.default = (0, _reactRedux.connect)(mapDispatchToProps)(CreateListing);
 
 /***/ },
-/* 273 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -30510,7 +30640,7 @@
 	var Categories = function Categories() {
 	  return _react2.default.createElement(
 	    "select",
-	    null,
+	    { required: true },
 	    _react2.default.createElement(
 	      "option",
 	      { value: "all-categories" },
@@ -30722,60 +30852,16 @@
 	exports.default = Categories;
 
 /***/ },
-/* 274 */
-/***/ function(module, exports, __webpack_require__) {
+/* 275 */
+/***/ function(module, exports) {
 
 	'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(177);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var ListEntry = function ListEntry(props) {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement('div', null),
-	    _react2.default.createElement(
-	      'div',
-	      null,
-	      _react2.default.createElement(
-	        'h5',
-	        null,
-	        props.entry.title
-	      ),
-	      _react2.default.createElement(
-	        'p',
-	        null,
-	        props.entry.description
-	      ),
-	      _react2.default.createElement(
-	        'p',
-	        null,
-	        props.entry.createdAt
-	      )
-	    )
-	  );
+	module.exports.add = function () {
+	  return {
+	    type: 'ADD_ONE'
+	  };
 	};
-	
-	exports.default = ListEntry;
-	
-	// title: 'Bedroom Closet',
-	//  giver: 1,
-	//  zipcode: 29135,  
-	//  status: 1,
-	//  picReference: 1,
-	//  category: 'furniture',
-	//  description: 'family fun time zoo party',
-	//  condition: 5,
 
 /***/ }
 /******/ ]);

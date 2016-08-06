@@ -21,6 +21,7 @@ var Listing = db.define('Listing', {
 
 });
 
+Listing.sync({force: false});
 // TODO add a foreign key to listing referencing the user that created it
 // Listing.hasOne(User,{ foreignKey: 'id'})
 

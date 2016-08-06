@@ -29,4 +29,6 @@ User.beforeCreate(function(user, options, done) {
   })
 })
 
+User.sync({force : false});
+
 module.exports = User;
