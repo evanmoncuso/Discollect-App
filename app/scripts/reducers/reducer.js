@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 
 const initUserState = {
   valid: false,
@@ -12,7 +12,7 @@ const users = (state = initUserState, action) => {
     case 'LOGIN_VALID':
       return Object.assign({}, state, {
         valid: action.valid,
-        zip: action.zip
+        zip: action.zip,
       });
     case 'ID_USER':
       return Object.assign({}, state, {
@@ -42,7 +42,7 @@ const items = (state = initItemState, action) => {
 const reducer = combineReducers({
   items,
   users,
-})
+});
 
 module.exports = {
   reducer,

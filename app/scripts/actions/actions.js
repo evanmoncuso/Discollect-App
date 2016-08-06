@@ -1,5 +1,5 @@
-module.exports.add = () => {
-  return {
+module.exports.add = () => (
+  {
     type: 'ADD_ONE',
-  };
-};
+  }
+);

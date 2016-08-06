@@ -7,16 +7,14 @@ import Signup from './Signup.jsx';
 import Dashboard from './Dashboard.jsx';
 import CreateListing from './CreateListing.jsx';
 
-const App = () => {
-  return (
-    <Router history={hashHistory}>
-      <Route path="/" component={Main} />
-      <Route path="/login" component={Login} />
-      <Route path="/signup" component={Signup} />
-      <Route path="/dashboard" component={Dashboard} />
-      <Route path="/createlisting" component={CreateListing} />
-    </Router>
-  );
-};
+const App = () => (
+  <Router history={hashHistory}>
+    <Route path="/" component={Main} />
+    <Route path="/login" component={Login} />
+    <Route path="/signup" component={Signup} />
+    <Route path="/dashboard" component={Dashboard} />
+    <Route path="/createlisting" component={CreateListing} />
+  </Router>
+);
 
 export default App;

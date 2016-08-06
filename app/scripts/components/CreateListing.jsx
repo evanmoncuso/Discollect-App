@@ -55,7 +55,7 @@ const CreateListing = (props) => {
             <option value="1">Salvage</option>
           </select><br />
           <label htmlFor="image">Image</label><br />
-          <input ref={(node) => { image = node; }} type="file" accept="image/*" required />
+          <input ref={(node) => { image = node; }} type="file" accept="image/*" />
           <label htmlFor="description">Description</label>
           <textarea ref={(node) => { description = node; }} id="description" required />
           <button type="submit">add</button>
