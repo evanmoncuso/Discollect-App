@@ -10,6 +10,7 @@ let ListView = ({ dispatchGetItems, items }) => {
       {items.filter(val => val.status === true).map((item, i) => {
         return <ListEntry key={i} entry={item} />
       })}
+
     </div>
   );
 };
