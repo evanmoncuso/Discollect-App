@@ -10,7 +10,7 @@ const optimisticSetItems = (items) => {
 const itemActions = {
   populateInitialListings: () => {
     return (dispatch) => {
-      const url = 'http://localhost:3000/api/getAllListItems';
+      const url = 'http://localhost:3000/api/getAllListings';
       fetch(url, {
         method: 'GET',
         headers: {

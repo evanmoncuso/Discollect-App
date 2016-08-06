@@ -58,6 +58,6 @@ Inputs - Login / Signup
 ====================
  */
 
-input {
+input, textarea {
   display: block;
 }
