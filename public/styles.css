@@ -71,6 +71,19 @@ Main Container
 
 /*
 ====================
+List Container
+====================
+ */
+.listView_container {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.listView_entry {
+  margin: 12px;
+}
+/*
+====================
 Inputs - Login / Signup
 ====================
  */
