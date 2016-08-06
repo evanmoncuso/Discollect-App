@@ -1,10 +1,9 @@
 import fetch from 'isomorphic-fetch';
 
-const optomisticCheckUser = (valid, username) => {
+const optimisticCheckUser = (zip) => {
   return {
     type: 'LOGIN_VALID',
-    valid,
-    username,
+    zip: zip,
   };
 };
 
@@ -24,6 +23,7 @@ const userActions = {
         'Content-Type': 'application/json',
       },
     })
+    .then((res) => res.json())
     .then((res) => {
       console.log('the response from fetch', res);
     })
@@ -44,9 +44,10 @@ const userActions = {
           'Content-Type': 'application/json',
         },
       })
-      .then((res) => {
-        console.log('server response!', res);
-        dispatch(optomisticCheckUser(res.valid, res.username));
+      .then((res) => res.json())
+      .then((response) => {
+        console.log(response)
+        // dispatch(optimisticCheckUser(response));
       })
       .catch((err) => {
         if (err) {

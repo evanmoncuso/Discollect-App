@@ -1,31 +1,34 @@
 import fetch from 'isomorphic-fetch';
 
-const optomisticSetItems = () => {
+const optimisticSetItems = (items) => {
   return {
-    type: 'LOGIN_VALID',
-    valid,
-    username,
+    type: 'GET_INITIAL_ITEMS',
+    items: items,
   };
 };
 
-const userActions = {
+const itemActions = {
   populateInitialListings: () => {
-    const url = 'http://localhost:3000/api/';
-    fetch(url, {
-      method: 'GET',
-      body: data,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    .then((res) => res.json())
-    .then((jsonRes) => {
-      console.log('the response from fetch', jsonRes);
-    })
-    .catch((err) => {
-      if (err) {
-        console.log('error', err);
-      }
-    });
+    return (dispatch) => {
+      const url = 'http://localhost:3000/api/getAllListItems';
+      fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => res.json())
+      .then((response) => {
+        console.log(response)
+        dispatch(optimisticSetItems(response));
+      })
+      .catch((err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    };
   },
 };
+
+export default itemActions;

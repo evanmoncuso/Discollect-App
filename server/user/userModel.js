@@ -9,10 +9,10 @@ var User = db.define('user', {
   email: Sequelize.STRING,
   rating: Sequelize.INTEGER,
   picReference: Sequelize.STRING,
-  zipcode: Sequelize.INTEGER, 
+  zipcode: Sequelize.INTEGER,
 });
 
-User.beforeCreate(function(user, options) {
+User.beforeCreate(function(user, options, done) {
   bcrypt.genSalt(saltRounds, function(err, salt) {
     if (err) {
       return console.error('err', err);
@@ -24,6 +24,7 @@ User.beforeCreate(function(user, options) {
       }
       console.log('hash is ', hash)
       user.password = hash;
+      done(null, user);
     })
   })
 })

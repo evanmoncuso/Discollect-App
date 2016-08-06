@@ -22,19 +22,19 @@ module.exports = {
   },
 
   login: function(req, res) {
-    res.send('Congrats. You are logged in.');
+      res.json(req.user);
   },
 
   signup: function(req, res) {
-    console.log('boomboom')
+    console.log('hit on api/signup');
     User.findOne({
       where: {username: req.body.username}
     })
     .then(function(user) {
       if (!user) {
         User.create(req.body)
-        .then(function() {
-          res.status(200);
+        .then(function(user) {
+          res.send(user);
         })
       } else {
         console.error('That username is already in use.');
