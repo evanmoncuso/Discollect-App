@@ -2,7 +2,7 @@ import React from 'react';
 
 const Categories = () => {
   return (
-    <select>
+    <select required>
       <option value="all-categories">All Categories</option>
       <option value="appliances">Appliances</option>
       <option value="mobile-apps">Apps &amp; Games</option>

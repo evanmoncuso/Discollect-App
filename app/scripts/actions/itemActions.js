@@ -29,6 +29,24 @@ const itemActions = {
       });
     };
   },
+  postNewListing: (listingData) => (
+    (dispatch) => {
+      const url = 'http://localhost:3000/api/createNewListing';
+      fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(listingData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then(res => {
+        console.log(res, dispatch);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    }
+  ),
 };
 
 export default itemActions;
