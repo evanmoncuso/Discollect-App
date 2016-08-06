@@ -24,10 +24,21 @@ const SearchBar = ({ commitSearch }) => {
           zip.value = '';
         }}
       >
-        <input className="search_bar keywords" ref={(node) => { keywords = node; }} />
-        <input className="search_bar zip" ref={(node) => { zip = node; }} />
-        <input className="search_bar category" ref={(node) => { category = node; }} />
-
+        <input
+          className="search_bar_input keywords"
+          ref={(node) => { keywords = node; }}
+          placeholder="keywords"
+        />
+        <input
+          className="search_bar_input zip"
+          ref={(node) => { zip = node; }}
+          placeholder="zip"
+        />
+        <input
+          className="search_bar_input category"
+          ref={(node) => { category = node; }}
+          placeholder="category"
+        />
         <button>search</button>
       </form>
     </div>
