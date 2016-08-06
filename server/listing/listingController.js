@@ -3,20 +3,19 @@ var Listing = require('./listingModel.js');
 // require('isomorphic-fetch');
 
 module.exports = {
-
-  getAllListings: function(req, res){
+  getAllListings: function (req, res) {
     Listing.findAll({
       limit: 20,
       order: [['createdAt', 'DESC']],
     })
     .then((items) => {
       res.send(items);
-    })
+    });
   },
 
-  //getFilteredListings must be invoked with category, zipcodeArray and keywords
+  // getFilteredListings must be invoked with category, zipcodeArray and keywords
   getFilteredListings: function(req, res) {
-        Listing.findAll({
+     Listing.findAll({
           where: {
             category: req.body.category,
           },
