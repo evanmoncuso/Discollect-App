@@ -3,15 +3,14 @@ zipcodeArrayBuilder = (zipcode) => {
 
   const request = 'https://www.zipcodeapi.com/rest/' + api + '/radius.json/' + zipcode + '/50/miles';
     fetch(request)
-    .then((response) => {
-      if (response.status >= 400) {
-        throw new Error('Bad zipcodes response');
-      }
-      return response.json();
+    .then((response) => response.json())
+    .then((zipcodes) => {
+      console.log(zipcodes);
+      // also get this into the state
     })
-    .then(function(zipcodes) {
-      this.setState({
-        zipcodeArray: zipcodes
-      })
-      })
+    .catch((err) => {
+      if (err) {
+        console.log(err);
+      }
+    });
   };
