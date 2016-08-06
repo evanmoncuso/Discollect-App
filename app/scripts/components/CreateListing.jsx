@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 import NavBar from './NavBar.jsx';
-import Categories from './categories.jsx';
+// import Categories from './categories.jsx';
 import { postNewListing } from '../actions/actions.js';
 
 const CreateListing = (props) => {
@@ -44,7 +44,14 @@ const CreateListing = (props) => {
           <input ref={(node) => { zip = node; }} id="zip" required />
           <label htmlFor="category">Categories</label>
           <br />
-          <Categories ref={(node) => { category = node; }} id="category" />
+          <select ref={(node) => { category = node; }} id="category" required>
+            <option value="all-categories">All Categories</option>
+            <option value="appliances">Appliances</option>
+            <option value="fashion">Clothing, Shoes &amp; Jewelry</option>
+            <option value="books">Books</option>
+            <option value="electronics">Electronics</option>
+            <option value="tools">Tools &amp; Home Improvement</option>
+          </select>
           <br />
           <label htmlFor="condition" >Condition</label><br />
           <select ref={(node) => { condition = node; }} id="condition" required>
