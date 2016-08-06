@@ -47,6 +47,15 @@ const itemActions = {
       });
     }
   ),
+  searchItem: (query) => (
+    {
+      type: 'SUBMIT_SEARCH',
+      keywords: query.keywords,
+      zip: query.zip,
+      category: query.category,
+
+    }
+  ),
 };
 
 export default itemActions;
