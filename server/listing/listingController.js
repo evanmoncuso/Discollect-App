@@ -15,49 +15,49 @@ module.exports = {
 
   // getFilteredListings must be invoked with category, zipcodeArray and keywords
   getFilteredListings: function(req, res) {
-    Listing.findAll({
-      where: {
-        category: req.body.category,
-      },
-      limit: 50,
-      //store in descending order
-      order: [['createdAt', 'DESC']]
-    })
-    .then(function(listings) {
-      var tempArray = [];
-      var finalArray = [];
-      var zipcodes = req.body.zipcodeArray;  
-      var keywords = req.body.keywords;      
-      for (var i = 0; i < listings.length; i++) {
-        if (zipcodes.indexOf(listings[i]) > -1) {
-          tempArray.push(listings[i])
-        }
-      }
-      //if array is empty
-      if (tempArray.length > 0) {
-        return console.log('No results found.')
-      }
-      //loop through tempArray
-      for (var k = 0; k < tempArray.length; k++) {
-        //loop through each keyword
-        for (var j = 0; j < keywords.length; j++) {
-          var flag = false;
-          //if none of the keywords match it
-          if (tempArray[k].indexOf(keywords[j]) >= 0) {
-            flag = true;
+     Listing.findAll({
+          where: {
+            category: req.body.category,
+          },
+          limit: 50,
+          //store in descending order
+          order: [['createdAt', 'DESC']]
+        })
+      .then(function(listings) {
+        var tempArray = [];
+        var finalArray = [];
+        var zipcodes = req.body.zipcodeArray;
+        var keywords = req.body.keywords;
+        for (var i = 0; i < listings.length; i++) {
+          if (zipcodes.indexOf(listings[i]) > -1) {
+            tempArray.push(listings[i])
           }
         }
-          if (!flag) {
-            tempArray.splice(k, 1);
+        //if array is empty
+        if (tempArray.length > 0) {
+          return console.log('No results found.')
+        }
+        //loop through tempArray
+        for (var k = 0; k < tempArray.length; k++) {
+          //loop through each keyword
+          for (var j = 0; j < keywords.length; j++) {
+            var flag = false;
+            //if none of the keywords match it
+            if (tempArray[k].indexOf(keywords[j]) >= 0) {
+              flag = true;
+            }
           }
-      }
-      if (tempArray.length < 1) {
-        return console.log('No results found');
-      } else {
-        return tempArray;
-      }
-        
-    })
+            if (!flag) {
+              tempArray.splice(k, 1);
+            }
+        }
+        if (tempArray.length < 1) {
+          return console.log('No results found');
+        } else {
+          return tempArray;
+        }
+
+      })
   }
 };
 

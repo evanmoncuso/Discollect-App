@@ -41,7 +41,6 @@ let Login = ({ dispatchLogin }) => {
           password.value = '';
           console.log(username.value);
           console.log(password.value);
-          zipcodeArrayBuilder(zipcode);
         }}>
 
         <label>username</label>
