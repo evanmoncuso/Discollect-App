@@ -11,6 +11,24 @@ const Signup = () => {
   let email;
   let zip;
 
+
+  zipcodeArrayBuilder = function(zipcode) {
+    var api = 'ZuYPOXpKUE8RDdLyX8t3MuU3bDjg70N6uMWjKl4E0dwDqicoqFrdamhl0AC7Bqe6';
+    var request = 'https://www.zipcodeapi.com/rest/' + api + '/radius.json/' + zipcode + '/50/miles';
+      fetch(request)
+      .then(function(response) {
+        if (response.status >= 400) {
+          throw new Error('Bad zipcodes response');
+        }
+        return response.json();
+      })
+      // .then(function(zipcodes) {
+      //   this.setState({
+      //     zipcodeArray: zipcodes
+      //   })
+      // })
+  }
+
   return (
     <div className="main_container">
       <NavBar />

@@ -15,11 +15,11 @@ zipcodeArrayBuilder = function(zipcode) {
         }
         return response.json();
       })
-      .then(function(zipcodes) {
-        this.setState({
-          zipcodeArray: zipcodes
-        })
-      })
+      // .then(function(zipcodes) {
+      //   this.setState({
+      //     zipcodeArray: zipcodes
+      //   })
+      // })
   }
 
 let Login = ({ dispatchLogin }) => {
