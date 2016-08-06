@@ -5,7 +5,6 @@ import NavBar from './NavBar.jsx';
 
 import { checkUserLogin } from '../actions/userActions.js';
 
-
 const Login = ({ dispatchLogin }) => {
   const zipcodeArrayBuilder = (zipcode) => {
     const api = 'ZuYPOXpKUE8RDdLyX8t3MuU3bDjg70N6uMWjKl4E0dwDqicoqFrdamhl0AC7Bqe6';
