@@ -1,11 +1,11 @@
 import fetch from 'isomorphic-fetch';
 
-const optimisticCheckUser = (zip) => {
-  return {
+const optimisticCheckUser = (zip) => (
+  {
     type: 'LOGIN_VALID',
-    zip: zip,
-  };
-};
+    zip, //
+  }
+);
 
 const userActions = {
   createUser: (username, password, email, zip) => {
@@ -33,8 +33,8 @@ const userActions = {
       }
     });
   },
-  checkUserLogin: (username, password) => {
-    return (dispatch) => {
+  checkUserLogin: (username, password) => (
+    (dispatch) => {
       const data = JSON.stringify({ username, password });
       const url = 'http://localhost:3000/api/login';
       fetch(url, {
@@ -46,7 +46,7 @@ const userActions = {
       })
       .then((res) => res.json())
       .then((response) => {
-        console.log(response)
+        console.log(response);
         // dispatch(optimisticCheckUser(response));
       })
       .catch((err) => {
@@ -54,8 +54,8 @@ const userActions = {
           console.log(err);
         }
       });
-    };
-  },
+    }
+  ),
 };
 
 

@@ -29,24 +29,25 @@ const Signup = () => {
             return;
           }
           createUser(username.value, password.value, email.value, zip.value);
-        }}>
+        }}
+      >
 
-        <label>username</label>
-        <input ref={(node) => { username = node; }} />
+        <label htmlFor="username">Username</label>
+        <input ref={(node) => { username = node; }} id="username" type="text" required />
 
-        <label>password</label>
-        <input ref={(node) => { password = node; }} />
+        <label htmlFor="password1">Password</label>
+        <input ref={(node) => { password = node; }} id="password1" type="password" required />
 
-        <label>password confirm</label>
-        <input ref={(node) => { confirm = node; }} />
+        <label htmlFor="password2">Confirm Password</label>
+        <input ref={(node) => { confirm = node; }} id="password2" type="password" required />
 
-        <label>email</label>
-        <input ref={(node) => { email = node; }} />
+        <label htmlFor="email">Email</label>
+        <input ref={(node) => { email = node; }} id="email" type="email" required />
 
-        <label>zip code</label>
-        <input ref={(node) => { zip = node; }} />
+        <label htmlFor="zip">Zip Code</label>
+        <input ref={(node) => { zip = node; }} id="zip" required />
 
-        <button type="submit">create</button>
+        <button type="submit">Create</button>
       </form>
     </div>
   );

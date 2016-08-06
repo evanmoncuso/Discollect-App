@@ -6,23 +6,23 @@ import NavBar from './NavBar.jsx';
 import { checkUserLogin } from '../actions/userActions.js';
 
 
-let Login = ({ dispatchLogin }) => {
-  let zipcodeArrayBuilder = function(zipcode) {
-      var api = 'ZuYPOXpKUE8RDdLyX8t3MuU3bDjg70N6uMWjKl4E0dwDqicoqFrdamhl0AC7Bqe6';
-      var request = 'https://www.zipcodeapi.com/rest/' + api + '/radius.json/' + zipcode + '/50/miles';
+const Login = ({ dispatchLogin }) => {
+  const zipcodeArrayBuilder = (zipcode) => {
+    const api = 'ZuYPOXpKUE8RDdLyX8t3MuU3bDjg70N6uMWjKl4E0dwDqicoqFrdamhl0AC7Bqe6';
+    const request = `https://www.zipcodeapi.com/rest/${api}/radius.json/${zipcode}/50/miles`;
         fetch(request)
-        .then(function(response) {
+        .then((response) => {
           if (response.status >= 400) {
             throw new Error('Bad zipcodes response');
           }
           return response.json();
-        })
+        });
         // .then(function(zipcodes) {
         //   this.setState({
         //     zipcodeArray: zipcodes
         //   })
         // })
-    }
+  };
   let username;
   let password;
   return (
@@ -41,13 +41,14 @@ let Login = ({ dispatchLogin }) => {
           password.value = '';
           console.log(username.value);
           console.log(password.value);
-        }}>
+        }}
+      >
 
-        <label>username</label>
-        <input ref={(node) => { username = node; }} />
+        <label htmlFor="username">username</label>
+        <input ref={(node) => { username = node; }} id="username" />
 
-        <label>password</label>
-        <input ref={(node) => { password = node; }} />
+        <label htmlFor="password">password</label>
+        <input ref={(node) => { password = node; }} id="password" />
 
         <button type="submit">add</button>
       </form>
@@ -55,24 +56,23 @@ let Login = ({ dispatchLogin }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-
-  };
+Login.propTypes = {
+  dispatchLogin: React.PropTypes.func,
 };
 
+// const mapStateToProps = (state) => {
+//   return {
 
-const mapDispatchToProps = (dispatch) => {
-  return {
+//   };
+// };
+
+
+const mapDispatchToProps = (dispatch) => (
+  {
     dispatchLogin: (user, pass) => {
       dispatch(checkUserLogin(user, pass));
     },
-  };
-};
+  }
+);
 
-Login = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Login);
-
-export default Login;
+export default connect(null, mapDispatchToProps)(Login);

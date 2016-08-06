@@ -1,15 +1,15 @@
 import fetch from 'isomorphic-fetch';
 
-const optimisticSetItems = (items) => {
-  return {
+const optimisticSetItems = (items) => (
+  {
     type: 'GET_INITIAL_ITEMS',
-    items: items,
-  };
-};
+    items, // property shorthand
+  }
+);
 
 const itemActions = {
-  populateInitialListings: () => {
-    return (dispatch) => {
+  populateInitialListings: () => (
+    (dispatch) => {
       const url = 'http://localhost:3000/api/getAllListings';
       fetch(url, {
         method: 'GET',
@@ -19,7 +19,7 @@ const itemActions = {
       })
       .then((res) => res.json())
       .then((response) => {
-        console.log(response)
+        console.log(response);
         dispatch(optimisticSetItems(response));
       })
       .catch((err) => {
@@ -27,8 +27,8 @@ const itemActions = {
           console.log(err);
         }
       });
-    };
-  },
+    }
+  ),
   postNewListing: (listingData) => (
     (dispatch) => {
       const url = 'http://localhost:3000/api/createNewListing';
