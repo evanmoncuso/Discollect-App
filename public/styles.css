@@ -56,6 +56,9 @@ Search Bar
   border-bottom: 2px double #000;
 }
 
+.search_bar_input {
+  display:inline-flex;
+}
 /*
 ====================
 Main Container
