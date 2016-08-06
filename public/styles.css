@@ -44,6 +44,20 @@ h1 {
 
 /*
 ====================
+Search Bar
+====================
+ */
+
+.search_bar {
+  height: 60px;
+  width: 960px;
+  margin: 0 auto;
+  border-top: 1px double #000;
+  border-bottom: 2px double #000;
+}
+
+/*
+====================
 Main Container
 ====================
  */
