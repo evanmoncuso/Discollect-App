@@ -19,7 +19,7 @@ const SearchBar = ({ commitSearch }) => {
             zip: zip.value,
           };
           commitSearch(data);
-          category.value = '';
+          category.value = 'all-categories';
           keywords.value = '';
           zip.value = '';
         }}
@@ -34,11 +34,14 @@ const SearchBar = ({ commitSearch }) => {
           ref={(node) => { zip = node; }}
           placeholder="zip"
         />
-        <input
-          className="search_bar_input category"
-          ref={(node) => { category = node; }}
-          placeholder="category"
-        />
+        <select ref={(node) => { category = node; }} id="category" required>
+          <option value="all-categories">All Categories</option>
+          <option value="appliances">Appliances</option>
+          <option value="fashion">Clothing, Shoes &amp; Jewelry</option>
+          <option value="books">Books</option>
+          <option value="electronics">Electronics</option>
+          <option value="tools">Tools &amp; Home Improvement</option>
+        </select>
         <button>search</button>
       </form>
     </div>
