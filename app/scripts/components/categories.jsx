@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Category = () => {
+const Categories = () => {
   return (
     <select>
       <option value="all-categories">All Categories</option>
@@ -48,4 +48,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+export default Categories;

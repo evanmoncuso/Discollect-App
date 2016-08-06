@@ -15,12 +15,12 @@ let Main = ({ dispatchGetItems, items }) => {
         }}>
           button
         </button>
+        <ul>
+          {items.map((item, i) => {
+            return <li key={i}> {item.createdAt} </li>
+          })}
+        </ul>
       </div>
-      <ul>
-        {items.map((item, i) => {
-          return <li key={i}> {item.title} </li>
-        })}
-      </ul>
     </div>
   );
 };

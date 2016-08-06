@@ -1,5 +1,6 @@
 import React from 'react';
 import NavBar from './NavBar.jsx';
+import Categories from './Categories.jsx'
 
 const CreateListing = () => {
   let title;
@@ -29,19 +30,18 @@ const CreateListing = () => {
             };
             console.log(data);
           }}>
-
           <label>Title</label>
           <input ref={(node) => { title = node; }} />
-
           <label>Location</label>
           <input ref={(node) => { location = node; }} />
-
           <label>Zip Code</label>
           <input ref={(node) => { zip = node; }} />
-
+          <label>Categories</label>
+          <br />
+          <Categories />
+          <br />
           <label>Description</label>
           <textarea ref={(node) => { desc = node; }} />
-
           <button type="submit">add</button>
         </form>
       </div>
