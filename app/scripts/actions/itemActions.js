@@ -50,7 +50,10 @@ const itemActions = {
   searchItem: (query) => (
     {
       type: 'SUBMIT_SEARCH',
-      query,
+      keywords: query.keywords,
+      zip: query.zip,
+      category: query.category,
+
     }
   ),
 };
