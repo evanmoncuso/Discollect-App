@@ -22,7 +22,7 @@ module.exports = {
   },
 
   login: function(req, res) {
-      res.json(req.user);
+    res.json(req.user.zipcode);
   },
 
   signup: function(req, res) {
