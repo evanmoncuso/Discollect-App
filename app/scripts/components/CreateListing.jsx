@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
-import NavBar from './NavBar.jsx';
 // import Categories from './categories.jsx';
 import { postNewListing } from '../actions/actions.js';
 
@@ -14,7 +13,6 @@ const CreateListing = (props) => {
   let condition;
   return (
     <div>
-      <NavBar />
       <div className="main_container">
         <h1>Create a Listing</h1>
         <form

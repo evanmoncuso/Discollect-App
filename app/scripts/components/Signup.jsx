@@ -1,6 +1,5 @@
 import React from 'react';
 
-import NavBar from './NavBar.jsx';
 
 import { createUser } from '../actions/userActions.js';
 
@@ -13,7 +12,6 @@ const Signup = () => {
 
   return (
     <div className="main_container">
-      <NavBar />
       <h2>Signup</h2>
       <form
         onSubmit={(e) => {
