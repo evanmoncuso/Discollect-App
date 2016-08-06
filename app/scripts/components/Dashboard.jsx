@@ -1,11 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import NavBar from './NavBar.jsx';
 
 const Dashboard = ({ username, valid }) => (
   <div>
-    <NavBar />
     <div className="main_container">
       <h1>Dashboard</h1>
       <img src="https://huxley.wwu.edu/sites/huxley.wwu.edu/files/default_images/user-icon.png" alt="user" />

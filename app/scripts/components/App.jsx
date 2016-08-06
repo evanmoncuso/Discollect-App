@@ -1,20 +1,11 @@
 import React from 'react';
-import { Router, Route, hashHistory } from 'react-router';
+import NavBar from './NavBar.jsx';
 
-import Main from './Main.jsx';
-import Login from './Login.jsx';
-import Signup from './Signup.jsx';
-import Dashboard from './Dashboard.jsx';
-import CreateListing from './CreateListing.jsx';
-
-const App = () => (
-  <Router history={hashHistory}>
-    <Route path="/" component={Main} />
-    <Route path="/login" component={Login} />
-    <Route path="/signup" component={Signup} />
-    <Route path="/dashboard" component={Dashboard} />
-    <Route path="/createlisting" component={CreateListing} />
-  </Router>
+const App = (props) => (
+  <main>
+    <NavBar />
+    { props.children }
+  </main>
 );
 
 export default App;
