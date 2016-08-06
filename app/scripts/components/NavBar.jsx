@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+import SearchBar from './SearchBar.jsx';
+
 const NavBar = () => (
   <nav>
     <Link to="/"><h2 className="nav_title">Home</h2></Link>
@@ -14,6 +16,7 @@ const NavBar = () => (
         <Link to="/signup"><span className="button signup">signup</span></Link>
       </div>
     </div>
+    <SearchBar />
   </nav>
 );
 
