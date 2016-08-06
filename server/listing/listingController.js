@@ -13,12 +13,10 @@ module.exports = {
       res.send(items);
     })
   },
-}
-
 
   //getFilteredListings must be invoked with category, zipcodeArray and keywords
   getFilteredListings: function(req, res) {
-        Listing.findAll({ 
+        Listing.findAll({
           where: {
             category: req.body.category,
           },
@@ -29,8 +27,8 @@ module.exports = {
       .then(function(listings) {
         var tempArray = [];
         var finalArray = [];
-        var zipcodes = req.body.zipcodeArray;  
-        var keywords = req.body.keywords;      
+        var zipcodes = req.body.zipcodeArray;
+        var keywords = req.body.keywords;
         for (var i = 0; i < listings.length; i++) {
           if (zipcodes.indexOf(listings[i]) > -1) {
             tempArray.push(listings[i])
@@ -59,10 +57,10 @@ module.exports = {
         } else {
           return tempArray;
         }
-          
+
       })
   }
-}
+};
 
 
 
