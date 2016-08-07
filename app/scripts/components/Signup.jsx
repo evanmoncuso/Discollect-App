@@ -13,7 +13,7 @@ const Signup = ({ dispatchSignup }) => {
   console.log(dispatchSignup);
   return (
     <div className="main_container">
-      <h2>Signup</h2>
+      <h1>Signup</h1>
       <form
         onSubmit={(e) => {
           e.preventDefault();

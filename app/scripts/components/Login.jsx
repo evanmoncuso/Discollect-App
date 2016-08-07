@@ -8,7 +8,7 @@ const Login = ({ dispatchLogin }) => {
   let password;
   return (
     <div className="main_container">
-      <h2>Login</h2>
+      <h1>Login</h1>
       <form
         onSubmit={(e) => {
           e.preventDefault();
