@@ -35,13 +35,6 @@ module.exports = {
     path: __dirname + '/public',
     filename: 'bundle.js'
   },
-<<<<<<< 620c78a5f98106d16802b9d3b5bc26ef5f750c70
   plugins:[HTMLWebpackPluginConfig],
   devtool: '#source-map',
-||||||| merged common ancestors
-  plugins:[HTMLWebpackPluginConfig]
-=======
-  plugins:[HTMLWebpackPluginConfig],
-  devtool: 'source-map'
->>>>>>> (feat) add sourcemap devtool to webpack.config
 };
