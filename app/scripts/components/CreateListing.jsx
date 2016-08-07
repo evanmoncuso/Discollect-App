@@ -1,10 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-// import Categories from './categories.jsx';
-import { postNewListing } from '../actions/actions.js';
+import itemActions from '../actions/itemActions.js';
 
-const CreateListing = (props) => {
+const CreateListing = ({ dispatchCreateNewListing }) => {
   let title;
   let zip;
   let image;
@@ -19,11 +17,6 @@ const CreateListing = (props) => {
           onSubmit={(e) => {
             e.preventDefault();
 
-            // if (!title.value.trim() && !zip.value.trim()) {
-            //   console.log('empty inputs');
-            //   return;
-            // }
-
             const data = {
               title: title.value,
               zip: zip.value,
@@ -33,7 +26,7 @@ const CreateListing = (props) => {
               condition: condition.value,
             };
             // console.log(data);
-            props.dispatchCreateNewListing(data);
+            dispatchCreateNewListing(data);
           }}
         >
           <label htmlFor="title">Title</label>
@@ -74,11 +67,12 @@ CreateListing.propTypes = {
   dispatchCreateNewListing: React.PropTypes.func,
 };
 
-function mapDispatchToProps(dispatch) {
-  return {
+const mapDispatchToProps = (dispatch) => (
+  {
     dispatchCreateNewListing: (data) => {
-      dispatch(postNewListing(data));
+      dispatch(itemActions.postNewListing(data));
     },
-  };
-}
-export default connect(mapDispatchToProps)(CreateListing);
+  }
+);
+
+export default connect(null, mapDispatchToProps)(CreateListing);

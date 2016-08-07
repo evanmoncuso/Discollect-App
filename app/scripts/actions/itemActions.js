@@ -8,7 +8,7 @@ const optimisticSetItems = (items) => (
 );
 
 const itemActions = {
-  populateInitialListings: () => (
+  getLatestListings: () => (
     (dispatch) => {
       const url = 'http://localhost:3000/api/getAllListings';
       fetch(url, {
@@ -40,11 +40,21 @@ const itemActions = {
         },
       })
       .then(res => {
+        this.getLatestListings();
         console.log(res, dispatch);
       })
       .catch(err => {
         console.log(err);
       });
+    }
+  ),
+  searchItem: (query) => (
+    {
+      type: 'SUBMIT_SEARCH',
+      keywords: query.keywords,
+      zip: query.zip,
+      category: query.category,
+
     }
   ),
 };

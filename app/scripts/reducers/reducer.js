@@ -39,9 +39,23 @@ const items = (state = initItemState, action) => {
   }
 };
 
+const search = (state = {}, action) => {
+  switch (action.type) {
+    case 'SUBMIT_SEARCH':
+      return Object.assign({}, state, {
+        keywords: action.keywords,
+        category: action.category,
+        zip: action.zip,
+      });
+    default:
+      return state;
+  }
+};
+
 const reducer = combineReducers({
   items,
   users,
+  search,
 });
 
 module.exports = {
