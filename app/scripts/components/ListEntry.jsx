@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 let ListEntry = (props) => {
+  var timeAgo = moment(props.entry.createdAt).fromNow();
   return (
       <div className="listView_entry">
         <h5>{props.entry.title}</h5>
         <p>{props.entry.description}</p>
-        <p>{props.entry.createdAt}</p>
+        <p>{timeAgo}</p>
       </div>
   );
 };
