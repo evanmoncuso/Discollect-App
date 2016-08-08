@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import itemActions from '../actions/itemActions.js';
 
-const CreateListing = ({ dispatchCreateNewListing }) => {
+const CreateListing = ({ dispatchCreateNewListing, id }) => {
   let title;
   let zip;
   let image;
@@ -16,7 +16,7 @@ const CreateListing = ({ dispatchCreateNewListing }) => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-
+            console.log(dispatchCreateNewListing);
             const data = {
               title: title.value,
               zip: zip.value,
@@ -24,6 +24,7 @@ const CreateListing = ({ dispatchCreateNewListing }) => {
               category: category.value,
               description: description.value,
               condition: condition.value,
+              giverId: id,
             };
             // console.log(data);
             dispatchCreateNewListing(data);
@@ -67,6 +68,12 @@ CreateListing.propTypes = {
   dispatchCreateNewListing: React.PropTypes.func,
 };
 
+const mapStateToProps = (state) => {
+  return {
+    id: state.users.id,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => (
   {
     dispatchCreateNewListing: (data) => {
@@ -75,4 +82,4 @@ const mapDispatchToProps = (dispatch) => (
   }
 );
 
-export default connect(null, mapDispatchToProps)(CreateListing);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateListing);
