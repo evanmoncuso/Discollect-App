@@ -6,7 +6,8 @@
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec",
     "webpack": "webpack --progress --colors --watch",
-    "start": "nodemon server/server.js"
+    "start": "nodemon server/server.js",
+    "mysql": "mysql -h rds-mysql-discollectdb.c0eor5cjwn0u.us-west-1.rds.amazonaws.com -P 3306 -u jordan -p"
   },
   "repository": {
     "type": "git",
