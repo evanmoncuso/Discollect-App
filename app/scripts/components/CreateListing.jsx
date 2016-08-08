@@ -19,12 +19,13 @@ const CreateListing = ({ dispatchCreateNewListing, id }) => {
             console.log(dispatchCreateNewListing);
             const data = {
               title: title.value,
-              zip: zip.value,
+              zipcode: zip.value,
               image: image.value,
               category: category.value,
               description: description.value,
               condition: condition.value,
               giverId: id,
+              status: true,
             };
             // console.log(data);
             dispatchCreateNewListing(data);

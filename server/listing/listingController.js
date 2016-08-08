@@ -76,9 +76,11 @@ module.exports = {
   },
 
   createNewListing: function(req, res) {
-    console.log('user', req);
-    console.log(req.body);
-    res.send(req.body);
+    Listing.create(req.body)
+    .then(list => {
+      console.log(list);
+      res.send(list);
+    })
   }
 };
 
