@@ -9,12 +9,12 @@ module.exports = function(app, express) {
   router.get('/user', userControl.getUser);
   router.post('/login', passport.authenticate('local', {failureRedirect: '/'}), userControl.login);
   router.post('/signup', userControl.signup);
-
   router.post('/logout', userControl.logout);
 
   // router.get('/listing', listingControl.getListing);
   router.get('/getFilteredListings', listingControl.getFilteredListings);
   router.get('/getAllListings', listingControl.getAllListings);
+  router.post('/createNewListing', listingControl.createNewListing);
 
   return router;
 }

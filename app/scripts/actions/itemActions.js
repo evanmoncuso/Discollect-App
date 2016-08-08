@@ -40,7 +40,7 @@ const itemActions = {
         },
       })
       .then(res => {
-        this.getLatestListings();
+        dispatch(itemActions.getLatestListings());
         console.log(res, dispatch);
       })
       .catch(err => {

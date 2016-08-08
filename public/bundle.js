@@ -29190,8 +29190,8 @@
 	var _redux = __webpack_require__(247);
 	
 	var initUserState = {
-	  valid: false,
 	  zip: null,
+	  id: null,
 	  username: null,
 	  password: null
 	};
@@ -29203,8 +29203,9 @@
 	  switch (action.type) {
 	    case 'LOGIN_VALID':
 	      return Object.assign({}, state, {
-	        valid: action.valid,
-	        zip: action.zip
+	        zip: action.zip,
+	        id: action.id,
+	        username: action.username
 	      });
 	    case 'ID_USER':
 	      return Object.assign({}, state, {
@@ -29606,7 +29607,7 @@
 	          'Content-Type': 'application/json'
 	        }
 	      }).then(function (res) {
-	        undefined.getLatestListings();
+	        dispatch(itemActions.getLatestListings());
 	        console.log(res, dispatch);
 	      }).catch(function (err) {
 	        console.log(err);
@@ -30307,10 +30308,13 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var optimisticCheckUser = function optimisticCheckUser(zip) {
+	var optimisticCheckUser = function optimisticCheckUser(obj) {
 	  return {
 	    type: 'LOGIN_VALID',
-	    zip: zip };
+	    zip: obj.zipcode,
+	    username: obj.username,
+	    id: obj.id
+	  };
 	};
 	
 	var userActions = {
@@ -30352,7 +30356,7 @@
 	        return res.json();
 	      }).then(function (response) {
 	        console.log(response);
-	        // dispatch(optimisticCheckUser(response));
+	        dispatch(optimisticCheckUser(response));
 	      }).catch(function (err) {
 	        if (err) {
 	          console.log(err);

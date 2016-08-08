@@ -69,9 +69,15 @@ module.exports = {
         } else {
           //else return the now completely filtered list of listings
           return tempArray;
-        }
 
-      })
+      }
+
+    });
+  },
+
+  createNewListing: function(req, res) {
+    console.log('user', req);
+    console.log(req.body);
   }
 };
 

@@ -24,7 +24,12 @@ module.exports = {
   //login handles login and, if successful, returns zipcode with res.send for our
   //use in zipcodeArrayBuilder
   login: function(req, res) {
-    res.json(req.user.zipcode);
+    var message = {
+      id: req.user.id,
+      username: req.user.username,
+      zipcode: req.user.zipcode
+    };
+    res.json(message);
   },
 
   signup: function(req, res) {
@@ -36,7 +41,12 @@ module.exports = {
       if (!user) {
         User.create(req.body)
         .then(function(user) {
-          res.send(user);
+          var message = {
+            id: user.id,
+            username: user.username,
+            zipcode: user.zipcode
+          };
+          res.json(message);
         })
       } else {
         console.error('That username is already in use.');

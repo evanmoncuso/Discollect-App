@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 
 const initUserState = {
-  valid: false,
   zip: null,
+  id: null,
   username: null,
   password: null,
 };
@@ -11,8 +11,9 @@ const users = (state = initUserState, action) => {
   switch (action.type) {
     case 'LOGIN_VALID':
       return Object.assign({}, state, {
-        valid: action.valid,
         zip: action.zip,
+        id: action.id,
+        username: action.username,
       });
     case 'ID_USER':
       return Object.assign({}, state, {
