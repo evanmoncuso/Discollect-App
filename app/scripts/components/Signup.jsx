@@ -1,15 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 
 import { createUser } from '../actions/userActions.js';
 
-const Signup = () => {
+const Signup = ({ dispatchSignup }) => {
   let username;
   let password;
   let confirm;
   let email;
   let zip;
-
+  console.log(dispatchSignup);
   return (
     <div className="main_container">
       <h2>Signup</h2>
@@ -26,7 +27,7 @@ const Signup = () => {
             console.log('passwords do not match');
             return;
           }
-          createUser(username.value, password.value, email.value, zip.value);
+          dispatchSignup(username.value, password.value, email.value, zip.value);
         }}
       >
 
@@ -51,4 +52,13 @@ const Signup = () => {
   );
 };
 
-module.exports = Signup;
+const mapDispatchToProps = (dispatch) => (
+  {
+    dispatchSignup: (username, password, email, zip) => {
+      dispatch(createUser(username, password, email, zip));
+    },
+  }
+);
+
+export default connect(null, mapDispatchToProps)(Signup);
+
