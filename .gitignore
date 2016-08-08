@@ -2,8 +2,14 @@ node_modules
 
 bundle.js
 bundle.js.map
+public/bundle.js
+public/bundle.js.map
+
+public/bundle.js
+public/bundle.js.map
 
 
+npm-debug.log
 
 .tags
 .tags1
