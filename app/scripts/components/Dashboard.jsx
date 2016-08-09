@@ -15,12 +15,12 @@ class Dashboard extends React.Component {
       ordersHistory: [],
     };
     this.toggleTableView = this.toggleTableView.bind(this);
-    console.log('***', this.props);
+    console.log('***', this.props.userID);
   }
   componentDidMount() {
     console.log('HELLO');
-    if (this.props.userID.userID) {
-      this.props.dispatchGetUserListings(this.props.userID.userID);
+    if (this.props.userID) {
+      this.props.dispatchGetUserListings(this.props.userID);
     } // change dynamic id
   }
   toggleTableView() {
@@ -54,14 +54,15 @@ class Dashboard extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => (
-  {
+const mapStateToProps = (state) => {
+  console.log('state:' , state.userID);
+  return {
     username: state.username,
-    userID: state.userID,
+    userID: state.userID.userID,
     valid: state.valid,
     userListings: state.userListings.userListings,
-  }
-);
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -74,6 +75,8 @@ const mapDispatchToProps = (dispatch) => {
 Dashboard.propTypes = {
   username: React.PropTypes.string,
   valid: React.PropTypes.bool,
+  userListings: React.PropTypes.array,
+  dispatchGetUserListings: React.PropTypes.func,
 };
 
 
