@@ -20,6 +20,13 @@ const users = (state = initUserState, action) => {
         username: action.username,
         password: action.password,
       });
+    case 'LOGOUT_USER':
+      return Object.assign({}, state, {
+        username: null,
+        password: null,
+        id: null,
+        zip: null,
+      });
     default:
       return state;
   }

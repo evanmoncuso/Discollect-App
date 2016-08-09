@@ -4,8 +4,14 @@ const optimisticCheckUser = (obj) => (
   {
     type: 'LOGIN_VALID',
     zip: obj.zipcode,
-    username: obj.username, 
+    username: obj.username,
     id: obj.id,
+  }
+);
+
+const logoutUser = () => (
+  {
+    type: 'LOGOUT_USER',
   }
 );
 
@@ -62,6 +68,29 @@ const userActions = {
       });
     }
   ),
+  logoutUserServer: () => {
+    const url = 'http://localhost:3000/api/logout';
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((res) => res.json())
+    .then((response) => {
+      console.log('on Logout', response);
+    })
+    .catch((err) => {
+      if (err) {
+        console.log(err);
+      }
+    });
+  },
+  logoutUserClient: () => (
+    {
+      type: 'LOGOUT_USER',
+    }
+  )
 };
 
 
