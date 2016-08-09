@@ -4,10 +4,12 @@
   "description": "App for giving away your things",
   "main": "n/a",
   "scripts": {
+    "test-userActions": "mocha test/userActionsTests.js",
     "test": "./node_modules/.bin/mocha --reporter spec",
     "webpack": "webpack --progress --colors --watch",
     "start": "nodemon server/server.js",
-    "mysql": "mysql -h rds-mysql-discollectdb.c0eor5cjwn0u.us-west-1.rds.amazonaws.com -P 3306 -u jordan -p"
+    "mysql": "mysql -h rds-mysql-discollectdb.c0eor5cjwn0u.us-west-1.rds.amazonaws.com -P 3306 -u jordan -p",
+    "compile-for-test": "babel app/scripts/actions --out-dir compiledForTests --presets=es2015,react --ignore=node_modules,compiled --source-maps inline --watch"
   },
   "repository": {
     "type": "git",
