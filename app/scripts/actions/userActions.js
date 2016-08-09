@@ -7,6 +7,12 @@ const optimisticCheckUser = (zip) => (
   }
 );
 
+const logoutUser = () => (
+  {
+    type: 'LOGOUT_USER',
+  }
+);
+
 const userActions = {
   createUser: (username, password, email, zip) => {
     const url = 'http://localhost:3000/api/signup';
@@ -60,6 +66,23 @@ const userActions = {
       });
     }
   ),
+  logoutUserServer: () => {
+    const url = 'http://localhost:3000/api/logout';
+    fetch(url)
+    .then((response) => {
+      console.log('on Logout', response);
+    })
+    .catch((err) => {
+      if (err) {
+        console.log(err);
+      }
+    });
+  },
+  logoutUserClient: () => (
+    {
+      type: 'LOGOUT_USER',
+    }
+  )
 };
 
 
