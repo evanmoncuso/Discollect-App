@@ -53,10 +53,26 @@ const search = (state = {}, action) => {
   }
 };
 
+const initUserListingsState = {
+  userListings: [1, 2, 3],
+};
+
+const userListings = (state = initUserListingsState, action) => {
+  switch (action.type) {
+    case 'GET_USERS_LISTINGS':
+      return Object.assign({}, state, {
+        userListings: action.userListings,
+      });
+    default:
+      return state;
+  }
+};
+
 const reducer = combineReducers({
   items,
   users,
   search,
+  userListings,
 });
 
 module.exports = {
