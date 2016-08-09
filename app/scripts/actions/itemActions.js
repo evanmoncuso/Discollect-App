@@ -1,4 +1,6 @@
 import fetch from 'isomorphic-fetch';
+import { browserHistory } from 'react-router';
+
 
 const optimisticSetItems = (items) => (
   {
@@ -42,6 +44,7 @@ const itemActions = {
       .then(res => {
         dispatch(itemActions.getLatestListings());
         console.log(res, dispatch);
+        browserHistory.push('/');
       })
       .catch(err => {
         console.log(err);

@@ -1,4 +1,6 @@
 import fetch from 'isomorphic-fetch';
+import { browserHistory } from 'react-router';
+
 
 const optimisticCheckUser = (zip) => (
   {
@@ -52,6 +54,7 @@ const userActions = {
           type: 'SAVE_USER_ID',
           userID: response.id,
         });
+        browserHistory.push('/');
       })
       .catch((err) => {
         if (err) {
