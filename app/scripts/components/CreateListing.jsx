@@ -19,7 +19,7 @@ const CreateListing = ({ dispatchCreateNewListing, id }) => {
             console.log(dispatchCreateNewListing);
             const data = {
               title: title.value,
-              zip: zip.value,
+              zipcode: zip.value,
               status:1,
               image: image.value,
               category: category.value,

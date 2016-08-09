@@ -4,6 +4,7 @@ import { Route, IndexRoute } from 'react-router';
 import App from './App.jsx';
 // import Main from './Main.jsx';
 import ListView from './ListView.jsx';
+import Listing from './Listing.jsx';
 import Login from './Login.jsx';
 import Signup from './Signup.jsx';
 import Dashboard from './Dashboard.jsx';
@@ -16,6 +17,7 @@ export default (
     <Route path="/login" component={Login} />
     <Route path="/signup" component={Signup} />
     <Route path="/dashboard" component={Dashboard} />
+    <Route path="/listing/:id" component={Listing} />
     <Route path="/createlisting" component={CreateListing} />
   </Route>
 );
