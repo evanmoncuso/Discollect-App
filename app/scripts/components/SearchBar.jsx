@@ -16,8 +16,9 @@ const SearchBar = ({ commitSearch }) => {
           const data = {
             category: category.value,
             keywords: keywords.value,
-            zip: zip.value,
+            zipcodeArray: [zip.value],
           };
+          console.log(data);
           commitSearch(data);
           category.value = 'all-categories';
           keywords.value = '';
