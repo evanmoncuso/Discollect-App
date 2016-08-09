@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import itemActions from '../actions/itemActions.js';
 
 
 class Dashboard extends React.Component {
@@ -14,6 +15,11 @@ class Dashboard extends React.Component {
       ordersHistory: [],
     };
     this.toggleTableView = this.toggleTableView.bind(this);
+    console.log('***', this.props);
+  }
+  componentDidMount() {
+    console.log('HELLO');
+    this.props.dispatchGetUserListings();
   }
   toggleTableView() {
     this.setState({
@@ -37,11 +43,11 @@ class Dashboard extends React.Component {
                 <td>{this.state.tableView ? 'Pending' : 'Past'} Orders</td>
               </tr>
               <tr>
-                <td>{[1, 2, 3].map((a) => {
-                  return <tr><td>{a}</td></tr>;
+                <td>{this.props.userListings.map((a) => {
+                  return <tr><td>{a.title}</td></tr>;
                 })}</td>
-                <td>{['a', 'b', 'c'].map((a) => {
-                  return <tr><td>{a}</td></tr>;
+                <td>{this.props.userListings.map((a) => {
+                  return <tr><td>{a.title}</td></tr>;
                 })}</td>
               </tr>
             </thead>
@@ -56,12 +62,15 @@ const mapStateToProps = (state) => (
   {
     username: state.username,
     valid: state.valid,
+    userListings: state.userListings.userListings,
   }
 );
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    dispatchGetUserListings: () => {
+      dispatch(itemActions.getUsersListings());
+    },
   };
 };
 

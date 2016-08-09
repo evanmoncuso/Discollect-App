@@ -57,6 +57,31 @@ const itemActions = {
 
     }
   ),
+  getUsersListings: (userID) => (
+    // get listings associated with user at userID
+    (dispatch) => {
+      const url = 'http://localhost:3000/api/getAllListings';
+      fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => res.json())
+      .then((response) => {
+        console.log('HEEHEHEHELLLLLOOOOO', response);
+        dispatch({
+          type: 'GET_USERS_LISTINGS',
+          userListings: response,
+        });
+      })
+      .catch((err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
+  ),
 };
 
 export default itemActions;

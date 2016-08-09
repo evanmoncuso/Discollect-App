@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ListEntry from './ListEntry.jsx'
+import ListEntry from './ListEntry.jsx';
 import itemActions from '../actions/itemActions.js';
 
 
