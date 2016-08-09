@@ -75,26 +75,11 @@ const userListings = (state = initUserListingsState, action) => {
   }
 };
 
-const initUserIDState = {
-  userID: null,
-};
-const userID = (state = initUserIDState, action) => {
-  switch (action.type) {
-    case 'SAVE_USER_ID':
-      return Object.assign({}, state, {
-        userID: action.userID,
-      });
-    default:
-      return state;
-  }
-};
-
 const reducer = combineReducers({
   items,
   users,
   search,
   userListings,
-  userID,
 });
 
 module.exports = {

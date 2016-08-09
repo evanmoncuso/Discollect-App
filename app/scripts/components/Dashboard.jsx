@@ -68,7 +68,7 @@ const mapStateToProps = (state) => {
   console.log('state:' , state.userID);
   return {
     username: state.username,
-    userID: state.userID.userID,
+    userID: state.users.id,
     valid: state.valid,
     userListings: state.userListings.userListings,
   };

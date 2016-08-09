@@ -1,9 +1,11 @@
 import fetch from 'isomorphic-fetch';
 
-const optimisticCheckUser = (zip) => (
+const optimisticCheckUser = ({ zipcode, username, id }) => (
   {
     type: 'LOGIN_VALID',
-    zip, //
+    zip: zipcode,
+    username,
+    id,
   }
 );
 
@@ -53,11 +55,7 @@ const userActions = {
       .then((res) => res.json())
       .then((response) => {
         console.log('checkuserlogin:: ', response);
-        // dispatch(optimisticCheckUser(response));
-        dispatch({
-          type: 'SAVE_USER_ID',
-          userID: response.id,
-        });
+        dispatch(optimisticCheckUser(response));
       })
       .catch((err) => {
         if (err) {
