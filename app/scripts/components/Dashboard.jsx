@@ -19,7 +19,7 @@ class Dashboard extends React.Component {
   }
   componentDidMount() {
     console.log('HELLO');
-    this.props.dispatchGetUserListings();
+    this.props.dispatchGetUserListings(1); // change dynamic id
   }
   toggleTableView() {
     this.setState({
@@ -40,15 +40,9 @@ class Dashboard extends React.Component {
             <thead>
               <tr>
                 <td>{this.state.tableView ? 'Active' : 'Past'} Listings</td>
-                <td>{this.state.tableView ? 'Pending' : 'Past'} Orders</td>
               </tr>
               <tr>
-                <td>{this.props.userListings.map((a) => {
-                  return <tr><td>{a.title}</td></tr>;
-                })}</td>
-                <td>{this.props.userListings.map((a) => {
-                  return <tr><td>{a.title}</td></tr>;
-                })}</td>
+                <td><br />{this.props.userListings.map((a, i) => (<div key={i}>{a.title}</div>))}<br /></td>
               </tr>
             </thead>
           </table>
@@ -61,6 +55,7 @@ class Dashboard extends React.Component {
 const mapStateToProps = (state) => (
   {
     username: state.username,
+    userID: state.users.ID,
     valid: state.valid,
     userListings: state.userListings.userListings,
   }
@@ -68,8 +63,8 @@ const mapStateToProps = (state) => (
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatchGetUserListings: () => {
-      dispatch(itemActions.getUsersListings());
+    dispatchGetUserListings: (userID) => {
+      dispatch(itemActions.getUsersListings(userID));
     },
   };
 };

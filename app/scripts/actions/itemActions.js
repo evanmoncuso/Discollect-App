@@ -69,10 +69,12 @@ const itemActions = {
       })
       .then((res) => res.json())
       .then((response) => {
-        console.log('HEEHEHEHELLLLLOOOOO', response);
+        let listingsData = response.filter((listing) => {
+          return listing.giverId === userID;
+        });
         dispatch({
           type: 'GET_USERS_LISTINGS',
-          userListings: response,
+          userListings: listingsData,
         });
       })
       .catch((err) => {
