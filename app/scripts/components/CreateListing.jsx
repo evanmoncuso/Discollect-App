@@ -29,6 +29,12 @@ const CreateListing = ({ dispatchCreateNewListing, id }) => {
             };
             // console.log(data);
             dispatchCreateNewListing(data);
+            title.value = '';
+            zip.value = '';
+            image.value = '';
+            category.value = 'all-categories';
+            description.value = '';
+            condition.value = '5';
           }}
         >
           <label htmlFor="title">Title</label>

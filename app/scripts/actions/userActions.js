@@ -3,7 +3,7 @@ import fetch from 'isomorphic-fetch';
 const optimisticCheckUser = ({ zipcode, username, id }) => (
   {
     type: 'LOGIN_VALID',
-    zip: zipcode,
+    zipcode,
     username,
     id,
   }
@@ -16,31 +16,34 @@ const logoutUser = () => (
 );
 
 const userActions = {
-  createUser: (username, password, email, zip) => {
-    const url = 'http://localhost:3000/api/signup';
-    const data = JSON.stringify({
-      username,
-      password,
-      email,
-      zipcode: zip,
-    });
-    fetch(url, {
-      method: 'POST',
-      body: data,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    .then((res) => res.json())
-    .then((res) => {
-      console.log('the response from fetch', res);
-    })
-    .catch((err) => {
-      if (err) {
-        console.log('error', err);
-      }
-    });
-  },
+  createUser: (username, password, email, zip) => (
+    (dispatch) => {
+      const url = 'http://localhost:3000/api/signup';
+      const data = JSON.stringify({
+        username,
+        password,
+        email,
+        zipcode: zip,
+      });
+      fetch(url, {
+        method: 'POST',
+        body: data,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log('createUserLogin: ', res);
+        dispatch(optimisticCheckUser(res));
+      })
+      .catch((err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
+  ),
   checkUserLogin: (username, password) => (
     (dispatch) => {
       const data = JSON.stringify({ username, password });
