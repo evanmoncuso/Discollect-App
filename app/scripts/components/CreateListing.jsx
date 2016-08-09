@@ -41,6 +41,7 @@ const CreateListing = ({ dispatchCreateNewListing, id }) => {
             <option value="all-categories">All Categories</option>
             <option value="appliances">Appliances</option>
             <option value="fashion">Clothing, Shoes &amp; Jewelry</option>
+            <option value="furniture">Furniture</option>
             <option value="books">Books</option>
             <option value="electronics">Electronics</option>
             <option value="tools">Tools &amp; Home Improvement</option>

@@ -53,10 +53,41 @@ const search = (state = {}, action) => {
   }
 };
 
+const initUserListingsState = {
+  userListings: [],
+};
+
+const userListings = (state = initUserListingsState, action) => {
+  switch (action.type) {
+    case 'GET_USERS_LISTINGS':
+      return Object.assign({}, state, {
+        userListings: action.userListings,
+      });
+    default:
+      return state;
+  }
+};
+
+const initUserIDState = {
+  userID: null,
+};
+const userID = (state = initUserIDState, action) => {
+  switch (action.type) {
+    case 'SAVE_USER_ID':
+      return Object.assign({}, state, {
+        userID: action.userID,
+      });
+    default:
+      return state;
+  }
+};
+
 const reducer = combineReducers({
   items,
   users,
   search,
+  userListings,
+  userID,
 });
 
 module.exports = {
