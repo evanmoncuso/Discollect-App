@@ -19,7 +19,9 @@ class Dashboard extends React.Component {
   }
   componentDidMount() {
     console.log('HELLO');
-    this.props.dispatchGetUserListings(1); // change dynamic id
+    if (this.props.userID.userID) {
+      this.props.dispatchGetUserListings(this.props.userID.userID);
+    } // change dynamic id
   }
   toggleTableView() {
     this.setState({
@@ -55,7 +57,7 @@ class Dashboard extends React.Component {
 const mapStateToProps = (state) => (
   {
     username: state.username,
-    userID: state.users.ID,
+    userID: state.userID,
     valid: state.valid,
     userListings: state.userListings.userListings,
   }

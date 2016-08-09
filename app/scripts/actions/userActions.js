@@ -46,8 +46,12 @@ const userActions = {
       })
       .then((res) => res.json())
       .then((response) => {
-        console.log(response);
+        console.log('checkuserlogin:: ', response);
         // dispatch(optimisticCheckUser(response));
+        dispatch({
+          type: 'SAVE_USER_ID',
+          userID: response.id,
+        });
       })
       .catch((err) => {
         if (err) {
