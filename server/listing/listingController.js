@@ -59,7 +59,7 @@ module.exports = {
       //   //tempArray is passed on further filtered
       //   //keyObject is pulled in for use
       //   //var keywords is from the search request - turn into array
-        
+
       //   var keywords = req.body.keywords.split(' ');
       //   var idArray = [];
       //   for (var a = 0; a < tempArray.length; a++) {
@@ -94,6 +94,7 @@ module.exports = {
     .then(list => {
       console.log(list);
       res.send(list);
+
     })
   },
 
