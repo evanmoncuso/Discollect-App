@@ -70,13 +70,7 @@ const userActions = {
   ),
   logoutUserServer: () => {
     const url = 'http://localhost:3000/api/logout';
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    .then((res) => res.json())
+    fetch(url)
     .then((response) => {
       console.log('on Logout', response);
     })

@@ -38,8 +38,16 @@ h1 {
 
 
 .login,
-.signup {
+.signup,
+.logout {
   padding-right: 24px;
+}
+
+.logout {
+  padding-left: 24px;
+  position: absolute;
+  right: 72px;
+  text-decoration: underline
 }
 
 /*
