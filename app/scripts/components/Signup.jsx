@@ -10,7 +10,6 @@ const Signup = ({ dispatchSignup }) => {
   let confirm;
   let email;
   let zip;
-  console.log(dispatchSignup);
   return (
     <div className="main_container">
       <h1>Signup</h1>
@@ -28,6 +27,12 @@ const Signup = ({ dispatchSignup }) => {
             return;
           }
           dispatchSignup(username.value, password.value, email.value, zip.value);
+
+          username.value = '';
+          password.value = '';
+          confirm.value = '';
+          email.value = '';
+          zip.value = '';
         }}
       >
 
@@ -52,6 +57,10 @@ const Signup = ({ dispatchSignup }) => {
   );
 };
 
+Signup.propTypes = {
+  dispatchSignup: React.PropTypes.func,
+};
+
 const mapDispatchToProps = (dispatch) => (
   {
     dispatchSignup: (username, password, email, zip) => {
@@ -61,4 +70,3 @@ const mapDispatchToProps = (dispatch) => (
 );
 
 export default connect(null, mapDispatchToProps)(Signup);
-
