@@ -44,7 +44,17 @@ class Dashboard extends React.Component {
                 <td>{this.state.tableView ? 'Active' : 'Past'} Listings</td>
               </tr>
               <tr>
-                <td><br />{this.props.userListings.map((a, i) => (<div key={i}>{a.title}</div>))}<br /></td>
+                <td><br />{this.props.userListings.map((a, i) => {
+                  console.log(this.props.userListings);
+                  return <div key={i} style={{border: '1px solid black'}}>
+                    <h3>{"title: "+a.title}</h3>
+                    <img style={{width:'50px', height:'50px'}} src={a.picReference || 'http://www.novelupdates.com/img/noimagefound.jpg'} />
+                    <p>{"id:" + a.id}</p>
+                    <p>{"create at: "+ a.createdAt}</p>
+                    <button>View Listing</button>
+                    <button>Edit Listing</button>
+                    <button>Cancel Listing</button>
+                  </div>})}<br /></td>
               </tr>
             </thead>
           </table>

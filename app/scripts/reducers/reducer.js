@@ -54,7 +54,7 @@ const search = (state = {}, action) => {
 };
 
 const initUserListingsState = {
-  userListings: [1, 2, 3],
+  userListings: [],
 };
 
 const userListings = (state = initUserListingsState, action) => {
