@@ -1,17 +1,13 @@
 import fetch from 'isomorphic-fetch';
 
+import { browserHistory } from 'react-router';
+
 const optimisticCheckUser = ({ zipcode, username, id }) => (
   {
     type: 'LOGIN_VALID',
     zipcode,
     username,
     id,
-  }
-);
-
-const logoutUser = () => (
-  {
-    type: 'LOGOUT_USER',
   }
 );
 
@@ -35,6 +31,7 @@ const userActions = {
       .then((res) => res.json())
       .then((res) => {
         console.log('createUserLogin: ', res);
+        browserHistory.push('/');
         dispatch(optimisticCheckUser(res));
       })
       .catch((err) => {
@@ -59,6 +56,7 @@ const userActions = {
       .then((response) => {
         console.log('checkuserlogin:: ', response);
         dispatch(optimisticCheckUser(response));
+        browserHistory.push('/');
       })
       .catch((err) => {
         if (err) {
