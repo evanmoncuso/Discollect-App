@@ -1,9 +1,17 @@
 import fetch from 'isomorphic-fetch';
 
-const optimisticCheckUser = (zip) => (
+const optimisticCheckUser = ({ zipcode, username, id }) => (
   {
     type: 'LOGIN_VALID',
-    zip, //
+    zip: zipcode,
+    username,
+    id,
+  }
+);
+
+const logoutUser = () => (
+  {
+    type: 'LOGOUT_USER',
   }
 );
 
@@ -47,11 +55,7 @@ const userActions = {
       .then((res) => res.json())
       .then((response) => {
         console.log('checkuserlogin:: ', response);
-        // dispatch(optimisticCheckUser(response));
-        dispatch({
-          type: 'SAVE_USER_ID',
-          userID: response.id,
-        });
+        dispatch(optimisticCheckUser(response));
       })
       .catch((err) => {
         if (err) {
@@ -60,6 +64,23 @@ const userActions = {
       });
     }
   ),
+  logoutUserServer: () => {
+    const url = 'http://localhost:3000/api/logout';
+    fetch(url)
+    .then((response) => {
+      console.log('on Logout', response);
+    })
+    .catch((err) => {
+      if (err) {
+        console.log(err);
+      }
+    });
+  },
+  logoutUserClient: () => (
+    {
+      type: 'LOGOUT_USER',
+    }
+  )
 };
 
 
