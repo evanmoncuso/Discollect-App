@@ -52,12 +52,28 @@ const itemActions = {
     }
   ),
   searchItem: (query) => (
-    {
-      type: 'SUBMIT_SEARCH',
-      keywords: query.keywords,
-      zip: query.zip,
-      category: query.category,
-
+    (dispatch) => {
+      const url = 'http://localhost:3000/api/getFilteredListings';
+      fetch(url, {
+        method: 'PUT',
+        body: JSON.stringify(query),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log('Search Success: ', res);
+        dispatch(optimisticSetItems(res));
+        browserHistory.push('/');
+        // dispatch({
+        //   type: 'SUBMIT_SEARCH',
+        //   payload: res,
+        // });
+      })
+      .catch(err => {
+        console.log('Search Error: ', err);
+      });
     }
   ),
   getUsersListings: (userID) => (
