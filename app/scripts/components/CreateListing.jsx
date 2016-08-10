@@ -1,35 +1,52 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import itemActions from '../actions/itemActions.js';
+import {saveUpload} from '../actions/itemActions.js';
 
-const CreateListing = ({ dispatchCreateNewListing, id }) => {
+const CreateListing = ({ dispatchCreateNewListing, dispatchSaveUpload, id, data_uri, filetype, filename }) => {
   let title;
   let zip;
   let image;
   let category;
   let description;
   let condition;
+
+  const handleChange = (e) => {
+    const reader = new FileReader();
+    const file = e.target.files[0];
+
+
+    reader.onload = (upload) => {
+      dispatchSaveUpload(upload.target.result, file.name, file.type);
+    };
+
+    reader.readAsDataURL(file);
+  };
+
   return (
     <div>
       <div className="main_container">
         <h1>Create a Listing</h1>
-        <form
+        <form encType="multipart/form-data"
           onSubmit={(e) => {
             e.preventDefault();
-            console.log(dispatchCreateNewListing);
             const data = {
               title: title.value,
               zipcode: zip.value,
               status:1,
-              image: image.value,
+              picReference: data_uri,
+              filename: filename,
+              filetype: filetype,
               category: category.value,
               description: description.value,
               condition: condition.value,
               giverId: id,
               status: true,
             };
-            // console.log(data);
+            
+            console.log(data);
             dispatchCreateNewListing(data);
+
             title.value = '';
             zip.value = '';
             image.value = '';
@@ -63,11 +80,14 @@ const CreateListing = ({ dispatchCreateNewListing, id }) => {
             <option value="1">Salvage</option>
           </select><br />
           <label htmlFor="image">Image</label><br />
-          <input ref={(node) => { image = node; }} type="file" accept="image/*" />
+          <input ref={(node) => { image = node; }} name="photo" type="file" accept="image/*" onChange={handleChange}/>
           <label htmlFor="description">Description</label>
           <textarea ref={(node) => { description = node; }} id="description" required />
           <button type="submit">add</button>
         </form>
+
+        <img src="https://s3-us-west-1.amazonaws.com/discollect/Thisisatestnull" width='200' />
+
       </div>
     </div>
   );
@@ -79,6 +99,9 @@ CreateListing.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
+    data_uri: state.upload.data_uri,
+    filename: state.upload.filename,
+    filetype: state.upload.filetype,
     id: state.users.id,
   };
 };
@@ -87,6 +110,9 @@ const mapDispatchToProps = (dispatch) => (
   {
     dispatchCreateNewListing: (data) => {
       dispatch(itemActions.postNewListing(data));
+    },
+    dispatchSaveUpload: (upload, filename, filetype) => {
+      dispatch(saveUpload(upload, filename, filetype));
     },
   }
 );

@@ -84,11 +84,30 @@ const userListings = (state = initUserListingsState, action) => {
   }
 };
 
+const initUploadState = {
+  data_uri: null,
+  filename: null,
+  filetype: null,
+};
+
+const upload = (state = {}, action) => {
+  switch (action.type) {
+    case 'ON_UPLOAD':
+    return Object.assign({}, state, {
+      data_uri: action.data_uri,
+      filename: action.filename,
+      filetype: action.filetype,
+    });
+    default: return state;
+  }
+};
+
 const reducer = combineReducers({
   items,
   users,
   search,
   userListings,
+  upload,
 });
 
 module.exports = {

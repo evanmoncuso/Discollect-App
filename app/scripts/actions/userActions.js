@@ -95,7 +95,7 @@ const userActions = {
         console.log('checkuserlogin:: ', res);
         browserHistory.push('/');
         dispatch(optimisticSignIn(res));
-      })
+      }) 
       .catch((err) => {
         if (err) {
           console.log(err);

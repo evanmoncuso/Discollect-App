@@ -9,6 +9,15 @@ const optimisticSetItems = (items) => (
   }
 );
 
+export const saveUpload = (data_uri, filename, filetype) => (
+  {
+    type: 'ON_UPLOAD',
+    data_uri,
+    filename, 
+    filetype,
+  }
+);
+
 const itemActions = {
   getLatestListings: () => (
     (dispatch) => {
@@ -33,24 +42,52 @@ const itemActions = {
   ),
   postNewListing: (listingData) => (
     (dispatch) => {
-      const url = 'http://localhost:3000/api/createNewListing';
-      fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(listingData),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      .then(res => {
-        dispatch(itemActions.getLatestListings());
-        console.log(res, dispatch);
-        browserHistory.push('/');
-      })
-      .catch(err => {
-        console.log(err);
-      });
+      const photoUrl = 'http://photohelper.herokuapp.com/api/createNewListing';
+      const url = 'http://localhost:3000/api/createNewListing'
+      if (listingData.picReference === undefined) {
+        console.log('picRef is undefined')
+        postListingAfterPhoto(listingData);
+      } else {
+        console.log('picref is good')
+        fetch(photoUrl, {
+          method: 'POST',
+          body: JSON.stringify(listingData),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        .then((res) => res.json())
+        .then((response) => {
+          console.log(response)
+          listingData.picReference = response;
+          console.log(listingData);
+          dispatch(itemActions.postListingAfterPhoto(listingData));
+        })
+      }
     }
   ),
+
+  postListingAfterPhoto: (data) => 
+    (dispatch) => {
+    console.log('postListingAfterPhoto');
+    const url = 'http://localhost:3000/api/createNewListing'
+    console.log(data)
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(res => {
+      dispatch(itemActions.getLatestListings());
+      browserHistory.push('/');
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  },
+
   searchItem: (query) => (
     (dispatch) => {
       const url = 'http://localhost:3000/api/getFilteredListings';
@@ -68,9 +105,10 @@ const itemActions = {
         browserHistory.push('/');
       })
       .catch(err => {
-        console.log('Search Error: ', err)
-      })
-    }),
+        console.log('Search Error: ', err);
+      });
+    }
+  ),
 
   updateListingStatus: (listingID) => (
     (dispatch) => {
@@ -124,4 +162,4 @@ const itemActions = {
   ),
 };
 
-module.exports = itemActions;
+export default itemActions;
