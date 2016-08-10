@@ -11,7 +11,7 @@ const NavBar = ({ username }) => {
   let displayed = username ? <Registered username={username} /> : <Unregistered />;
   return (
     <nav>
-      <Link to="/"><h2 className="nav_title">Home</h2></Link>
+      <Link to="/"><h1 className="nav_title">Discollect</h1></Link>
       {displayed}
       <SearchBar />
     </nav>

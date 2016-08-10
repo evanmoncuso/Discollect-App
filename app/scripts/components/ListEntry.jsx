@@ -11,6 +11,7 @@ let ListEntry = (props) => {
   return (
       <div className="listView_entry" onClick={props.onClick}>
         <h5>{props.entry.title}</h5>
+        <img src={props.entry.picReference} />
         <p>{props.entry.description}</p>
         <p>{timeAgo}</p>
       </div>
