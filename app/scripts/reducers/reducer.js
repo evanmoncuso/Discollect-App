@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 
 const initUserState = {
   zip: null,
+  coords: [],
   id: null,
   username: null,
   password: null,
@@ -87,11 +88,12 @@ const userCoords = (state = [0, 0], action) => {
   switch (action.type) {
     case 'GET_USER_COORDS':
       // console.log(action.payload);
-      return [action.payload.coords.longitude, action.payload.coords.latitude];
+      return [action.lng, action.lat];
     default:
       return state;
   }
 };
+
 
 const reducer = combineReducers({
   items,

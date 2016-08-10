@@ -54,10 +54,28 @@ const userActions = {
         });
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(position => {
-            console.log('>>>>>heard from navigator success>>>>', position)
+            // console.log('>>>>>heard from navigator success>>>>', position)
+            let lat = position.coords.latitude;
+            let lng = position.coords.longitude;
             dispatch({
               type: 'GET_USER_COORDS',
-              payload: position,
+              lat,
+              lng,
+            });
+            let zipURL = `http://zipcodehelper.herokuapp.com/api/zip?lng=${lng}&lat=${lat}`;
+            fetch(zipURL, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            })
+            .then((res) => res.json())
+            .then(res => {
+              console.log('<<<<z<<i<<p', res);
+              // dispatch({
+              //   type: 'GET_USER_ZIP',
+              //   userZip: res.body,
+              // });
             });
           }, error => {
             // navigator error func
