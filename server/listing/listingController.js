@@ -59,7 +59,7 @@ module.exports = {
       //   //tempArray is passed on further filtered
       //   //keyObject is pulled in for use
       //   //var keywords is from the search request - turn into array
-        
+
       //   var keywords = req.body.keywords.split(' ');
       //   var idArray = [];
       //   for (var a = 0; a < tempArray.length; a++) {
@@ -89,11 +89,32 @@ module.exports = {
     });
   },
 
+  update: function(req, res) {
+    // console.log('listing updatttttting!!!!!!!==============================>', req.body.listingID);
+    Listing.findOne({
+      where: {
+        id: req.body.listingID
+      }
+    })
+    .then(listing => {
+      // console.log('listing: ', listing);
+      return listing.update({status: 0});
+    })
+    .then (function(listing) {
+      res.send(listing)
+    })
+    .catch(function(err) {
+      console.log('error updating', err);
+      res.status(400).send(err)
+    })
+  },
+
   createNewListing: function(req, res) {
     Listing.create(req.body)
     .then(list => {
       console.log(list);
       res.send(list);
+
     })
   },
 

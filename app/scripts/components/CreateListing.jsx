@@ -20,6 +20,7 @@ const CreateListing = ({ dispatchCreateNewListing, id }) => {
             const data = {
               title: title.value,
               zipcode: zip.value,
+              status:1,
               image: image.value,
               category: category.value,
               description: description.value,
