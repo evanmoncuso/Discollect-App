@@ -12,7 +12,6 @@ import itemActions from '../actions/itemActions.js';
 const Listing = (props) => {
 var listingID = props.params.id;
 // console.log('=========>',itemActions)
-
 // console.log('listing index is: ', listingID)
 // console.log('listing index is: ', props.currentListing[listingID])
 var curr = props.currentListing[listingID]
@@ -20,7 +19,6 @@ var curr = props.currentListing[listingID]
 const backer = () => {
   browserHistory.goBack();
 };
-
 
   return (
       <div>
@@ -33,7 +31,6 @@ const backer = () => {
           e.preventDefault();
           const listingTrigger = {
             listingID: Number(listingID + 1),
-
             giverId: curr.giverId,
             takerId: props.userId,
           }
@@ -66,6 +63,5 @@ const mapDispatchToProps = (dispatch) => (
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Listing);
-
 
 // export default Listing;

@@ -10,6 +10,7 @@ module.exports = function(app, express) {
   router.post('/login', passport.authenticate('local', {failureRedirect: '/'}), userControl.login);
   router.post('/signup', userControl.signup);
   router.post('/logout', userControl.logout);
+  router.put('/update', listingControl.update);
 
   // router.get('/listing', listingControl.getListing);
   router.put('/getFilteredListings', listingControl.getFilteredListings);

@@ -31,6 +31,15 @@ const itemActions = {
       });
     }
   ),
+  searchItem: (query) => (
+    {
+      type: 'SUBMIT_SEARCH',
+      keywords: query.keywords,
+      zip: query.zip,
+      category: query.category,
+
+    }
+  ),
   postNewListing: (listingData) => (
     (dispatch) => {
       const url = 'http://localhost:3000/api/createNewListing';
@@ -73,10 +82,30 @@ const itemActions = {
       })
       .catch(err => {
         console.log('Search Error: ', err);
+
+  updateListingStatus: (listingID) => (
+    (dispatch) => {
+    var num = JSON.stringify({listingID: listingID});
+      const url = 'http://localhost:3000/api/update';
+      fetch(url, {
+        method: 'PUT',
+        body: num,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })  
+      .then((res) => res.json())
+      .then((res) => {
+        console.log('updated listing thingy!: ', res);
+        // dispatch(optimisticCheckUser(res));
+      })
+      .catch((err) => {
+        if (err) {
+          console.log(err);
+        }
       });
     }
   ),
-
 
   getUsersListings: (userID) => (
     // get listings associated with user at userID

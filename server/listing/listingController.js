@@ -89,6 +89,26 @@ module.exports = {
     });
   },
 
+  update: function(req, res) {
+    // console.log('listing updatttttting!!!!!!!==============================>', req.body.listingID);
+    Listing.findOne({
+      where: {
+        id: req.body.listingID
+      }
+    })
+    .then(listing => {
+      // console.log('listing: ', listing);
+      return listing.update({status: 0});
+    })
+    .then (function(listing) {
+      res.send(listing)
+    })
+    .catch(function(err) {
+      console.log('error updating', err);
+      res.status(400).send(err)
+    })
+  },
+
   createNewListing: function(req, res) {
     Listing.create(req.body)
     .then(list => {
