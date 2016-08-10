@@ -55,8 +55,46 @@ const userActions = {
       .then((res) => res.json())
       .then((response) => {
         console.log('checkuserlogin:: ', response);
-        dispatch(optimisticCheckUser(response));
-        browserHistory.push('/');
+        // dispatch(optimisticCheckUser(response));
+        dispatch({
+          type: 'SAVE_USER_ID',
+          userID: response.id,
+        });
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(position => {
+            // console.log('>>>>>heard from navigator success>>>>', position)
+            let lat = position.coords.latitude;
+            let lng = position.coords.longitude;
+            dispatch({
+              type: 'GET_USER_COORDS',
+              lat,
+              lng,
+            });
+            let zipURL = `http://zipcodehelper.herokuapp.com/api/zip?lng=${lng}&lat=${lat}`;
+            fetch(zipURL, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            })
+            .then((res) => res.json())
+            .then(res => {
+              dispatch({
+                type: 'GET_USER_ZIP',
+                zip: res,
+              });
+            });
+          }, error => {
+            // navigator error func
+            console.log(error);
+          }, {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0,
+          });
+        } else {
+          console.log('geolocation not supported');
+        }
       })
       .catch((err) => {
         if (err) {
