@@ -71,6 +71,7 @@ const userListings = (state = initUserListingsState, action) => {
 const initUserIDState = {
   userID: null,
 };
+
 const userID = (state = initUserIDState, action) => {
   switch (action.type) {
     case 'SAVE_USER_ID':
@@ -82,12 +83,23 @@ const userID = (state = initUserIDState, action) => {
   }
 };
 
+const userCoords = (state = [0, 0], action) => {
+  switch (action.type) {
+    case 'GET_USER_COORDS':
+      // console.log(action.payload);
+      return [action.payload.coords.longitude, action.payload.coords.latitude];
+    default:
+      return state;
+  }
+};
+
 const reducer = combineReducers({
   items,
   users,
   search,
   userListings,
   userID,
+  userCoords,
 });
 
 module.exports = {

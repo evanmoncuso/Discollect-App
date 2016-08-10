@@ -52,6 +52,24 @@ const userActions = {
           type: 'SAVE_USER_ID',
           userID: response.id,
         });
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(position => {
+            console.log('>>>>>heard from navigator success>>>>', position)
+            dispatch({
+              type: 'GET_USER_COORDS',
+              payload: position,
+            });
+          }, error => {
+            // navigator error func
+            console.log(error);
+          }, {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0,
+          });
+        } else {
+          console.log('geolocation not supported');
+        }
       })
       .catch((err) => {
         if (err) {

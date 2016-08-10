@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import itemActions from '../actions/itemActions.js';
 
 
-const SearchBar = ({ commitSearch }) => {
+const SearchBar = ({ commitSearch, userCoords }) => {
   let keywords;
   let zip;
   let category;
@@ -44,6 +44,7 @@ const SearchBar = ({ commitSearch }) => {
           <option value="tools">Tools &amp; Home Improvement</option>
         </select>
         <button>search</button>
+        <div>{userCoords}</div>
       </form>
     </div>
   );
@@ -51,6 +52,12 @@ const SearchBar = ({ commitSearch }) => {
 
 SearchBar.propTypes = {
   commitSearch: React.PropTypes.func,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    userCoords: state.userCoords,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => (
@@ -61,4 +68,4 @@ const mapDispatchToProps = (dispatch) => (
   }
 );
 
-export default connect(null, mapDispatchToProps)(SearchBar);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
