@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 
 const initUserState = {
   zip: null,
+  coords: [],
   id: null,
   username: null,
   password: null,
@@ -20,12 +21,18 @@ const users = (state = initUserState, action) => {
         username: action.username,
         password: action.password,
       });
-    case 'LOGOUT_USER':
+    case 'SAVE_USER_ID':
       return Object.assign({}, state, {
-        username: null,
-        password: null,
-        id: null,
-        zip: null,
+        userID: action.userID,
+      });
+    case 'GET_USER_COORDS':
+      // currently not being used. potentially for passing to map api?
+      return Object.assign({}, state, {
+        coords: [action.lng, action.lat],
+      });
+    case 'GET_USER_ZIP':
+      return Object.assign({}, state, {
+        zip: action.zip,
       });
     default:
       return state;
@@ -74,6 +81,33 @@ const userListings = (state = initUserListingsState, action) => {
       return state;
   }
 };
+
+
+const initUserIDState = {
+  userID: null,
+};
+
+const userID = (state = initUserIDState, action) => {
+  switch (action.type) {
+    case 'SAVE_USER_ID':
+      return Object.assign({}, state, {
+        userID: action.userID,
+      });
+    default:
+      return state;
+  }
+};
+
+// const userCoords = (state = [0, 0], action) => {
+//   switch (action.type) {
+//     case 'GET_USER_COORDS':
+//       // console.log(action.payload);
+//       return [action.lng, action.lat];
+//     default:
+//       return state;
+//   }
+// };
+
 
 const reducer = combineReducers({
   items,
