@@ -86,7 +86,7 @@ const CreateListing = ({ dispatchCreateNewListing, dispatchSaveUpload, id, data_
           <button type="submit">add</button>
         </form>
 
-        <img src="https://s3-us-west-1.amazonaws.com/discollect/ynull" width='200' />
+        <img src="https://s3-us-west-1.amazonaws.com/discollect/Thisisatestnull" width='200' />
 
       </div>
     </div>

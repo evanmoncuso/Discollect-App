@@ -42,8 +42,8 @@ const itemActions = {
   ),
   postNewListing: (listingData) => (
     (dispatch) => {
-      console.log('in listing')
       const photoUrl = 'http://photohelper.herokuapp.com/api/createNewListing';
+      const url = 'http://localhost:3000/api/createNewListing'
       if (listingData.picReference === undefined) {
         console.log('picRef is undefined')
         postListingAfterPhoto(listingData);
@@ -59,44 +59,28 @@ const itemActions = {
         .then((res) => res.json())
         .then((response) => {
           console.log(response)
-          if (response.status === 200) {
-            console.log(res.data);
-            listingData.picReference = res.data;
-            fetch(url, {
-              method: 'POST',
-              body: JSON.stringify(listingData),
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            })
-            .then(res => {
-              dispatch(itemActions.getLatestListings());
-              console.log(res, dispatch);
-              browserHistory.push('/');
-            })
-            .catch(err => {
-              console.log(err);
-            });
-          }
+          listingData.picReference = response;
+          console.log(listingData);
+          dispatch(itemActions.postListingAfterPhoto(listingData));
         })
       }
     }
   ),
 
-  postListingAfterPhoto: (data) => {
+  postListingAfterPhoto: (data) => 
+    (dispatch) => {
     console.log('postListingAfterPhoto');
     const url = 'http://localhost:3000/api/createNewListing'
-    console.log(listingData)
+    console.log(data)
     fetch(url, {
       method: 'POST',
-      body: JSON.stringify(listingData),
+      body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json',
       },
     })
     .then(res => {
       dispatch(itemActions.getLatestListings());
-      console.log(res, dispatch);
       browserHistory.push('/');
     })
     .catch(err => {
