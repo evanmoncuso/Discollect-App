@@ -105,4 +105,4 @@ const itemActions = {
   ),
 };
 
-export default itemActions;
+module.exports = itemActions;

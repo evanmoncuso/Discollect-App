@@ -15,3 +15,5 @@ npm-debug.log
 .tags1
 
 secrets.js
+
+compiledForTests

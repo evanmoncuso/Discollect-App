@@ -6,10 +6,9 @@ describe('User Actions', function() {
   it('should be an object', function() {
     expect(typeof userActions).to.equal('object');
   });
-  for (var key in userAction) {
-    it('should be a function', function() {
-      expect(userActions).to.equal('object');
+  for (var key in userActions) {
+    it((key + ' should be a function'), function() {
+      expect(typeof userActions[key]).to.equal('function');
     });
-
   }
 });
