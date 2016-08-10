@@ -100,7 +100,8 @@ module.exports = {
       }
     })
     .then(listing => {
-      return listing.update({status: 1, });
+      // console.log('listing: ', listing);
+      return listing.update({status: 1});
     })
     .then (function(listing) {
       res.send(listing)
