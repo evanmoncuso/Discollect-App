@@ -58,7 +58,6 @@ const userActions = {
         dispatch(optimisticSignIn(response));
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(position => {
-            // console.log('>>>>>heard from navigator success>>>>', position)
             let lat = position.coords.latitude;
             let lng = position.coords.longitude;
             dispatch({
@@ -94,6 +93,7 @@ const userActions = {
       })
       .then((res) => {
         console.log('checkuserlogin:: ', res);
+        browserHistory.push('/');
         dispatch(optimisticSignIn(res));
       })
       .catch((err) => {
