@@ -5,7 +5,7 @@ import { browserHistory } from 'react-router';
 const optimisticSetItems = (items) => (
   {
     type: 'GET_INITIAL_ITEMS',
-    items, // property shorthand
+    items,
   }
 );
 
@@ -66,10 +66,6 @@ const itemActions = {
         console.log('Search Success: ', res);
         dispatch(optimisticSetItems(res));
         browserHistory.push('/');
-        // dispatch({
-        //   type: 'SUBMIT_SEARCH',
-        //   payload: res,
-        // });
       })
       .catch(err => {
         console.log('Search Error: ', err)
@@ -86,11 +82,10 @@ const itemActions = {
         headers: {
           'Content-Type': 'application/json',
         },
-      })  
+      })
       .then((res) => res.json())
       .then((res) => {
         console.log('updated listing thingy!: ', res);
-        // dispatch(optimisticCheckUser(res));
       })
       .catch((err) => {
         if (err) {

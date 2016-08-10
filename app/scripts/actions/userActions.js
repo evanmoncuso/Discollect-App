@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch';
 
 import { browserHistory } from 'react-router';
 
-const optimisticCheckUser = ({ zipcode, username, id }) => (
+const optimisticSignIn = ({ zipcode, username, id }) => (
   {
     type: 'LOGIN_VALID',
     zipcode,
@@ -32,7 +32,7 @@ const userActions = {
       .then((res) => {
         console.log('createUserLogin: ', res);
         browserHistory.push('/');
-        dispatch(optimisticCheckUser(res));
+        dispatch(optimisticSignIn(res));
       })
       .catch((err) => {
         if (err) {
@@ -55,11 +55,7 @@ const userActions = {
       .then((res) => res.json())
       .then((response) => {
         console.log('checkuserlogin:: ', response);
-        // dispatch(optimisticCheckUser(response));
-        dispatch({
-          type: 'SAVE_USER_ID',
-          userID: response.id,
-        });
+        dispatch(optimisticSignIn(response));
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(position => {
             // console.log('>>>>>heard from navigator success>>>>', position)
@@ -98,7 +94,7 @@ const userActions = {
       })
       .then((res) => {
         console.log('checkuserlogin:: ', res);
-        dispatch(optimisticCheckUser(res));
+        dispatch(optimisticSignIn(res));
       })
       .catch((err) => {
         if (err) {
