@@ -25,10 +25,10 @@ const Login = ({ dispatchLogin }) => {
       >
 
         <label htmlFor="username">username</label>
-        <input ref={(node) => { username = node; }} id="username" />
+        <input ref={(node) => { username = node; }} id="username" type="text"/>
 
         <label htmlFor="password">password</label>
-        <input ref={(node) => { password = node; }} id="password" />
+        <input ref={(node) => { password = node; }} id="password" type="password" />
 
         <button type="submit">add</button>
       </form>

@@ -5,6 +5,9 @@ var Listing = require('./listingModel.js');
 module.exports = {
   getAllListings: function (req, res) {
     Listing.findAll({
+      where: {
+        status: 1,
+      },
       limit: 20,
       order: [['createdAt', 'DESC']],
     })
@@ -20,6 +23,7 @@ module.exports = {
      Listing.findAll({
           where: {
             $and:{
+              status: 1,
               zipcode: {
                $or: req.body.zipcodeArray, //select listing with a zipcode in the zipcodesArray
               },

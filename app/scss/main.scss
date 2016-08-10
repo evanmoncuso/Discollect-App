@@ -19,9 +19,11 @@ Grid
  */
  * {
   // border: 1px solid red;
+  font-family: $secondary-font;
  }
+
 main {
-    max-width: 960px;
+    max-width: 100%;
     text-align: center;
     margin: 0 auto 3em;
     display: flex;
@@ -30,6 +32,10 @@ main {
     // align-items: center;
     border: 3px solid black;
     background-color: #EFF;
+    font-size: 20px;
+    form input{
+      font-size: 20px;
+    }
 }
 
 .listView_container {
@@ -40,29 +46,41 @@ main {
     background-color: #EEE;
     width: 400px;
     margin: 5px auto;
-
+    img {
+      width: 150px;
+      height: 100px;
+    }
   }
 }
 
-form {
-  
-
-}
 
 nav {
   padding: 5px 5px 10px 5px;
-  h2{
-    font-size: 32px;
-  }
   a {
     font-size: 20px;
     margin: 3px 3px;
   }
+  .nav_title{
+    font-family: $primary-font;
+    font-size: 45px;
+    color: #af111c;
+    margin: 60px 30px;
+    float: left;
+  }
+  .app_points a,
+  .auth_points a{
+    font-family: $primary-font;
+    color: #af111c;
+    font-size: 25px;
+    float: right;
+    margin: 30px 20px;
+  }
 }
 
 .search_bar {
-  background-color: #333;
-  height: 200px;
+  background: #EEE url('pexels-large.jpeg') no-repeat center center;
+  background-size: cover;
+  height: 500px;
   border-radius: 5px;
   input, select, button  {
     font-size: 15px;
@@ -71,10 +89,11 @@ nav {
     background-color: #EEE;
     border: 2px solid black;
     position: relative;
-    transform: translateY(200%);
+    transform: translateY(500%);
+    margin: 0 5px;
   }
   select, button {
-    transform: translateY(230%);
+    transform: translateY(570%);
   }
 }
 
