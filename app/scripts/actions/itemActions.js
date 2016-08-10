@@ -31,15 +31,6 @@ const itemActions = {
       });
     }
   ),
-  searchItem: (query) => (
-    {
-      type: 'SUBMIT_SEARCH',
-      keywords: query.keywords,
-      zip: query.zip,
-      category: query.category,
-
-    }
-  ),
   postNewListing: (listingData) => (
     (dispatch) => {
       const url = 'http://localhost:3000/api/createNewListing';
@@ -81,7 +72,9 @@ const itemActions = {
         // });
       })
       .catch(err => {
-        console.log('Search Error: ', err);
+        console.log('Search Error: ', err)
+      })
+    }),
 
   updateListingStatus: (listingID) => (
     (dispatch) => {

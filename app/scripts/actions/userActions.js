@@ -95,6 +95,7 @@ const userActions = {
         } else {
           console.log('geolocation not supported');
         }
+      })
       .then((res) => {
         console.log('checkuserlogin:: ', res);
         dispatch(optimisticCheckUser(res));

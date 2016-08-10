@@ -8,12 +8,12 @@ Imports
 Grid
 ====================
  */
-.app {
+main {
   max-width: 960px;
   text-align: center;
   margin-bottom: 3em;
   display: flex;
-  justify-content: center;
+  justify-content: padding-right;
   flex-direction: column; }
 
 .listView_container .listView_entry {
@@ -41,8 +41,9 @@ nav {
     background-color: #EEE;
     border: 2px solid black;
     position: relative;
-    top: 50%;
     transform: translateY(200%); }
+  .search_bar select, .search_bar button {
+    transform: translateY(230%); }
 
 .main_container {
   background-color: #DDD; }
