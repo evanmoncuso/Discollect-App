@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import itemActions from '../actions/itemActions.js';
 
 
-const SearchBar = ({ commitSearch, userCoords }) => {
+const SearchBar = ({ commitSearch, userCoords, userZip }) => {
   let keywords;
   let zip;
   let category;
@@ -16,7 +16,7 @@ const SearchBar = ({ commitSearch, userCoords }) => {
           const data = {
             category: category.value,
             keywords: keywords.value,
-            zipcodeArray: [zip.value],
+            zipcodeArray: [zip.value || userZip],
           };
           console.log(data);
           commitSearch(data);
@@ -33,7 +33,7 @@ const SearchBar = ({ commitSearch, userCoords }) => {
         <input
           className="search_bar_input zip"
           ref={(node) => { zip = node; }}
-          placeholder="zip"
+          placeholder={userZip || 'zip'}
         />
         <select ref={(node) => { category = node; }} id="category" required>
           <option value="all-categories">All Categories</option>
@@ -44,7 +44,6 @@ const SearchBar = ({ commitSearch, userCoords }) => {
           <option value="tools">Tools &amp; Home Improvement</option>
         </select>
         <button>search</button>
-        <div>{userCoords}</div>
       </form>
     </div>
   );
@@ -56,7 +55,8 @@ SearchBar.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    userCoords: state.userCoords,
+    userCoords: [state.users.coords[0], state.users.coords[1]],
+    userZip: state.users.zip,
   };
 };
 

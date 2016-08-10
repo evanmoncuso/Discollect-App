@@ -71,11 +71,10 @@ const userActions = {
             })
             .then((res) => res.json())
             .then(res => {
-              console.log('<<<<z<<i<<p', res);
-              // dispatch({
-              //   type: 'GET_USER_ZIP',
-              //   userZip: res.body,
-              // });
+              dispatch({
+                type: 'GET_USER_ZIP',
+                zip: res,
+              });
             });
           }, error => {
             // navigator error func
