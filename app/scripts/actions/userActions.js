@@ -90,12 +90,7 @@ const userActions = {
         } else {
           console.log('geolocation not supported');
         }
-      })
-      .then((res) => {
-        console.log('checkuserlogin:: ', res);
-        browserHistory.push('/');
-        dispatch(optimisticSignIn(res));
-      })
+      }) 
       .catch((err) => {
         if (err) {
           console.log(err);

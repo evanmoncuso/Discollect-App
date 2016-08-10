@@ -84,11 +84,55 @@ const userListings = (state = initUserListingsState, action) => {
   }
 };
 
+const initUserIDState = {
+  userID: null,
+};
+
+const userID = (state = initUserIDState, action) => {
+  switch (action.type) {
+    case 'SAVE_USER_ID':
+      return Object.assign({}, state, {
+        userID: action.userID,
+      });
+    default:
+      return state;
+  }
+};
+
+// const userCoords = (state = [0, 0], action) => {
+//   switch (action.type) {
+//     case 'GET_USER_COORDS':
+//       // console.log(action.payload);
+//       return [action.lng, action.lat];
+//     default:
+//       return state;
+//   }
+// };
+
+const initUploadState = {
+  data_uri: null,
+  filename: null,
+  filetype: null,
+};
+
+const upload = (state = {}, action) => {
+  switch (action.type) {
+    case 'ON_UPLOAD':
+    return Object.assign({}, state, {
+      data_uri: action.data_uri,
+      filename: action.filename,
+      filetype: action.filetype,
+    });
+    default: return state;
+  }
+};
+
 const reducer = combineReducers({
   items,
   users,
   search,
   userListings,
+  upload,
 });
 
 module.exports = {
