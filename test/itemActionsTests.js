@@ -12,3 +12,22 @@ describe('item Actions', function() {
     });
   }
 });
+
+describe('Item fetch actions', () => {
+  describe('Get initial items', () => {
+    it ('should return a response of 200', () => {
+      fetch('http://localhost:3000/api/getAllListings')
+       .then(function(response){
+        expect(response.status).to.equal(200);
+        done();
+      });
+    });
+    it ('should return a response of an array', () => {
+      fetch('http://localhost:3000/api/getAllListings')
+       .then(function(response){
+        expect(Array.isArray(response.body)).to.equal(true);
+        done();
+      });
+    })
+  })
+});
