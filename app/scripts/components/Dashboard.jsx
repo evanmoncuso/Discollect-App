@@ -9,16 +9,16 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       tableView: true,
-      activeListings: [],
-      pendingOrders: [],
-      listingsHistory: [],
-      ordersHistory: [],
+      activeGivingItems: [],
+      activeTakingItems: [],
+      // archivedGivenItems: [],
+      archivedTakenItems: [],
     };
     this.toggleTableView = this.toggleTableView.bind(this);
-    console.log('***', this.props.userID);
+    // console.log('***', this.props.userID);
   }
   componentDidMount() {
-    console.log('HELLO');
+    // console.log('HELLO');
     if (this.props.userID) {
       this.props.dispatchGetUserListings(this.props.userID);
     } // change dynamic id
@@ -45,7 +45,7 @@ class Dashboard extends React.Component {
               </tr>
               <tr>
                 <td><br />{this.props.userListings.map((a, i) => {
-                  console.log(this.props.userListings);
+                  // console.log(this.props.userListings);
                   return <div key={i} style={{border: '1px solid black'}}>
                     <h3>{"title: "+a.title}</h3>
                     <img style={{width:'50px', height:'50px'}} src={a.picReference || 'http://www.novelupdates.com/img/noimagefound.jpg'} />
@@ -54,7 +54,8 @@ class Dashboard extends React.Component {
                     <button>View Listing</button>
                     <button>Edit Listing</button>
                     <button>Cancel Listing</button>
-                  </div>})}<br /></td>
+                  </div>})}<br />
+                </td>
               </tr>
             </thead>
           </table>

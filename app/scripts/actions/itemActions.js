@@ -70,7 +70,7 @@ const itemActions = {
   postListingAfterPhoto: (data) => 
     (dispatch) => {
     console.log('postListingAfterPhoto');
-    const url = 'http://localhost:3000/api/createNewListing'
+    const url = 'http://localhost:3000/api/createNewListing';
     console.log(data)
     fetch(url, {
       method: 'POST',
@@ -112,7 +112,7 @@ const itemActions = {
 
   updateListingStatus: (listingID) => (
     (dispatch) => {
-    var num = JSON.stringify({listingID: listingID});
+    var num = JSON.stringify({ listingID: listingID });
       const url = 'http://localhost:3000/api/update';
       fetch(url, {
         method: 'PUT',
