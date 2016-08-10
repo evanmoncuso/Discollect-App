@@ -30,7 +30,6 @@ const CreateListing = ({ dispatchCreateNewListing, dispatchSaveUpload, id, data_
         <form encType="multipart/form-data"
           onSubmit={(e) => {
             e.preventDefault();
-            console.log(data_uri);
             const data = {
               title: title.value,
               zipcode: zip.value,
@@ -44,7 +43,8 @@ const CreateListing = ({ dispatchCreateNewListing, dispatchSaveUpload, id, data_
               giverId: id,
               status: true,
             };
-            // console.log(data);
+            
+            console.log(data);
             dispatchCreateNewListing(data);
 
             title.value = '';

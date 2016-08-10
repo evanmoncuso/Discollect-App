@@ -42,24 +42,68 @@ const itemActions = {
   ),
   postNewListing: (listingData) => (
     (dispatch) => {
-      const url = 'http://photohelper.herokuapp.com/api/createNewListing';
-      fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(listingData),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      .then(res => {
-        dispatch(itemActions.getLatestListings());
-        console.log(res, dispatch);
-        browserHistory.push('/');
-      })
-      .catch(err => {
-        console.log(err);
-      });
+      console.log('in listing')
+      const photoUrl = 'http://photohelper.herokuapp.com/api/createNewListing';
+      if (listingData.picReference === undefined) {
+        console.log('picRef is undefined')
+        postListingAfterPhoto(listingData);
+      } else {
+        console.log('picref is good')
+        fetch(photoUrl, {
+          method: 'POST',
+          body: JSON.stringify(listingData),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        .then((res) => res.json())
+        .then((response) => {
+          console.log(response)
+          if (response.status === 200) {
+            console.log(res.data);
+            listingData.picReference = res.data;
+            fetch(url, {
+              method: 'POST',
+              body: JSON.stringify(listingData),
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            })
+            .then(res => {
+              dispatch(itemActions.getLatestListings());
+              console.log(res, dispatch);
+              browserHistory.push('/');
+            })
+            .catch(err => {
+              console.log(err);
+            });
+          }
+        })
+      }
     }
   ),
+
+  postListingAfterPhoto: (data) => {
+    console.log('postListingAfterPhoto');
+    const url = 'http://localhost:3000/api/createNewListing'
+    console.log(listingData)
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(listingData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(res => {
+      dispatch(itemActions.getLatestListings());
+      console.log(res, dispatch);
+      browserHistory.push('/');
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  },
+
   searchItem: (query) => (
     (dispatch) => {
       const url = 'http://localhost:3000/api/getFilteredListings';
