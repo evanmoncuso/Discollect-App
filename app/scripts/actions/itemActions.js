@@ -42,7 +42,7 @@ const itemActions = {
   ),
   postNewListing: (listingData) => (
     (dispatch) => {
-      const url = 'http://localhost:3000/api/createNewListing';
+      const url = 'http://photohelper.herokuapp.com/api/createNewListing';
       fetch(url, {
         method: 'POST',
         body: JSON.stringify(listingData),
@@ -134,4 +134,4 @@ const itemActions = {
   ),
 };
 
-module.exports = itemActions;
+export default itemActions;

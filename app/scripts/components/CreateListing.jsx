@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import itemActions from '../actions/itemActions.js';
+import {saveUpload} from '../actions/itemActions.js';
 
 const CreateListing = ({ dispatchCreateNewListing, dispatchSaveUpload, id, data_uri, filetype, filename }) => {
   let title;
@@ -13,6 +14,7 @@ const CreateListing = ({ dispatchCreateNewListing, dispatchSaveUpload, id, data_
   const handleChange = (e) => {
     const reader = new FileReader();
     const file = e.target.files[0];
+
 
     reader.onload = (upload) => {
       dispatchSaveUpload(upload.target.result, file.name, file.type);
@@ -28,12 +30,14 @@ const CreateListing = ({ dispatchCreateNewListing, dispatchSaveUpload, id, data_
         <form encType="multipart/form-data"
           onSubmit={(e) => {
             e.preventDefault();
-            console.log(dispatchCreateNewListing);
+            console.log(data_uri);
             const data = {
               title: title.value,
               zipcode: zip.value,
               status:1,
-              image: image.value,
+              picReference: data_uri,
+              filename: filename,
+              filetype: filetype,
               category: category.value,
               description: description.value,
               condition: condition.value,
@@ -42,6 +46,7 @@ const CreateListing = ({ dispatchCreateNewListing, dispatchSaveUpload, id, data_
             };
             // console.log(data);
             dispatchCreateNewListing(data);
+
             title.value = '';
             zip.value = '';
             image.value = '';
@@ -80,6 +85,9 @@ const CreateListing = ({ dispatchCreateNewListing, dispatchSaveUpload, id, data_
           <textarea ref={(node) => { description = node; }} id="description" required />
           <button type="submit">add</button>
         </form>
+
+        <img src="https://s3-us-west-1.amazonaws.com/discollect/ynull" width='200' />
+
       </div>
     </div>
   );
