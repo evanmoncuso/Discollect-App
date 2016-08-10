@@ -10,19 +10,26 @@ import itemActions from '../actions/itemActions.js';
 
 
 const Listing = (props) => {
-var listingID = props.params.id;
-// console.log('=========>',itemActions)
-// console.log('listing index is: ', listingID)
-// console.log('listing index is: ', props.currentListing[listingID])
-var curr = props.currentListing[listingID]
+  var listIDX = props.params.id;
+  const curr1 = (listIDX) => {
+    for (var i = 0; i < props.currentListing.length; i++) {
+      if (props.currentListing[i].id === Number(listIDX)) {
+        console.log('found! :', props.currentListing[i])
+        return props.currentListing[i];
+      }      
+    }
+  }
+  var curr = curr1(listIDX);
+  var listingID = curr.id;
+  const backer = () => {
+    browserHistory.goBack();
+  };
 
-const backer = () => {
-  browserHistory.goBack();
-};
 
   return (
       <div>
         <h4 className='listingTitle'>{curr.title}</h4>
+        <h4>Status: {!!curr.status}</h4>
         <h3 className="listingDescription">{curr.description}</h3>
         <h3 className="listingCondition">{curr.condition}</h3>
         <img className="listingImage" src={curr.picReference} />
@@ -37,9 +44,15 @@ const backer = () => {
           console.log('listing ID: ',listingTrigger.listingID)
           console.log(' giver ID: ',listingTrigger.giverId) 
           console.log(' taker ID: ', listingTrigger.takerId)
-          props.dispatchListingStatusChange(listingID)
+          if (props.userName === undefined || !props.userName) {
+            console.log('not signed in')
+            browserHistory.push('/signup')            
+          } else {
+            console.log('signed in!')
+            props.dispatchListingStatusChange(listingID);
+            browserHistory.push('/');
           // backer(listingID);
-          //call method to add to user's
+          }
         }}> Call DIBS </button>
         <button onClick={() => backer()}>BACK</button>
 
@@ -50,7 +63,8 @@ const backer = () => {
 const mapStateToProps = (state) => {
   return {
     currentListing: state.items.items,
-    userId: state.users.id
+    userId: state.users.id,
+    userName: state.users.username,
   };
 };
 

@@ -9,7 +9,7 @@ function trigger(data) {
   browserHistory.push('/listing/' + data)
 }
 
-let ListView = ({ dispatchGetItems, items }) => {
+let ListView = ({ dispatchGetItems, items, users }) => {
   return (
     <div className="listView_container">
       {items.filter(val => val.status === 0).map((item, i) => {
@@ -23,6 +23,7 @@ let ListView = ({ dispatchGetItems, items }) => {
 const mapStateToProps = (state) => {
   return {
     items: state.items.items,
+    users: state.users,
   };
 };
 

@@ -21,6 +21,11 @@ const users = (state = initUserState, action) => {
         username: action.username,
         password: action.password,
       });
+    case 'LOGOUT_USER':
+      return Object.assign({}, state, {
+        username:null,
+        password: null, 
+      })  
     case 'SAVE_USER_ID':
       return Object.assign({}, state, {
         userID: action.userID,

@@ -57,6 +57,6 @@ module.exports = {
 
   logout: function(req, res) {
     res.logout();
-    res.redirect('/');
+    res.redirect('/login');
   }
 };
