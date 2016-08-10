@@ -16,15 +16,18 @@ module.exports = {
   // getFilteredListings must be invoked with category, zipcodeArray and keywords
   getFilteredListings: function(req, res) {
     // console.log("HHHHHIIIIIIIIII !! ~~~~~~~~~~~,", req.body.zipcodeArray);
+     // var zipQ = req.body.zipcodeArray.length > 0 ? '$or' : '$like';
      Listing.findAll({
           where: {
             $and:{
               zipcode: {
-                $or: req.body.zipcodeArray, //select listing with a zipcode in the zipcodesArray
+               $or: req.body.zipcodeArray, //select listing with a zipcode in the zipcodesArray
               },
-              category: req.body.category,
+              category: {
+                $like: req.body.category === "all-categories" ? '%%' : req.body.category,
+              },
               title:{ 
-                $like: req.body.keywords ? `%${req.body.keywords}%` : '', //select listings with a pattern matching keyword 
+                $like: req.body.keywords ? `%${req.body.keywords}%` : '%%', //select listings with a pattern matching keyword 
               }
             }
           },
