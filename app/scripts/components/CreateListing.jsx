@@ -33,7 +33,7 @@ const CreateListing = ({ dispatchCreateNewListing, dispatchSaveUpload, id, data_
             const data = {
               title: title.value,
               zipcode: zip.value,
-              status:1,
+              status:0,
               picReference: data_uri,
               filename: filename,
               filetype: filetype,
@@ -41,7 +41,6 @@ const CreateListing = ({ dispatchCreateNewListing, dispatchSaveUpload, id, data_
               description: description.value,
               condition: condition.value,
               giverId: id,
-              status: true,
             };
             
             console.log(data);

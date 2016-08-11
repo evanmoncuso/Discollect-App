@@ -30,7 +30,7 @@ const backer = () => {
         <button onClick={(e) => {
           e.preventDefault();
           const listingTrigger = {
-            listingID: Number(listingID + 1),
+            listingID: Number(listingID),
             giverId: curr.giverId,
             takerId: props.userId,
           }

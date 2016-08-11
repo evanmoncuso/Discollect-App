@@ -3,10 +3,11 @@ var db = require('../config/database.js');
 var User = require('../user/userModel.js');
 
 var Listing = db.define('Listing', {
-  title: {type: Sequelize.STRING(20)},
+  title: {type: Sequelize.STRING(30)},
 
   zipcode: Sequelize.INTEGER,
-  status: Sequelize.BOOLEAN,
+  takerId: { type: Sequelize.INTEGER, defaultValue: null },
+  status: { type: Sequelize.INTEGER, allowNull: false, defaultValue: 0 },
   picReference: Sequelize.STRING,
   category: Sequelize.STRING,
   description: Sequelize.STRING,
@@ -17,7 +18,7 @@ var Listing = db.define('Listing', {
 Listing.belongsTo(User, {foreignKey: 'giverId', targetKey: 'id'});
 
 
-Listing.sync({force: false});
+Listing.sync({ force: false });
 // TODO add a foreign key to listing referencing the user that created it
 // Listing.hasOne(User,{ foreignKey: 'id'})
 
