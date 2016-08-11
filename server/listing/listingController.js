@@ -56,7 +56,7 @@ module.exports = {
     .then(listing => {
       // console.log('listing: ', listing);
       return listing.update({
-        status: 1,
+        status: req.body.statusCode,
         takerId: req.body.takerId,
       });
     })

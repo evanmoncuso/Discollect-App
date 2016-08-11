@@ -53,7 +53,7 @@ class Dashboard extends React.Component {
                     <p>{"create at: "+ a.createdAt}</p>
                     <button>View Listing</button>
                     <button>Edit Listing</button>
-                    <button>Cancel Listing</button>
+                    <button>Close Listing</button>
                   </div>})}<br />
                 </td>
                 <td><br />{this.props.pendingGivingItems.map((a, i) => {
@@ -64,8 +64,7 @@ class Dashboard extends React.Component {
                     <p>{"id:" + a.id}</p>
                     <p>{"create at: "+ a.createdAt}</p>
                     <button>View Listing</button>
-                    <button>Edit Listing</button>
-                    <button>Cancel Listing</button>
+                    <button>Close Listing</button>
                   </div>})}<br />
                 </td>
                 <td><br />{this.props.archivedTakenItems.map((a, i) => {
@@ -75,9 +74,6 @@ class Dashboard extends React.Component {
                     <img style={{width:'50px', height:'50px'}} src={a.picReference || 'http://www.novelupdates.com/img/noimagefound.jpg'} />
                     <p>{"id:" + a.id}</p>
                     <p>{"create at: "+ a.createdAt}</p>
-                    <button>View Listing</button>
-                    <button>Edit Listing</button>
-                    <button>Cancel Listing</button>
                   </div>})}<br />
                 </td>
               </tr>
@@ -111,6 +107,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     dispatchGetUserListings: (userID) => {
       dispatch(itemActions.getUsersListings(userID));
+    },
+    dispatchListingStatusChange: (listingID) => {
+      dispatch(itemActions.updateListingStatus(listingID));
     },
   };
 };
