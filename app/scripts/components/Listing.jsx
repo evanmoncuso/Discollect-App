@@ -28,12 +28,20 @@ const Listing = (props) => {
   };
 
 
+const condish = {
+  "1": "New",
+  "2": "Excellent",
+  "3": "Good",
+  "4": "Fair",
+  "5": "Salvage",
+}
+
   return (
       <div>
         <h4 className='listingTitle'>{curr.title}</h4>
         <h4>Status: {!!curr.status}</h4>
         <h3 className="listingDescription">{curr.description}</h3>
-        <h3 className="listingCondition">{curr.condition}</h3>
+        <h3 className="listingCondition">Condition: {condish[curr.condition]}</h3>
         <img className="listingImage" src={curr.picReference} />
         <h2 className="listingGiver">{curr.giverId}</h2>
         <button onClick={(e) => {
