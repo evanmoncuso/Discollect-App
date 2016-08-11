@@ -43,7 +43,7 @@ const CreateListing = ({ dispatchCreateNewListing, dispatchSaveUpload, id, data_
               giverId: id,
               takerId: null,
             };
-            
+
             console.log(data);
             dispatchCreateNewListing(data);
 
@@ -85,9 +85,6 @@ const CreateListing = ({ dispatchCreateNewListing, dispatchSaveUpload, id, data_
           <textarea ref={(node) => { description = node; }} id="description" required />
           <button type="submit">Create</button>
         </form>
-
-        <img src="https://s3-us-west-1.amazonaws.com/discollect/Thisisatestnull" width='200' />
-
       </div>
     </div>
   );

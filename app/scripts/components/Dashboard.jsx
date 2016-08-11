@@ -34,7 +34,7 @@ class Dashboard extends React.Component {
         <div className="main_container">
           <h1>Dashboard</h1>
           <img src="https://huxley.wwu.edu/sites/huxley.wwu.edu/files/default_images/user-icon.png" alt="user" />
-          <div className="about">{this.props.valid ? this.props.username : 'NOT A VALID USER'}</div>
+          <div className="about">{this.props.username ? this.props.username : 'NOT A VALID USER'}</div>
           <br />
           <h3>Acount:</h3>
           <button onClick={this.toggleTableView}>{this.state.tableView ? 'Show History' : 'Show Active'}</button>
@@ -90,11 +90,9 @@ class Dashboard extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('state:>>>>>>>>>>>>>>>>>>>>>>', state);
   return {
-    username: state.username,
+    username: state.users.username,
     userID: state.users.id,
-    valid: state.valid,
     activeGivingItems: state.usersListings.filter(item => (
       item.giverId === state.users.id && item.status === 0
     )),
@@ -128,8 +126,3 @@ Dashboard.propTypes = {
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
-
-    // <div className="activeListings">activeListings</div>
-    // <div className="pendingOrders">pendingOrders</div>
-    // <div className="listingsHistory">listingsHistory</div>
-    // <div className="ordersHistory">ordersHistory</div>

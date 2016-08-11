@@ -17,7 +17,7 @@ const Listing = (props) => {
       if (props.currentListing[i].id === Number(listIDX)) {
         console.log('found! :', props.currentListing[i])
         return props.currentListing[i];
-      }      
+      }
     }
   }
   var curr = curr1(listIDX);
@@ -53,11 +53,11 @@ const condish = {
             statusCode: 1,
           }
           console.log('listing ID: ',listingTrigger.listingID)
-          console.log(' giver ID: ',listingTrigger.giverId) 
+          console.log(' giver ID: ',listingTrigger.giverId)
           console.log(' taker ID: ', listingTrigger.takerId)
           if (props.userName === undefined || !props.userName) {
             console.log('not signed in')
-            browserHistory.push('/signup')            
+            browserHistory.push('/signup')
           } else {
             console.log('signed in!')
             props.dispatchListingStatusChange(listingTrigger);
