@@ -6,7 +6,7 @@ module.exports = {
   getAllListings: function (req, res) {
     Listing.findAll({
       where: {
-        status: 1,
+        status: 0,
       },
       limit: 20,
       order: [['createdAt', 'DESC']],
@@ -23,7 +23,7 @@ module.exports = {
      Listing.findAll({
           where: {
             $and:{
-              status: 1,
+              status: 0,
               zipcode: {
                $or: req.body.zipcodeArray, //select listing with a zipcode in the zipcodesArray
               },
@@ -94,15 +94,13 @@ module.exports = {
   },
 
   update: function(req, res) {
-    // console.log('listing updatttttting!!!!!!!==============================>', req.body.listingID);
     Listing.findOne({
       where: {
         id: req.body.listingID
       }
     })
     .then(listing => {
-      // console.log('listing: ', listing);
-      return listing.update({status: 0});
+      return listing.update({status: 1, });
     })
     .then (function(listing) {
       res.send(listing)
