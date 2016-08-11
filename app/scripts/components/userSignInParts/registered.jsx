@@ -6,12 +6,11 @@ import { logoutUserClient, logoutUserServer } from '../../actions/userActions.js
 
 const Registered = ({ dispatchLogout, username }) => (
   <div className="app_points">
-    <h3>Welcome {username}</h3>
     <Link to="/dashboard"><span className="button dashboard">dashboard</span></Link>
     <Link to="/createListing"><span className="button create">create</span></Link>
-    <a onClick={dispatchLogout}>
+    <Link to="/" onClick={dispatchLogout}>
       <span className="button logout">logout</span>
-    </a>
+    </Link>
   </div>
 );
 

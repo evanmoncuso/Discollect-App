@@ -1,14 +1,5 @@
-/*
-====================
-Imports
-====================
- */
- // Bourbon styles
- // @import 'reset';
- // @import 'bourbon/bourbon';
- // @import 'neat/neat.scss';
-
-// Custom made 
+// Custom made
+@import 'reset';
 @import 'mixins';
 @import 'variables';
 
@@ -18,7 +9,6 @@ Grid
 ====================
  */
  * {
-  // border: 1px solid red;
   font-family: $secondary-font;
  }
 
@@ -39,12 +29,16 @@ main {
 }
 
 .listView_container {
-  // display: flex;
-  // justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  width: 960px;
+  margin: 12px auto;
   .listView_entry {
+    box-shadow: 1px 1px 2px #333;
+    padding: 6px;
     margin: 3px auto;
     background-color: #EEE;
-    width: 400px;
+    width: 280px;
     margin: 5px auto;
     img {
       width: 150px;
@@ -53,34 +47,44 @@ main {
   }
 }
 
-
 nav {
-  padding: 5px 5px 10px 5px;
+  padding: 5px;
+  position: relative;
   a {
     font-size: 20px;
-    margin: 3px 3px;
+    // margin: 3px 3px;
   }
   .nav_title{
     font-family: $primary-font;
     font-size: 45px;
-    color: #af111c;
-    margin: 60px 30px;
+    color: $tertiary-color;
+    background-color: $primary-color;
+    padding: 12px;
+    margin: 0px;
     float: left;
   }
   .app_points a,
   .auth_points a{
     font-family: $primary-font;
-    color: #af111c;
+    color: $tertiary-color;
+    background-color: $primary-color;
     font-size: 25px;
     float: right;
-    margin: 30px 20px;
+    padding: 12px;
+  }
+  .auth_points > h3 {
   }
 }
 
+.nav_title > h4 {
+  font-size: 24px;
+  line-height: 32px;
+}
+
 .search_bar {
-  background: #EEE url('pexels-large.jpeg') no-repeat center center;
+  background: #EEE url('yardsale.jpg') no-repeat center center;
   background-size: cover;
-  height: 500px;
+  height: 240px;
   border-radius: 5px;
   input, select, button  {
     font-size: 15px;
@@ -89,11 +93,11 @@ nav {
     background-color: #EEE;
     border: 2px solid black;
     position: relative;
-    transform: translateY(500%);
+    transform: translateY(200%);
     margin: 0 5px;
   }
   select, button {
-    transform: translateY(570%);
+    transform: translateY(230%);
   }
 }
 
@@ -106,108 +110,3 @@ nav {
     margin: 0 auto;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-// ====================
-// Nav Bar header
-// ====================
-//  */
-// nav {
-//   width: 960px;
-//   margin: 0 auto;
-//   margin-bottom: 24px;
-//   border-bottom: 1px solid #000;
-// }
-
-// h1 {
-//   font-size: 32px;
-// }
-
-// .auth_points {
-//   padding: 6px;
-//   display:inline-block;
-//   text-align:right;
-// }
-
-// .app_points {
-//   padding: 6px;
-//   display:inline-block;
-//   text-align: left;
-// }
-
-// .nav_title {
-//   text-align: center;
-//   font-size:24px;
-// }
-
-// .dashboard,
-// .create {
-//   padding-left: 24px;
-// }
-
-
-// .login,
-// .signup {
-//   padding-right: 24px;
-// }
-
-// /*
-// ====================
-// Search Bar
-// ====================
-//  */
-
-// .search_bar {
-//   height: 60px;
-//   width: 960px;
-//   margin: 0 auto;
-//   border-top: 1px double #000;
-//   border-bottom: 2px double #000;
-// }
-
-// .search_bar_input {
-//   display:inline-flex;
-// }
-// /*
-// ====================
-// Main Container
-// ====================
-//  */
-// .main_container {
-//   width: 960px;
-//   margin: 0 auto;
-// }
-
-// /*
-// ====================
-// List Container
-// ====================
-//  */
-// .listView_container {
-//   width: 960px;
-//   margin: 0 auto;
-// }
-
-// .listView_entry {
-//   margin: 12px;
-// }
-// /*
-// ====================
-// Inputs - Login / Signup
-// ====================
-//  */
-
-// input, textarea {
-//   display: block;
-// }

@@ -1,16 +1,59 @@
-/*
-====================
-Imports
-====================
- */
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
 @import 'https://fonts.googleapis.com/css?family=Lakki+Reddy|Reem+Kufi';
+@import 'https://fonts.googleapis.com/css?family=Open+Sans';
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
 /*
 ====================
 Grid
 ====================
  */
 * {
-  font-family: "Reem Kufi", sans-serif; }
+  font-family: "Open Sans"; }
 
 main {
   max-width: 100%;
@@ -25,38 +68,52 @@ main {
   main form input {
     font-size: 20px; }
 
-.listView_container .listView_entry {
-  margin: 3px auto;
-  background-color: #EEE;
-  width: 400px;
-  margin: 5px auto; }
-  .listView_container .listView_entry img {
-    width: 150px;
-    height: 100px; }
+.listView_container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 960px;
+  margin: 12px auto; }
+  .listView_container .listView_entry {
+    box-shadow: 1px 1px 2px #333;
+    padding: 6px;
+    margin: 3px auto;
+    background-color: #EEE;
+    width: 280px;
+    margin: 5px auto; }
+    .listView_container .listView_entry img {
+      width: 150px;
+      height: 100px; }
 
 nav {
-  padding: 5px 5px 10px 5px; }
+  padding: 5px;
+  position: relative; }
   nav a {
-    font-size: 20px;
-    margin: 3px 3px; }
+    font-size: 20px; }
   nav .nav_title {
-    font-family: "Lakki Reddy", cursive;
+    font-family: "Open Sans";
     font-size: 45px;
-    color: #af111c;
-    margin: 60px 30px;
+    color: #fff;
+    background-color: #333;
+    padding: 12px;
+    margin: 0px;
     float: left; }
   nav .app_points a,
   nav .auth_points a {
-    font-family: "Lakki Reddy", cursive;
-    color: #af111c;
+    font-family: "Open Sans";
+    color: #fff;
+    background-color: #333;
     font-size: 25px;
     float: right;
-    margin: 30px 20px; }
+    padding: 12px; }
+
+.nav_title > h4 {
+  font-size: 24px;
+  line-height: 32px; }
 
 .search_bar {
-  background: #EEE url("pexels-large.jpeg") no-repeat center center;
+  background: #EEE url("yardsale.jpg") no-repeat center center;
   background-size: cover;
-  height: 500px;
+  height: 240px;
   border-radius: 5px; }
   .search_bar input, .search_bar select, .search_bar button {
     font-size: 15px;
@@ -65,10 +122,10 @@ nav {
     background-color: #EEE;
     border: 2px solid black;
     position: relative;
-    transform: translateY(500%);
+    transform: translateY(200%);
     margin: 0 5px; }
   .search_bar select, .search_bar button {
-    transform: translateY(570%); }
+    transform: translateY(230%); }
 
 .main_container {
   background-color: #DDD; }
@@ -77,9 +134,3 @@ nav {
     width: 300px;
     height: 40px;
     margin: 0 auto; }
-
-/*
-// ====================
-// Nav Bar header
-// ====================
-//  */
