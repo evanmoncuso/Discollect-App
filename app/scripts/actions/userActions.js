@@ -11,6 +11,44 @@ const optimisticSignIn = ({ zipcode, username, id }) => (
   }
 );
 
+const getCoordsAndZip = (dispatch, bool) => {
+  if (navigator.geolocation && bool) {
+    navigator.geolocation.getCurrentPosition(position => {
+      let lat = position.coords.latitude;
+      let lng = position.coords.longitude;
+      dispatch({
+        type: 'GET_USER_COORDS',
+        lat,
+        lng,
+      });
+      let zipURL = `http://zipcodehelper.herokuapp.com/api/zip?lng=${lng}&lat=${lat}`;
+      fetch(zipURL, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => res.json())
+      .then(res => {
+        dispatch({
+          type: 'GET_USER_ZIP',
+          zip: res,
+        });
+      });
+      // ENTER CALL FOR ZIP CODES ARRAY HERE
+    }, error => {
+      // navigator error func
+      console.log(error);
+    }, {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
+    });
+  } else {
+    console.log('geolocation not supported or not allowed');
+  }
+};
+
 const userActions = {
   createUser: (username, password, email, zip) => (
     (dispatch) => {
@@ -56,46 +94,11 @@ const userActions = {
       .then((response) => {
         console.log('checkuserlogin:: ', response);
         dispatch(optimisticSignIn(response));
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(position => {
-            let lat = position.coords.latitude;
-            let lng = position.coords.longitude;
-            dispatch({
-              type: 'GET_USER_COORDS',
-              lat,
-              lng,
-            });
-            let zipURL = `http://zipcodehelper.herokuapp.com/api/zip?lng=${lng}&lat=${lat}`;
-            fetch(zipURL, {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            })
-            .then((res) => res.json())
-            .then(res => {
-              dispatch({
-                type: 'GET_USER_ZIP',
-                zip: res,
-              });
-            });
-          }, error => {
-            // navigator error func
-            console.log(error);
-          }, {
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0,
-          });
-        } else {
-          console.log('geolocation not supported');
-        }
-      })
-      .then((res) => {
-        console.log('checkuserlogin:: ', res);
+        //function call coords&Zip
+        let locationAllowed = confirm('Enable Location Services?');
+        getCoordsAndZip(dispatch, locationAllowed);
         browserHistory.push('/');
-        dispatch(optimisticSignIn(res));
-      }) 
+      })
       .catch((err) => {
         if (err) {
           console.log(err);

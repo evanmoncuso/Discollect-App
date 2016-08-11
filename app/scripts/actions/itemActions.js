@@ -70,7 +70,7 @@ const itemActions = {
   postListingAfterPhoto: (data) => 
     (dispatch) => {
     console.log('postListingAfterPhoto');
-    const url = 'http://localhost:3000/api/createNewListing'
+    const url = 'http://localhost:3000/api/createNewListing';
     console.log(data)
     fetch(url, {
       method: 'POST',
@@ -112,8 +112,7 @@ const itemActions = {
 
   updateListingStatus: (details) => (
     (dispatch) => {
-      console.log('1st step details: ',details)
-    var num = JSON.stringify(details);
+    var num = JSON.stringify({ listingID: listingID });
       const url = 'http://localhost:3000/api/update';
       fetch(url, {
         method: 'PUT',
@@ -138,21 +137,20 @@ const itemActions = {
   getUsersListings: (userID) => (
     // get listings associated with user at userID
     (dispatch) => {
-      const url = 'http://localhost:3000/api/getAllListings';
+      const url = 'http://localhost:3000/api/getUsersListings';
       fetch(url, {
-        method: 'GET',
+        method: 'PUT',
+        body: JSON.stringify({ userID }),
         headers: {
           'Content-Type': 'application/json',
         },
       })
       .then((res) => res.json())
       .then((response) => {
-        let listingsData = response.filter((listing) => {
-          return listing.giverId === userID;
-        });
+        // console.log('GET USERS LISTINGS>>>>>: ', response);
         dispatch({
           type: 'GET_USERS_LISTINGS',
-          userListings: listingsData,
+          usersListings: response,
         });
       })
       .catch((err) => {
@@ -160,8 +158,7 @@ const itemActions = {
           console.log(err);
         }
       });
-    }
-  ),
+    }),
 };
 
 export default itemActions;

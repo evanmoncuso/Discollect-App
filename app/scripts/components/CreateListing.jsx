@@ -41,6 +41,7 @@ const CreateListing = ({ dispatchCreateNewListing, dispatchSaveUpload, id, data_
               description: description.value,
               condition: condition.value,
               giverId: id,
+              takerId: null,
             };
             
             console.log(data);

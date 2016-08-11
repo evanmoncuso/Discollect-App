@@ -9,16 +9,12 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       tableView: true,
-      activeListings: [],
-      pendingOrders: [],
-      listingsHistory: [],
-      ordersHistory: [],
     };
     this.toggleTableView = this.toggleTableView.bind(this);
-    console.log('***', this.props.userID);
+    // console.log('***', this.props.userID);
   }
-  componentDidMount() {
-    console.log('HELLO');
+  componentWillMount() {
+    // console.log('HELLO');
     if (this.props.userID) {
       this.props.dispatchGetUserListings(this.props.userID);
     } // change dynamic id
@@ -41,11 +37,15 @@ class Dashboard extends React.Component {
           <table>
             <thead>
               <tr>
-                <td>{this.state.tableView ? 'Active' : 'Past'} Listings</td>
+                <td>Active Listings</td>
+                <td>Pending Listings</td>
+                <td>Archived Taken Listings</td>
               </tr>
+            </thead>
+            <tbody>
               <tr>
-                <td><br />{this.props.userListings.map((a, i) => {
-                  console.log(this.props.userListings);
+                <td><br />{this.props.activeGivingItems.map((a, i) => {
+                  // console.log(this.props.userListings);
                   return <div key={i} style={{border: '1px solid black'}}>
                     <h3>{"title: "+a.title}</h3>
                     <img style={{width:'50px', height:'50px'}} src={a.picReference || 'http://www.novelupdates.com/img/noimagefound.jpg'} />
@@ -54,9 +54,34 @@ class Dashboard extends React.Component {
                     <button>View Listing</button>
                     <button>Edit Listing</button>
                     <button>Cancel Listing</button>
-                  </div>})}<br /></td>
+                  </div>})}<br />
+                </td>
+                <td><br />{this.props.pendingGivingItems.map((a, i) => {
+                  // console.log(this.props.userListings);
+                  return <div key={i} style={{border: '1px solid black'}}>
+                    <h3>{"title: "+a.title}</h3>
+                    <img style={{width:'50px', height:'50px'}} src={a.picReference || 'http://www.novelupdates.com/img/noimagefound.jpg'} />
+                    <p>{"id:" + a.id}</p>
+                    <p>{"create at: "+ a.createdAt}</p>
+                    <button>View Listing</button>
+                    <button>Edit Listing</button>
+                    <button>Cancel Listing</button>
+                  </div>})}<br />
+                </td>
+                <td><br />{this.props.archivedTakenItems.map((a, i) => {
+                  // console.log(this.props.userListings);
+                  return <div key={i} style={{border: '1px solid black'}}>
+                    <h3>{"title: "+a.title}</h3>
+                    <img style={{width:'50px', height:'50px'}} src={a.picReference || 'http://www.novelupdates.com/img/noimagefound.jpg'} />
+                    <p>{"id:" + a.id}</p>
+                    <p>{"create at: "+ a.createdAt}</p>
+                    <button>View Listing</button>
+                    <button>Edit Listing</button>
+                    <button>Cancel Listing</button>
+                  </div>})}<br />
+                </td>
               </tr>
-            </thead>
+            </tbody>
           </table>
         </div>
       </div>
@@ -65,12 +90,20 @@ class Dashboard extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('state:' , state.userID);
+  console.log('state:>>>>>>>>>>>>>>>>>>>>>>', state);
   return {
     username: state.username,
     userID: state.users.id,
     valid: state.valid,
-    userListings: state.userListings.userListings,
+    activeGivingItems: state.usersListings.filter(item => (
+      item.giverId === state.users.id && item.status === 0
+    )),
+    pendingGivingItems: state.usersListings.filter(item => (
+      item.giverId === state.users.id && item.status === 1
+    )),
+    archivedTakenItems: state.usersListings.filter(item => (
+      item.takerId === state.users.id && item.status === 1
+    )),
   };
 };
 
