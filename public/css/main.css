@@ -1,14 +1,4 @@
-/*
-====================
-Imports
-====================
- */
 @import 'https://fonts.googleapis.com/css?family=Lakki+Reddy|Reem+Kufi';
-/*
-====================
-Grid
-====================
- */
 * {
   font-family: "Reem Kufi", sans-serif; }
 
@@ -78,8 +68,4 @@ nav {
     height: 40px;
     margin: 0 auto; }
 
-/*
-// ====================
-// Nav Bar header
-// ====================
 //  */
