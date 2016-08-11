@@ -49,7 +49,7 @@ module.exports = {
   update: function(req, res) {
     Listing.findOne({
       where: {
-        id: req.body.listingID
+        id: req.body.listingID,
       }
     })
     .then(listing => {
@@ -60,7 +60,7 @@ module.exports = {
     })
     .catch(function(err) {
       console.log('error updating', err);
-      res.status(400).send(err)
+      res.status(400).send(err);
     })
   },
 
@@ -69,25 +69,28 @@ module.exports = {
     .then(list => {
       console.log(list);
       res.send(list);
-
     })
   },
+
   getUsersListings: function(req, res) {
     Listing.findAll({
       where: {
         $or: {
           giverId: req.body.userID,
           takerId: req.body.userID,
-        }
-      }
+        },
+      },
     })
     .then((items) => {
+      // console.log(items);
       res.send(items);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
     });
-  }
+  },
 
 };
-
 
 
 //https://www.zipcodeapi.com/rest/ZuYPOXpKUE8RDdLyX8t3MuU3bDjg70N6uMWjKl4E0dwDqicoqFrdamhl0AC7Bqe6/radius.json/<zip_code>/50/miles.

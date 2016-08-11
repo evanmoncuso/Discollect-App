@@ -69,20 +69,6 @@ const search = (state = {}, action) => {
   }
 };
 
-const initUserListingsState = {
-  userListings: [],
-};
-
-const userListings = (state = initUserListingsState, action) => {
-  switch (action.type) {
-    case 'GET_USERS_LISTINGS':
-      return Object.assign({}, state, {
-        userListings: action.userListings,
-      });
-    default:
-      return state;
-  }
-};
 
 const initUploadState = {
   data_uri: null,
@@ -102,11 +88,36 @@ const upload = (state = {}, action) => {
   }
 };
 
+// const initUserListingsState = {
+//   userListings: [],
+// };
+
+// const userListings = (state = initUserListingsState, action) => {
+//   switch (action.type) {
+//     case 'GET_USERS_LISTINGS':
+//       return Object.assign({}, state, {
+//         userListings: action.userListings,
+//       });
+//     default:
+//       return state;
+//   }
+// };
+
+const usersListings = (state = [], action) => {
+  switch (action.type) {
+    case 'GET_USERS_LISTINGS':
+      // console.log('~~~',action.userListings);
+      return action.usersListings;
+    default:
+      return state;
+  }
+};
+
 const reducer = combineReducers({
   items,
   users,
   search,
-  userListings,
+  usersListings,
   upload,
 });
 
