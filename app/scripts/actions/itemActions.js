@@ -110,9 +110,10 @@ const itemActions = {
     }
   ),
 
-  updateListingStatus: (listingID) => (
+  updateListingStatus: (details) => (
     (dispatch) => {
-    var num = JSON.stringify({listingID: listingID});
+      console.log('1st step details: ',details)
+    var num = JSON.stringify(details);
       const url = 'http://localhost:3000/api/update';
       fetch(url, {
         method: 'PUT',
@@ -124,6 +125,7 @@ const itemActions = {
       .then((res) => res.json())
       .then((res) => {
         console.log('updated listing thingy!: ', res);
+        dispatch(itemActions.getLatestListings());
       })
       .catch((err) => {
         if (err) {

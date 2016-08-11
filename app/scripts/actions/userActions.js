@@ -108,6 +108,7 @@ const userActions = {
     fetch(url)
     .then((response) => {
       console.log('on Logout', response);
+        browserHistory.push('/');
     })
     .catch((err) => {
       if (err) {
