@@ -94,6 +94,7 @@ module.exports = {
   },
 
   update: function(req, res) {
+
     Listing.findOne({
       where: {
         id: req.body.listingID
@@ -101,7 +102,10 @@ module.exports = {
     })
     .then(listing => {
       // console.log('listing: ', listing);
-      return listing.update({status: 1});
+      return listing.update({
+        status: 1,
+        takerId: req.body.takerId,
+      });
     })
     .then (function(listing) {
       res.send(listing)

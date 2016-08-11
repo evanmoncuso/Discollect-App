@@ -49,7 +49,7 @@ const Listing = (props) => {
             browserHistory.push('/signup')            
           } else {
             console.log('signed in!')
-            props.dispatchListingStatusChange(listingID);
+            props.dispatchListingStatusChange(listingTrigger);
             browserHistory.push('/');
           // backer(listingID);
           }
