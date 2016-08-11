@@ -83,7 +83,7 @@ const CreateListing = ({ dispatchCreateNewListing, dispatchSaveUpload, id, data_
           <input ref={(node) => { image = node; }} name="photo" type="file" accept="image/*" onChange={handleChange}/>
           <label htmlFor="description">Description</label>
           <textarea ref={(node) => { description = node; }} id="description" required />
-          <button type="submit">add</button>
+          <button type="submit">Create</button>
         </form>
 
         <img src="https://s3-us-west-1.amazonaws.com/discollect/Thisisatestnull" width='200' />
