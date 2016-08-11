@@ -53,7 +53,8 @@ Grid
 ====================
  */
 * {
-  font-family: "Open Sans"; }
+  font-family: "Open Sans";
+  box-sizing: border-box; }
 
 main {
   max-width: 100%;
@@ -75,14 +76,32 @@ main {
   margin: 12px auto; }
   .listView_container .listView_entry {
     box-shadow: 1px 1px 2px #333;
-    padding: 6px;
-    margin: 3px auto;
+    padding: 12px;
+    margin: 6px;
     background-color: #EEE;
-    width: 280px;
-    margin: 5px auto; }
+    width: 300px;
+    height: 240px; }
     .listView_container .listView_entry img {
-      width: 150px;
-      height: 100px; }
+      height: 120px;
+      float: left; }
+    .listView_container .listView_entry .data_container {
+      display: flex; }
+  .listView_container .listView_entry > h2 {
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: bold; }
+  .listView_container .listView_entry .entry_desc {
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 12px;
+    overflow: hidden; }
+  .listView_container .listView_entry .created_ago {
+    font-size: 12px;
+    line-height: 22px;
+    font-style: italic; }
+  .listView_container .listView_entry .entry_text {
+    flex-grow: 2;
+    float: right; }
 
 nav {
   padding: 5px;

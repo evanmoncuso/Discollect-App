@@ -5,13 +5,14 @@ import { browserHistory } from 'react-router';
 // import { updateListingStatus } from '../actions/itemActions.js';
 import itemActions from '../actions/itemActions.js';
 
+const defaultImage = '../../../../public/css/ina.jpg';
+
 
 
 
 
 const Listing = (props) => {
   var listIDX = props.params.id;
-  console.log('props: ', props.currentListing, listIDX)
   const curr1 = (listIDX) => {
     for (var i = 0; i < props.currentListing.length; i++) {
       if (props.currentListing[i].id === Number(listIDX)) {
@@ -21,12 +22,12 @@ const Listing = (props) => {
     }
   }
   var curr = curr1(listIDX);
-  console.log('curr ',curr)
   var listingID = curr.id;
   const backer = () => {
     browserHistory.goBack();
   };
 
+  let pic = curr.picReference || defaultImage;
 
 const condish = {
   "1": "New",
@@ -52,14 +53,9 @@ const condish = {
             takerId: props.userId,
             statusCode: 1,
           }
-          console.log('listing ID: ',listingTrigger.listingID)
-          console.log(' giver ID: ',listingTrigger.giverId)
-          console.log(' taker ID: ', listingTrigger.takerId)
           if (props.userName === undefined || !props.userName) {
-            console.log('not signed in')
             browserHistory.push('/signup')
           } else {
-            console.log('signed in!')
             props.dispatchListingStatusChange(listingTrigger);
             browserHistory.push('/');
           // backer(listingID);

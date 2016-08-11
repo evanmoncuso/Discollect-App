@@ -10,6 +10,7 @@ Grid
  */
  * {
   font-family: $secondary-font;
+  box-sizing: border-box;
  }
 
 main {
@@ -35,15 +36,38 @@ main {
   margin: 12px auto;
   .listView_entry {
     box-shadow: 1px 1px 2px #333;
-    padding: 6px;
-    margin: 3px auto;
+    padding: 12px;
+    margin: 6px;
     background-color: #EEE;
-    width: 280px;
-    margin: 5px auto;
+    width: 300px;
+    height: 240px;
     img {
-      width: 150px;
-      height: 100px;
+      height: 120px;
+      float: left;
     }
+    .data_container {
+      display: flex;
+    }
+  }
+  .listView_entry > h2 {
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: bold;
+  }
+  .listView_entry .entry_desc {
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  .listView_entry .created_ago {
+    font-size: 12px;
+    line-height: 22px;
+    font-style: italic;
+  }
+  .listView_entry .entry_text {
+    flex-grow: 2;
+    float: right;
   }
 }
 
