@@ -16,6 +16,7 @@ var Listing = db.define('Listing', {
 });
 
 Listing.belongsTo(User, {foreignKey: 'giverId', targetKey: 'id'});
+Listing.belongsTo(User, {foreignKey: 'takerId'});
 
 
 Listing.sync({ force: false });
