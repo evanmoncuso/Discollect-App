@@ -11,6 +11,7 @@ import itemActions from '../actions/itemActions.js';
 
 const Listing = (props) => {
   var listIDX = props.params.id;
+  console.log('props: ', props.currentListing, listIDX)
   const curr1 = (listIDX) => {
     for (var i = 0; i < props.currentListing.length; i++) {
       if (props.currentListing[i].id === Number(listIDX)) {
@@ -20,6 +21,7 @@ const Listing = (props) => {
     }
   }
   var curr = curr1(listIDX);
+  console.log('curr ',curr)
   var listingID = curr.id;
   const backer = () => {
     browserHistory.goBack();
