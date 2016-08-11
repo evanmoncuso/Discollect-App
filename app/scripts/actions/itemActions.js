@@ -46,7 +46,7 @@ const itemActions = {
       const url = 'http://localhost:3000/api/createNewListing'
       if (listingData.picReference === undefined) {
         console.log('picRef is undefined')
-        postListingAfterPhoto(listingData);
+        dispatch(itemActions.postListingAfterPhoto(listingData));
       } else {
         console.log('picref is good')
         fetch(photoUrl, {
