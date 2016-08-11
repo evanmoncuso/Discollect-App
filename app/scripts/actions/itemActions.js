@@ -136,9 +136,10 @@ const itemActions = {
   getUsersListings: (userID) => (
     // get listings associated with user at userID
     (dispatch) => {
-      const url = 'http://localhost:3000/api/getAllListings';
+      const url = 'http://localhost:3000/api/getUsersListings';
       fetch(url, {
-        method: 'GET',
+        method: 'PUT',
+        body: JSON.stringify({ userID }),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -158,8 +159,7 @@ const itemActions = {
           console.log(err);
         }
       });
-    }
-  ),
+    }),
 };
 
 export default itemActions;
