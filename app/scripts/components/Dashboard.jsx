@@ -28,6 +28,9 @@ class Dashboard extends React.Component {
     // console.log('????????????????', listingID);
     this.props.dispatchCloseListing(listingID, this.props.userID);
   }
+  removeListingHandler(listingID) {
+    this.props.dispatchRemoveListing(listingID) 
+  }
   render() {
     return (
       <div>
@@ -56,6 +59,7 @@ class Dashboard extends React.Component {
                     <p>{'id:' + a.id}</p>
                     <p>{'create at: ' +  a.createdAt}</p>
                     <button>View Listing</button>
+                    <button onClick={() => { this.removeListingHandler(a.id); }}>Delete Listing</button>
                   </div>);
                 })}<br />
                 </td>
@@ -114,6 +118,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     dispatchCloseListing: (listingID) => {
       dispatch(itemActions.closeListing(listingID));
+    },
+    dispatchRemoveListing: (listingID) => {
+      dispatch(itemActions.removeListing(listingID));
     },
   };
 };

@@ -189,6 +189,16 @@ const itemActions = {
         }
       });
     }),
+
+  removeListing: (listingID) => (
+    (dispatch) => {
+      const url = 'http://localhost:3000/api/removeListing?listingID='+listingID;
+      fetch(url, {
+        method: 'DELETE',
+      })
+    }
+  ),
+
 };
 
 export default itemActions;
