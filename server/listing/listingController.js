@@ -108,11 +108,20 @@ module.exports = {
       });
     })
     .then((data) => {
-      console.log('~~~~~~~~~~~~~~~', data);
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(400).send(err);
+      // console.log('~~~~~~~~~~~~~~~', data.dataValues.giverId);
+      // res.send(data);
+      Listing.findAll({
+        where: {
+          $or: {
+            giverId: data.dataValues.giverId,
+            takerId: data.dataValues.giverId,
+          },
+        },
+      })
+      .then((items) => {
+        console.log(items);
+        res.send(items);
+      });
     });
   },
 

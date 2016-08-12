@@ -146,9 +146,16 @@ const itemActions = {
           'Content-Type': 'application/json',
         },
       })
-      .then(res => res.json)
+      .then(res => res.json())
       .then(res => {
-        browserHistory.push('/');
+        console.log('///////', userID, '/////', res);
+        // itemActions.getUsersListings(res.giverId);
+        // browserHistory.push('/');
+        // browserHistory.push('/dashboard');
+        dispatch({
+          type: 'GET_USERS_LISTINGS',
+          usersListings: res,
+        });
       })
       .catch(err => {
         console.log(err);
@@ -159,6 +166,7 @@ const itemActions = {
   getUsersListings: (userID) => (
     // get listings associated with user at userID
     (dispatch) => {
+      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
       const url = 'http://localhost:3000/api/getUsersListings';
       fetch(url, {
         method: 'PUT',
@@ -169,7 +177,7 @@ const itemActions = {
       })
       .then((res) => res.json())
       .then((response) => {
-        // console.log('GET USERS LISTINGS>>>>>: ', response);
+        console.log('GET USERS LISTINGS>>>>>: ', response);
         dispatch({
           type: 'GET_USERS_LISTINGS',
           usersListings: response,
