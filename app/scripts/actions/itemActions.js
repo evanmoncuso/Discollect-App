@@ -196,6 +196,10 @@ const itemActions = {
       fetch(url, {
         method: 'DELETE',
       })
+      .then(res=> {
+        browserHistory.push('/')
+        browserHistory.push('/dashboard')
+      })
     }
   ),
 
