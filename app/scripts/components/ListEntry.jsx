@@ -16,9 +16,9 @@ let ListEntry = (props) => {
         <div className="data_container">
           <img src={pic} />
           <div className="entry_text">
-            <p className="entry_desc">giver: {props.entry.giverId}</p>
-            <p className="entry_desc">zipcode: {props.entry.zipcode}</p>
-            <p className="created_ago">{timeAgo}</p>
+            <span className="entry_desc">giver: {props.entry.giverId}</span>
+            <span className="entry_desc">zipcode: {props.entry.zipcode}</span>
+            <span className="created_ago">{timeAgo}</span>
           </div>
         </div>
       </div>

@@ -9,17 +9,19 @@ import Unregistered from './userSignInParts/Unregistered.jsx';
 
 const NavBar = ({ username }) => {
   let displayed = username ? <Registered username={username} /> : <Unregistered />;
-let welcome = username ? <h4>Welcome {username}</h4> : '';
+  let welcome = username ? <h4>Welcome {username}</h4> : '';
   return (
     <nav>
-      <Link to="/">
+      <div className="nav_container">
         <div className="nav_title">
-          <h1>Discollect</h1>
-          {welcome}
+          <Link to="/"><h1>Discollect</h1></Link>
+          <Link to="/dashboard">{welcome}</Link>
         </div>
-      </Link>
-      {displayed}
-      <SearchBar />
+        <div className="user_points">
+          {displayed}
+        </div>
+        <SearchBar />
+      </div>
     </nav>
   );
 };

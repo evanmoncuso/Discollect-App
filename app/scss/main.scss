@@ -8,129 +8,49 @@
 Grid
 ====================
  */
- * {
-  font-family: $secondary-font;
+
+* {
+
+}
+
+body {
   box-sizing: border-box;
- }
-
-main {
-    max-width: 100%;
-    text-align: center;
-    margin: 0 auto 3em;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    // align-items: center;
-    border: 3px solid black;
-    background-color: #EFF;
-    font-size: 20px;
-    form input{
-      font-size: 20px;
-    }
 }
-
-.listView_container {
-  display: flex;
-  flex-wrap: wrap;
-  width: 960px;
-  margin: 12px auto;
-  .listView_entry {
-    box-shadow: 1px 1px 2px #333;
-    padding: 12px;
-    margin: 6px;
-    background-color: #EEE;
-    width: 300px;
-    height: 240px;
-    img {
-      height: 120px;
-      float: left;
-    }
-    .data_container {
-      display: flex;
-    }
-  }
-  .listView_entry > h2 {
-    font-size: 24px;
-    line-height: 30px;
-    font-weight: bold;
-  }
-  .listView_entry .entry_desc {
-    font-size: 16px;
-    line-height: 22px;
-    margin-bottom: 12px;
-    overflow: hidden;
-  }
-  .listView_entry .created_ago {
-    font-size: 12px;
-    line-height: 22px;
-    font-style: italic;
-  }
-  .listView_entry .entry_text {
-    flex-grow: 2;
-    float: right;
-  }
-}
+/*
+====================
+Title bar
+====================
+ */
 
 nav {
-  padding: 5px;
-  position: relative;
-  a {
-    font-size: 20px;
-    // margin: 3px 3px;
-  }
-  .nav_title{
-    font-family: $primary-font;
-    font-size: 45px;
-    color: $tertiary-color;
-    background-color: $primary-color;
-    padding: 12px;
-    margin: 0px;
-    float: left;
-  }
-  .app_points a,
-  .auth_points a{
-    font-family: $primary-font;
-    color: $tertiary-color;
-    background-color: $primary-color;
-    font-size: 25px;
-    float: right;
-    padding: 12px;
-  }
-  .auth_points > h3 {
-  }
-}
-
-.nav_title > h4 {
-  font-size: 24px;
-  line-height: 32px;
-}
-
-.search_bar {
-  background: #EEE url('yardsale.jpg') no-repeat center center;
-  background-size: cover;
-  height: 240px;
-  border-radius: 5px;
-  input, select, button  {
-    font-size: 15px;
-    font-family: 'Open Sans', sans-serif;
-    height: 40px;
-    background-color: #EEE;
-    border: 2px solid black;
-    position: relative;
-    transform: translateY(200%);
-    margin: 0 5px;
-  }
-  select, button {
-    transform: translateY(230%);
-  }
+  width: 100%;
 }
 
 .main_container {
-  background-color: #DDD;
-  input {
-    display: block;
-    width: 300px;
-    height: 40px;
-    margin: 0 auto;
+  width: 960px;
+  margin: 0 auto;
+}
+
+.listings_container {
+  display: flex;
+  flex-wrap: wrap;
+  .listView_entry {
+    width: 320px;
+    height: 240px;
+    h2 {
+      font-size: 28px;
+      line-height: 32px;
+    }
+    .data_container {
+      display: flex;
+      img {
+        height: 180px;
+      }
+      .entry_text {
+        flex-grow: 2;
+
+      }
+
+    }
   }
 }
