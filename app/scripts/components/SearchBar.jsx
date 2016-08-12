@@ -35,7 +35,7 @@ const SearchBar = ({ commitSearch, userCoords, userZip }) => {
           ref={(node) => { zip = node; }}
           placeholder={userZip || 'zip'}
         />
-        <select ref={(node) => { category = node; }} id="category" required>
+      <select ref={(node) => { category = node; }} id="category" className="search_bar_input" required>
           <option value="all-categories">All Categories</option>
           <option value="appliances">Appliances</option>
           <option value="fashion">Clothing, Shoes &amp; Jewelry</option>
