@@ -1,12 +1,10 @@
 var User = require('./userModel.js');
 
-var is_logged_in = undefined;
-
 module.exports = {
 
   getUserInfo : function(req, res) {
-    if (is_logged_in){
-      User.findOne({where : { id : is_logged_in}})
+    if (req.user){
+      User.findOne({where : { id : req.user.id}})
         .then(user => {
           res.json(user);
         });
@@ -29,7 +27,6 @@ module.exports = {
   //login handles login and, if successful, returns zipcode with res.send for our
   //use in zipcodeArrayBuilder
   login: function(req, res) {
-    is_logged_in = req.user.id;
     var message = {
       id: req.user.id,
       username: req.user.username,
@@ -63,11 +60,11 @@ module.exports = {
 
   logout: function(req, res) {
     console.log('im in the logout route')
-    is_logged_in = undefined;
     req.logout();
+    req.logOut();
     req.session.destroy(function(err) {
       console.log('in teh part to destroy sesh')  
-      res.redirect('/');
+      res.send();
     })
   },
 
