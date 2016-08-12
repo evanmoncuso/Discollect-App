@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-// import Listing from './Listing.js'
 import { browserHistory, Link } from 'react-router';
 
+const defaultImage = './css/ina.jpg';
 
 let ListEntry = (props) => {
   var timeAgo = moment(props.entry.createdAt).fromNow();

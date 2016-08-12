@@ -3,16 +3,17 @@ import { connect } from 'react-redux';
 import itemActions from '../actions/itemActions.js';
 import { browserHistory } from 'react-router';
 
+import PaneListing from './userListingParts/pane_listing_entry.jsx';
+import AccountInfo from './userListingParts/AccountInfo.jsx';
 
 class Dashboard extends React.Component {
   constructor(props) {
-    // props: username, valid
     super(props);
-
-    // this.toggleTableView = this.toggleTableView.bind(this);
-    // this.closeListingHandler = this.closeListingHandler.bind(this);
-    // console.log('***', this.props.userID);
+    this.state = {
+      historyView: true,
+    };
   }
+
   componentWillMount() {
     if (this.props.userID) {
       this.props.dispatchGetUserListings(this.props.userID);
@@ -20,70 +21,60 @@ class Dashboard extends React.Component {
   }
 
   closeListingHandler(listingID) {
-    // console.log('????????????????', listingID);
     this.props.dispatchCloseListing(listingID, this.props.userID);
   }
-  removeListingHandler(listingID) {
-    this.props.dispatchRemoveListing(listingID);
+
+  toggleHistory() {
+    this.setState({
+      historyView: !this.state.historyView,
+    });
+    console.log(this.state.historyView);
   }
-  openListEntryView(id) {
-    // console.log('/listing/' + id);
-    browserHistory.push('/listing/' + id);
-  }
+
   render() {
     return (
       <div>
-        <div className="main_container">
+        <div className="main_container dashboard_container">
           <h1>Dashboard</h1>
-          <img src="https://huxley.wwu.edu/sites/huxley.wwu.edu/files/default_images/user-icon.png" alt="user" />
-          <div className="about">{this.props.username ? this.props.username : 'NOT A VALID USER'}</div>
-          <br />
-          <h3>Acount:</h3>
-          <table>
-            <thead>
-              <tr>
-                <td>Active Listings</td>
-                <td>Pending Listings</td>
-                <td>Archived Taken Listings</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><br />{this.props.activeGivingItems.map((a, i) => {
-                  // console.log(this.props.userListings);
-                  return (<div key={i} style={{ border: '1px solid black' }}>
-                    <h3>{ 'title: ' + a.title }</h3>
-                    <img style={{ width: '50px', height: '50px' }} src={a.picReference || 'http://www.novelupdates.com/img/noimagefound.jpg'} />
-                    <p>{'id:' + a.id}</p>
-                    <p>{'create at: ' +  a.createdAt}</p>
-                    <button onClick={() => { this.removeListingHandler(a.id); }}>Delete Listing</button>
-                    <button onClick={() => { this.openListEntryView(a.id); }}>View Listing</button> 
-                  </div>);
-                })}<br />
-                </td>
-                <td><br />{this.props.pendingGivingItems.map((a, i) => {
-                  // console.log(this.props.userListings);
-                  return (<div key={i} style={{border: '1px solid black'}}>
-                    <h3>{"title: " + a.title}</h3>
-                    <img style={{ width:'50px', height:'50px' }} src={a.picReference || 'http://www.novelupdates.com/img/noimagefound.jpg'} />
-                    <p>{"id:" + a.id}</p>
-                    <p>{"create at: " + a.createdAt}</p>
-                    <button onClick={() => { this.closeListingHandler(a.id); }}>Close Listing</button>
-                  </div>);
-                })}<br />
-                </td>
-                <td><br />{this.props.archivedTakenItems.map((a, i) => {
-                  // console.log(this.props.userListings);
-                  return <div key={i} style={{ border: '1px solid black' }}>
-                    <h3>{"title: " + a.title}</h3>
-                    <img style={{ width: '50px', height: '50px' }} src={a.picReference || 'http://www.novelupdates.com/img/noimagefound.jpg'} />
-                    <p>{"id:" + a.id}</p>
-                    <p>{"create at: " + a.createdAt}</p>
-                  </div>})}<br />
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <AccountInfo
+            toggleHistory={this.toggleHistory.bind(this)} username={this.props.username}
+          />
+          <div className="user_items_container">
+            <div className="user_items">
+              <div className="active_heading">
+                <h2>Active Items</h2>
+              </div>
+              <div className="active_items">
+                {this.props.activeGivingItems.map((item, i) => {
+                  return <PaneListing key={i} item={item} />
+                })}
+              </div>
+            </div>
+            <div className="user_items">
+              <div className="pending_heading">
+                <h2>Pending Items</h2>
+              </div>
+              <div className="pending_items">
+                {this.props.pendingGivingItems.map((item, i) => {
+                  return <PaneListing key={i} item={item} />
+                })}
+              </div>
+            </div>
+            <div className="user_items">
+              {this.state.historyView ? (
+                <div>
+                  <div className="archive_heading">
+                    <h2>Archive Items</h2>
+                  </div>
+                  <div className="archive_items">
+                    {this.props.archivedTakenItems.map((item, i) => {
+                      return <PaneListing key={i} item={item} />
+                    })}
+                  </div>
+                </div>
+              ) : ' '}
+            </div>
+          </div>
         </div>
       </div>
     );
