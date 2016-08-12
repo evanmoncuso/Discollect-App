@@ -126,6 +126,9 @@ const userActions = {
   logoutUserClient: () => (
     {
       type: 'LOGOUT_USER',
+      zipcode: null,
+      username: null,
+      id: null,
     }
   ),
 

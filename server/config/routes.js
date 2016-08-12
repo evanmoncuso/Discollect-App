@@ -9,7 +9,7 @@ module.exports = function(app, express) {
   router.get('/getUserInfo', userControl.getUserInfo);
   router.post('/login', passport.authenticate('local', {failureRedirect: '/'}), userControl.login);
   router.post('/signup', userControl.signup);
-  router.post('/logout', userControl.logout);
+  router.get('/logout', userControl.logout);
   router.put('/update', listingControl.update);
   router.put('/userProfile', userControl.userProfile);
 
@@ -23,3 +23,14 @@ module.exports = function(app, express) {
   
   return router;
 };
+
+
+// USE IF YOU WANT TO PROTECT A ROUTE
+// function isLoggedIn(req, res, next) {
+
+//     // if user is authenticated in the session, carry on 
+//     if (req.isAuthenticated())
+//         return next();
+//     // if they aren't redirect them to the home page
+//     res.redirect('/');
+// }

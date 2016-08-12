@@ -11,9 +11,5 @@ module.exports = function(app, express) {
   app.use(expressSession({ secret: 'keyboard cat', resave: false, saveUninitialized: false }))
   app.use(passport.initialize());
   app.use(passport.session());
-  app.use(function(req, res, next) {
-    console.log('===================', req.user);
-    next();
-  })
   app.use(express.static(__dirname + '/../../public'));
 }
