@@ -40,6 +40,7 @@ nav * {
 .nav_title {
   font-size: 48px;
   line-height: 54px;
+  margin: 12px;
   color: $med-gray;
 }
 
@@ -73,11 +74,87 @@ nav * {
   margin: 0 auto;
   text-align: center;
   .search_bar_input {
-    height: 48px;
+    height: 32px;
+    font-size: 18px;
+    line-height: 22px;
     border: none;
     outline: none;
     background-color: inherit;
   }
+  .full_input {
+    display:inline-block;
+    label {
+      display:block;
+      text-align: left;
+    }
+    input {
+      width: 240px;
+    }
+  }
+  .keywords,
+  .zip {
+    border-bottom: 1px solid $dark-gray;
+    margin-left: 6px;
+  }
+  .search_button {
+    border: none;
+    border-radius: 0;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #D50000;
+    color: $light-font;
+    margin: 0 6px;
+  }
+}
+
+/*
+====================
+Login / Signup
+====================
+ */
+
+h1 {
+  font-size: 32px;
+  line-height: 42px;
+  text-align: center;
+  font-family: $secondary-font;
+}
+
+.auth_input {
+  display:block;
+  width: 320px;
+  margin: 24px auto;
+  label {
+    display: block;
+  }
+  input {
+    height: 32px;
+    font-size: 18px;
+    line-height: 22px;
+    border: none;
+    outline: none;
+    background-color: inherit;
+    color:$light-font;
+  }
+}
+
+.login_container,
+.signup_container {
+  width: 540px;
+  margin: 0 auto;
+  background-color: $dark-gray;
+  color: $light-font;
+  padding: 12px;
+}
+
+.form_submit_button {
+  border: none;
+  border-radius: 0;
+  padding: 12px;
+  font-size: 18px;
+  background-color: #D50000;
+  color: $light-font;
+  margin: 0 6px;
 }
 
 /*

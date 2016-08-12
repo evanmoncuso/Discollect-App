@@ -8,30 +8,33 @@ const Login = ({ dispatchLogin }) => {
   let password;
   return (
     <div className="main_container">
-      <h1>Login</h1>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (!username.value.trim() && !password.value.trim()) {
-            return;
-          }
-          dispatchLogin(username.value, password.value);
+      <div className="login_container">
+        <h1>Login</h1>
+        <form
+          className="login_form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (!username.value.trim() && !password.value.trim()) {
+              return;
+            }
+            dispatchLogin(username.value, password.value);
 
-          username.value = '';
-          password.value = '';
-          console.log(username.value);
-          console.log(password.value);
-        }}
-      >
+            username.value = '';
+            password.value = '';
+          }}
+        >
+          <div className="auth_input">
+            <label htmlFor="username">username</label>
+            <input ref={(node) => { username = node; }} id="username" type="text"/>
+          </div>
+          <div className="auth_input">
+            <label htmlFor="password">password</label>
+            <input ref={(node) => { password = node; }} id="password" type="password" />
+          </div>
 
-        <label htmlFor="username">username</label>
-        <input ref={(node) => { username = node; }} id="username" type="text"/>
-
-        <label htmlFor="password">password</label>
-        <input ref={(node) => { password = node; }} id="password" type="password" />
-
-        <button type="submit">Login</button>
-      </form>
+          <button type="submit" className="form_submit_button">Login</button>
+        </form>
+      </div>
     </div>
   );
 };
