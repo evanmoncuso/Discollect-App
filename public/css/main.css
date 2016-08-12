@@ -53,7 +53,10 @@ Grid
  */
 body {
   box-sizing: border-box;
-  font-family: "Lato"; }
+  font-family: "Lato";
+  background-image: url("./yardsale.jpg");
+  background-repeat: no-repeat;
+  background-size: cover; }
 
 a {
   text-decoration: none;
@@ -65,8 +68,12 @@ Title bar
 ====================
  */
 nav {
+  width: 100%;
+  background-color: #fff;
   padding: 24px;
-  width: 100%; }
+  border-bottom: 2px solid #333;
+  margin-bottom: 24px;
+  position: fixed; }
 
 nav * {
   padding: 0; }
@@ -125,7 +132,8 @@ nav * {
     font-size: 18px;
     background-color: #D50000;
     color: #F7F7F7;
-    margin: 0 6px; }
+    margin: 0 6px;
+    transition: 0.4s all ease-in; }
 
 /*
 ====================
@@ -155,20 +163,24 @@ h1 {
 
 .login_container,
 .signup_container {
+  top: 180px;
+  position: relative;
   width: 540px;
   margin: 0 auto;
   background-color: #333;
   color: #F7F7F7;
-  padding: 12px; }
+  padding: 12px;
+  opacity: 0.9; }
 
 .form_submit_button {
   border: none;
   border-radius: 0;
   padding: 12px;
   font-size: 18px;
-  background-color: #D50000;
+  background-color: #1565C0;
   color: #F7F7F7;
-  margin: 0 6px; }
+  margin: 0 6px;
+  opacity: 1; }
 
 /*
 ====================
@@ -176,6 +188,7 @@ Listing View
 ====================
  */
 .listings_container {
+  color: #fff;
   display: flex;
   flex-wrap: wrap; }
   .listings_container .listView_entry {
