@@ -11,12 +11,14 @@ import { reducer } from './reducers/reducer';
 
 import Routes from './components/Routes.jsx';
 import itemActions from './actions/itemActions.js';
+import userActions from './actions/userActions.js';
 
 const middleware = [thunk, logger()];
 
 const store = createStore(reducer, applyMiddleware(...middleware));
 
 store.dispatch(itemActions.getLatestListings());
+store.dispatch(userActions.getUserInfo());
 
 const ProvidedApp = () => (
   <Provider store={store}>

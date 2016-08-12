@@ -119,9 +119,20 @@ const userActions = {
       }
     });
   },
+
   logoutUserClient: () => (
     {
       type: 'LOGOUT_USER',
+    }
+  ),
+
+  getUserInfo: () => (
+    (dispatch) => {
+      const url = 'http://localhost:3000/api/getUserInfo';
+      fetch(url)
+      .then(user =>{
+        console.log(user);
+      });
     }
   )
 };
