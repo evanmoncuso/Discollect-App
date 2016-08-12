@@ -17,5 +17,6 @@ module.exports = function(app, express) {
   router.get('/getAllListings', listingControl.getAllListings);
   router.post('/createNewListing', listingControl.createNewListing);
   router.put('/getUsersListings', listingControl.getUsersListings);
+  router.put('/closeListing', listingControl.closeListing);
   return router;
 };

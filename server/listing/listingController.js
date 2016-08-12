@@ -57,10 +57,10 @@ module.exports = {
       // console.log('listing: ', listing);
       return listing.update({
         status: req.body.statusCode,
-        takerId: req.body.takerId,
+        takerId: req.body.takerId, // always 1
       });
     })
-    .then (function(listing) {
+    .then(function(listing) {
       res.send(listing)
     })
     .catch(function(err) {
@@ -89,6 +89,27 @@ module.exports = {
     .then((items) => {
       // console.log(items);
       res.send(items);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+  },
+
+  closeListing: function (req, res) {
+    // console.log('~~~~~~~~~~~~~~', req.body);
+    Listing.findOne({
+      where: {
+        id: req.body.listingID,
+      },
+    })
+    .then((item) => {
+      return item.update({
+        status: 2,
+      });
+    })
+    .then((data) => {
+      console.log('~~~~~~~~~~~~~~~', data);
+      res.send(data);
     })
     .catch((err) => {
       res.status(400).send(err);

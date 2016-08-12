@@ -11,18 +11,22 @@ class Dashboard extends React.Component {
       tableView: true,
     };
     this.toggleTableView = this.toggleTableView.bind(this);
+    // this.closeListingHandler = this.closeListingHandler.bind(this);
     // console.log('***', this.props.userID);
   }
   componentWillMount() {
-    // console.log('HELLO');
     if (this.props.userID) {
       this.props.dispatchGetUserListings(this.props.userID);
-    } // change dynamic id
+    }
   }
   toggleTableView() {
     this.setState({
       tableView: !this.state.tableView,
     });
+  }
+  closeListingHandler(listingID) {
+    // console.log('????????????????', listingID);
+    this.props.dispatchCloseListing(listingID, this.props.userID);
   }
   render() {
     return (
@@ -46,34 +50,34 @@ class Dashboard extends React.Component {
               <tr>
                 <td><br />{this.props.activeGivingItems.map((a, i) => {
                   // console.log(this.props.userListings);
-                  return <div key={i} style={{border: '1px solid black'}}>
-                    <h3>{"title: "+a.title}</h3>
-                    <img style={{width:'50px', height:'50px'}} src={a.picReference || 'http://www.novelupdates.com/img/noimagefound.jpg'} />
-                    <p>{"id:" + a.id}</p>
-                    <p>{"create at: "+ a.createdAt}</p>
+                  return (<div key={i} style={{ border: '1px solid black' }}>
+                    <h3>{ 'title: ' + a.title }</h3>
+                    <img style={{ width: '50px', height: '50px' }} src={a.picReference || 'http://www.novelupdates.com/img/noimagefound.jpg'} />
+                    <p>{'id:' + a.id}</p>
+                    <p>{'create at: ' +  a.createdAt}</p>
                     <button>View Listing</button>
-                    <button>Edit Listing</button>
-                    <button>Close Listing</button>
-                  </div>})}<br />
+                  </div>);
+                })}<br />
                 </td>
                 <td><br />{this.props.pendingGivingItems.map((a, i) => {
                   // console.log(this.props.userListings);
-                  return <div key={i} style={{border: '1px solid black'}}>
-                    <h3>{"title: "+a.title}</h3>
-                    <img style={{width:'50px', height:'50px'}} src={a.picReference || 'http://www.novelupdates.com/img/noimagefound.jpg'} />
+                  return (<div key={i} style={{border: '1px solid black'}}>
+                    <h3>{"title: " + a.title}</h3>
+                    <img style={{ width:'50px', height:'50px' }} src={a.picReference || 'http://www.novelupdates.com/img/noimagefound.jpg'} />
                     <p>{"id:" + a.id}</p>
-                    <p>{"create at: "+ a.createdAt}</p>
+                    <p>{"create at: " + a.createdAt}</p>
                     <button>View Listing</button>
-                    <button>Close Listing</button>
-                  </div>})}<br />
+                    <button onClick={() => { this.closeListingHandler(a.id); }}>Close Listing</button>
+                  </div>);
+                })}<br />
                 </td>
                 <td><br />{this.props.archivedTakenItems.map((a, i) => {
                   // console.log(this.props.userListings);
-                  return <div key={i} style={{border: '1px solid black'}}>
-                    <h3>{"title: "+a.title}</h3>
-                    <img style={{width:'50px', height:'50px'}} src={a.picReference || 'http://www.novelupdates.com/img/noimagefound.jpg'} />
+                  return <div key={i} style={{ border: '1px solid black' }}>
+                    <h3>{"title: " + a.title}</h3>
+                    <img style={{ width: '50px', height: '50px' }} src={a.picReference || 'http://www.novelupdates.com/img/noimagefound.jpg'} />
                     <p>{"id:" + a.id}</p>
-                    <p>{"create at: "+ a.createdAt}</p>
+                    <p>{"create at: " + a.createdAt}</p>
                   </div>})}<br />
                 </td>
               </tr>
@@ -108,8 +112,8 @@ const mapDispatchToProps = (dispatch) => {
     dispatchGetUserListings: (userID) => {
       dispatch(itemActions.getUsersListings(userID));
     },
-    dispatchListingStatusChange: (listingID) => {
-      dispatch(itemActions.updateListingStatus(listingID));
+    dispatchCloseListing: (listingID) => {
+      dispatch(itemActions.closeListing(listingID));
     },
   };
 };
@@ -119,6 +123,7 @@ Dashboard.propTypes = {
   valid: React.PropTypes.bool,
   userListings: React.PropTypes.array,
   dispatchGetUserListings: React.PropTypes.func,
+  dispatchCloseListing: React.PropTypes.func,
 };
 
 

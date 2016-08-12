@@ -135,6 +135,27 @@ const itemActions = {
     }
   ),
 
+  closeListing: (listingID, userID) => (
+    (dispatch) => {
+      console.log('details >> ', listingID);
+      const url = 'http://localhost:3000/api/closeListing';
+      fetch(url, {
+        method: 'PUT',
+        body: JSON.stringify({ listingID }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then(res => res.json)
+      .then(res => {
+        browserHistory.push('/');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    }
+  ),
+
   getUsersListings: (userID) => (
     // get listings associated with user at userID
     (dispatch) => {

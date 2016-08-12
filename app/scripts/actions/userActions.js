@@ -94,7 +94,7 @@ const userActions = {
       .then((response) => {
         console.log('checkuserlogin:: ', response);
         dispatch(optimisticSignIn(response));
-        //function call coords&Zip
+        // function call coords&Zip
         let locationAllowed = confirm('Enable Location Services?');
         getCoordsAndZip(dispatch, locationAllowed);
         browserHistory.push('/');
