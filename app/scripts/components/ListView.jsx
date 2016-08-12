@@ -11,7 +11,7 @@ function trigger(data) {
 
 let ListView = ({ dispatchGetItems, items, users }) => {
   return (
-    <div className="listView_container">
+    <div className="main_container listings_container">
       {items.filter(val => val.status === 0).map((item, i) => {
         return <ListEntry key={i} entry={item} onClick={ (e) => trigger(item.id)}/>
       })}
