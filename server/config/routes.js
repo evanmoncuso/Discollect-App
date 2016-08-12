@@ -11,6 +11,7 @@ module.exports = function(app, express) {
   router.post('/signup', userControl.signup);
   router.post('/logout', userControl.logout);
   router.put('/update', listingControl.update);
+  router.put('/userProfile', userControl.userProfile);
 
   // router.get('/listing', listingControl.getListing);
   router.put('/getFilteredListings', listingControl.getFilteredListings);

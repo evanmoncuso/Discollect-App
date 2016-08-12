@@ -58,5 +58,21 @@ module.exports = {
   logout: function(req, res) {
     res.logout();
     res.redirect('/login');
-  }
+  },
+
+  userProfile: function(req, res) {
+    // console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~');
+    User.findOne({
+      where: {
+        id: req.body.userID,
+      },
+    })
+    .then(function(user){
+      console.log('^^^^^',user);
+      res.send(user);
+    })
+    .catch(function(err){
+      console.log(err);
+    });
+  },
 };
