@@ -14,7 +14,9 @@ let ListEntry = (props) => {
       <div className="listView_entry" onClick={props.onClick}>
         <h2>{props.entry.title}</h2>
         <div className="data_container">
-          <img src={pic} />
+          <div className="entry_img">
+            <img src={pic} />
+          </div>
           <div className="entry_text">
             <span className="entry_desc">giver: {props.entry.giverId}</span>
             <span className="entry_desc">zipcode: {props.entry.zipcode}</span>

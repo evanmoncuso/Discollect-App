@@ -43,14 +43,18 @@ nav {
     }
     .data_container {
       display: flex;
-      img {
-        height: 180px;
+      .entry_img {
+        flex-grow: 1;
+        img {
+          width: 120px;
+        }
       }
       .entry_text {
         flex-grow: 2;
-
+        span {
+          display:block;
+        }
       }
-
     }
   }
 }

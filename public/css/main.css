@@ -78,7 +78,11 @@ nav {
       line-height: 32px; }
     .listings_container .listView_entry .data_container {
       display: flex; }
-      .listings_container .listView_entry .data_container img {
-        height: 180px; }
+      .listings_container .listView_entry .data_container .entry_img {
+        flex-grow: 1; }
+        .listings_container .listView_entry .data_container .entry_img img {
+          width: 120px; }
       .listings_container .listView_entry .data_container .entry_text {
         flex-grow: 2; }
+        .listings_container .listView_entry .data_container .entry_text span {
+          display: block; }
