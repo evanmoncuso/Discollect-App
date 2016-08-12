@@ -1,16 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import itemActions from '../actions/itemActions.js';
+import { browserHistory } from 'react-router';
 
 
 class Dashboard extends React.Component {
   constructor(props) {
     // props: username, valid
     super(props);
-    this.state = {
-      tableView: true,
-    };
-    this.toggleTableView = this.toggleTableView.bind(this);
+
+    // this.toggleTableView = this.toggleTableView.bind(this);
     // this.closeListingHandler = this.closeListingHandler.bind(this);
     // console.log('***', this.props.userID);
   }
@@ -19,17 +18,17 @@ class Dashboard extends React.Component {
       this.props.dispatchGetUserListings(this.props.userID);
     }
   }
-  toggleTableView() {
-    this.setState({
-      tableView: !this.state.tableView,
-    });
-  }
+
   closeListingHandler(listingID) {
     // console.log('????????????????', listingID);
     this.props.dispatchCloseListing(listingID, this.props.userID);
   }
   removeListingHandler(listingID) {
-    this.props.dispatchRemoveListing(listingID) 
+    this.props.dispatchRemoveListing(listingID);
+  }
+  openListEntryView(id) {
+    // console.log('/listing/' + id);
+    browserHistory.push('/listing/' + id);
   }
   render() {
     return (
@@ -40,7 +39,6 @@ class Dashboard extends React.Component {
           <div className="about">{this.props.valid ? this.props.username : 'NOT A VALID USER'}</div>
           <br />
           <h3>Acount:</h3>
-          <button onClick={this.toggleTableView}>{this.state.tableView ? 'Show History' : 'Show Active'}</button>
           <table>
             <thead>
               <tr>
@@ -58,8 +56,8 @@ class Dashboard extends React.Component {
                     <img style={{ width: '50px', height: '50px' }} src={a.picReference || 'http://www.novelupdates.com/img/noimagefound.jpg'} />
                     <p>{'id:' + a.id}</p>
                     <p>{'create at: ' +  a.createdAt}</p>
-                    <button>View Listing</button>
                     <button onClick={() => { this.removeListingHandler(a.id); }}>Delete Listing</button>
+                    <button onClick={() => { this.openListEntryView(a.id); }}>View Listing</button> 
                   </div>);
                 })}<br />
                 </td>
@@ -70,7 +68,6 @@ class Dashboard extends React.Component {
                     <img style={{ width:'50px', height:'50px' }} src={a.picReference || 'http://www.novelupdates.com/img/noimagefound.jpg'} />
                     <p>{"id:" + a.id}</p>
                     <p>{"create at: " + a.createdAt}</p>
-                    <button>View Listing</button>
                     <button onClick={() => { this.closeListingHandler(a.id); }}>Close Listing</button>
                   </div>);
                 })}<br />

@@ -2,18 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 // import Listing from './Listing.js'
-import { browserHistory } from 'react-router';
-
+import { browserHistory, Link } from 'react-router';
 
 
 let ListEntry = (props) => {
   var timeAgo = moment(props.entry.createdAt).fromNow();
   return (
-      <div className="listView_entry" onClick={props.onClick}>
-        <h5>{props.entry.title}</h5>
-        <img src={props.entry.picReference} />
-        <p>{props.entry.description}</p>
-        <p>{timeAgo}</p>
+      <div className="listView_entry">
+        <div onClick={props.onClick}>
+          <h5>{props.entry.title}</h5>
+          <img src={props.entry.picReference} />
+          <p>{props.entry.description}</p>
+          <p>{timeAgo}</p>
+        </div>
+        <Link to={`/profile/${props.entry.giverId}`} >User Profile Link {props.entry.giverId}</Link>
       </div>
   );
 };

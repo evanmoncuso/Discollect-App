@@ -118,12 +118,35 @@ const usersListings = (state = [], action) => {
   }
 };
 
+const initProfileView = {
+  username: '',
+  zipcode: '',
+  rating: '',
+  picReference: '',
+  email: '',
+};
+const profileView = (state = initProfileView, action) => {
+  switch (action.type) {
+    case 'GET_PROFILE_VIEW':
+      return Object.assign({}, state, {
+        username: action.profile.username,
+        zipcode: action.profile.zipcode,
+        rating: action.profile.rating,
+        picReference: action.profile.picReference,
+        email: action.profile.email,
+      });
+    default:
+      return state;
+  }
+};
+
 const reducer = combineReducers({
   items,
   users,
   search,
   usersListings,
   upload,
+  profileView,
 });
 
 module.exports = {

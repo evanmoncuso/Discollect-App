@@ -148,7 +148,31 @@ const userActions = {
         dispatch(optimisticSignIn(user))
       });
     }
-  )
+  ),
+  getUserProfile: (userID) => (
+    // console.log('yo')
+    (dispatch) => {
+      const url = 'http://localhost:3000/api/userProfile';
+      fetch(url, {
+        method: 'PUT',
+        body: JSON.stringify({ userID }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then(res => res.json())
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: 'GET_PROFILE_VIEW',
+          profile: res,
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    }
+  ),
 };
 
 
