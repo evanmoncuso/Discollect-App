@@ -4,8 +4,7 @@ import moment from 'moment';
 import { browserHistory } from 'react-router';
 // import { updateListingStatus } from '../actions/itemActions.js';
 import itemActions from '../actions/itemActions.js';
-
-const defaultImage = '../../../../public/css/ina.jpg';
+const defaultImage = '../../../public/css/ina.jpg';
 
 const Listing = (props) => {
   var listIDX = props.params.id;

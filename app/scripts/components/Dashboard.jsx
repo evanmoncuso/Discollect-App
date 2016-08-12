@@ -28,7 +28,6 @@ class Dashboard extends React.Component {
     this.setState({
       historyView: !this.state.historyView,
     });
-    console.log(this.state.historyView);
   }
 
   render() {
@@ -46,7 +45,11 @@ class Dashboard extends React.Component {
               </div>
               <div className="active_items">
                 {this.props.activeGivingItems.map((item, i) => {
-                  return <PaneListing key={i} item={item} />
+                  return <PaneListing
+                    key={i}
+                    item={item}
+                    removeable={true}
+                    />
                 })}
               </div>
             </div>
@@ -56,7 +59,11 @@ class Dashboard extends React.Component {
               </div>
               <div className="pending_items">
                 {this.props.pendingGivingItems.map((item, i) => {
-                  return <PaneListing key={i} item={item} />
+                  return <PaneListing
+                    key={i}
+                    item={item}
+                    closeable={true}
+                  />
                 })}
               </div>
             </div>
@@ -68,7 +75,10 @@ class Dashboard extends React.Component {
                   </div>
                   <div className="archive_items">
                     {this.props.archivedTakenItems.map((item, i) => {
-                      return <PaneListing key={i} item={item} />
+                      return <PaneListing
+                        key={i}
+                        item={item}
+                      />
                     })}
                   </div>
                 </div>
