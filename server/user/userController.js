@@ -3,13 +3,15 @@ var User = require('./userModel.js');
 module.exports = {
 
   getUserInfo : function(req, res) {
+    console.log('===========',req.user)
     if (req.user){
       User.findOne({where : { id : req.user.id}})
         .then(user => {
-          res.send(user);
+          res.json(user);
         });
+      } else{
+        res.json({user: null});
       }
-      res.send({});
   },
 
   postUser : function(req, res) {
