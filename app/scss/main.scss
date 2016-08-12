@@ -197,7 +197,6 @@ Login / Signup
   background-color: $dark-gray;
   color: $light-font;
   padding: 12px;
-  opacity: 0.9;
 }
 
 .form_submit_button {
@@ -208,12 +207,11 @@ Login / Signup
   background-color: #1565C0;
   color: $light-font;
   margin: 0 6px;
-  opacity: 1;
 }
 
 /*
 ====================
-Listing View
+List View
 ====================
  */
 
@@ -256,6 +254,47 @@ Listing View
 
 /*
 ====================
+Listing View
+====================
+ */
+.listing_container {
+  background-color: $dark-gray;
+  color:$light-font;
+  padding: 24px;
+  .listing_content {
+    display: flex;
+  }
+  h2 {
+    font-size: 48px;
+    text-align: center;
+  }
+  .image_pane {
+    flex-grow: 2;
+    img {
+      height: 180px;
+    }
+  }
+  .info_pane {
+    flex-grow: 1;
+    font-size: 22px;
+    line-height: 32px;
+  }
+  .listing_description {
+    width: 540px;
+    margin: 0 auto;
+  }
+  .listing_view_button {
+    border: none;
+    border-radius: 0;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #FDD835;
+    color: $dark-font;
+    margin: 0 6px;
+  }
+}
+/*
+====================
 Create Listing View
 ====================
  */
@@ -267,7 +306,6 @@ Create Listing View
   background-color: $dark-gray;
   color: $light-font;
   margin: 0 auto;
-  opacity: 0.9;
   select {
     height: 32px;
     font-size: 18px;
@@ -285,7 +323,6 @@ Create Listing View
     background-color: #FDD835;
     color: $dark-font;
     margin: 0 6px;
-    opacity: 1;
   }
 }
 
@@ -302,7 +339,6 @@ Dashboard View
   background-color: $dark-gray;
   color: $light-font;
   margin: 0 auto;
-  opacity: 0.9;
   .user_items_container {
     display: flex;
   }
@@ -321,15 +357,6 @@ Dashboard View
     display: block;
   }
 }
-
-// .pane_listing_entry {
-//   .data_container {
-//     .entry_img {
-//       float:left;
-//       display:inline-block;
-//       width: 120px;
-//     }
-// }
 
 .account_info {
   margin: 0 auto;

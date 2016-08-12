@@ -55,6 +55,7 @@ body {
   box-sizing: border-box;
   font-family: "Lato";
   background-image: url("./yardsale.jpg");
+  background-blend-mode: darken;
   background-repeat: no-repeat;
   background-size: cover; }
 
@@ -73,7 +74,8 @@ nav {
   padding: 24px;
   border-bottom: 2px solid #333;
   margin-bottom: 24px;
-  position: fixed; }
+  position: fixed;
+  z-index: 10; }
 
 nav * {
   padding: 0; }
@@ -81,8 +83,15 @@ nav * {
 .nav_title {
   font-size: 48px;
   line-height: 54px;
-  margin: 12px;
+  margin: 12px 12px 6px 12px;
   color: #555; }
+
+h1 {
+  font-size: 42px;
+  line-height: 54px;
+  text-align: center;
+  font-family: "Open Sans";
+  z-index: 12; }
 
 .nav_container {
   width: 960px;
@@ -92,9 +101,16 @@ nav * {
 .user_points {
   display: inline-block; }
 
+.nav_title img,
+.nav_title h1 {
+  display: inline-block;
+  z-index: 12; }
+
 .main_container {
   width: 960px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  top: 200px;
+  position: relative; }
 
 .button {
   display: block;
@@ -103,6 +119,14 @@ nav * {
 .user_points {
   float: right; }
 
+.user_welcome {
+  font-size: 18px; }
+
+/*
+====================
+Search bar
+====================
+ */
 .search_bar {
   width: 960px;
   margin: 0 auto;
@@ -134,18 +158,30 @@ nav * {
     color: #F7F7F7;
     margin: 0 6px;
     transition: 0.4s all ease-in; }
+  .search_bar .search_button:hover {
+    border: none;
+    border-radius: 0;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #F44336;
+    color: #fff;
+    margin: 0 6px;
+    transition: 0.4s all ease-in; }
+  .search_bar .search_button:active {
+    border: none;
+    border-radius: 0;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #fff;
+    color: #424242;
+    margin: 0 6px;
+    transition: 0.4s all ease-in; }
 
 /*
 ====================
 Login / Signup
 ====================
  */
-h1 {
-  font-size: 32px;
-  line-height: 42px;
-  text-align: center;
-  font-family: "Open Sans"; }
-
 .auth_input {
   display: block;
   width: 320px;
@@ -163,14 +199,11 @@ h1 {
 
 .login_container,
 .signup_container {
-  top: 180px;
-  position: relative;
   width: 540px;
   margin: 0 auto;
   background-color: #333;
   color: #F7F7F7;
-  padding: 12px;
-  opacity: 0.9; }
+  padding: 12px; }
 
 .form_submit_button {
   border: none;
@@ -179,22 +212,28 @@ h1 {
   font-size: 18px;
   background-color: #1565C0;
   color: #F7F7F7;
-  margin: 0 6px;
-  opacity: 1; }
+  margin: 0 6px; }
 
 /*
 ====================
-Listing View
+List View
 ====================
  */
 .listings_container {
   color: #fff;
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  top: 240px; }
   .listings_container .listView_entry {
     font-family: "Open Sans";
-    width: 320px;
-    height: 240px; }
+    color: #424242;
+    background-color: #fff;
+    padding: 6px;
+    border-left: 4px solid #333;
+    margin: 12px 6px;
+    width: 280px;
+    height: 240px;
+    z-index: 0; }
     .listings_container .listView_entry h2 {
       font-size: 28px;
       line-height: 32px; }
@@ -208,3 +247,130 @@ Listing View
         flex-grow: 2; }
         .listings_container .listView_entry .data_container .entry_text span {
           display: block; }
+
+/*
+====================
+Listing View
+====================
+ */
+.listing_container {
+  background-color: #333;
+  color: #F7F7F7;
+  padding: 24px; }
+  .listing_container .listing_content {
+    display: flex; }
+  .listing_container h2 {
+    font-size: 48px;
+    text-align: center; }
+  .listing_container .image_pane {
+    flex-grow: 2; }
+    .listing_container .image_pane img {
+      height: 180px; }
+  .listing_container .info_pane {
+    flex-grow: 1;
+    font-size: 22px;
+    line-height: 32px; }
+  .listing_container .listing_description {
+    width: 540px;
+    margin: 0 auto; }
+  .listing_container .listing_view_button {
+    border: none;
+    border-radius: 0;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #FDD835;
+    color: #424242;
+    margin: 0 6px; }
+
+/*
+====================
+Create Listing View
+====================
+ */
+.create_listing_container {
+  top: 240px;
+  padding: 12px;
+  border-left: 4px solid #333;
+  background-color: #333;
+  color: #F7F7F7;
+  margin: 0 auto; }
+  .create_listing_container select {
+    height: 32px;
+    font-size: 18px;
+    line-height: 22px;
+    border: none;
+    outline: none;
+    background-color: inherit;
+    color: #F7F7F7; }
+  .create_listing_container .form_submit_button {
+    border: none;
+    border-radius: 0;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #FDD835;
+    color: #424242;
+    margin: 0 6px; }
+
+/*
+====================
+Dashboard View
+====================
+ */
+.dashboard_container {
+  top: 240px;
+  padding: 12px;
+  border-left: 4px solid #333;
+  background-color: #333;
+  color: #F7F7F7;
+  margin: 0 auto; }
+  .dashboard_container .user_items_container {
+    display: flex; }
+  .dashboard_container .user_items {
+    flex-grow: 1;
+    margin: 0 auto;
+    align-items: stretch; }
+  .dashboard_container .user_items > div {
+    display: block; }
+  .dashboard_container .active_heading,
+  .dashboard_container .pending_heading,
+  .dashboard_container .archive_heading {
+    text-align: center;
+    display: block; }
+
+.account_info {
+  margin: 0 auto; }
+
+/*
+====================
+Pane Entry View
+====================
+ */
+.pane_listing_entry {
+  height: 180px;
+  width: 240px;
+  padding: 12px;
+  margin: 12px auto;
+  background-color: #fff;
+  color: #424242; }
+
+.pane_listing_entry h2 {
+  text-align: center; }
+
+.right {
+  width: 120px; }
+
+.entry_img > img {
+  height: 120px; }
+
+.data_container {
+  margin-top: 20px; }
+
+.data_container > div {
+  display: inline-block; }
+
+.right > div {
+  display: block; }
+
+.entry_text > span {
+  display: block;
+  width: 120px; }
