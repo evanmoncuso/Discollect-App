@@ -50,6 +50,7 @@ const condish = {
             listingID: Number(listingID),
             giverId: curr.giverId,
             takerId: props.userId,
+            statusCode: 1,
           }
           console.log('listing ID: ',listingTrigger.listingID)
           console.log(' giver ID: ',listingTrigger.giverId) 

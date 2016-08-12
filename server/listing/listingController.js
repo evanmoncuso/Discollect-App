@@ -56,11 +56,11 @@ module.exports = {
     .then(listing => {
       // console.log('listing: ', listing);
       return listing.update({
-        status: 1,
-        takerId: req.body.takerId,
+        status: req.body.statusCode,
+        takerId: req.body.takerId, // always 1
       });
     })
-    .then (function(listing) {
+    .then(function(listing) {
       res.send(listing)
     })
     .catch(function(err) {
@@ -92,6 +92,36 @@ module.exports = {
     })
     .catch((err) => {
       res.status(400).send(err);
+    });
+  },
+
+  closeListing: function (req, res) {
+    // console.log('~~~~~~~~~~~~~~', req.body);
+    Listing.findOne({
+      where: {
+        id: req.body.listingID,
+      },
+    })
+    .then((item) => {
+      return item.update({
+        status: 2,
+      });
+    })
+    .then((data) => {
+      // console.log('~~~~~~~~~~~~~~~', data.dataValues.giverId);
+      // res.send(data);
+      Listing.findAll({
+        where: {
+          $or: {
+            giverId: data.dataValues.giverId,
+            takerId: data.dataValues.giverId,
+          },
+        },
+      })
+      .then((items) => {
+        console.log(items);
+        res.send(items);
+      });
     });
   },
 
