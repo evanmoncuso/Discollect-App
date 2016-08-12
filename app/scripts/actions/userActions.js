@@ -24,6 +24,7 @@ const getCoordsAndZip = (dispatch, bool) => {
       let zipURL = `http://zipcodehelper.herokuapp.com/api/zip?lng=${lng}&lat=${lat}`;
       fetch(zipURL, {
         method: 'GET',
+        credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -61,6 +62,7 @@ const userActions = {
       });
       fetch(url, {
         method: 'POST',
+        credentials: 'same-origin',
         body: data,
         headers: {
           'Content-Type': 'application/json',
@@ -85,6 +87,7 @@ const userActions = {
       const url = 'http://localhost:3000/api/login';
       fetch(url, {
         method: 'POST',
+        credentials: 'same-origin',
         body: data,
         headers: {
           'Content-Type': 'application/json',
@@ -119,9 +122,31 @@ const userActions = {
       }
     });
   },
+
   logoutUserClient: () => (
     {
       type: 'LOGOUT_USER',
+    }
+  ),
+
+  getUserInfo: () => (
+    (dispatch) => {
+      console.log('trying to get user info')
+      const url = 'http://localhost:3000/api/getUserInfo';
+      fetch(url, {
+        method: 'GET',
+        credentials: 'same-origin',
+      })
+      .then(res=> res.json())
+      .then(user =>{
+        console.log(user);
+        user = {
+          zipcode: user.zipcode,
+          id: user.id,
+          username: user.username,
+        }
+        dispatch(optimisticSignIn(user))
+      });
     }
   )
 };
