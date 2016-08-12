@@ -125,6 +125,20 @@ module.exports = {
     });
   },
 
+  removeListing: function (req, res) {
+    console.log(req.query["listingID"]);
+    Listing.findOne({ 
+      where: {
+        id : req.query['listingID']
+      }
+    })
+    .then(listing =>
+      listing.destroy()
+    ).then(deleted =>
+      res.json(deleted)
+    );
+
+  }
 };
 
 
