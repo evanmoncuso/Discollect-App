@@ -306,6 +306,8 @@ Create Listing View
     border: none;
     outline: none;
     background-color: inherit;
+    font-size: $font-medium;
+    color: $light-font;
   }
   .form_submit_button {
     border: none;
@@ -335,6 +337,7 @@ Dashboard View
     display: flex;
   }
   .user_items {
+
     flex-grow: 1;
     margin: 0 auto;
     align-items: stretch;
@@ -399,7 +402,7 @@ Dashboard View
 }
 
 .user_history {
-  margin-top: 240px;
+  top: 240px;
   padding:12px;
   border-left: 4px solid $dark-gray;
   background-color: $dark-gray;

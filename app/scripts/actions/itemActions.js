@@ -170,6 +170,8 @@ const itemActions = {
           pending: pending || [],
           waiting: waiting || [],
         });
+        browserHistory.push('/')
+        browserHistory.push('/dashboard')
       })
       .catch(err => {
         console.log(err);
@@ -181,9 +183,7 @@ const itemActions = {
     (dispatch) => {
       const url = `http://localhost:3000/api/getUserHistory?userid=${userId}`;
       fetch(url, {
-
         credentials: 'same-origin',
-        body: JSON.stringify({ userID }),
         headers: {
           'Content-Type': 'application/json',
         },

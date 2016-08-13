@@ -18,7 +18,9 @@ const middleware = [thunk, logger()];
 const store = createStore(reducer, applyMiddleware(...middleware));
 
 store.dispatch(userActions.getUserInfo());
-store.dispatch(itemActions.getLatestListings());
+// setInterval(() => {
+  store.dispatch(itemActions.getLatestListings());
+// }, 3000);
 
 const ProvidedApp = () => (
   <Provider store={store}>

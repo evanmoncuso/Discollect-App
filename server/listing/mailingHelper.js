@@ -12,10 +12,6 @@ const mail = (endpoint, data) => {
       'Content-Type': 'application/json',
     },
   })
-  .then((res) => {
-    console.log('yay');
-    console.log(res.json());
-  })
   .catch((err) => {
     if(err) {
       console.log(err);
@@ -24,6 +20,7 @@ const mail = (endpoint, data) => {
 };
 
 const getInfoForMessages = (req, endpoint) => {
+  console.log(req.body);
   Listing.findOne({
     where: {
       id: req.body.listingID,
@@ -36,14 +33,12 @@ const getInfoForMessages = (req, endpoint) => {
       }
     })
     .then((giver) => {
-      console.log(giver)
       User.findOne({
         where: {
           id: listing.takerId,
         }
       })
       .then((taker) => {
-        console.log(taker)
         let data = {
           giverUsername: giver.username,
           giverEmail: giver.email,
@@ -51,11 +46,6 @@ const getInfoForMessages = (req, endpoint) => {
           takerEmail: taker.email,
           itemname: listing.title,
         };
-        console.log(' ')
-        console.log(' ')
-        console.log(data);
-        console.log(' ')
-        console.log(' ')
 
         data = JSON.stringify(data);
 
