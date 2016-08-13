@@ -29,6 +29,7 @@ module.exports = function(app, express) {
   router.put('/getAllUserCiscollectorRatings', collectorRatingControl.getAllUserCollectorRatings);
 
 
+
   return router;
 };
 

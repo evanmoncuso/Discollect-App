@@ -1,6 +1,8 @@
 const fetch = require('isomorphic-fetch');
+const Listing = require('./listingModel.js');
+const User = require('../user/userModel.js');
 
-const sendEmail = (endpoint, data) => {
+const mail = (endpoint, data) => {
   let url = `https://discollect-mailservice.herokuapp.com/api/${endpoint}`
   fetch(url, {
     method: 'POST',
@@ -10,8 +12,9 @@ const sendEmail = (endpoint, data) => {
       'Content-Type': 'application/json',
     },
   })
-  .then(() => {
+  .then((res) => {
     console.log('yay');
+    console.log(res.json());
   })
   .catch((err) => {
     if(err) {
@@ -20,4 +23,44 @@ const sendEmail = (endpoint, data) => {
   })
 };
 
-module.exports = sendEmail;
+const getInfoForMessages = (req, endpoint) => {
+  Listing.findOne({
+    where: {
+      id: req.body.listingID,
+    }
+  })
+  .then((listing) => {
+    User.findOne({
+      where: {
+        id: listing.giverId,
+      }
+    })
+    .then((giver) => {
+      User.findOne({
+        where: {
+          id: listing.takerId,
+        }
+      })
+      .then((taker) => {
+        let data = {
+          giverUsername: giver.username,
+          giverEmail: giver.email,
+          takerUsername: taker.username,
+          takerEmail: taker.email,
+          itemname: listing.title,
+        };
+        console.log(' ')
+        console.log(' ')
+        console.log(data);
+        console.log(' ')
+        console.log(' ')
+
+        data = JSON.stringify(data);
+        
+        mail(endpoint, data);
+      })
+    })
+  })
+}
+
+module.exports = getInfoForMessages;

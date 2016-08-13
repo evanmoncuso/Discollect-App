@@ -40,7 +40,6 @@ module.exports = {
   },
 
   update: function(req, res) {
-
     Listing.findOne({
       where: {
         id: req.body.listingID,
@@ -55,6 +54,7 @@ module.exports = {
     })
     .then(function(listing) {
       res.send(listing)
+      mail(req, 'taken');
     })
     .catch(function(err) {
       console.log('error updating', err);
@@ -112,8 +112,8 @@ module.exports = {
         },
       })
       .then((items) => {
-        console.log(items);
         res.send(items);
+        mail(req, 'close');
       });
     });
   },
@@ -130,7 +130,6 @@ module.exports = {
     ).then(deleted =>
       res.json(deleted)
     );
-
   },
   getUserHistory: function(req, res) {
     Listing.findAll({
@@ -151,31 +150,7 @@ module.exports = {
       res.status(400).send(err);
     })
   },
-  test: function(req, res) {
-    Listing.findOne({
-      where: {
-        id: req.query.listingID,
-      }
-    })
-    .then((listing) => {
-      User.findOne({
-        where: {
-          id: listing.giverId,
-        }
-      })
-      .then((giver) => {
-        User.findOne({
-          where: {
-            id: listing.takerId,
-          }
-        }).then((taker) => {
-          res.send(JSON.stringify({giver, taker}));
-        })
-      })
-    })
-  }
-};
-
+}
 //https://www.zipcodeapi.com/rest/ZuYPOXpKUE8RDdLyX8t3MuU3bDjg70N6uMWjKl4E0dwDqicoqFrdamhl0AC7Bqe6/radius.json/<zip_code>/50/miles.
 // API key zipcodeAPI:
 // ZuYPOXpKUE8RDdLyX8t3MuU3bDjg70N6uMWjKl4E0dwDqicoqFrdamhl0AC7Bqe6
