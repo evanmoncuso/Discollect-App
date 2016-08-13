@@ -16,8 +16,6 @@ module.exports = {
 
   // getFilteredListings must be invoked with category, zipcodeArray and keywords
   getFilteredListings: function(req, res) {
-    // console.log("HHHHHIIIIIIIIII !! ~~~~~~~~~~~,", req.body.zipcodeArray);
-     // var zipQ = req.body.zipcodeArray.length > 0 ? '$or' : '$like';
      Listing.findAll({
           where: {
             $and:{
@@ -39,7 +37,6 @@ module.exports = {
         })
       //passes on all the listings that have that category
       .then(function(listings) {
-        // console.log('>>>>>>>>>>', listings);
         res.send(listings);
     });
   },
@@ -106,8 +103,6 @@ module.exports = {
       });
     })
     .then((data) => {
-      // console.log('~~~~~~~~~~~~~~~', data.dataValues.giverId);
-      // res.send(data);
       Listing.findAll({
         where: {
           $or: {

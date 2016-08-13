@@ -111,7 +111,9 @@ const userActions = {
   ),
   logoutUserServer: () => {
     const url = 'http://localhost:3000/api/logout';
-    fetch(url)
+    fetch(url,{
+      credentials: 'same-origin',
+    })
     .then((response) => {
       console.log('on Logout', response);
         browserHistory.push('/');
@@ -150,7 +152,6 @@ const userActions = {
     }
   ),
   getUserProfile: (userID) => (
-    // console.log('yo')
     (dispatch) => {
       const url = 'http://localhost:3000/api/userProfile';
       fetch(url, {

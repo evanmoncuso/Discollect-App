@@ -59,12 +59,16 @@ module.exports = {
   },
 
   logout: function(req, res) {
-    res.logout();
-    res.redirect('/login');
+    console.log('im in the logout route')
+    req.logout();
+    req.logOut();
+    req.session.destroy(function(err) {
+      console.log('in teh part to destroy sesh')  
+      res.send();
+    })
   },
 
   userProfile: function(req, res) {
-    // console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~');
     User.findOne({
       where: {
         id: req.body.userID,

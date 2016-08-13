@@ -11,7 +11,6 @@ app.use('/api', apiRoutes);
 
 // for react router browserHistory
 app.get('/*', (req, res) => {
-  // console.log("$$$$$$$$$$$$$");
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 

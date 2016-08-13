@@ -40,7 +40,7 @@ const users = (state = initUserState, action) => {
         zip: action.zip,
       });
     case 'LOGOUT_USER':
-      return initUserState;
+      return Object.assign({}, state, initUserState);
     default:
       return state;
   }

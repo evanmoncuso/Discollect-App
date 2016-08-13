@@ -12,6 +12,8 @@ var User = db.define('user', {
   zipcode: Sequelize.INTEGER,
 });
 
+
+
 User.beforeCreate(function(user, options, done) {
   bcrypt.genSalt(saltRounds, function(err, salt) {
     if (err) {

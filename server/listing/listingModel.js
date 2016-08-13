@@ -16,12 +16,11 @@ var Listing = db.define('Listing', {
 });
 
 Listing.belongsTo(User, {foreignKey: 'giverId', targetKey: 'id'});
-Listing.belongsTo(User, {foreignKey: 'takerId'});
+
 
 
 Listing.sync({ force: false });
 // TODO add a foreign key to listing referencing the user that created it
-// Listing.hasOne(User,{ foreignKey: 'id'})
 
 
 
