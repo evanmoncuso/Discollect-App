@@ -95,7 +95,6 @@ const userActions = {
       })
       .then((res) => res.json())
       .then((response) => {
-        console.log('checkuserlogin:: ', response);
         dispatch(optimisticSignIn(response));
         // function call coords&Zip
         let locationAllowed = confirm('Enable Location Services?');
@@ -133,7 +132,6 @@ const userActions = {
 
   getUserInfo: () => (
     (dispatch) => {
-      console.log('trying to get user info')
       const url = 'http://localhost:3000/api/getUserInfo';
       fetch(url, {
         method: 'GET',
