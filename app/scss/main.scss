@@ -8,105 +8,407 @@
 Grid
 ====================
  */
- * {
-  font-family: $secondary-font;
- }
 
-main {
-    max-width: 100%;
-    text-align: center;
-    margin: 0 auto 3em;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    // align-items: center;
-    border: 3px solid black;
-    background-color: #EFF;
-    font-size: 20px;
-    form input{
-      font-size: 20px;
-    }
+* {
+
 }
 
-.listView_container {
-  display: flex;
-  flex-wrap: wrap;
-  width: 960px;
-  margin: 12px auto;
-  .listView_entry {
-    box-shadow: 1px 1px 2px #333;
-    padding: 6px;
-    margin: 3px auto;
-    background-color: #EEE;
-    width: 280px;
-    margin: 5px auto;
-    img {
-      width: 150px;
-      height: 100px;
-    }
-  }
+body {
+  box-sizing: border-box;
+  font-family: $primary-font;
+  background-image: url('./yardsale.jpg');
+  background-blend-mode: darken;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+/*
+====================
+Title bar
+====================
+ */
 
 nav {
-  padding: 5px;
-  position: relative;
-  a {
-    font-size: 20px;
-    // margin: 3px 3px;
-  }
-  .nav_title{
-    font-family: $primary-font;
-    font-size: 45px;
-    color: $tertiary-color;
-    background-color: $primary-color;
-    padding: 12px;
-    margin: 0px;
-    float: left;
-  }
-  .app_points a,
-  .auth_points a{
-    font-family: $primary-font;
-    color: $tertiary-color;
-    background-color: $primary-color;
-    font-size: 25px;
-    float: right;
-    padding: 12px;
-  }
-  .auth_points > h3 {
+  width: 100%;
+  background-color: #fff;
+  padding: 24px;
+  border-bottom: 2px solid $dark-gray;
+  margin-bottom: 24px;
+  position: fixed;
+  z-index: 10;
+}
+
+nav * {
+  padding: 0;
+}
+
+.nav_title {
+  font-size: 48px;
+  line-height: 54px;
+  margin: 12px 12px 6px 12px;
+  color: $med-gray;
+  h4 {
+    color: $med-gray;
+    text-align: center;
+    font-size: 18px;
+    line-height: 22px;
   }
 }
 
-.nav_title > h4 {
-  font-size: 24px;
-  line-height: 32px;
+h1 {
+  font-size: 42px;
+  line-height: 54px;
+  text-align: center;
+  font-family: $secondary-font;
+  z-index: 12;
 }
 
-.search_bar {
-  background: #EEE url('yardsale.jpg') no-repeat center center;
-  background-size: cover;
-  height: 240px;
-  border-radius: 5px;
-  input, select, button  {
-    font-size: 15px;
-    font-family: 'Open Sans', sans-serif;
-    height: 40px;
-    background-color: #EEE;
-    border: 2px solid black;
-    position: relative;
-    transform: translateY(200%);
-    margin: 0 5px;
-  }
-  select, button {
-    transform: translateY(230%);
+.nav_container {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.nav_title,
+.user_points {
+  display: inline-block;
+}
+
+.nav_title {
+  img,
+  h1 {
+    display: inline-block;
+    z-index: 12;
   }
 }
 
 .main_container {
-  background-color: #DDD;
-  input {
+  width: 960px;
+  margin: 0 auto;
+  top: 200px;
+  position: relative;
+}
+
+.button {
+  display: block;
+  margin: 12px;
+
+}
+
+
+.user_points {
+  float: right;
+}
+
+.user_welcome {
+  font-size: 18px;
+}
+
+/*
+====================
+Search bar
+====================
+ */
+
+.search_bar {
+  width: 960px;
+  margin: 0 auto;
+  text-align: center;
+  .search_bar_input {
+    height: 32px;
+    font-size: 18px;
+    line-height: 22px;
+    border: none;
+    outline: none;
+    background-color: inherit;
+  }
+  .full_input {
+    display:inline-block;
+    label {
+      display:block;
+      text-align: left;
+    }
+    input {
+      width: 240px;
+    }
+  }
+  .keywords,
+  .zip {
+    border-bottom: 1px solid $dark-gray;
+    margin-left: 6px;
+  }
+  .search_button {
+    border: none;
+    border-radius: 0;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #D50000;
+    color: $light-font;
+    margin: 0 6px;
+    transition: 0.4s all ease-in;
+  }
+  .search_button:hover {
+    border: none;
+    border-radius: 0;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #F44336;
+    color: #fff;
+    margin: 0 6px;
+    transition: 0.4s all ease-in;
+  }
+  .search_button:active {
+    border: none;
+    border-radius: 0;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #fff;
+    color: $dark-font;
+    margin: 0 6px;
+    transition: 0.4s all ease-in;
+  }
+}
+
+/*
+====================
+Login / Signup
+====================
+ */
+
+.auth_input {
+  display:block;
+  width: 320px;
+  margin: 24px auto;
+  label {
     display: block;
-    width: 300px;
-    height: 40px;
+  }
+  input {
+    height: 32px;
+    font-size: 18px;
+    line-height: 22px;
+    border: none;
+    outline: none;
+    background-color: inherit;
+    color:$light-font;
+  }
+}
+
+.login_container,
+.signup_container {
+  width: 540px;
+  margin: 0 auto;
+  background-color: $dark-gray;
+  color: $light-font;
+  padding: 12px;
+}
+
+.form_submit_button {
+  border: none;
+  border-radius: 0;
+  padding: 12px;
+  font-size: 18px;
+  background-color: #1565C0;
+  color: $light-font;
+  margin: 0 6px;
+}
+
+/*
+====================
+List View
+====================
+ */
+
+.listings_container {
+  color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  top: 240px;
+  .listView_entry {
+    font-family: $secondary-font;
+    color: $dark-font;
+    background-color: #fff;
+    padding: 6px;
+    border-left: 4px solid $dark-gray;
+    margin: 12px 6px;
+    width: 280px;
+    height: 240px;
+    z-index: 0;
+    h2 {
+      font-size: 28px;
+      line-height: 32px;
+    }
+    .data_container {
+      display: flex;
+      .entry_img {
+        flex-grow: 1;
+        img {
+          width: 120px;
+        }
+      }
+      .entry_text {
+        flex-grow: 2;
+        span {
+          display:block;
+        }
+      }
+    }
+  }
+}
+
+/*
+====================
+Listing View
+====================
+ */
+.listing_container {
+  background-color: $dark-gray;
+  color:$light-font;
+  padding: 24px;
+  .listing_content {
+    display: flex;
+  }
+  h2 {
+    font-size: 48px;
+    text-align: center;
+  }
+  .image_pane {
+    flex-grow: 2;
+    img {
+      height: 180px;
+    }
+  }
+  .info_pane {
+    flex-grow: 1;
+    font-size: 22px;
+    line-height: 32px;
+    margin: 24px;
+  }
+  .listing_description {
+    width: 540px;
     margin: 0 auto;
   }
+  .listing_view_button {
+    border: none;
+    border-radius: 0;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #FDD835;
+    color: $dark-font;
+    margin: 0 6px;
+  }
+}
+/*
+====================
+Create Listing View
+====================
+ */
+
+.create_listing_container {
+  top: 240px;
+  padding:12px;
+  border-left: 4px solid $dark-gray;
+  background-color: $dark-gray;
+  color: $light-font;
+  margin: 0 auto;
+  select {
+    height: 32px;
+    font-size: 18px;
+    line-height: 22px;
+    border: none;
+    outline: none;
+    background-color: inherit;
+    color: $light-font;
+  }
+  .form_submit_button {
+    border: none;
+    border-radius: 0;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #FDD835;
+    color: $dark-font;
+    margin: 0 6px;
+  }
+}
+
+/*
+====================
+Dashboard View
+====================
+ */
+
+.dashboard_container {
+  top: 240px;
+  padding:12px;
+  border-left: 4px solid $dark-gray;
+  background-color: $dark-gray;
+  color: $light-font;
+  margin: 0 auto;
+  .user_items_container {
+    display: flex;
+  }
+  .user_items {
+    flex-grow: 1;
+    margin: 0 auto;
+    align-items: stretch;
+  }
+  .user_items > div {
+    display:block;
+  }
+  .active_heading,
+  .pending_heading,
+  .archive_heading {
+    text-align: center;
+    display: block;
+  }
+}
+
+.account_info {
+  margin: 0 auto;
+}
+
+/*
+====================
+Pane Entry View
+====================
+ */
+
+.pane_listing_entry {
+  height: 180px;
+  width: 240px;
+  padding: 12px;
+  margin: 12px auto;
+  background-color: #fff;
+  color: $dark-font;
+}
+
+.pane_listing_entry h2 {
+  text-align: center;
+}
+.right {
+  width: 120px;
+
+}
+
+.entry_img > img {
+  height: 120px;
+}
+
+.data_container {
+  margin-top: 20px;
+}
+
+.data_container > div {
+  display: inline-block;
+}
+
+.right > div {
+  display: block;
+}
+
+.entry_text > span {
+  display: block;
+  width:120px;
 }

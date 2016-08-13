@@ -25,7 +25,7 @@ const CreateListing = ({ dispatchCreateNewListing, dispatchSaveUpload, id, data_
 
   return (
     <div>
-      <div className="main_container">
+      <div className="main_container create_listing_container">
         <h1>Create a Listing</h1>
         <form encType="multipart/form-data"
           onSubmit={(e) => {
@@ -43,7 +43,7 @@ const CreateListing = ({ dispatchCreateNewListing, dispatchSaveUpload, id, data_
               giverId: id,
               takerId: null,
             };
-            
+
             console.log(data);
             dispatchCreateNewListing(data);
 
@@ -55,39 +55,52 @@ const CreateListing = ({ dispatchCreateNewListing, dispatchSaveUpload, id, data_
             condition.value = '5';
           }}
         >
-          <label htmlFor="title">Title</label>
-          <input ref={(node) => { title = node; }} id="title" required />
-          <label htmlFor="zip" >Zip Code</label>
-          <input ref={(node) => { zip = node; }} id="zip" required />
-          <label htmlFor="category">Categories</label>
-          <br />
-          <select ref={(node) => { category = node; }} id="category" required>
-            <option value="all-categories">All Categories</option>
-            <option value="appliances">Appliances</option>
-            <option value="fashion">Clothing, Shoes &amp; Jewelry</option>
-            <option value="furniture">Furniture</option>
-            <option value="books">Books</option>
-            <option value="electronics">Electronics</option>
-            <option value="tools">Tools &amp; Home Improvement</option>
-          </select>
-          <br />
-          <label htmlFor="condition" >Condition</label><br />
-          <select ref={(node) => { condition = node; }} id="condition" required>
-            <option value="5">New</option>
-            <option value="4">Excellent</option>
-            <option value="3">Good</option>
-            <option value="2">Fair</option>
-            <option value="1">Salvage</option>
-          </select><br />
-          <label htmlFor="image">Image</label><br />
-          <input ref={(node) => { image = node; }} name="photo" type="file" accept="image/*" onChange={handleChange}/>
-          <label htmlFor="description">Description</label>
-          <textarea ref={(node) => { description = node; }} id="description" required />
-          <button type="submit">Create</button>
+          <div className="auth_input">
+            <label htmlFor="title">Title</label>
+            <input ref={(node) => { title = node; }} id="title" required />
+          </div>
+          <div className="auth_input">
+            <label htmlFor="zip" >Zip Code</label>
+            <input ref={(node) => { zip = node; }} id="zip" required />
+          </div>
+          <div className="auth_input">
+            <label htmlFor="category">Categories</label>
+            <select ref={(node) => { category = node; }} id="category" required>
+              <option value="all-categories">All Categories</option>
+              <option value="appliances">Appliances</option>
+              <option value="fashion">Clothing, Shoes &amp; Jewelry</option>
+              <option value="furniture">Furniture</option>
+              <option value="books">Books</option>
+              <option value="electronics">Electronics</option>
+              <option value="tools">Tools &amp; Home Improvement</option>
+            </select>
+          </div>
+          <div className="auth_input">
+            <label htmlFor="condition" >Condition</label><br />
+            <select ref={(node) => { condition = node; }} id="condition" required>
+              <option value="5">New</option>
+              <option value="4">Excellent</option>
+              <option value="3">Good</option>
+              <option value="2">Fair</option>
+              <option value="1">Salvage</option>
+            </select>
+          </div>
+          <div className="auth_input">
+            <label htmlFor="image">Image</label><br />
+            <input
+              ref={(node) => { image = node; }}
+              name="photo"
+              type="file"
+              accept="image/*"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="auth_input">
+            <label htmlFor="description">Description</label>
+            <textarea ref={(node) => { description = node; }} id="description" required />
+          </div>
+          <button type="submit" className="form_submit_button">Create</button>
         </form>
-
-        <img src="https://s3-us-west-1.amazonaws.com/discollect/Thisisatestnull" width='200' />
-
       </div>
     </div>
   );

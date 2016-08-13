@@ -25,17 +25,21 @@ const SearchBar = ({ commitSearch, userCoords, userZip }) => {
           zip.value = '';
         }}
       >
-        <input
-          className="search_bar_input keywords"
-          ref={(node) => { keywords = node; }}
-          placeholder="keywords"
-        />
-        <input
-          className="search_bar_input zip"
-          ref={(node) => { zip = node; }}
-          placeholder={userZip || 'zip'}
-        />
-        <select ref={(node) => { category = node; }} id="category" required>
+        <div className="full_input">
+          <label htmlFor="keywords">keyword: </label>
+          <input
+            className="search_bar_input keywords"
+            ref={(node) => { keywords = node; }}
+          />
+        </div>
+        <div className="full_input">
+          <label htmlFor="zip">zipcode: </label>
+          <input
+            className="search_bar_input zip"
+            ref={(node) => { zip = node; }}
+          />
+        </div>
+        <select ref={(node) => { category = node; }} id="category" className="search_bar_input full_input" required>
           <option value="all-categories">All Categories</option>
           <option value="appliances">Appliances</option>
           <option value="fashion">Clothing, Shoes &amp; Jewelry</option>
@@ -43,7 +47,7 @@ const SearchBar = ({ commitSearch, userCoords, userZip }) => {
           <option value="electronics">Electronics</option>
           <option value="tools">Tools &amp; Home Improvement</option>
         </select>
-        <button>search</button>
+        <button className="search_button">search</button>
       </form>
     </div>
   );
