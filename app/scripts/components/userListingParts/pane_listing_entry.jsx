@@ -29,7 +29,7 @@ const PaneListingEntry = ({ item, dispatchCloseListing, closeable, removeable })
               onClick={() => {
                 dispatchCloseListing(item.id)
             }}>
-              Close
+              Picked up
             </button>) : ''}
             {removeable ? (<button
               className="pane_listing_button remove"

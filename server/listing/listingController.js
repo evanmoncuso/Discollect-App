@@ -27,7 +27,7 @@ module.exports = {
                 $like: req.body.category === 'all-categories' ? '%%' : req.body.category,
               },
               title:{
-                $like: req.body.keywords ? `%${req.body.keywords}%` : '%%', //select listings with a pattern matching keyword 
+                $like: req.body.keywords ? `%${req.body.keywords}%` : '%%', //select listings with a pattern matching keyword
               }
             }
           },
@@ -73,16 +73,16 @@ module.exports = {
   },
 
   getUsersListings: function(req, res) {
+    let userId = +req.query.userid;
     Listing.findAll({
       where: {
         $or: {
-          giverId: req.body.userID,
-          takerId: req.body.userID,
+          giverId: userId,
+          takerId: userId,
         },
       },
     })
     .then((items) => {
-      // console.log(items);
       res.send(items);
     })
     .catch((err) => {
@@ -120,7 +120,7 @@ module.exports = {
 
   removeListing: function (req, res) {
     console.log(req.query["listingID"]);
-    Listing.findOne({ 
+    Listing.findOne({
       where: {
         id : req.query['listingID']
       }
@@ -131,6 +131,25 @@ module.exports = {
       res.json(deleted)
     );
 
+  },
+  getUserHistory: function(req, res) {
+    Listing.findAll({
+      where: {
+        $and: {
+          status: 2,
+          $or: {
+            takerId: req.query.userid,
+            giverId: req.query.userid,
+          }
+        }
+      }
+    })
+    .then(userHistory => {
+      res.send(JSON.stringify(userHistory));
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    })
   }
 };
 
@@ -138,5 +157,3 @@ module.exports = {
 //https://www.zipcodeapi.com/rest/ZuYPOXpKUE8RDdLyX8t3MuU3bDjg70N6uMWjKl4E0dwDqicoqFrdamhl0AC7Bqe6/radius.json/<zip_code>/50/miles.
 // API key zipcodeAPI:
 // ZuYPOXpKUE8RDdLyX8t3MuU3bDjg70N6uMWjKl4E0dwDqicoqFrdamhl0AC7Bqe6
-
-

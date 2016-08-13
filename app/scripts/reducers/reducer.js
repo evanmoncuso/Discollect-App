@@ -24,8 +24,8 @@ const users = (state = initUserState, action) => {
     case 'LOGOUT_USER':
       return Object.assign({}, state, {
         username:null,
-        password: null, 
-      })  
+        password: null,
+      })
     case 'SAVE_USER_ID':
       return Object.assign({}, state, {
         userID: action.userID,
@@ -40,7 +40,11 @@ const users = (state = initUserState, action) => {
         zip: action.zip,
       });
     case 'LOGOUT_USER':
-      return Object.assign({}, state, initUserState);
+      return initUserState;
+    case 'GET_USER_HISTORY':
+      return Object.assign({}, state, {
+        history: action.history,
+      });
     default:
       return state;
   }
@@ -107,12 +111,20 @@ const upload = (state = {}, action) => {
 //       return state;
 //   }
 // };
+const initialUserListingsState = {
+  active: [],
+  pending: [],
+  waiting: [],
+}
 
-const usersListings = (state = [], action) => {
+const usersListings = (state = initialUserListingsState, action) => {
   switch (action.type) {
     case 'GET_USERS_LISTINGS':
-      // console.log('~~~',action.userListings);
-      return action.usersListings;
+      return Object.assign({}, state, {
+        active: action.active,
+        pending: action.pending,
+        waiting: action.waiting,
+      });
     default:
       return state;
   }

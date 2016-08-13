@@ -16,10 +16,14 @@ Grid
 body {
   box-sizing: border-box;
   font-family: $primary-font;
-  background-image: url('./yardsale.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: #333;
+  // background-image: url('./yardsale.jpg');
+  // http://i.stack.imgur.com/jGlzr.png
+  // background-image: url('https://dealfuel.com/wp-content/uploads/2015/06/color5.png');
+  background-repeat: repeat;
+  // background-size: cover;
+  background-color: #e7e7e7;
+  // background-color: #fff;
+
 }
 
 a {
@@ -232,11 +236,13 @@ List View
     background-color: #fff;
     padding: 6px;
     border-left: 4px solid $dark-gray;
+    // border-bottom: 1px solid $light-gray;
     margin: 12px 6px;
     width: 280px;
     height: 240px;
     z-index: 0;
     h2 {
+      text-align: center;
       font-size: 28px;
       line-height: 32px;
     }
@@ -322,6 +328,11 @@ Create Listing View
     background-color: inherit;
     color: $light-font;
   }
+  #description {
+    border: none;
+    outline: none;
+    background-color: inherit;
+  }
   .form_submit_button {
     border: none;
     border-radius: 0;
@@ -359,7 +370,7 @@ Dashboard View
   }
   .active_heading,
   .pending_heading,
-  .archive_heading {
+  .waiting_heading {
     text-align: center;
     display: block;
   }
@@ -367,20 +378,25 @@ Dashboard View
 
 .account_info {
   margin: 0 auto;
-}
-
-.top_row_container {
-  text-align: center;
-  margin-bottom: 24px;
-}
-
-.top_row_container > div {
-  display: inline-block;
-}
-.image_and_label {
-  .about {
+  .user_picture {
     text-align: center;
-    font-size: 32px;
+  }
+  .about {
+    margin: 12px;
+    text-align: center;
+  }
+  .account_history {
+    display: block;
+    width: 240px;
+    vertical-align: bottom;
+    text-align: center;
+    padding: 12px;
+    border: none;
+    border-radius: 0;
+    margin: 12px auto;
+    font-size: 18px;
+    background-color: #1565C0;
+    color: $light-font;
   }
 }
 
@@ -389,19 +405,6 @@ Dashboard View
   margin: 0 auto;
   width: 200px;
   text-align: center;
-  button {
-    vertical-align: bottom;
-    text-align: center;
-    display: inline-block;
-    border: none;
-    border-radius: 0;
-    padding: 12px;
-    font-size: 18px;
-    background-color: #1565C0;
-    color: $light-font;
-    margin: 6px;
-    width: 108px;
-  }
 }
 
 .pane_listing_button {
@@ -421,6 +424,32 @@ Dashboard View
   padding: 12px 0;
 }
 
+.user_history {
+  margin-top: 240px;
+  padding:12px;
+  border-left: 4px solid $dark-gray;
+  background-color: $dark-gray;
+  color: $light-font;
+  margin: 0 auto;
+}
+
+.hist_list_item {
+  height: 120px;
+  .data_container {
+    display: inline-block;
+  }
+  h3 {
+    font-size: 24px;
+    margin: 12px;
+  }
+  span {
+    display: block;
+    margin: 24px;
+  }
+  .pane_listing_button {
+    float: right;
+  }
+}
 /*
 ====================
 Pane Entry View

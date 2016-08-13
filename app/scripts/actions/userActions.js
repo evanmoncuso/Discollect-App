@@ -141,7 +141,6 @@ const userActions = {
       })
       .then(res=> res.json())
       .then(user =>{
-        console.log(user);
         user = {
           zipcode: user.zipcode,
           id: user.id,

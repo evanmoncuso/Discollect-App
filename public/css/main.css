@@ -85,6 +85,11 @@ nav * {
   line-height: 54px;
   margin: 12px 12px 6px 12px;
   color: #555; }
+  .nav_title h4 {
+    color: #555;
+    text-align: center;
+    font-size: 18px;
+    line-height: 22px; }
 
 h1 {
   font-size: 42px;
@@ -269,7 +274,8 @@ Listing View
   .listing_container .info_pane {
     flex-grow: 1;
     font-size: 22px;
-    line-height: 32px; }
+    line-height: 32px;
+    margin: 24px; }
   .listing_container .listing_description {
     width: 540px;
     margin: 0 auto; }

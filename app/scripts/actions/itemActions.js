@@ -13,7 +13,7 @@ export const saveUpload = (data_uri, filename, filetype) => (
   {
     type: 'ON_UPLOAD',
     data_uri,
-    filename, 
+    filename,
     filetype,
   }
 );
@@ -67,7 +67,7 @@ const itemActions = {
     }
   ),
 
-  postListingAfterPhoto: (data) => 
+  postListingAfterPhoto: (data) =>
     (dispatch) => {
     console.log('postListingAfterPhoto');
     const url = 'http://localhost:3000/api/createNewListing';
@@ -163,24 +163,69 @@ const itemActions = {
     }
   ),
 
-  getUsersListings: (userID) => (
-    // get listings associated with user at userID
+  getUserHistory: (userId) => (
     (dispatch) => {
-      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-      const url = 'http://localhost:3000/api/getUsersListings';
+      const url = `http://localhost:3000/api/getUserHistory?userid=${userId}`;
       fetch(url, {
-        method: 'PUT',
-        body: JSON.stringify({ userID }),
         headers: {
           'Content-Type': 'application/json',
         },
       })
       .then((res) => res.json())
       .then((response) => {
-        console.log('GET USERS LISTINGS>>>>>: ', response);
+        dispatch({
+          type: 'GET_USER_HISTORY',
+          history: [{
+            category: "all-categories",
+            condition: 5,
+            createdAt: "2016-08-13T02:18:34.000Z",
+            description: "They are apples.",
+            giverId: 2,
+            id: 43,
+            picReference: null,
+            status: 0,
+            takerId: null,
+            title: "Apples",
+            updatedAt: "2016-08-13T02:18:34.000Z",
+            zipcode: 12345,
+          }],
+        });
+      })
+      .catch((err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
+  ),
+
+  getUsersListings: (userId) => (
+    (dispatch) => {
+      const url = `http://localhost:3000/api/getUsersListings?userid=${userId}`;
+      fetch(url, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => res.json())
+      .then((response) => {
+        let active = [];
+        let pending = [];
+        let waiting = [];
+        for (let item of response) {
+          if (item.giverId === userId && item.status === 0) {
+            active.push(item);
+          } else if (item.giverId === userId && item.status === 1) {
+            pending.push(item);
+          } else if (item.takerId === userId && item.status === 1) {
+            waiting.push(item);
+          }
+        }
         dispatch({
           type: 'GET_USERS_LISTINGS',
-          usersListings: response,
+          active: active || [],
+          pending: pending || [],
+          waiting: waiting || [],
         });
       })
       .catch((err) => {

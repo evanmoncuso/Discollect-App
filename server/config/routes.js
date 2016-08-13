@@ -17,10 +17,12 @@ module.exports = function(app, express) {
   router.put('/getFilteredListings', listingControl.getFilteredListings);
   router.get('/getAllListings', listingControl.getAllListings);
   router.post('/createNewListing', listingControl.createNewListing);
-  router.put('/getUsersListings', listingControl.getUsersListings);
+  router.get('/getUsersListings', listingControl.getUsersListings);
   router.put('/closeListing', listingControl.closeListing);
   router.delete('/removeListing', listingControl.removeListing);
-  
+  router.get('/getUserHistory', listingControl.getUserHistory);
+
+
   return router;
 };
 
