@@ -87,6 +87,7 @@ module.exports = {
           takerId: userId,
         },
       },
+      order: [['createdAt', 'DESC']]
     })
     .then((items) => {
       var data = {
@@ -119,6 +120,7 @@ module.exports = {
             takerId: data.dataValues.giverId,
           },
         },
+        order: [['createdAt', 'DESC']]
       })
       .then((items) => {
         res.send(items);
@@ -148,9 +150,10 @@ module.exports = {
           $or: {
             takerId: req.query.userid,
             giverId: req.query.userid,
-          }
-        }
-      }
+          },
+        },
+      },
+      order: [['createdAt', 'DESC']]
     })
     .then(userHistory => {
       res.send(JSON.stringify(userHistory));
