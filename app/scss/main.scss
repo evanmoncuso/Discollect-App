@@ -148,26 +148,6 @@ Search bar
     margin: 0 6px;
     transition: 0.4s all ease-in;
   }
-  .search_button:hover {
-    border: none;
-    border-radius: 0;
-    padding: 12px;
-    font-size: $font-medium;
-    background-color: #F44336;
-    color: #fff;
-    margin: 0 6px;
-    transition: 0.4s all ease-in;
-  }
-  .search_button:active {
-    border: none;
-    border-radius: 0;
-    padding: 12px;
-    font-size: 18px;
-    background-color: #fff;
-    color: $dark-font;
-    margin: 0 6px;
-    transition: 0.4s all ease-in;
-  }
 }
 
 /*
@@ -428,7 +408,7 @@ Dashboard View
 }
 
 .hist_list_item {
-  height: 120px;
+  height: 240px;
   .data_container {
     display: inline-block;
   }

@@ -1,9 +1,8 @@
-var Listing = require('./listingModel.js');
-var User = require('../user/userModel.js');
-var Sequelize = require('sequelize');
-var db = require('../config/database.js');
-// require('es6-promise').polyfill(); // only need if fetch is brought back to be done here
-// require('isomorphic-fetch');
+const Sequelize = require('sequelize');
+const Listing = require('./listingModel.js');
+const User = require('../user/userModel.js');
+const db = require('../config/database.js');
+const mail = require('./mailingHelper.js');
 
 module.exports = {
   getAllListings: function (req, res) {
@@ -41,7 +40,6 @@ module.exports = {
   },
 
   update: function(req, res) {
-
     Listing.findOne({
       where: {
         id: req.body.listingID,
@@ -56,6 +54,7 @@ module.exports = {
     })
     .then(function(listing) {
       res.send(listing)
+      mail(req, 'taken');
     })
     .catch(function(err) {
       console.log('error updating', err);
@@ -113,8 +112,8 @@ module.exports = {
         },
       })
       .then((items) => {
-        console.log(items);
         res.send(items);
+        mail(req, 'close');
       });
     });
   },
@@ -131,7 +130,6 @@ module.exports = {
     ).then(deleted =>
       res.json(deleted)
     );
-
   },
   getUserHistory: function(req, res) {
     Listing.findAll({
@@ -151,10 +149,8 @@ module.exports = {
     .catch((err) => {
       res.status(400).send(err);
     })
-  }
-};
-
-
+  },
+}
 //https://www.zipcodeapi.com/rest/ZuYPOXpKUE8RDdLyX8t3MuU3bDjg70N6uMWjKl4E0dwDqicoqFrdamhl0AC7Bqe6/radius.json/<zip_code>/50/miles.
 // API key zipcodeAPI:
 // ZuYPOXpKUE8RDdLyX8t3MuU3bDjg70N6uMWjKl4E0dwDqicoqFrdamhl0AC7Bqe6

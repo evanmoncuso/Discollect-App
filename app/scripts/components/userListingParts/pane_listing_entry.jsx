@@ -5,7 +5,8 @@ import { browserHistory, Link } from 'react-router';
 import itemActions from '../../actions/itemActions.js';
 
 
-const PaneListingEntry = ({ item, closeable, removeable }) => {
+const PaneListingEntry = (
+  { item, closeable, removeable, dispatchCloseListing, dispatchRemoveListing }) => {
   closeable = closeable || false;
   removeable = removeable || false;
   return (
@@ -27,14 +28,15 @@ const PaneListingEntry = ({ item, closeable, removeable }) => {
             {closeable ? (<button
               className="pane_listing_button close"
               onClick={() => {
-                this.props.dispatchCloseListing(item.id)
+                console.log(item.id);
+                dispatchCloseListing(item.id)
             }}>
               Picked up
             </button>) : ''}
             {removeable ? (<button
               className="pane_listing_button remove"
               onClick={() => {
-                this.props.dispatchRemoveListing(item.id);
+                dispatchRemoveListing(item.id);
             }}>
               Remove
             </button>) : ''}
