@@ -59,9 +59,7 @@ module.exports = {
   },
 
   logout: function(req, res) {
-    console.log('im in the logout route')
     req.logout();
-    req.logOut();
     req.session.destroy(function(err) {
       console.log('in teh part to destroy sesh')  
       res.send();
@@ -82,4 +80,10 @@ module.exports = {
       console.log(err);
     });
   },
+
+
+  getUserInfo: function(req, res) {
+
+  },
+  
 };
