@@ -6,6 +6,7 @@ const initUserState = {
   id: null,
   username: null,
   password: null,
+  picReference: null, 
 };
 
 const users = (state = initUserState, action) => {
@@ -15,6 +16,7 @@ const users = (state = initUserState, action) => {
         zip: action.zip,
         id: action.id,
         username: action.username,
+        picReference: action.picReference,
       });
     case 'ID_USER':
       return Object.assign({}, state, {

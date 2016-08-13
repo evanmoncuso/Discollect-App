@@ -2,12 +2,13 @@ import fetch from 'isomorphic-fetch';
 
 import { browserHistory } from 'react-router';
 
-const optimisticSignIn = ({ zipcode, username, id }) => (
+const optimisticSignIn = ({ zipcode, username, id, picReference }) => (
   {
     type: 'LOGIN_VALID',
     zipcode,
     username,
     id,
+    picReference,
   }
 );
 
@@ -81,6 +82,7 @@ const userActions = {
       });
     }
   ),
+
   checkUserLogin: (username, password) => (
     (dispatch) => {
       const data = JSON.stringify({ username, password });
@@ -108,6 +110,7 @@ const userActions = {
       });
     }
   ),
+
   logoutUserServer: () => {
     const url = 'http://localhost:3000/api/logout';
     fetch(url,{
@@ -143,11 +146,13 @@ const userActions = {
           zipcode: user.zipcode,
           id: user.id,
           username: user.username,
+          picReference: user.picReference,
         }
         dispatch(optimisticSignIn(user))
       });
     }
   ),
+
   getUserProfile: (userID) => (
     (dispatch) => {
       const url = 'http://localhost:3000/api/userProfile';
@@ -169,6 +174,41 @@ const userActions = {
       .catch(err => {
         console.log(err);
       });
+    }
+  ),
+
+  uploadProfilePic: (data) => (
+    (dispatch) => {
+      const urlPhoto = 'http://photohelper.herokuapp.com/api/createNewListing';
+      fetch(urlPhoto, {
+        method: 'POST', 
+        body: JSON.stringify(data),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+      })
+      .then(response=> response.json())
+      .then((res)=> {
+        console.log('s3 response', res);
+        const url = 'http://localhost:3000/api/updatePic';
+        const updateData = {
+          userId: data.giverId,
+          picReference: res,
+        };
+        fetch(url, {
+          method: 'PUT', 
+          credentials: 'same-origin',
+          body: JSON.stringify(updateData),
+          headers: {
+          'Content-Type': 'application/json',
+        }, 
+        })
+        .then(dbRes=> dbRes.json())
+        .then(user=>{
+          console.log('user',user);
+          dispatch(optimisticSignIn(user));
+        })
+      })
     }
   ),
 };
