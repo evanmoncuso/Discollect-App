@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 
 import itemActions from '../../actions/itemActions.js';
 
 
-const PaneListingEntry = ({ item, dispatchCloseListing, closeable, removeable }) => {
+const PaneListingEntry = ({ item, closeable, removeable }) => {
   closeable = closeable || false;
   removeable = removeable || false;
   return (
@@ -18,18 +18,23 @@ const PaneListingEntry = ({ item, dispatchCloseListing, closeable, removeable })
             <span className="entry_desc">zipcode: {item.zipcode}</span>
           </div>
           <div className="entry_buttons">
-            <button onClick={() => {
-                browserHistory.push('/listing/' + item.id)
-            }}>
+            <Link
+              className="pane_listing_button view"
+              to={'/listing/' + item.id}
+            >
               View
-            </button>
-            {closeable ? (<button onClick={() => {
-                dispatchCloseListing(item.id)
+            </Link>
+            {closeable ? (<button
+              className="pane_listing_button close"
+              onClick={() => {
+                this.props.dispatchCloseListing(item.id)
             }}>
-              Close
+              Picked up
             </button>) : ''}
-            {removeable ? (<button onClick={() => {
-              console.log('you did it!');
+            {removeable ? (<button
+              className="pane_listing_button remove"
+              onClick={() => {
+                this.props.dispatchRemoveListing(item.id);
             }}>
               Remove
             </button>) : ''}

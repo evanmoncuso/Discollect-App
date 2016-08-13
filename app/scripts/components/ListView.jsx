@@ -5,7 +5,6 @@ import itemActions from '../actions/itemActions.js';
 import { browserHistory } from 'react-router';
 
 function trigger(data) {
-  // console.log('asdasd', data)
   browserHistory.push('/listing/' + data)
 }
 

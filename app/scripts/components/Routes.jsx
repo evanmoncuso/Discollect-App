@@ -10,6 +10,7 @@ import Signup from './Signup.jsx';
 import Dashboard from './Dashboard.jsx';
 import CreateListing from './CreateListing.jsx';
 import Profile from './Profile.jsx';
+import History from './History.jsx';
 
 export default (
   <Route path="/" component={App} >
@@ -20,6 +21,7 @@ export default (
     <Route path="/listing/:id" component={Listing} />
     <Route path="/createlisting" component={CreateListing} />
     <Route path="/profile/:id" component={Profile} />
+    <Route path="/history/:id" component={History} />
   </Route>
 );
 

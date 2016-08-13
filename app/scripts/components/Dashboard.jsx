@@ -25,9 +25,8 @@ class Dashboard extends React.Component {
   }
 
   toggleHistory() {
-    this.setState({
-      historyView: !this.state.historyView,
-    });
+    this.props.dispatchCallForHistory(this.props.userID);
+    browserHistory.push('/history/' + this.props.userID);
   }
 
   render() {
@@ -36,6 +35,7 @@ class Dashboard extends React.Component {
         <div className="main_container dashboard_container">
           <h1>Dashboard</h1>
           <AccountInfo
+            view={this.state.historyView}
             toggleHistory={this.toggleHistory.bind(this)} username={this.props.username}
           />
           <div className="user_items_container">
@@ -68,21 +68,19 @@ class Dashboard extends React.Component {
               </div>
             </div>
             <div className="user_items">
-              {this.state.historyView ? (
-                <div>
-                  <div className="archive_heading">
-                    <h2>Archive Items</h2>
-                  </div>
-                  <div className="archive_items">
-                    {this.props.archivedTakenItems.map((item, i) => {
-                      return <PaneListing
-                        key={i}
-                        item={item}
-                      />
-                    })}
-                  </div>
+              <div>
+                <div className="waiting_heading">
+                  <h2>Waiting Items</h2>
                 </div>
-              ) : ' '}
+                <div className="waiting_items">
+                  {this.props.waitingTakenItems.map((item, i) => {
+                    return <PaneListing
+                      key={i}
+                      item={item}
+                    />
+                  })}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -95,15 +93,9 @@ const mapStateToProps = (state) => {
   return {
     username: state.users.username,
     userID: state.users.id,
-    activeGivingItems: state.usersListings.filter(item => (
-      item.giverId === state.users.id && item.status === 0
-    )),
-    pendingGivingItems: state.usersListings.filter(item => (
-      item.giverId === state.users.id && item.status === 1
-    )),
-    archivedTakenItems: state.usersListings.filter(item => (
-      item.takerId === state.users.id && item.status === 1
-    )),
+    activeGivingItems: state.usersListings.active,
+    pendingGivingItems: state.usersListings.pending,
+    waitingTakenItems: state.usersListings.waiting,
   };
 };
 
@@ -117,6 +109,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     dispatchRemoveListing: (listingID) => {
       dispatch(itemActions.removeListing(listingID));
+    },
+    dispatchCallForHistory: (userID) => {
+      dispatch(itemActions.getUserHistory(userID));
     },
   };
 };

@@ -16,10 +16,8 @@ Grid
 body {
   box-sizing: border-box;
   font-family: $primary-font;
-  background-image: url('./yardsale.jpg');
-  background-blend-mode: darken;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-repeat: repeat;
+  background-color: #e7e7e7;
 }
 
 a {
@@ -47,7 +45,7 @@ nav * {
 }
 
 .nav_title {
-  font-size: 48px;
+  font-size: $title-font;
   line-height: 54px;
   margin: 12px 12px 6px 12px;
   color: $med-gray;
@@ -60,10 +58,10 @@ nav * {
 }
 
 h1 {
-  font-size: 42px;
+  font-size: $title-font;
   line-height: 54px;
   text-align: center;
-  font-family: $secondary-font;
+  font-family: $primary-font;
   z-index: 12;
 }
 
@@ -95,7 +93,7 @@ h1 {
 .button {
   display: block;
   margin: 12px;
-
+  font-size: $button-font-large;
 }
 
 
@@ -104,7 +102,7 @@ h1 {
 }
 
 .user_welcome {
-  font-size: 18px;
+  font-size: $font-medium;
 }
 
 /*
@@ -119,7 +117,7 @@ Search bar
   text-align: center;
   .search_bar_input {
     height: 32px;
-    font-size: 18px;
+    font-size: $font-small;
     line-height: 22px;
     border: none;
     outline: none;
@@ -144,7 +142,7 @@ Search bar
     border: none;
     border-radius: 0;
     padding: 12px;
-    font-size: 18px;
+    font-size: 22px;
     background-color: #D50000;
     color: $light-font;
     margin: 0 6px;
@@ -154,7 +152,7 @@ Search bar
     border: none;
     border-radius: 0;
     padding: 12px;
-    font-size: 18px;
+    font-size: $font-medium;
     background-color: #F44336;
     color: #fff;
     margin: 0 6px;
@@ -187,7 +185,7 @@ Login / Signup
   }
   input {
     height: 32px;
-    font-size: 18px;
+    font-size: $font-medium;
     line-height: 22px;
     border: none;
     outline: none;
@@ -209,7 +207,7 @@ Login / Signup
   border: none;
   border-radius: 0;
   padding: 12px;
-  font-size: 18px;
+  font-size: $font-medium;
   background-color: #1565C0;
   color: $light-font;
   margin: 0 6px;
@@ -232,12 +230,14 @@ List View
     background-color: #fff;
     padding: 6px;
     border-left: 4px solid $dark-gray;
+    // border-bottom: 1px solid $light-gray;
     margin: 12px 6px;
     width: 280px;
     height: 240px;
     z-index: 0;
     h2 {
-      font-size: 28px;
+      text-align: center;
+      font-size: $font-large;
       line-height: 32px;
     }
     .data_container {
@@ -271,7 +271,7 @@ Listing View
     display: flex;
   }
   h2 {
-    font-size: 48px;
+    font-size: $font-large;
     text-align: center;
   }
   .image_pane {
@@ -282,7 +282,7 @@ Listing View
   }
   .info_pane {
     flex-grow: 1;
-    font-size: 22px;
+    font-size: $font-medium;
     line-height: 32px;
     margin: 24px;
   }
@@ -294,7 +294,7 @@ Listing View
     border: none;
     border-radius: 0;
     padding: 12px;
-    font-size: 18px;
+    font-size: $font-medium;
     background-color: #FDD835;
     color: $dark-font;
     margin: 0 6px;
@@ -315,18 +315,23 @@ Create Listing View
   margin: 0 auto;
   select {
     height: 32px;
-    font-size: 18px;
+    font-size: $font-medium;
     line-height: 22px;
     border: none;
     outline: none;
     background-color: inherit;
     color: $light-font;
   }
+  #description {
+    border: none;
+    outline: none;
+    background-color: inherit;
+  }
   .form_submit_button {
     border: none;
     border-radius: 0;
     padding: 12px;
-    font-size: 18px;
+    font-size: $font-medium;
     background-color: #FDD835;
     color: $dark-font;
     margin: 0 6px;
@@ -359,7 +364,7 @@ Dashboard View
   }
   .active_heading,
   .pending_heading,
-  .archive_heading {
+  .waiting_heading {
     text-align: center;
     display: block;
   }
@@ -367,6 +372,88 @@ Dashboard View
 
 .account_info {
   margin: 0 auto;
+  .user_picture {
+    text-align: center;
+  }
+  .about {
+    margin: 12px;
+    text-align: center;
+  }
+  .account_history {
+    display: block;
+    width: 240px;
+    vertical-align: bottom;
+    text-align: center;
+    padding: 12px;
+    border: none;
+    border-radius: 0;
+    margin: 12px auto;
+    font-size: $font-medium;
+    background-color: #1565C0;
+    color: $light-font;
+  }
+}
+
+.display_history_container {
+  display: inline-block;
+  margin: 0 auto;
+  width: 200px;
+  text-align: center;
+}
+
+.pane_listing_button {
+  text-align: center;
+  display: inline-block;
+  border: none;
+  border-radius: 0;
+  padding: 12px;
+  font-size: $font-small;
+  background-color: #FDD835;
+  color: $dark-font;
+  margin: 6px;
+  width: 108px;
+}
+
+.view {
+  padding: 12px 0;
+}
+
+.user_history {
+  margin-top: 240px;
+  padding:12px;
+  border-left: 4px solid $dark-gray;
+  background-color: $dark-gray;
+  color: $light-font;
+  margin: 0 auto;
+}
+
+.hist_list_item {
+  height: 120px;
+  .data_container {
+    display: inline-block;
+  }
+  h3 {
+    font-size: $font-large;
+    margin: 12px;
+  }
+  span {
+    display: block;
+    margin: 24px;
+  }
+  .pane_listing_button {
+    float: right;
+  }
+}
+/*
+====================
+Profile view
+====================
+ */
+
+.profile_name {
+  color: $dark-font;
+  font-size: $font-large;
+  text-align: center;
 }
 
 /*
