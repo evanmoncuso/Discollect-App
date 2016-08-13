@@ -23,9 +23,8 @@ let ListEntry = (props) => {
             </div>
           </div>
         </div>
-        <Link to={`/profile/${props.entry.giverId}`}>
-          User Profile: {props.entry.giverId}
-        </Link>
+        <Link to={`/profile/${props.entry.giverId}`} >{props.entry.username}</Link>
+
       </div>
   );
 };
