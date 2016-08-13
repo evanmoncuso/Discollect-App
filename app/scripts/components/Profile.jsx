@@ -7,20 +7,18 @@ class Profile extends React.Component {
     super(props);
   }
   componentDidMount(){
-    console.log(this.props.params.id);
     this.props.dispatchGetUserProfile(this.props.params.id);
   }
   render() {
     return (
-      <div>
-        <div>
-          <img src={this.props.picReference || "https://huxley.wwu.edu/sites/huxley.wwu.edu/files/default_images/user-icon.png"} />
-          <h1>{this.props.username}</h1>
-        </div>
-        <div>
-          <div>Zipcode: {this.props.zipcode || 'N/A'}</div>
-          <div>Rating: {this.props.rating || 0}</div>
-          <div>Email: <a href={this.props.email}>{this.props.email || 'none'}</a></div>
+      <div className="main_container profile">
+        <div className="account_info">
+          <div className="user_picture">
+            <img src="https://huxley.wwu.edu/sites/huxley.wwu.edu/files/default_images/user-icon.png" alt="user" />
+          </div>
+          <div className="profile_name">
+            {this.props.username}
+          </div>
         </div>
       </div>
     );
@@ -49,5 +47,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Profile);
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

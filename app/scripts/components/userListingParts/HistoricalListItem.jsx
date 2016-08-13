@@ -6,7 +6,7 @@ const HistoricalListItem = ({ item }) => {
   var timeAgo = moment(item.updatedAt).fromNow();
   return (
     <div className="hist_list_item">
-      <div>
+      <div className="data_container">
         <h3>{item.title}</h3>
         <span>{item.giver}</span>
         <span>{item.description}</span>

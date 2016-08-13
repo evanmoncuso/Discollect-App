@@ -77,7 +77,6 @@ class Dashboard extends React.Component {
                     return <PaneListing
                       key={i}
                       item={item}
-                      closeable={true}
                     />
                   })}
                 </div>
