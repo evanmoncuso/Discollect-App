@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 
 // createUserCollectorRating
 const ratingActions = {
-  createRating: (table, rater_id, ratee_id, rating, review) => (
+  createRating: (table, rater_id, ratee_id, listing_id, rating, review) => (
     // createCollectorRating
     // createDiscollectorRating
     (dispatch) => {
@@ -11,7 +11,7 @@ const ratingActions = {
       const url = `http://localhost:3000/api/create${table}Rating`;
       fetch(url, {
         method: 'POST',
-        body: JSON.stringify({ rater_id, ratee_id, rating, review }),
+        body: JSON.stringify({ rater_id, ratee_id, listing_id, rating, review }),
         headers: {
           'Content-Type': 'application/json',
         },
