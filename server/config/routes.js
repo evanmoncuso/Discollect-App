@@ -1,5 +1,7 @@
 const userControl = require('../user/userController');
-const listingControl = require('../listing/listingController.js');
+const listingControl = require('../listing/listingController');
+const discollectorRatingControl = require('../discollector_rating/discollectorRatingController');
+const collectorRatingControl = require('../collector_rating/collectorRatingController');
 const passport = require('passport');
 
 
@@ -7,7 +9,7 @@ module.exports = function(app, express) {
   const router = express.Router();
 
   router.get('/getUserInfo', userControl.getUserInfo);
-  router.post('/login', passport.authenticate('local', {failureRedirect: '/'}), userControl.login);
+  router.post('/login', passport.authenticate('local', { failureRedirect: '/' }), userControl.login);
   router.post('/signup', userControl.signup);
   router.get('/logout', userControl.logout);
   router.put('/update', listingControl.update);

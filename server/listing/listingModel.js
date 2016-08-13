@@ -11,12 +11,11 @@ var Listing = db.define('Listing', {
   picReference: Sequelize.STRING,
   category: Sequelize.STRING,
   description: Sequelize.STRING,
-  condition: Sequelize.INTEGER
+  condition: Sequelize.INTEGER,
 
 });
 
 Listing.belongsTo(User, {foreignKey: 'giverId', targetKey: 'id'});
-
 
 
 Listing.sync({ force: false });
