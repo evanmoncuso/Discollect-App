@@ -30,7 +30,8 @@ module.exports = {
     var message = {
       id: req.user.id,
       username: req.user.username,
-      zipcode: req.user.zipcode
+      zipcode: req.user.zipcode,
+      picReference: req.user.picReference,
     };
     res.json(message);
   },

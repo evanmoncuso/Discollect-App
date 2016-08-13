@@ -42,15 +42,22 @@ const itemActions = {
   postNewListing: (listingData) => (
     (dispatch) => {
       const photoUrl = 'http://photohelper.herokuapp.com/api/createNewListing';
-      const url = 'http://localhost:3000/api/createNewListing'
+      const url = 'http://localhost:3000/api/createNewListing';
       if (listingData.picReference === undefined) {
-        console.log('picRef is undefined')
         dispatch(itemActions.postListingAfterPhoto(listingData));
       } else {
-        console.log('picref is good')
+        var photoData = {
+          title: listingData.title,
+          picReference: listingData.picReference,
+          filename: listingData.filename,
+          filetype: listingData.filetype,
+          giverId: listingData.giverId,
+        };
+        console.log("++++++++++++++++++",listingData);
+        console.log('-------------------', photoData);
         fetch(photoUrl, {
           method: 'POST',
-          body: JSON.stringify(listingData),
+          body: JSON.stringify(photoData),
           headers: {
             'Content-Type': 'application/json',
           },
@@ -59,7 +66,6 @@ const itemActions = {
         .then((response) => {
           console.log(response)
           listingData.picReference = response;
-          console.log(listingData);
           dispatch(itemActions.postListingAfterPhoto(listingData));
         })
       }
@@ -68,9 +74,7 @@ const itemActions = {
 
   postListingAfterPhoto: (data) =>
     (dispatch) => {
-    console.log('postListingAfterPhoto');
     const url = 'http://localhost:3000/api/createNewListing';
-    console.log(data)
     fetch(url, {
       method: 'POST',
       body: JSON.stringify(data),

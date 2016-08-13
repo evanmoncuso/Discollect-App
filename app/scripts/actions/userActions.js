@@ -81,6 +81,7 @@ const userActions = {
       });
     }
   ),
+
   checkUserLogin: (username, password) => (
     (dispatch) => {
       const data = JSON.stringify({ username, password });
@@ -108,6 +109,7 @@ const userActions = {
       });
     }
   ),
+
   logoutUserServer: () => {
     const url = 'http://localhost:3000/api/logout';
     fetch(url,{
@@ -143,11 +145,13 @@ const userActions = {
           zipcode: user.zipcode,
           id: user.id,
           username: user.username,
+          picReference: user.picReference,
         }
         dispatch(optimisticSignIn(user))
       });
     }
   ),
+
   getUserProfile: (userID) => (
     (dispatch) => {
       const url = 'http://localhost:3000/api/userProfile';
@@ -169,6 +173,22 @@ const userActions = {
       .catch(err => {
         console.log(err);
       });
+    }
+  ),
+
+  uploadProfilePic: (data) => (
+    (dispatch) => {
+      const urlPhoto = 'http://photohelper.herokuapp.com/api/createNewListing';
+      fetch(urlPhoto, {
+        method: 'POST', 
+        body: JSON.stringify(data),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+      })
+      .then(()=> {
+        console.log('All is Well')
+      })
     }
   ),
 };
