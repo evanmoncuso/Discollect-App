@@ -6,7 +6,7 @@ const mail = require('./mailingHelper.js');
 
 module.exports = {
   getAllListings: function (req, res) {
-    db.query('SELECT  l.id, l.title, l.zipcode, l.takerId, l.status, l.picReference, l.category, l.description, l.condition, l.createdAt, l.giverId, u.username FROM Listings l, users u WHERE l.giverId = u.id;', { type: Sequelize.QueryTypes.SELECT })
+    db.query('SELECT  l.id, l.title, l.zipcode, l.takerId, l.status, l.picReference, l.category, l.description, l.condition, l.createdAt, l.giverId, u.username FROM Listings l, users u WHERE l.giverId = u.id ORDER BY 1 ASC;', { type: Sequelize.QueryTypes.SELECT })
     .then((items) => {
       res.send(items);
     });
@@ -119,7 +119,7 @@ module.exports = {
   },
 
   removeListing: function (req, res) {
-    console.log(req.query["listingID"]);
+    // console.log(req.query["listingID"]);
     Listing.findOne({
       where: {
         id : req.query['listingID']

@@ -5,6 +5,7 @@ var User = require('../user/userModel.js');
 var DiscollectorRating = db.define('discollector_rating', {
   rater_id: { type: Sequelize.INTEGER, defaultValue: null },
   ratee_id: { type: Sequelize.INTEGER, defaultValue: null },
+  listing_id: { type: Sequelize.INTEGER, defaultValue: null },
   rating: { type: Sequelize.INTEGER, defaultValue: 0 },
   review: { type: Sequelize.STRING, defaultValue: null },
 });

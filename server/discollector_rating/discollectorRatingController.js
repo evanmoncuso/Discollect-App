@@ -19,16 +19,16 @@ module.exports = {
         res.send(ratings);
       });
     },
-    getAvgUserRating: function(req, res){
-      CollectorRatingModel.findAll({
-        where: {
-          ratee_id: req.body.rateeID,
-        }
-      })
-      .then(function(ratings){
-        // mean logic
-      });
-    },  
+    // getAvgUserRating: function(req, res){
+    //   CollectorRatingModel.findAll({
+    //     where: {
+    //       ratee_id: req.body.rateeID,
+    //     }
+    //   })
+    //   .then(function(ratings){
+    //     // mean logic
+    //   });
+    // },  
 
 };
 

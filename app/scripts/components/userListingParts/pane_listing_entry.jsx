@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
 
 import itemActions from '../../actions/itemActions.js';
+import ratingActions from '../../actions/ratingActions.js';
 
 
-const PaneListingEntry = (
-  { item, closeable, removeable, dispatchCloseListing, dispatchRemoveListing }) => {
+const PaneListingEntry = ({ item, closeable, removeable, userID, dispatchCloseListing, dispatchCreateRating, dispatchRemoveListing }) => {
   closeable = closeable || false;
   removeable = removeable || false;
   return (
@@ -28,8 +28,10 @@ const PaneListingEntry = (
             {closeable ? (<button
               className="pane_listing_button close"
               onClick={() => {
-                console.log(item.id);
-                dispatchCloseListing(item.id)
+                let rating = prompt("Please give a user rating (1 - 5)");
+                console.log('!', userID, item.giverId, item.id, rating, dispatchCreateRating);
+                dispatchCreateRating('Collector', userID, item.takerId, item.id, rating, 'N/A');
+                dispatchCloseListing(item.id);
             }}>
               Picked up
             </button>) : ''}
@@ -44,7 +46,13 @@ const PaneListingEntry = (
          </div>
       </div>
     </div>
-  )
+  );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    userID: state.users.id,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -55,8 +63,11 @@ const mapDispatchToProps = (dispatch) => {
     dispatchRemoveListing: (listingId) => {
       dispatch(itemActions.removeListing(listingId));
     },
+    dispatchCreateRating: (table, raterID, rateeID, listing_id, rating, review) => {
+      dispatch(ratingActions.createRating(table, raterID, rateeID, listing_id, rating, review));
+    },
   };
 };
 
 
-module.exports = connect(null, mapDispatchToProps)(PaneListingEntry);
+module.exports = connect(mapStateToProps, mapDispatchToProps)(PaneListingEntry);
