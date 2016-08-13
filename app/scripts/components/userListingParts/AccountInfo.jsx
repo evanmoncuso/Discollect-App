@@ -6,6 +6,7 @@ const AccountInfo = ({ username, toggleHistory, view, userId, dispatchUploadProf
   let image;
   let filename;
   let filetype;
+  let profileImage = picReference ? picReference : "https://huxley.wwu.edu/sites/huxley.wwu.edu/files/default_images/user-icon.png";
 
     const encodeImage = (element) => {
     const reader = new FileReader();
@@ -21,7 +22,7 @@ const AccountInfo = ({ username, toggleHistory, view, userId, dispatchUploadProf
   return (
     <div className="account_info">
       <div className="user_picture">
-        <img src={picReference} alt="https://huxley.wwu.edu/sites/huxley.wwu.edu/files/default_images/user-icon.png" />
+        <img src={profileImage} alt="user" />
       </div>
       <div className="about">{username ? username : 'NOT A VALID USER'}</div>
       <button
