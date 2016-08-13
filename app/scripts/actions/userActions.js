@@ -2,12 +2,13 @@ import fetch from 'isomorphic-fetch';
 
 import { browserHistory } from 'react-router';
 
-const optimisticSignIn = ({ zipcode, username, id }) => (
+const optimisticSignIn = ({ zipcode, username, id, picReference }) => (
   {
     type: 'LOGIN_VALID',
     zipcode,
     username,
     id,
+    picReference,
   }
 );
 
@@ -186,8 +187,27 @@ const userActions = {
             'Content-Type': 'application/json',
           },
       })
-      .then(()=> {
-        console.log('All is Well')
+      .then(response=> response.json())
+      .then((res)=> {
+        console.log('s3 response', res);
+        const url = 'http://localhost:3000/api/updatePic';
+        const updateData = {
+          userId: data.giverId,
+          picReference: res,
+        };
+        fetch(url, {
+          method: 'PUT', 
+          credentials: 'same-origin',
+          body: JSON.stringify(updateData),
+          headers: {
+          'Content-Type': 'application/json',
+        }, 
+        })
+        .then(dbRes=> dbRes.json())
+        .then(user=>{
+          console.log('user',user);
+          dispatch(optimisticSignIn(user));
+        })
       })
     }
   ),

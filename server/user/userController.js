@@ -82,5 +82,23 @@ module.exports = {
     });
   },
 
+  updatePic: function(req, res) {
+    console.log(req.body);
+    User.findOne({
+      where: {
+        id: req.body.userId,
+      },
+    })
+    .then(user => {
+      console.log(user);
+      return user.update({
+        picReference: req.body.picReference,
+      });
+    })
+    .then((user)=>{
+      user.password = null;
+      res.send(user);
+    });
+  }
 
 };

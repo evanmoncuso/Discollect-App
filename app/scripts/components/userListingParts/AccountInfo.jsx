@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import userActions from '../../actions/userActions.js';
 
-const AccountInfo = ({ username, toggleHistory, view, userId, dispatchUploadProfilePic }) => {
+const AccountInfo = ({ username, toggleHistory, view, userId, dispatchUploadProfilePic, picReference}) => {
   let image;
   let filename;
   let filetype;
@@ -21,7 +21,7 @@ const AccountInfo = ({ username, toggleHistory, view, userId, dispatchUploadProf
   return (
     <div className="account_info">
       <div className="user_picture">
-        <img src="https://huxley.wwu.edu/sites/huxley.wwu.edu/files/default_images/user-icon.png" alt="user" />
+        <img src={picReference} alt="https://huxley.wwu.edu/sites/huxley.wwu.edu/files/default_images/user-icon.png" />
       </div>
       <div className="about">{username ? username : 'NOT A VALID USER'}</div>
       <button
@@ -74,6 +74,7 @@ AccountInfo.propTypes = {
     return {
       username: state.users.username,
       userId: state.users.id,
+      picReference: state.users.picReference,
     };
   };
 
