@@ -15,9 +15,7 @@ class Dashboard extends React.Component {
   }
 
   componentWillMount() {
-    if (this.props.userID) {
-      this.props.dispatchGetUserListings(this.props.userID);
-    }
+      this.props.dispatchGetUserListings();
   }
 
   closeListingHandler(listingID) {
@@ -102,7 +100,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     dispatchGetUserListings: (userID) => {
-      dispatch(itemActions.getUsersListings(userID));
+      dispatch(itemActions.getUsersListings());
     },
     dispatchCloseListing: (listingID) => {
       dispatch(itemActions.closeListing(listingID));

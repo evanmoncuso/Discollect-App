@@ -8,7 +8,6 @@ const passport = require('passport');
 module.exports = function(app, express) {
   const router = express.Router();
 
-  router.get('/user', userControl.getUser);
   router.get('/getUserInfo', userControl.getUserInfo);
   router.post('/login', passport.authenticate('local', { failureRedirect: '/' }), userControl.login);
   router.post('/signup', userControl.signup);
