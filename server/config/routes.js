@@ -23,7 +23,10 @@ module.exports = function(app, express) {
   router.put('/closeListing', listingControl.closeListing);
   router.delete('/removeListing', listingControl.removeListing);
   router.get('/getUserHistory', listingControl.getUserHistory);
-
+  router.post('/createDiscollectorRating', discollectorRatingControl.createDiscollectorRating);
+  router.put('/getAllUserDiscollectorRatings', discollectorRatingControl.getAllUserDiscollectorRatings);
+  router.post('/createCollectorRating', collectorRatingControl.createCollectorRating);
+  router.put('/getAllUserCiscollectorRatings', collectorRatingControl.getAllUserCollectorRatings);
 
   return router;
 };
