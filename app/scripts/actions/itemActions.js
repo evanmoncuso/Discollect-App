@@ -30,7 +30,6 @@ const itemActions = {
       })
       .then((res) => res.json())
       .then((response) => {
-        console.log('~~~~~~~~~~~~~~~~~~~',response);
         dispatch(optimisticSetItems(response));
       })
       .catch((err) => {
@@ -167,6 +166,9 @@ const itemActions = {
     (dispatch) => {
       const url = `http://localhost:3000/api/getUserHistory?userid=${userId}`;
       fetch(url, {
+
+        credentials: 'same-origin',
+        body: JSON.stringify({ userID }),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -201,23 +203,21 @@ const itemActions = {
 
   getUsersListings: (userId) => (
     (dispatch) => {
-      const url = `http://localhost:3000/api/getUsersListings?userid=${userId}`;
+      const url = 'http://localhost:3000/api/getUsersListings';
       fetch(url, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        credentials: 'same-origin',
       })
       .then((res) => res.json())
       .then((response) => {
         let active = [];
         let pending = [];
         let waiting = [];
-        for (let item of response) {
-          if (item.giverId === userId && item.status === 0) {
+        for (let item of response.items) {
+          if (item.giverId === response.id && item.status === 0) {
             active.push(item);
-          } else if (item.giverId === userId && item.status === 1) {
+          } else if (item.giverId === response.id && item.status === 1) {
             pending.push(item);
-          } else if (item.takerId === userId && item.status === 1) {
+          } else if (item.takerId === response.id && item.status === 1) {
             waiting.push(item);
           }
         }

@@ -9,7 +9,6 @@ module.exports = {
   getAllListings: function (req, res) {
     db.query('SELECT  l.id, l.title, l.zipcode, l.takerId, l.status, l.picReference, l.category, l.description, l.condition, l.createdAt, l.giverId, u.username FROM Listings l, users u WHERE l.giverId = u.id;', { type: Sequelize.QueryTypes.SELECT })
     .then((items) => {
-      console.log(items);
       res.send(items);
     });
   },
@@ -67,13 +66,12 @@ module.exports = {
   createNewListing: function(req, res) {
     Listing.create(req.body)
     .then(list => {
-      console.log(list);
       res.send(list);
     })
   },
 
   getUsersListings: function(req, res) {
-    let userId = +req.query.userid;
+    let userId = req.user.id;
     Listing.findAll({
       where: {
         $or: {
@@ -83,7 +81,11 @@ module.exports = {
       },
     })
     .then((items) => {
-      res.send(items);
+      var data = {
+        id: req.user.id,
+        items: items,
+      };
+      res.json(data);
     })
     .catch((err) => {
       res.status(400).send(err);
@@ -91,7 +93,6 @@ module.exports = {
   },
 
   closeListing: function (req, res) {
-    // console.log('~~~~~~~~~~~~~~', req.body);
     Listing.findOne({
       where: {
         id: req.body.listingID,
