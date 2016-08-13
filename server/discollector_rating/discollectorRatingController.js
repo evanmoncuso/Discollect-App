@@ -8,7 +8,7 @@ module.exports = {
         res.send(rating);
       });
     },
-    getAllUserRatings: function (req, res) {
+    getAllUserDiscollectorRatings: function (req, res) {
       CollectorRatingModel.findAll({
         where: {
           ratee_id: req.body.rateeID,
@@ -16,7 +16,19 @@ module.exports = {
       })
       .then(function(ratings) {
         console.log(ratings);
+        res.send(ratings);
       });
     },
+    getAvgUserRating: function(req, res){
+      CollectorRatingModel.findAll({
+        where: {
+          ratee_id: req.body.rateeID,
+        }
+      })
+      .then(function(ratings){
+        // mean logic
+      });
+    },  
+
 };
 
