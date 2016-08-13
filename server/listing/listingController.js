@@ -113,7 +113,7 @@ module.exports = {
       })
       .then((items) => {
         res.send(items);
-        mail(req, 'close');
+        mail(req, 'closed');
       });
     });
   },
