@@ -1,17 +1,15 @@
 var Listing = require('./listingModel.js');
+var User = require('../user/userModel.js');
+var Sequelize = require('sequelize');
+var db = require('../config/database.js');
 // require('es6-promise').polyfill(); // only need if fetch is brought back to be done here
 // require('isomorphic-fetch');
 
 module.exports = {
   getAllListings: function (req, res) {
-    Listing.findAll({
-      where: {
-        status: 0,
-      },
-      limit: 20,
-      order: [['createdAt', 'DESC']],
-    })
+    db.query('SELECT  l.id, l.title, l.zipcode, l.takerId, l.status, l.picReference, l.category, l.description, l.condition, l.createdAt, l.giverId, u.username FROM Listings l, users u WHERE l.giverId = u.id;', { type: Sequelize.QueryTypes.SELECT })
     .then((items) => {
+      console.log(items);
       res.send(items);
     });
   },

@@ -15,7 +15,7 @@ let ListEntry = (props) => {
           <p>{props.entry.description}</p>
           <p>{timeAgo}</p>
         </div>
-        <Link to={`/profile/${props.entry.giverId}`} >User Profile Link {props.entry.giverId}</Link>
+        <Link to={`/profile/${props.entry.giverId}`} >{props.entry.username}</Link>
       </div>
   );
 };
