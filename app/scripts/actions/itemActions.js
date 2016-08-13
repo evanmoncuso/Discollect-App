@@ -147,13 +147,24 @@ const itemActions = {
       })
       .then(res => res.json())
       .then(res => {
-        console.log('///////', userID, '/////', res);
-        // itemActions.getUsersListings(res.giverId);
-        // browserHistory.push('/');
-        // browserHistory.push('/dashboard');
+        let active = [];
+        let pending = [];
+        let waiting = [];
+        console.log(res);
+        for (let item of res) {
+          if (item.giverId === userID && item.status === 0) {
+            active.push(item);
+          } else if (item.giverId === userID && item.status === 1) {
+            pending.push(item);
+          } else if (item.takerId === userID && item.status === 1) {
+            waiting.push(item);
+          }
+        }
         dispatch({
           type: 'GET_USERS_LISTINGS',
-          usersListings: res,
+          active: active || [],
+          pending: pending || [],
+          waiting: waiting || [],
         });
       })
       .catch(err => {
