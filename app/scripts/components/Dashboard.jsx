@@ -36,6 +36,7 @@ class Dashboard extends React.Component {
         <div className="main_container dashboard_container">
           <h1>Dashboard</h1>
           <AccountInfo
+            view={this.state.historyView}
             toggleHistory={this.toggleHistory.bind(this)} username={this.props.username}
           />
           <div className="user_items_container">

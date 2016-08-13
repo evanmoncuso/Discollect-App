@@ -17,9 +17,9 @@ body {
   box-sizing: border-box;
   font-family: $primary-font;
   background-image: url('./yardsale.jpg');
-  background-blend-mode: darken;
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: #333;
 }
 
 a {
@@ -367,6 +367,58 @@ Dashboard View
 
 .account_info {
   margin: 0 auto;
+}
+
+.top_row_container {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.top_row_container > div {
+  display: inline-block;
+}
+.image_and_label {
+  .about {
+    text-align: center;
+    font-size: 32px;
+  }
+}
+
+.display_history_container {
+  display: inline-block;
+  margin: 0 auto;
+  width: 200px;
+  text-align: center;
+  button {
+    vertical-align: bottom;
+    text-align: center;
+    display: inline-block;
+    border: none;
+    border-radius: 0;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #1565C0;
+    color: $light-font;
+    margin: 6px;
+    width: 108px;
+  }
+}
+
+.pane_listing_button {
+  text-align: center;
+  display: inline-block;
+  border: none;
+  border-radius: 0;
+  padding: 12px;
+  font-size: 12px;
+  background-color: #FDD835;
+  color: $dark-font;
+  margin: 6px;
+  width: 108px;
+}
+
+.view {
+  padding: 12px 0;
 }
 
 /*

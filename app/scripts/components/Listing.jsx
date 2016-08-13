@@ -18,19 +18,21 @@ const Listing = (props) => {
   }
   var curr = curr1(listIDX);
   var listingID = curr.id;
+
   const backer = () => {
     browserHistory.goBack();
   };
 
   let pic = curr.picReference || defaultImage;
 
-const condish = {
-  "1": "New",
-  "2": "Excellent",
-  "3": "Good",
-  "4": "Fair",
-  "5": "Salvage",
-}
+  const condish = {
+    '1': 'New',
+    '2': 'Excellent',
+    '3': 'Good',
+    '4': 'Fair',
+    '5': 'Salvage',
+  }
+
   return (
     <div className="main_container listing_container">
       <h2> {curr.title} </h2>
@@ -83,17 +85,6 @@ const condish = {
     </div>
   );
 };
-//
-// <div>
-//   <h4 className='listingTitle'>{curr.title}</h4>
-//   <h4>Status: {!!curr.status}</h4>
-//   <h3 className="listingDescription">{curr.description}</h3>
-//   <h3 className="listingCondition">Condition: {condish[curr.condition]}</h3>
-//   <img className="listingImage" src={curr.picReference} />
-//   <h2 className="listingGiver">{curr.giverId}</h2>
-
-//
-// </div>
 
 const mapStateToProps = (state) => {
   return {
