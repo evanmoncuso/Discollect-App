@@ -1,9 +1,8 @@
-var Listing = require('./listingModel.js');
-var User = require('../user/userModel.js');
-var Sequelize = require('sequelize');
-var db = require('../config/database.js');
-// require('es6-promise').polyfill(); // only need if fetch is brought back to be done here
-// require('isomorphic-fetch');
+const Sequelize = require('sequelize');
+const Listing = require('./listingModel.js');
+const User = require('../user/userModel.js');
+const db = require('../config/database.js');
+const mail = require('./mailingHelper.js');
 
 module.exports = {
   getAllListings: function (req, res) {
@@ -117,6 +116,8 @@ module.exports = {
         res.send(items);
       });
     });
+
+
   },
 
   removeListing: function (req, res) {

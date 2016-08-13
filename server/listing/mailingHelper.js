@@ -1,4 +1,4 @@
-const fetch = require('isometric-fetch');
+const fetch = require('isomorphic-fetch');
 
 const sendEmail = (endpoint, data) => {
   let url = `https://discollect-mailservice.herokuapp.com/api/${endpoint}`
