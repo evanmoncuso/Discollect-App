@@ -36,12 +36,14 @@ const getInfoForMessages = (req, endpoint) => {
       }
     })
     .then((giver) => {
+      console.log(giver)
       User.findOne({
         where: {
           id: listing.takerId,
         }
       })
       .then((taker) => {
+        console.log(taker)
         let data = {
           giverUsername: giver.username,
           giverEmail: giver.email,
@@ -56,7 +58,7 @@ const getInfoForMessages = (req, endpoint) => {
         console.log(' ')
 
         data = JSON.stringify(data);
-        
+
         mail(endpoint, data);
       })
     })
