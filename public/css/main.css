@@ -54,10 +54,8 @@ Grid
 body {
   box-sizing: border-box;
   font-family: "Lato";
-  background-image: url("./yardsale.jpg");
-  background-blend-mode: darken;
-  background-repeat: no-repeat;
-  background-size: cover; }
+  background-repeat: repeat;
+  background-color: #e7e7e7; }
 
 a {
   text-decoration: none;
@@ -92,10 +90,10 @@ nav * {
     line-height: 22px; }
 
 h1 {
-  font-size: 42px;
+  font-size: 48px;
   line-height: 54px;
   text-align: center;
-  font-family: "Open Sans";
+  font-family: "Lato";
   z-index: 12; }
 
 .nav_container {
@@ -119,13 +117,14 @@ h1 {
 
 .button {
   display: block;
-  margin: 12px; }
+  margin: 12px;
+  font-size: 18px; }
 
 .user_points {
   float: right; }
 
 .user_welcome {
-  font-size: 18px; }
+  font-size: 22px; }
 
 /*
 ====================
@@ -138,7 +137,7 @@ Search bar
   text-align: center; }
   .search_bar .search_bar_input {
     height: 32px;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 22px;
     border: none;
     outline: none;
@@ -158,27 +157,9 @@ Search bar
     border: none;
     border-radius: 0;
     padding: 12px;
-    font-size: 18px;
+    font-size: 22px;
     background-color: #D50000;
     color: #F7F7F7;
-    margin: 0 6px;
-    transition: 0.4s all ease-in; }
-  .search_bar .search_button:hover {
-    border: none;
-    border-radius: 0;
-    padding: 12px;
-    font-size: 18px;
-    background-color: #F44336;
-    color: #fff;
-    margin: 0 6px;
-    transition: 0.4s all ease-in; }
-  .search_bar .search_button:active {
-    border: none;
-    border-radius: 0;
-    padding: 12px;
-    font-size: 18px;
-    background-color: #fff;
-    color: #424242;
     margin: 0 6px;
     transition: 0.4s all ease-in; }
 
@@ -195,7 +176,7 @@ Login / Signup
     display: block; }
   .auth_input input {
     height: 32px;
-    font-size: 18px;
+    font-size: 22px;
     line-height: 22px;
     border: none;
     outline: none;
@@ -214,7 +195,7 @@ Login / Signup
   border: none;
   border-radius: 0;
   padding: 12px;
-  font-size: 18px;
+  font-size: 22px;
   background-color: #1565C0;
   color: #F7F7F7;
   margin: 0 6px; }
@@ -240,7 +221,8 @@ List View
     height: 240px;
     z-index: 0; }
     .listings_container .listView_entry h2 {
-      font-size: 28px;
+      text-align: center;
+      font-size: 32px;
       line-height: 32px; }
     .listings_container .listView_entry .data_container {
       display: flex; }
@@ -265,7 +247,7 @@ Listing View
   .listing_container .listing_content {
     display: flex; }
   .listing_container h2 {
-    font-size: 48px;
+    font-size: 32px;
     text-align: center; }
   .listing_container .image_pane {
     flex-grow: 2; }
@@ -283,7 +265,7 @@ Listing View
     border: none;
     border-radius: 0;
     padding: 12px;
-    font-size: 18px;
+    font-size: 22px;
     background-color: #FDD835;
     color: #424242;
     margin: 0 6px; }
@@ -302,17 +284,21 @@ Create Listing View
   margin: 0 auto; }
   .create_listing_container select {
     height: 32px;
-    font-size: 18px;
+    font-size: 22px;
     line-height: 22px;
     border: none;
     outline: none;
     background-color: inherit;
     color: #F7F7F7; }
+  .create_listing_container #description {
+    border: none;
+    outline: none;
+    background-color: inherit; }
   .create_listing_container .form_submit_button {
     border: none;
     border-radius: 0;
     padding: 12px;
-    font-size: 18px;
+    font-size: 22px;
     background-color: #FDD835;
     color: #424242;
     margin: 0 6px; }
@@ -339,12 +325,81 @@ Dashboard View
     display: block; }
   .dashboard_container .active_heading,
   .dashboard_container .pending_heading,
-  .dashboard_container .archive_heading {
+  .dashboard_container .waiting_heading {
     text-align: center;
     display: block; }
 
 .account_info {
   margin: 0 auto; }
+  .account_info .user_picture {
+    text-align: center; }
+  .account_info .about {
+    margin: 12px;
+    text-align: center; }
+  .account_info .account_history {
+    display: block;
+    width: 240px;
+    vertical-align: bottom;
+    text-align: center;
+    padding: 12px;
+    border: none;
+    border-radius: 0;
+    margin: 12px auto;
+    font-size: 22px;
+    background-color: #1565C0;
+    color: #F7F7F7; }
+
+.display_history_container {
+  display: inline-block;
+  margin: 0 auto;
+  width: 200px;
+  text-align: center; }
+
+.pane_listing_button {
+  text-align: center;
+  display: inline-block;
+  border: none;
+  border-radius: 0;
+  padding: 12px;
+  font-size: 14px;
+  background-color: #FDD835;
+  color: #424242;
+  margin: 6px;
+  width: 108px; }
+
+.view {
+  padding: 12px 0; }
+
+.user_history {
+  margin-top: 240px;
+  padding: 12px;
+  border-left: 4px solid #333;
+  background-color: #333;
+  color: #F7F7F7;
+  margin: 0 auto; }
+
+.hist_list_item {
+  height: 240px; }
+  .hist_list_item .data_container {
+    display: inline-block; }
+  .hist_list_item h3 {
+    font-size: 32px;
+    margin: 12px; }
+  .hist_list_item span {
+    display: block;
+    margin: 24px; }
+  .hist_list_item .pane_listing_button {
+    float: right; }
+
+/*
+====================
+Profile view
+====================
+ */
+.profile_name {
+  color: #424242;
+  font-size: 32px;
+  text-align: center; }
 
 /*
 ====================

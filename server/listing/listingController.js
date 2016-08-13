@@ -116,8 +116,6 @@ module.exports = {
         res.send(items);
       });
     });
-
-
   },
 
   removeListing: function (req, res) {
@@ -152,9 +150,31 @@ module.exports = {
     .catch((err) => {
       res.status(400).send(err);
     })
+  },
+  test: function(req, res) {
+    Listing.findOne({
+      where: {
+        id: req.query.listingID,
+      }
+    })
+    .then((listing) => {
+      User.findOne({
+        where: {
+          id: listing.giverId,
+        }
+      })
+      .then((giver) => {
+        User.findOne({
+          where: {
+            id: listing.takerId,
+          }
+        }).then((taker) => {
+          res.send(JSON.stringify({giver, taker}));
+        })
+      })
+    })
   }
 };
-
 
 //https://www.zipcodeapi.com/rest/ZuYPOXpKUE8RDdLyX8t3MuU3bDjg70N6uMWjKl4E0dwDqicoqFrdamhl0AC7Bqe6/radius.json/<zip_code>/50/miles.
 // API key zipcodeAPI:
