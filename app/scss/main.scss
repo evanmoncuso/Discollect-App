@@ -78,6 +78,7 @@ h1 {
 .nav_title {
   img,
   h1 {
+    font-family: $title-style;
     display: inline-block;
     z-index: 12;
   }
@@ -209,14 +210,14 @@ List View
     color: $dark-font;
     background-color: #fff;
     padding: 6px;
-    border-left: 4px solid $dark-gray;
-    // border-bottom: 1px solid $light-gray;
     margin: 12px 6px;
+    box-shadow: 0 1px 1px #777;
     width: 280px;
     height: 240px;
     z-index: 0;
     h2 {
       text-align: center;
+      font-family: $title-style;
       font-size: $font-large;
       line-height: 32px;
     }
@@ -251,6 +252,7 @@ Listing View
     display: flex;
   }
   h2 {
+    font-family: $title-style;
     font-size: $font-large;
     text-align: center;
   }
@@ -306,6 +308,8 @@ Create Listing View
     border: none;
     outline: none;
     background-color: inherit;
+    font-size: $font-medium;
+    color: $light-font;
   }
   .form_submit_button {
     border: none;
@@ -335,6 +339,7 @@ Dashboard View
     display: flex;
   }
   .user_items {
+
     flex-grow: 1;
     margin: 0 auto;
     align-items: stretch;
@@ -399,7 +404,7 @@ Dashboard View
 }
 
 .user_history {
-  margin-top: 240px;
+  top: 240px;
   padding:12px;
   border-left: 4px solid $dark-gray;
   background-color: $dark-gray;
@@ -408,7 +413,12 @@ Dashboard View
 }
 
 .hist_list_item {
-  height: 240px;
+  // box-shadow: 0 2px 2px red;
+  height: 120px;
+  width: 80%;
+  border-bottom: 1px solid #999;
+  margin: 12px auto;
+  z-index: 4;
   .data_container {
     display: inline-block;
   }
@@ -418,12 +428,32 @@ Dashboard View
   }
   span {
     display: block;
-    margin: 24px;
+    margin: 6px;
   }
-  .pane_listing_button {
-    float: right;
+  .flag {
+    z-index: 2;
+    font-size: $font-small;
+    width: 120px;
+    padding: 22px;
+    background-color: #FDD835;
+    color: $dark-font;
+    text-align: center;
   }
 }
+.right_hist {
+  text-align: right;
+}
+.right_flag {
+  float: right;
+}
+
+.left_hist {
+  text-align: left;
+}
+.left_flag {
+  float: left;
+}
+
 /*
 ====================
 Profile view

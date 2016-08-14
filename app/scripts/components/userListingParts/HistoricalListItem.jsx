@@ -1,25 +1,33 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { connect } from 'react-redux';
 import moment from 'moment';
 
-const HistoricalListItem = ({ item }) => {
-  var timeAgo = moment(item.updatedAt).fromNow();
+const HistoricalListItem = ({ item, userId }) => {
+  const timeAgo = moment(item.updatedAt).fromNow();
+
+  let classes = 'hist_list_item ';
+  classes += item.giverId === userId ? 'left_hist' : 'right_hist';
+
+  let flagSide = 'flag ';
+  flagSide += item.giverId === userId ? 'right_flag' : 'left_flag';
+
   return (
-    <div className="hist_list_item">
+    <div className={classes}>
       <div className="data_container">
         <h3>{item.title}</h3>
         <span>{item.giver}</span>
         <span>{item.description}</span>
         <span>{timeAgo}</span>
       </div>
-      <Link
-        className="pane_listing_button view"
-        to={'/listing/' + item.id}
-      >
-        View
-      </Link>
+      <div className={flagSide}>Rate!</div>
     </div>
   );
 };
 
-module.exports = HistoricalListItem;
+const mapDispatchToProps = (state) => (
+  {
+    userId: state.users.id,
+  }
+)
+
+module.exports = connect(mapDispatchToProps)(HistoricalListItem);

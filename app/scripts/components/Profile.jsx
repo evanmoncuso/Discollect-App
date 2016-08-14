@@ -14,7 +14,7 @@ class Profile extends React.Component {
       <div className="main_container profile">
         <div className="account_info">
           <div className="user_picture">
-            <img src="https://huxley.wwu.edu/sites/huxley.wwu.edu/files/default_images/user-icon.png" alt="user" />
+            <img src={this.props.picReference} alt="user" height="320px"/>
           </div>
           <div className="profile_name">
             {this.props.username}

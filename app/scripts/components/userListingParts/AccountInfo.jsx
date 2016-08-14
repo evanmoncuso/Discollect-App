@@ -22,7 +22,7 @@ const AccountInfo = ({ username, toggleHistory, view, userId, dispatchUploadProf
   return (
     <div className="account_info">
       <div className="user_picture">
-        <img src={profileImage} alt="user" />
+        <img src={profileImage} alt="user" height={320} />
       </div>
       <div className="about">{username ? username : 'NOT A VALID USER'}</div>
       <button
@@ -69,7 +69,7 @@ AccountInfo.propTypes = {
       dispatch(userActions.uploadProfilePic(data));
     },
   }
-); 
+);
 
   const mapStateToProps = (state) => {
     return {

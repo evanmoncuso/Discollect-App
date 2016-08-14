@@ -170,6 +170,8 @@ const itemActions = {
           pending: pending || [],
           waiting: waiting || [],
         });
+        browserHistory.push('/')
+        browserHistory.push('/dashboard')
       })
       .catch(err => {
         console.log(err);
@@ -179,33 +181,21 @@ const itemActions = {
 
   getUserHistory: (userId) => (
     (dispatch) => {
-      const url = `http://localhost:3000/api/getUserHistory?userid=${userId}`;
+      const url = `https://discollectarchive.herokuapp.com/api/getArchives`;
       fetch(url, {
-
+        method: 'PUT',
         credentials: 'same-origin',
-        body: JSON.stringify({ userID }),
+        body: JSON.stringify({userId: userId}),
         headers: {
           'Content-Type': 'application/json',
         },
       })
       .then((res) => res.json())
       .then((response) => {
+        console.log(response)
         dispatch({
           type: 'GET_USER_HISTORY',
-          history: [{
-            category: "all-categories",
-            condition: 5,
-            createdAt: "2016-08-13T02:18:34.000Z",
-            description: "They are apples.",
-            giverId: 2,
-            id: 43,
-            picReference: null,
-            status: 0,
-            takerId: null,
-            title: "Apples",
-            updatedAt: "2016-08-13T02:18:34.000Z",
-            zipcode: 12345,
-          }],
+          history: response,
         });
       })
       .catch((err) => {
