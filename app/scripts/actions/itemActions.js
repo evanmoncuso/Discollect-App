@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
 
+const baseUrl = 'http://ec2-54-186-167-115.us-west-2.compute.amazonaws.com';
 
 const optimisticSetItems = (items) => (
   {
@@ -21,7 +22,7 @@ export const saveUpload = (data_uri, filename, filetype) => (
 const itemActions = {
   getLatestListings: () => (
     (dispatch) => {
-      const url = 'http://localhost:3000/api/getAllListings';
+      const url = baseUrl + '/api/getAllListings';
       fetch(url, {
         method: 'GET',
         headers: {
@@ -42,7 +43,7 @@ const itemActions = {
   postNewListing: (listingData) => (
     (dispatch) => {
       const photoUrl = 'http://photohelper.herokuapp.com/api/createNewListing';
-      const url = 'http://localhost:3000/api/createNewListing';
+      const url = baseUrl + '/api/createNewListing';
       if (listingData.picReference === undefined) {
         dispatch(itemActions.postListingAfterPhoto(listingData));
       } else {
@@ -71,7 +72,7 @@ const itemActions = {
 
   postListingAfterPhoto: (data) =>
     (dispatch) => {
-    const url = 'http://localhost:3000/api/createNewListing';
+    const url = baseUrl + '/api/createNewListing';
     fetch(url, {
       method: 'POST',
       body: JSON.stringify(data),
@@ -90,7 +91,7 @@ const itemActions = {
 
   searchItem: (query) => (
     (dispatch) => {
-      const url = 'http://localhost:3000/api/getFilteredListings';
+      const url = baseUrl + '/api/getFilteredListings';
       fetch(url, {
         method: 'PUT',
         body: JSON.stringify(query),
@@ -114,7 +115,7 @@ const itemActions = {
     (dispatch) => {
       console.log('1st step details: ', details);
       var num = JSON.stringify(details);
-      const url = 'http://localhost:3000/api/update';
+      const url = baseUrl + '/api/update';
       fetch(url, {
         method: 'PUT',
         body: num,
@@ -138,7 +139,7 @@ const itemActions = {
   closeListing: (listingID, userID) => (
     (dispatch) => {
       console.log('details >> ', listingID);
-      const url = 'http://localhost:3000/api/closeListing';
+      const url = baseUrl + '/api/closeListing';
       fetch(url, {
         method: 'PUT',
         body: JSON.stringify({ listingID }),
@@ -205,7 +206,7 @@ const itemActions = {
 
   getUsersListings: (userId) => (
     (dispatch) => {
-      const url = 'http://localhost:3000/api/getUsersListings';
+      const url = baseUrl + '/api/getUsersListings';
       fetch(url, {
         credentials: 'same-origin',
       })
@@ -239,7 +240,7 @@ const itemActions = {
 
   removeListing: (listingID) => (
     (dispatch) => {
-      const url = 'http://localhost:3000/api/removeListing?listingID='+listingID;
+      const url = baseUrl + '/api/removeListing?listingID='+listingID;
       fetch(url, {
         method: 'DELETE',
       })

@@ -10,7 +10,8 @@
     "mysql": "mysql -h rds-mysql-discollectdb.c0eor5cjwn0u.us-west-1.rds.amazonaws.com -P 3306 -u jordan -p",
     "compile-for-test": "babel app/scripts/actions --out-dir compiledForTests --presets=es2015,react --ignore=node_modules,compiled --source-maps inline",
     "scss:dev": "node-sass -o public/css app/scss/main.scss -w",
-    "scss:prod": "node-sass --output-style compressed -o public/css app/scss/main.scss"
+    "scss:prod": "node-sass --output-style compressed -o public/css app/scss/main.scss",
+    "server:build": "babel server --out-dir build --presets=es2015 --ignore=node_modules,compiled --source-maps inline"
   },
   "repository": {
     "type": "git",
