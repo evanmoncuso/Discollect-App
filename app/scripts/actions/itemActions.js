@@ -53,8 +53,6 @@ const itemActions = {
           filetype: listingData.filetype,
           giverId: listingData.giverId,
         };
-        console.log("++++++++++++++++++",listingData);
-        console.log('-------------------', photoData);
         fetch(photoUrl, {
           method: 'POST',
           body: JSON.stringify(photoData),
@@ -64,7 +62,6 @@ const itemActions = {
         })
         .then((res) => res.json())
         .then((response) => {
-          console.log(response)
           listingData.picReference = response;
           dispatch(itemActions.postListingAfterPhoto(listingData));
         })

@@ -1,23 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import itemActions from '../actions/itemActions.js';
-import {saveUpload} from '../actions/itemActions.js';
 
-const CreateListing = ({ dispatchCreateNewListing, dispatchSaveUpload, id, data_uri, filetype, filename }) => {
+const CreateListing = ({ dispatchCreateNewListing,  id }) => {
   let title;
   let zip;
   let image;
   let category;
   let description;
   let condition;
+  let fileTypeLocal = null;
+  let filenameLocal = null;
+  let imageLocal = null;
 
   const handleChange = (e) => {
     const reader = new FileReader();
     const file = e.target.files[0];
 
-
     reader.onload = (upload) => {
-      dispatchSaveUpload(upload.target.result, file.name, file.type);
+      imageLocal = upload.target.result;
+      filenameLocal = file.name;
+      fileTypeLocal = file.type;
     };
 
     reader.readAsDataURL(file);
@@ -34,14 +37,14 @@ const CreateListing = ({ dispatchCreateNewListing, dispatchSaveUpload, id, data_
               title: title.value,
               zipcode: zip.value,
               status:0,
-              picReference: data_uri,
-              filename: filename,
-              filetype: filetype,
+              giverId: id,
+              takerId: null,
+              picReference: imageLocal,
+              filename: filenameLocal,
+              filetype: fileTypeLocal,
               category: category.value,
               description: description.value,
               condition: condition.value,
-              giverId: id,
-              takerId: null,
             };
 
             console.log(data);
@@ -112,9 +115,6 @@ CreateListing.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    data_uri: state.upload.data_uri,
-    filename: state.upload.filename,
-    filetype: state.upload.filetype,
     id: state.users.id,
   };
 };
@@ -123,9 +123,6 @@ const mapDispatchToProps = (dispatch) => (
   {
     dispatchCreateNewListing: (data) => {
       dispatch(itemActions.postNewListing(data));
-    },
-    dispatchSaveUpload: (upload, filename, filetype) => {
-      dispatch(saveUpload(upload, filename, filetype));
     },
   }
 );
