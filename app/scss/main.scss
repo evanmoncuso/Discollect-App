@@ -33,7 +33,6 @@ Title bar
 nav {
   width: 100%;
   background-color: #fff;
-  padding: 24px;
   border-bottom: 2px solid $dark-gray;
   margin-bottom: 24px;
   position: fixed;
@@ -87,7 +86,7 @@ h1 {
 .main_container {
   width: 960px;
   margin: 0 auto;
-  top: 200px;
+  top: 180px;
   position: relative;
 }
 
@@ -136,7 +135,9 @@ Search bar
   }
   .keywords,
   .zip {
-    border-bottom: 1px solid $dark-gray;
+    // border-bottom: 1px solid $dark-gray;
+    font-size: $font-medium;
+    color: $dark-font;
     margin-left: 6px;
   }
   .search_button {
@@ -204,7 +205,7 @@ List View
   color: #fff;
   display: flex;
   flex-wrap: wrap;
-  top: 240px;
+  top: 180px;
   .listView_entry {
     font-family: $secondary-font;
     color: $dark-font;
@@ -264,19 +265,30 @@ Listing View
   }
   .info_pane {
     flex-grow: 1;
-    font-size: $font-medium;
-    line-height: 32px;
+    font-size: $font-small;
+    line-height: 22px;
     margin: 24px;
+    .title {
+      text-decoration: underline;
+    }
+    .data {
+      font-style: italic;
+      text-align: center;
+    }
   }
   .listing_description {
-    width: 540px;
+    flex-grow: 1.5;
+    padding: 24px;
     margin: 0 auto;
   }
+  .button_container {
+    margin: 12px;
+  }
   .listing_view_button {
+    padding: 12px;
     border: none;
     border-radius: 0;
-    padding: 12px;
-    font-size: $font-medium;
+    font-size: $font-small;
     background-color: #FDD835;
     color: $dark-font;
     margin: 0 6px;
@@ -289,7 +301,7 @@ Create Listing View
  */
 
 .create_listing_container {
-  top: 240px;
+  top: 180px;
   padding:12px;
   border-left: 4px solid $dark-gray;
   background-color: $dark-gray;
@@ -311,14 +323,20 @@ Create Listing View
     font-size: $font-medium;
     color: $light-font;
   }
-  .form_submit_button {
-    border: none;
-    border-radius: 0;
-    padding: 12px;
-    font-size: $font-medium;
-    background-color: #FDD835;
-    color: $dark-font;
-    margin: 0 6px;
+  .button_container {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    .form_submit_button {
+      width: 120px;
+      border: none;
+      border-radius: 0;
+      padding: 12px;
+      font-size: $font-medium;
+      background-color: #FDD835;
+      color: $dark-font;
+      margin: 0 6px;
+    }
   }
 }
 
@@ -329,7 +347,7 @@ Dashboard View
  */
 
 .dashboard_container {
-  top: 240px;
+  top: 180px;
   padding:12px;
   border-left: 4px solid $dark-gray;
   background-color: $dark-gray;
@@ -404,12 +422,31 @@ Dashboard View
 }
 
 .user_history {
-  top: 240px;
+  top: 180px;
   padding:12px;
   border-left: 4px solid $dark-gray;
   background-color: $dark-gray;
   color: $light-font;
   margin: 0 auto;
+  .history_labels {
+    font-size: $font-large;
+    color:$light-font;
+    text-align: center;
+    width:90%;
+    padding: 12px;
+    border-bottom: 1px solid #999;
+    margin: 0 auto;
+    span {
+      display: inline-block;
+      width: 45%;
+    }
+    .giver {
+      flex-grow: 1;
+    }
+    .taker {
+      flex-grow: 1;
+    }
+  }
 }
 
 .hist_list_item {
@@ -431,6 +468,7 @@ Dashboard View
     margin: 6px;
   }
   .flag {
+    vertical-align: bottom;
     z-index: 2;
     font-size: $font-small;
     width: 120px;
@@ -453,7 +491,6 @@ Dashboard View
 .left_flag {
   float: left;
 }
-
 /*
 ====================
 Profile view

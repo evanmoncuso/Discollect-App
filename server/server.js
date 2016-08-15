@@ -2,8 +2,11 @@ const express = require('express');
 const app = express();
 const apiRoutes = require('./config/routes.js')(app, express);
 const path = require('path');
+const cors = require('cors');
 
 const port = 3000;
+
+app.use(cors());
 
 require('./config/database.js');
 require('./config/middleware.js')(app, express);

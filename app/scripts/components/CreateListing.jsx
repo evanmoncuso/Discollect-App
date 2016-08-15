@@ -102,7 +102,9 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
             <label htmlFor="description">Description</label>
             <textarea ref={(node) => { description = node; }} id="description" required />
           </div>
-          <button type="submit" className="form_submit_button">Create</button>
+          <div className="button_container">
+            <button type="submit" className="form_submit_button">Create</button>
+          </div>
         </form>
       </div>
     </div>

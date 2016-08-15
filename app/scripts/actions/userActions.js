@@ -2,6 +2,9 @@ import fetch from 'isomorphic-fetch';
 
 import { browserHistory } from 'react-router';
 
+// const baseUrl = 'http://ec2-54-186-167-115.us-west-2.compute.amazonaws.com';
+const baseUrl = 'http://localhost:3000';
+
 const optimisticSignIn = ({ zipcode, username, id, picReference }) => (
   {
     type: 'LOGIN_VALID',
@@ -54,7 +57,7 @@ const getCoordsAndZip = (dispatch, bool) => {
 const userActions = {
   createUser: (username, password, email, zip) => (
     (dispatch) => {
-      const url = 'http://localhost:3000/api/signup';
+      const url = baseUrl + '/api/signup';
       const data = JSON.stringify({
         username,
         password,
@@ -86,7 +89,7 @@ const userActions = {
   checkUserLogin: (username, password) => (
     (dispatch) => {
       const data = JSON.stringify({ username, password });
-      const url = 'http://localhost:3000/api/login';
+      const url = baseUrl + '/api/login';
       fetch(url, {
         method: 'POST',
         credentials: 'same-origin',
@@ -112,7 +115,7 @@ const userActions = {
   ),
 
   logoutUserServer: () => {
-    const url = 'http://localhost:3000/api/logout';
+    const url = baseUrl + '/api/logout';
     fetch(url,{
       credentials: 'same-origin',
     })
@@ -135,7 +138,7 @@ const userActions = {
 
   getUserInfo: () => (
     (dispatch) => {
-      const url = 'http://localhost:3000/api/getUserInfo';
+      const url = baseUrl + '/api/getUserInfo';
       fetch(url, {
         method: 'GET',
         credentials: 'same-origin',
@@ -155,7 +158,7 @@ const userActions = {
 
   getUserProfile: (userID) => (
     (dispatch) => {
-      const url = 'http://localhost:3000/api/userProfile';
+      const url = baseUrl + '/api/userProfile';
       fetch(url, {
         method: 'PUT',
         body: JSON.stringify({ userID }),
@@ -181,7 +184,7 @@ const userActions = {
     (dispatch) => {
       const urlPhoto = 'http://photohelper.herokuapp.com/api/createNewListing';
       fetch(urlPhoto, {
-        method: 'POST', 
+        method: 'POST',
         body: JSON.stringify(data),
           headers: {
             'Content-Type': 'application/json',
@@ -190,21 +193,21 @@ const userActions = {
       .then(response=> response.json())
       .then((res)=> {
         console.log('s3 response', res);
-        const url = 'http://localhost:3000/api/updatePic';
+        const url = baseUrl + '/api/updatePic';
         const updateData = {
           userId: data.giverId,
           picReference: res,
         };
         fetch(url, {
-          method: 'PUT', 
+          method: 'PUT',
           credentials: 'same-origin',
           body: JSON.stringify(updateData),
           headers: {
           'Content-Type': 'application/json',
-        }, 
+        },
         })
         .then(dbRes=> dbRes.json())
-        .then(user=>{
+        .then((user) => {
           console.log('user',user);
           dispatch(optimisticSignIn(user));
         })

@@ -29,7 +29,7 @@ const AccountInfo = ({ username, toggleHistory, view, userId, dispatchUploadProf
         onClick={() => toggleHistory()}
         className="account_history"
       >
-        { view ? 'show history' : 'hide history'}
+        View History
       </button>
         <form encType="multipart/form-data" onSubmit={(e)=>{
           e.preventDefault();
@@ -53,7 +53,7 @@ const AccountInfo = ({ username, toggleHistory, view, userId, dispatchUploadProf
             onChange={encodeImage}
           />
         </div>
-        <button type="submit" className="form_submit_button">Upload</button>
+        <button type="submit" className="account_history">Upload</button>
       </form>
     </div>
   );
