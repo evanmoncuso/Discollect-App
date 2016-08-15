@@ -11,14 +11,6 @@ const optimisticSetItems = (items) => (
   }
 );
 
-export const saveUpload = (data_uri, filename, filetype) => (
-  {
-    type: 'ON_UPLOAD',
-    data_uri,
-    filename,
-    filetype,
-  }
-);
 
 const itemActions = {
   getLatestListings: () => (
