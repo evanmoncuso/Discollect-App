@@ -32,6 +32,27 @@ const Listing = (props) => {
     '4': 'Fair',
     '5': 'Salvage',
   }
+  
+  let dibsButton = '';
+  if (props.userId && props.userId !== curr.giverId) {
+    dibsButton = (<button
+      className="listing_view_button"
+      onClick={(e) => {
+      e.preventDefault();
+      const listingTrigger = {
+        listingID: Number(listingID),
+        giverId: curr.giverId,
+        takerId: props.userId,
+        statusCode: 1,
+      }
+      if (props.userName === undefined || !props.userName) {
+        browserHistory.push('/signup')
+      } else {
+        props.dispatchListingStatusChange(listingTrigger);
+        browserHistory.push('/');
+      }
+    }}> Call DIBS </button>);
+  }
 
   return (
     <div className="main_container listing_container">
@@ -39,6 +60,9 @@ const Listing = (props) => {
       <div className="listing_content">
         <div className="image_pane">
           <img src={curr.picReference} alt="listing" />
+        </div>
+        <div className="listing_description">
+          {curr.description}
         </div>
         <div className="info_pane">
           <div className="info_condition">
@@ -55,27 +79,8 @@ const Listing = (props) => {
           </div>
         </div>
       </div>
-      <div className="listing_description">
-        {curr.description}
-      </div>
       <div className="button_container">
-        <button
-          className="listing_view_button"
-          onClick={(e) => {
-          e.preventDefault();
-          const listingTrigger = {
-            listingID: Number(listingID),
-            giverId: curr.giverId,
-            takerId: props.userId,
-            statusCode: 1,
-          }
-          if (props.userName === undefined || !props.userName) {
-            browserHistory.push('/signup')
-          } else {
-            props.dispatchListingStatusChange(listingTrigger);
-            browserHistory.push('/');
-          }
-        }}> Call DIBS </button>
+        {dibsButton}
         <button
           className="listing_view_button"
           onClick={() => backer()}>

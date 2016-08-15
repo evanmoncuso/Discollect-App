@@ -9,14 +9,11 @@ describe("User Database", function() {
 
   describe("UserModel", function() {
     it("returns a status of 200", function(done) {
-      // request(url, function(error, response, body) {
-      //   expect(response.statusCode).to.equal(200);
-      //   done();
       fetch(url)
        .then(function(response){
         expect(response.status).to.equal(200);
         done();
-      });  
+      });
     });
     it("hashes passwords", function(done) {
       console.log('hey')

@@ -1,7 +1,8 @@
 import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
 
-const baseUrl = 'http://ec2-54-186-167-115.us-west-2.compute.amazonaws.com';
+// const baseUrl = 'http://ec2-54-186-167-115.us-west-2.compute.amazonaws.com';
+const baseUrl = 'http://localhost:3000';
 
 const optimisticSetItems = (items) => (
   {
