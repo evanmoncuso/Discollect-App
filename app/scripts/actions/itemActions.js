@@ -11,14 +11,6 @@ const optimisticSetItems = (items) => (
   }
 );
 
-export const saveUpload = (data_uri, filename, filetype) => (
-  {
-    type: 'ON_UPLOAD',
-    data_uri,
-    filename,
-    filetype,
-  }
-);
 
 const itemActions = {
   getLatestListings: () => (
@@ -45,7 +37,7 @@ const itemActions = {
     (dispatch) => {
       const photoUrl = 'http://photohelper.herokuapp.com/api/createNewListing';
       const url = baseUrl + '/api/createNewListing';
-      if (listingData.picReference === undefined) {
+      if (!listingData.picReference) {
         dispatch(itemActions.postListingAfterPhoto(listingData));
       } else {
         var photoData = {
