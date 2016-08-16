@@ -12,6 +12,8 @@ var Listing = db.define('Listing', {
   category: Sequelize.STRING,
   description: Sequelize.STRING,
   condition: Sequelize.INTEGER,
+  giverRating: { type: Sequelize.INTEGER, allowNull: false, defaultValue: 0 }, //
+  takerRating: { type: Sequelize.INTEGER, allowNull: false, defaultValue: 0 }, //
 
 });
 

@@ -1,7 +1,7 @@
 const userControl = require('../user/userController');
 const listingControl = require('../listing/listingController');
-const discollectorRatingControl = require('../discollector_rating/discollectorRatingController');
-const collectorRatingControl = require('../collector_rating/collectorRatingController');
+// const discollectorRatingControl = require('../discollector_rating/discollectorRatingController');
+// const collectorRatingControl = require('../collector_rating/collectorRatingController');
 const passport = require('passport');
 
 
@@ -25,10 +25,10 @@ module.exports = function(app, express) {
   router.put('/closeListing', listingControl.closeListing);
   router.delete('/removeListing', listingControl.removeListing);
   router.get('/getUserHistory', listingControl.getUserHistory);
-  router.post('/createDiscollectorRating', discollectorRatingControl.createDiscollectorRating);
-  router.put('/getAllUserDiscollectorRatings', discollectorRatingControl.getAllUserDiscollectorRatings);
-  router.post('/createCollectorRating', collectorRatingControl.createCollectorRating);
-  router.put('/getAllUserCiscollectorRatings', collectorRatingControl.getAllUserCollectorRatings);
+  // router.post('/createDiscollectorRating', discollectorRatingControl.createDiscollectorRating);
+  // router.put('/getAllUserDiscollectorRatings', discollectorRatingControl.getAllUserDiscollectorRatings);
+  // router.post('/createCollectorRating', collectorRatingControl.createCollectorRating);
+  // router.put('/getAllUserCiscollectorRatings', collectorRatingControl.getAllUserCollectorRatings);
 
 
 
