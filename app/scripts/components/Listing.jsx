@@ -6,24 +6,24 @@ import { browserHistory } from 'react-router';
 import itemActions from '../actions/itemActions.js';
 const defaultImage = '../../../public/css/ina.jpg';
 
-const Listing = (props) => {
-  var listIDX = props.params.id;
-  const curr1 = (listIDX) => {
-    for (var i = 0; i < props.currentListing.length; i++) {
-      if (props.currentListing[i].id === Number(listIDX)) {
-        console.log('found! :', props.currentListing[i])
-        return props.currentListing[i];
-      }
-    }
-  }
-  var curr = curr1(listIDX);
-  var listingID = curr.id;
+const Listing = ({ currentListing, userId, userName, dispatchListingStatusChange }) => {
+  // var listIDX = props.params.id;
+  // const curr1 = (listIDX) => {
+  //   for (var i = 0; i < props.currentListing.length; i++) {
+  //     if (props.currentListing[i].id === Number(listIDX)) {
+  //       console.log('found! :', props.currentListing[i])
+  //       return props.currentListing[i];
+  //     }
+  //   }
+  // }
+  // var curr = curr1(listIDX);
+  // var listingID = curr.id;
 
   const backer = () => {
     browserHistory.goBack();
   };
 
-  let pic = curr.picReference || defaultImage;
+  let pic = currentListing.picReference || defaultImage;
 
   const condish = {
     '1': 'New',
@@ -32,23 +32,23 @@ const Listing = (props) => {
     '4': 'Fair',
     '5': 'Salvage',
   }
-  
+
   let dibsButton = '';
-  if (props.userId && props.userId !== curr.giverId) {
+  if (userId && userId !== currentListing.giverId) {
     dibsButton = (<button
       className="listing_view_button"
       onClick={(e) => {
       e.preventDefault();
       const listingTrigger = {
-        listingID: Number(listingID),
-        giverId: curr.giverId,
-        takerId: props.userId,
+        listingID: Number(currentListing.id),
+        giverId: currentListing.giverId,
+        takerId: userId,
         statusCode: 1,
       }
-      if (props.userName === undefined || !props.userName) {
+      if (userName === undefined || !userName) {
         browserHistory.push('/signup')
       } else {
-        props.dispatchListingStatusChange(listingTrigger);
+        dispatchListingStatusChange(listingTrigger);
         browserHistory.push('/');
       }
     }}> Call DIBS </button>);
@@ -56,26 +56,26 @@ const Listing = (props) => {
 
   return (
     <div className="main_container listing_container">
-      <h2> {curr.title} </h2>
+      <h2> {currentListing.title} </h2>
       <div className="listing_content">
         <div className="image_pane">
-          <img src={curr.picReference} alt="listing" />
+          <img src={currentListing.picReference} alt="listing" />
         </div>
         <div className="listing_description">
-          {curr.description}
+          {currentListing.description}
         </div>
         <div className="info_pane">
           <div className="info_condition">
             <span className="title">Condition: </span>
-            <span className="data">{condish[curr.condition]}</span>
+            <span className="data">{condish[currentListing.condition]}</span>
           </div>
           <div className="info_giver">
             <span className="title">given by: </span>
-            <span className="data">{curr.giverId}</span>
+            <span className="data">{currentListing.giverId}</span>
           </div>
           <div className="info_zipcode">
             <span className="title">zipcode: </span>
-            <span className="data">{curr.zipcode}</span>
+            <span className="data">{currentListing.zipcode}</span>
           </div>
         </div>
       </div>
@@ -93,7 +93,7 @@ const Listing = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    currentListing: state.items.items,
+    currentListing: state.currentItem,
     userId: state.users.id,
     userName: state.users.username,
   };

@@ -10,7 +10,7 @@ let ListEntry = ({ entry, action }) => {
   let pic = entry.picReference || defaultImage;
   return (
       <div className="listView_entry">
-        <div onClick={action}>
+        <div onClick={() => action(entry.id)}>
           <h2>{entry.title}</h2>
           <div className="data_container">
             <div className="entry_img">

@@ -4,15 +4,11 @@ import ListEntry from './ListEntry.jsx';
 import itemActions from '../actions/itemActions.js';
 import { browserHistory } from 'react-router';
 
-function trigger(data) {
-  browserHistory.push('/listing/' + data)
-}
-
-let ListView = ({ dispatchGetItems, items, users }) => {
+let ListView = ({ dispatchGetItems, items, users, dispatchIndivItem }) => {
   return (
     <div className="main_container listings_container">
       {items.map((item, i) => {
-        return <ListEntry key={i} entry={item} action={ (e) => trigger(item.id)} />
+        return <ListEntry key={i} entry={item} action={dispatchIndivItem} />
       })}
 
     </div>
@@ -31,6 +27,9 @@ const mapDispatchToProps = (dispatch) => {
     dispatchGetItems: () => {
       dispatch(itemActions.populateInitialListings());
     },
+    dispatchIndivItem: (id) => {
+      dispatch(itemActions.getIndividualListing(id));
+    }
   };
 };
 

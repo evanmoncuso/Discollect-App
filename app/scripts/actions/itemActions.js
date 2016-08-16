@@ -11,6 +11,13 @@ const optimisticSetItems = (items) => (
   }
 );
 
+const optimisticIndivItem = (item) => (
+  {
+    type: 'SET_NEW_ITEM',
+    item,
+  }
+);
+
 
 const itemActions = {
   getLatestListings: () => (
@@ -33,6 +40,33 @@ const itemActions = {
       });
     }
   ),
+
+  getIndividualListing: (id) => (
+    (dispatch) => {
+      const url = baseUrl + '/api/listing?id=' + id;
+      fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => res.json())
+      .then((response) => {
+        dispatch(optimisticIndivItem(response));
+        // then reroute to the listing page that this item needs
+        return response.id;
+      })
+      .then((id) => {
+        browserHistory.push('/listing/' + id);
+      })
+      .catch((err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
+  ),
+
   postNewListing: (listingData) => (
     (dispatch) => {
       const photoUrl = 'http://photohelper.herokuapp.com/api/createNewListing';
@@ -40,7 +74,7 @@ const itemActions = {
       if (!listingData.picReference) {
         dispatch(itemActions.postListingAfterPhoto(listingData));
       } else {
-        var photoData = {
+        const photoData = {
           title: listingData.title,
           picReference: listingData.picReference,
           filename: listingData.filename,
@@ -94,7 +128,6 @@ const itemActions = {
       })
       .then((res) => res.json())
       .then((res) => {
-        console.log('Search Success: ', res);
         dispatch(optimisticSetItems(res));
         browserHistory.push('/');
       })
@@ -106,8 +139,7 @@ const itemActions = {
 
   updateListingStatus: (details) => (
     (dispatch) => {
-      console.log('1st step details: ', details);
-      var num = JSON.stringify(details);
+      const num = JSON.stringify(details);
       const url = baseUrl + '/api/update';
       fetch(url, {
         method: 'PUT',
@@ -118,7 +150,6 @@ const itemActions = {
       })
       .then((res) => res.json())
       .then((res) => {
-        console.log('updated listing thingy!: ', res);
         dispatch(itemActions.getLatestListings());
       })
       .catch((err) => {
@@ -131,7 +162,6 @@ const itemActions = {
 
   closeListing: (listingID, userID) => (
     (dispatch) => {
-      console.log('details >> ', listingID);
       const url = baseUrl + '/api/closeListing';
       fetch(url, {
         method: 'PUT',
