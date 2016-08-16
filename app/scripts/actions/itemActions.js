@@ -117,23 +117,29 @@ const itemActions = {
   },
 
   searchItem: (query) => (
-    (dispatch) => {
-      const url = baseUrl + '/api/getFilteredListings';
-      fetch(url, {
-        method: 'PUT',
-        body: JSON.stringify(query),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      .then((res) => res.json())
-      .then((res) => {
-        dispatch(optimisticSetItems(res));
-        browserHistory.push('/');
-      })
-      .catch(err => {
-        console.log('Search Error: ', err);
-      });
+    // (dispatch) => {
+    //   const url = baseUrl + '/api/getFilteredListings';
+    //   fetch(url, {
+    //     method: 'PUT',
+    //     body: JSON.stringify(query),
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //   })
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     dispatch(optimisticSetItems(res));
+    //     browserHistory.push('/');
+    //   })
+    //   .catch(err => {
+    //     console.log('Search Error: ', err);
+    //   });
+    // }
+    {
+      type: 'UPDATE_SEARCH_PARAMS',
+      keywords: query.keywords || null,
+      category: query.category || null,
+      zip: query.zip || null,
     }
   ),
 
@@ -227,7 +233,7 @@ const itemActions = {
     }
   ),
 
-  getUsersListings: (userId) => (
+  getUsersListings: () => (
     (dispatch) => {
       const url = baseUrl + '/api/getUsersListings';
       fetch(url, {
