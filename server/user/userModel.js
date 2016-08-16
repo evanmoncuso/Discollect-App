@@ -10,6 +10,8 @@ var User = db.define('user', {
   rating: Sequelize.INTEGER,
   picReference: Sequelize.STRING,
   zipcode: Sequelize.INTEGER,
+  avgRating: { type: Sequelize.INTEGER, allowNull: false, defaultValue: 0 },  //
+  ratingCount: { type: Sequelize.INTEGER, allowNull: false, defaultValue: 0 },  //
 });
 
 
