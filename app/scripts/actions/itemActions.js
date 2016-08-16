@@ -208,7 +208,7 @@ const itemActions = {
 
   getUserHistory: (userId) => (
     (dispatch) => {
-      const url = `https://discollectarchive.herokuapp.com/api/getArchives`;
+      const url = `https://discollectarchive.herokuapp.com/api/getArchives`;      
       fetch(url, {
         method: 'PUT',
         credentials: 'same-origin',
