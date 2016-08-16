@@ -1,9 +1,10 @@
 var Sequelize = require('sequelize');
-const secrets = require('../../secrets.js') || {};
+// const secrets = require('../../secrets.js');
+const secrets = {};
 if (secrets.dbpassword) {
   var dbpassword = secrets.dbpassword;
-  var host = secrets.host;
-  var port = secrets.port;
+  var host = secrets.mysql.host;
+  var port = secrets.mysql.port;
 }
 
 var db = new Sequelize('discollectDB', 'jordan', dbpassword, {
