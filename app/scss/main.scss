@@ -33,7 +33,7 @@ Title bar
 nav {
   width: 100%;
   background-color: #fff;
-  border-bottom: 2px solid $dark-gray;
+  box-shadow: 0 1px 1px #777;
   margin-bottom: 24px;
   position: fixed;
   z-index: 10;
@@ -545,4 +545,27 @@ Pane Entry View
 .entry_text > span {
   display: block;
   width:120px;
+}
+
+/*
+====================
+Footer
+====================
+ */
+
+footer {
+  width: 100%;
+  position: sticky;
+  bottom: 0;
+  padding: 12px;
+  text-align: center;
+  font-size: $font-small;
+  color: $light-font;
+  background-color: $dark-gray;
+
+  .made_with,
+  .made_by {
+    display: inline-block;
+    margin: 0 auto;
+  }
 }
