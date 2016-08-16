@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+// `const Sequelize = require('sequelize');
 const Listing = require('./listingModel.js');
 const User = require('../user/userModel.js');
 const db = require('../config/database.js');
@@ -6,8 +6,17 @@ const mail = require('./mailingHelper.js');
 
 module.exports = {
   getAllListings: function (req, res) {
-    db.query('SELECT  l.id, l.title, l.zipcode, l.takerId, l.status, l.picReference, l.category, l.description, l.condition, l.createdAt, l.giverId, u.username FROM Listings l, users u WHERE l.giverId = u.id ORDER BY 1 ASC;', { type: Sequelize.QueryTypes.SELECT })
+    // db.query('SELECT  l.id, l.title, l.zipcode, l.takerId, l.status, l.picReference, l.category, l.description, l.condition, l.createdAt, l.giverId, u.username FROM Listings l, users u WHERE l.giverId = u.id ORDER BY 1 ASC;', { type: Sequelize.QueryTypes.SELECT })
+    Listing.findAll({
+      attributes: ['id', 'title', 'picReference', 'createdAt'],
+      where: {
+        status: 0,
+      },
+      limit: 30,
+      order: [['createdAt', 'DESC']],
+    })
     .then((items) => {
+      console.log(items); 
       res.send(items);
     });
   },
