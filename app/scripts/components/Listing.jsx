@@ -32,7 +32,7 @@ const Listing = (props) => {
     '4': 'Fair',
     '5': 'Salvage',
   }
-  
+
   let dibsButton = '';
   if (props.userId && props.userId !== curr.giverId) {
     dibsButton = (<button
@@ -93,7 +93,7 @@ const Listing = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    currentListing: state.items.items,
+    currentListing: state.currentItem,
     userId: state.users.id,
     userName: state.users.username,
   };

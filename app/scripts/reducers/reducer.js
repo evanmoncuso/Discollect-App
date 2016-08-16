@@ -6,7 +6,7 @@ const initUserState = {
   id: null,
   username: null,
   password: null,
-  picReference: null, 
+  picReference: null,
 };
 
 const users = (state = initUserState, action) => {
@@ -67,6 +67,15 @@ const items = (state = initItemState, action) => {
   }
 };
 
+const currentItem = (state = {}, action) => {
+  switch (action.type) {
+    case 'SET_NEW_ITEM':
+        return action.item;
+    default:
+      return state;
+  }
+};
+
 const search = (state = {}, action) => {
   switch (action.type) {
     case 'SUBMIT_SEARCH':
@@ -80,21 +89,6 @@ const search = (state = {}, action) => {
   }
 };
 
-
-// const initUserListingsState = {
-//   userListings: [],
-// };
-
-// const userListings = (state = initUserListingsState, action) => {
-//   switch (action.type) {
-//     case 'GET_USERS_LISTINGS':
-//       return Object.assign({}, state, {
-//         userListings: action.userListings,
-//       });
-//     default:
-//       return state;
-//   }
-// };
 const initialUserListingsState = {
   active: [],
   pending: [],
@@ -138,6 +132,7 @@ const profileView = (state = initProfileView, action) => {
 
 const reducer = combineReducers({
   items,
+  currentItem,
   users,
   search,
   usersListings,

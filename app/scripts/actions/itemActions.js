@@ -11,6 +11,13 @@ const optimisticSetItems = (items) => (
   }
 );
 
+const optimisticIndivItem = (item) => (
+  {
+    type: 'SET_NEW_ITEM',
+    item,
+  }
+);
+
 
 const itemActions = {
   getLatestListings: () => (
@@ -33,6 +40,31 @@ const itemActions = {
       });
     }
   ),
+
+  getIndividualListing: (id) => (
+    (dispatch) => {
+      const url = baseUrl + '/api/getAllListings?id=' + id;
+      fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => res.json())
+      .then((response) => {
+        console.log('NEW FEATURE', response);
+        dispatch(optimisticIndivItem(response));
+        // then reroute to the listing page that this item needs
+        browserHistory.push('/listing/' + id)
+      })
+      .catch((err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
+  ),
+
   postNewListing: (listingData) => (
     (dispatch) => {
       const photoUrl = 'http://photohelper.herokuapp.com/api/createNewListing';
