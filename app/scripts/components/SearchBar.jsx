@@ -41,7 +41,12 @@ const SearchBar = ({ commitSearch, userCoords, userZip }) => {
             onChange={(node) => commitSearch({ zip: node.target.value })}
           />
         </div>
-        <select ref={(node) => { category = node; }} id="category" className="search_bar_input full_input" required>
+        <select
+          ref={(node) => { category = node; }}
+          id="category"
+          className="search_bar_input full_input"
+          onChange={(node) => commitSearch({ category: node.target.value })}
+          required>
           <option value="all-categories">All Categories</option>
           <option value="appliances">Appliances</option>
           <option value="fashion">Clothing, Shoes &amp; Jewelry</option>

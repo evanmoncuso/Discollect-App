@@ -19,7 +19,7 @@ let ListView = ({ dispatchGetItems, items, users, dispatchIndivItem }) => {
 
 const mapStateToProps = (state) => {
   return {
-    items: searchFilter(state.items.items, state.search.keywords, state.search.zip),
+    items: searchFilter(state.items.items, state.search.keywords, state.search.zip, state.search.category),
     users: state.users,
   };
 };

@@ -7,20 +7,21 @@ const searchFilter = (data, kw, zip, cat) => {
 		});
 	}
 
-	// if (zip) {
-	// 	let zipMatch = new RegExp('^' + zip);
-	// 	output = output.filter((item) => {
-	// 		return String(item.zip).match(zipMatch);
-	// 	});
-	// }
+	if (zip) {
+		let zipMatch = new RegExp('^' + zip);
+		output = output.filter((item) => {
+			return String(item.zipcode).match(zipMatch);
+		});
+	}
 
-	// if(cat) {
-	// 	let catMatch = new RegExp(kw);
-	// 	output = output.filter((item) => {
-	// 		return item.cat === cat;
-	// 	});
-	// }
-
+	if(cat) {
+		let catMatch = new RegExp(kw);
+		if (cat !== 'all-categories') {
+			output = output.filter((item) => {
+				return item.category === cat;
+			});
+		}
+	}
 	return output;
 }
 
