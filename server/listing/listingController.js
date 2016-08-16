@@ -16,7 +16,6 @@ module.exports = {
       order: [['createdAt', 'DESC']],
     })
     .then((items) => {
-      // console.log(items);
       res.send(items);
     });
   },

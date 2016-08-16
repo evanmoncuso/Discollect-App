@@ -17,6 +17,7 @@ describe("User Database", function() {
       });
     });
     it("hashes passwords", function(done) {
+      this.timeout(4000);
       User.findOne({
         where: {
           username: 'Conradical',
