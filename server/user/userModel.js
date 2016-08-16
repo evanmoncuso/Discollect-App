@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize');
 var db = require('../config/database.js');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 var saltRounds = 10;
 
 var User = db.define('user', {
