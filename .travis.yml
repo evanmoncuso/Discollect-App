@@ -5,10 +5,6 @@ node_js:
   - 'node'
 services:
   - mysql
-env:
-  - dbpassword=abcd1234
-  - host=rds-mysql-discollectdb.c0eor5cjwn0u.us-west-1.rds.amazonaws.com
-  - port 3306
 install:
   - npm install
   - npm start

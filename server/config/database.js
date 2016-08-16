@@ -1,11 +1,10 @@
 var Sequelize = require('sequelize');
-// const secrets = require('../../secrets.js');
-const secrets = {};
+const secrets = require('../../secrets.js');
 
 
-var db = new Sequelize('discollectDB', 'jordan', dbpassword, {
-  host: host,
-  port: port,
+var db = new Sequelize('discollectDB', 'jordan', 'abcd1234', {
+  host: 'rds-mysql-discollectdb.c0eor5cjwn0u.us-west-1.rds.amazonaws.com',
+  port: 3306,
   // dialect: 'mysql',
   // pool: {
   //   max: 5,
