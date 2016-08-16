@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/evanmoncuso/Discollect-App#readme",
   "dependencies": {
-    "babel-cli": "^6.11.4",
     "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.2",
     "chai": "^3.5.0",
@@ -55,7 +54,7 @@
     "webpack": "^1.13.1"
   },
   "devDependencies": {
-    "babel": "^6.5.2",
+    "babel-cli": "^6.11.4",
     "babel-core": "^6.11.4",
     "babel-loader": "^6.2.4",
     "babel-plugin-add-module-exports": "^0.2.1",
