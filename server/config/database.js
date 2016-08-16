@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-const secrets = require('../../secrets.js');
+// const secrets = require('../../secrets.js');
 
 
 var db = new Sequelize('discollectDB', 'jordan', secrets.dbpassword, {
