@@ -4,6 +4,8 @@ import ListEntry from './ListEntry.jsx';
 import itemActions from '../actions/itemActions.js';
 import { browserHistory } from 'react-router';
 
+import searchFilter from '../actions/searchFilter.js';
+
 let ListView = ({ dispatchGetItems, items, users, dispatchIndivItem }) => {
   return (
     <div className="main_container listings_container">
@@ -17,7 +19,7 @@ let ListView = ({ dispatchGetItems, items, users, dispatchIndivItem }) => {
 
 const mapStateToProps = (state) => {
   return {
-    items: state.items.items,
+    items: searchFilter(state.items.items, state.search.keywords, state.search.zip),
     users: state.users,
   };
 };

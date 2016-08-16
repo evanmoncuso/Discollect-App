@@ -84,6 +84,12 @@ const search = (state = {}, action) => {
         category: action.category,
         zip: action.zip,
       });
+    case 'UPDATE_SEARCH_PARAMS':
+      return Object.assign({}, state, {
+        keywords: action.keywords || null,
+        category: action.category || null,
+        zip: action.zip || null,
+      });
     default:
       return state;
   }
