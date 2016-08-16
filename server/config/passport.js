@@ -1,7 +1,7 @@
 var passport = require('passport');
 var localStrategy = require('passport-local').Strategy;
 var User = require('../user/userModel');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 
 passport.use(new localStrategy(function(username, password, cb) {
   User.findOne({ where: {username:username} })
