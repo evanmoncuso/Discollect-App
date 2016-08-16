@@ -159,6 +159,18 @@ module.exports = {
       res.status(400).send(err);
     })
   },
+
+  listing: function(req, res) {
+    Listing.findOne({
+      attributes: ['id', 'title', 'description', 'giverId', 'picReference', 'status', 'condition', 'zipcode'],
+      where: {
+        id: req.query.id,
+      },
+    })
+    .then(listing=> {
+      res.json(listing);
+    })
+  },
 }
 //https://www.zipcodeapi.com/rest/ZuYPOXpKUE8RDdLyX8t3MuU3bDjg70N6uMWjKl4E0dwDqicoqFrdamhl0AC7Bqe6/radius.json/<zip_code>/50/miles.
 // API key zipcodeAPI:

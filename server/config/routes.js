@@ -17,6 +17,7 @@ module.exports = function(app, express) {
   router.put('/updatePic', userControl.updatePic);
 
   // router.get('/listing', listingControl.getListing);
+  router.get('/listing', listingControl.listing);
   router.put('/getFilteredListings', listingControl.getFilteredListings);
   router.get('/getAllListings', listingControl.getAllListings);
   router.post('/createNewListing', listingControl.createNewListing);
