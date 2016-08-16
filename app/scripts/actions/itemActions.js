@@ -37,7 +37,7 @@ const itemActions = {
     (dispatch) => {
       const photoUrl = 'http://photohelper.herokuapp.com/api/createNewListing';
       const url = baseUrl + '/api/createNewListing';
-      if (listingData.picReference === undefined) {
+      if (!listingData.picReference) {
         dispatch(itemActions.postListingAfterPhoto(listingData));
       } else {
         var photoData = {
