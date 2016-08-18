@@ -569,3 +569,42 @@ footer {
     margin: 0 auto;
   }
 }
+
+canvas {
+  background-color: black;
+  box-shadow: 3px 2px 3px darkblue;
+}
+
+.leftSide {
+  float: left;
+  min-width: 240px;
+  margin-top: 20px;
+  margin-left: 20px;
+  text-align: center;
+  background-color: lightgrey;
+  border: solid 2px darkgrey;
+  height: 500px;
+}
+
+
+.rightSide {
+  float: right;
+  min-width: 500px;
+  padding-top: 20px;
+  padding-right: 20px;  
+}
+
+.developerContainer {
+  position: absolute;
+  margin-top: 160px;
+  margin-left:60px;
+  margin-right:60px;
+}
+
+.wrapperDiv {
+  background-color: white;
+  border: solid 2px darkgrey;
+  margin: 0 auto;
+  min-width: 1100px;
+  height: 540px
+}

@@ -26,8 +26,9 @@ const chartActions = {
     let cat4 = criteria.cat4;
     let cat5 = criteria.cat5;
     let cat6 = criteria.cat6;
-    let timeFrame = 'month';
+    let timeFrame = criteria.dateRange;
       const url = baseUrl + '/api/discollect/category?cat=' + cat1 + '&cat=' + cat2 + '&cat=' + cat3 + '&cat=' + cat4 + '&cat=' + cat5 + '&cat=' + cat6+ '&past=' + timeFrame;
+      console.log('===========>',url)
       fetch(url, {
         credentials: 'same-origin',
       })

@@ -136,6 +136,26 @@ const profileView = (state = initProfileView, action) => {
   }
 };
 
+const initChartData = {
+  type1: 'bar',
+  data: [12,22,7,23,15],
+  labels: ['Apples', 'Oranges', 'Pears', 'Peaches', 'Grapes'],
+  label: 'shBoooooooooom',
+};
+
+const devChart = (state = initChartData, action) => {
+  switch (action.type) {
+    case 'GET_CHART':
+      return Object.assign({}, state, {
+        data: action.data,
+        labels: action.labels,
+        label: action.label,
+      });
+      default:
+      return state;
+  }
+}
+
 const reducer = combineReducers({
   items,
   currentItem,
@@ -143,6 +163,7 @@ const reducer = combineReducers({
   search,
   usersListings,
   profileView,
+  devChart,
 });
 
 module.exports = {
