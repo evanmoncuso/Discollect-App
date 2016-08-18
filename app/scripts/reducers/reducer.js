@@ -7,6 +7,7 @@ const initUserState = {
   username: null,
   password: null,
   picReference: null,
+  dev: false,
 };
 
 const users = (state = initUserState, action) => {
@@ -46,6 +47,10 @@ const users = (state = initUserState, action) => {
     case 'GET_USER_HISTORY':
       return Object.assign({}, state, {
         history: action.history,
+      });
+    case 'VALIDATE_DEV':
+      return Object.assign({}, state, {
+        dev: true,
       });
     default:
       return state;

@@ -37,7 +37,10 @@ module.exports = {
   },
 
   signup: function(req, res) {
+<<<<<<< HEAD
     // console.log('hit on api/signup');
+=======
+>>>>>>> Replace DOGE as favicon and erase some old console logs
     User.findOne({
       where: {username: req.body.username}
     })
@@ -62,7 +65,10 @@ module.exports = {
   logout: function(req, res) {
     req.logout();
     req.session.destroy(function(err) {
+<<<<<<< HEAD
       // console.log('in teh part to destroy sesh')  
+=======
+>>>>>>> Replace DOGE as favicon and erase some old console logs
       res.send();
     })
   },
@@ -74,7 +80,10 @@ module.exports = {
       },
     })
     .then(function(user){
+<<<<<<< HEAD
       // console.log('^^^^^',user);
+=======
+>>>>>>> Replace DOGE as favicon and erase some old console logs
       res.send(user);
     })
     .catch(function(err){
@@ -83,14 +92,20 @@ module.exports = {
   },
 
   updatePic: function(req, res) {
+<<<<<<< HEAD
     // console.log(req.body);
+=======
+>>>>>>> Replace DOGE as favicon and erase some old console logs
     User.findOne({
       where: {
         id: req.body.userId,
       },
     })
     .then(user => {
+<<<<<<< HEAD
       // console.log(user);
+=======
+>>>>>>> Replace DOGE as favicon and erase some old console logs
       return user.update({
         picReference: req.body.picReference,
       });
