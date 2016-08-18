@@ -29,7 +29,7 @@ class Portal extends React.Component {
   updateChart() {
     console.log('updating chart')    
     var canvas = document.getElementById("myChart").getContext("2d");
-    canvas.clearRect(10,10,500,500);
+    canvas.clearRect(10,10,600,600);
     var myChart = new Chart(canvas, {
       type: this.props.type1,
       data: {
@@ -90,6 +90,8 @@ class Portal extends React.Component {
     let category5;
     let category6;
     let dateRange;
+    let dateRange2;
+    let singleCat;
     return (
       <div className="developerContainer">
         <div className="wrapperDiv">
@@ -116,7 +118,7 @@ class Portal extends React.Component {
             }}>
             <div className="leftSide">
 
-                  <div className="auth_input">
+                  <div className="auth_inputChart">
                   <label htmlFor="dateRange" >Select your time-span</label><br />
                       <select ref={(node) => { dateRange = node; }}  id="dateRange" required>
                         <option value="hour">Past hour</option>
@@ -128,7 +130,7 @@ class Portal extends React.Component {
                       </select>
                   </div>
 
-                   <div className="auth_input">
+                   <div className="auth_inputChart">
                    <h2>Pick up to 6 categories</h2><br />
                     <label htmlFor="category1" ></label>
                       <select ref={(node) => { category1 = node; }}  id="category1" required>
@@ -142,7 +144,7 @@ class Portal extends React.Component {
                       </select>
                   </div>  
 
-                  <div className="auth_input">
+                  <div className="auth_inputChart">
                     <label htmlFor="category2" ></label>
                       <select ref={(node) => { category2 = node; }}  id="category2" required>
                         <option value="None">None</option>
@@ -155,7 +157,7 @@ class Portal extends React.Component {
                       </select>
                   </div>      
 
-                  <div className="auth_input">
+                  <div className="auth_inputChart">
                     <label htmlFor="category3" ></label>
                       <select ref={(node) => { category3 = node; }}  id="category3" required>
                         <option value="None">None</option>
@@ -168,7 +170,7 @@ class Portal extends React.Component {
                       </select>
                   </div>
 
-                  <div className="auth_input">
+                  <div className="auth_inputChart">
                     <label htmlFor="category4" ></label>
                       <select ref={(node) => { category4 = node; }}  id="category4" required>
                         <option value="None">None</option>
@@ -181,7 +183,7 @@ class Portal extends React.Component {
                       </select>
                   </div>
 
-                  <div className="auth_input">
+                  <div className="auth_inputChart">
                     <label htmlFor="category5" ></label>
                       <select ref={(node) => { category5 = node; }}  id="category5" required>
                         <option value="None">None</option>
@@ -194,7 +196,7 @@ class Portal extends React.Component {
                       </select>
                   </div>  
 
-                  <div className="auth_input">
+                  <div className="auth_inputChart">
                     <label htmlFor="category6" ></label>
                       <select ref={(node) => { category6 = node; }}  id="category6" required>
                         <option value="None">None</option>
@@ -224,8 +226,54 @@ class Portal extends React.Component {
                 </div>
             </div>
           </form>
+
+          <form encType="multipart/form-data"
+          onSubmit={(e) => {
+              e.preventDefault();
+              const info = {
+                singleCat: singleCat.value,
+                dateRange: dateRange2.value,
+              };
+                this.props.dispatchGetChartData(info);
+                singleCat.value = "None";
+                dateRange2.value = 'day';
+
+                setTimeout(this.updateChart.bind(this), 1200)
+          }}>
+
+            <div className="leftSide">
+
+                  <div className="auth_inputChart">
+                    <label htmlFor="dateRange2" >Select your time-span</label><br />
+                      <select ref={(node) => { dateRange2 = node; }}  id="dateRange2" required>
+                        <option value="hour">Past hour</option>
+                        <option value="day">Past day</option>
+                        <option value="month">Past month</option>
+                        <option value="threeMonths">Past 3 months</option>
+                        <option value="sixMonths">Past 6 months</option>
+                        <option value="year">Past year</option>
+                      </select>
+                  </div>
+
+                <div className="auth_inputChart">
+                    <label htmlFor="singleCat" >Select a category</label><br />
+                    <select ref={(node) => { singleCat = node; }}  id="singleCat" required>
+                      <option value="None">None</option>
+                      <option value="appliances">Appliances</option>
+                      <option value="fashion">Clothing, Shoes &amp; Jewelry</option>
+                      <option value="furniture">Furniture</option>
+                      <option value="books">Books</option>
+                      <option value="electronics">Electronics</option>
+                      <option value="tools">Tools &amp; Home Improvement</option>
+                    </select>
+                </div>
+              <button type='submit' className="form_submit_button">CREATE CHART</button>
+
+            </div>
+          </form>
+
           <div className="rightSide" id="canvasHolder">
-            <canvas id="myChart" width="500" height="500"></canvas>
+            <canvas id="myChart" width="600" height="500"></canvas>
           </div>
       </div>
       </div>

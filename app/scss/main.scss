@@ -577,12 +577,13 @@ canvas {
 
 .leftSide {
   float: left;
-  min-width: 240px;
+  min-width: 260px;
+  max-width: 260px;
   margin-top: 20px;
   margin-left: 20px;
   text-align: center;
   background-color: lightgrey;
-  border: solid 2px darkgrey;
+  border: solid 1px black;
   height: 500px;
 }
 
@@ -602,9 +603,27 @@ canvas {
 }
 
 .wrapperDiv {
-  background-color: white;
-  border: solid 2px darkgrey;
+  background-color: darkgrey;
+  border: solid 5px black;
   margin: 0 auto;
-  min-width: 1100px;
+  min-width: 1200px;
   height: 540px
+}
+
+.auth_inputChart {
+  display:block;
+  width: 260px;
+  margin: 24px auto;
+  label {
+    display: block;
+  }
+  input {
+    height: 32px;
+    font-size: 1.4em;
+    font-weight: bold;
+    line-height: 22px;
+    outline: none;
+    background-color: inherit;
+    color:$light-font;
+  }
 }
