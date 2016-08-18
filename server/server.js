@@ -10,6 +10,9 @@ app.use(cors());
 
 require('./config/database.js');
 require('./config/middleware.js')(app, express);
+const clickTracker = require('./clicktracker/test.js');
+
+app.use('/api/listing', clickTracker);
 app.use('/api', apiRoutes);
 
 // for react router browserHistory
