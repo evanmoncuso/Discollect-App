@@ -11,7 +11,9 @@
     "compile-for-test": "babel app/scripts/actions --out-dir compiledForTests --presets=es2015,react --ignore=node_modules,compiled --source-maps inline",
     "scss:dev": "node-sass -o public/css app/scss/main.scss -w",
     "scss:prod": "node-sass --output-style compressed -o public/css app/scss/main.scss",
-    "server:build": "babel server --out-dir build --presets=es2015 --ignore=node_modules,compiled --source-maps inline"
+    "server:build": "babel server --out-dir build --presets=es2015 --ignore=node_modules,compiled --source-maps inline",
+    "test:react": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test/components",
+    "test:react:watch": "npm run test:react -- --watch"
   },
   "repository": {
     "type": "git",
@@ -51,7 +53,11 @@
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0",
     "sequelize": "^3.23.6",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "jquery": "^2.2.1",
+    "react-addons-test-utils": "^0.14.7",
+    "jsdom": "^8.1.0",
+    "chai-jquery": "^2.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",

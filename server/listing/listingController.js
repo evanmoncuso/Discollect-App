@@ -16,7 +16,7 @@ module.exports = {
       order: [['createdAt', 'DESC']],
     })
     .then((items) => {
-      console.log(items);
+      // console.log(items);
       res.send(items);
     });
   },
@@ -66,7 +66,7 @@ module.exports = {
       mail(req, 'taken');
     })
     .catch(function(err) {
-      console.log('error updating', err);
+      // console.log('error updating', err);
       res.status(400).send(err);
     })
   },
