@@ -6,7 +6,6 @@ var Listing = require('../listing/listingModel.js');
 var clickModel = db.define('item_clicks', {
   userId: Sequelize.INTEGER,
   listingId: Sequelize.INTEGER,
-  location: Sequelize.INTEGER,
 });
 
 clickModel.belongsTo(User, {foreignKey: 'userId', targetKey: 'id'});

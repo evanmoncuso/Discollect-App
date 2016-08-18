@@ -10,7 +10,7 @@ app.use(cors());
 
 require('./config/database.js');
 require('./config/middleware.js')(app, express);
-const clickTracker = require('./clicktracker/test.js');
+const clickTracker = require('./clicktracker/clickTrackerMiddleware.js');
 
 app.use('/api/listing', clickTracker);
 app.use('/api', apiRoutes);
