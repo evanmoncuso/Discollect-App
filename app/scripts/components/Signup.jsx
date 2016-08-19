@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-
 import { createUser } from '../actions/userActions.js';
 
 const Signup = ({ dispatchSignup }) => {

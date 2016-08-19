@@ -201,7 +201,14 @@ const devAccess = (state = { valid: false }, action) => {
         reqLimit: action.reqLimit,
         requests: action.requests,
       });
-    default:
+      case 'DEV_CREATE':
+        return Object.assign({}, state, {
+          valid: action.valid,
+          reqLimit: action.reqLimit,
+          requests: action.requests,
+          key: action.key,
+        });
+      default:
       return state;
   }
 };
