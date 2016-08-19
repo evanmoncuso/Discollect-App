@@ -231,7 +231,7 @@ class Portal extends React.Component {
               };
                 this.props.dispatchGetChartSingleData(info);
                 singleCat.value = "None";
-                dateRange2.value = 'day';
+                dateRange2.value = 'hour';
                 setTimeout(this.updateChart.bind(this), 1200)
             }}>
 
