@@ -153,9 +153,22 @@ const devMap = (state = initMapData, action) => {
   }
 };
 
+const initChartType = {
+  type: 'bar',
+}
+
+const chartType = (state = initChartType, action) => {
+  switch (action.type) {
+    case 'GET_CHART_TYPE':
+      return Object.assign({}, state, {
+        type: action.chartType
+      })
+    default:
+      return state;
+  }
+}
 
 const initChartData = {
-  type1: 'bar',
   data: [12,22,7,23,15],
   labels: ['Apples', 'Oranges', 'Pears', 'Peaches', 'Grapes'],
   label: 'shBoooooooooom',
@@ -183,6 +196,7 @@ const reducer = combineReducers({
   profileView,
   devChart,
   devMap,
+  chartType,
 });
 
 module.exports = {

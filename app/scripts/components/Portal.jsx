@@ -27,7 +27,6 @@ class Portal extends React.Component {
   }  
 
   updateChart() {
-    console.log('updating chart')    
     var canvas = document.getElementById("myChart").getContext("2d");
     canvas.clearRect(10,10,600,600);
     var myChart = new Chart(canvas, {
@@ -55,30 +54,7 @@ class Portal extends React.Component {
   }
 
   componentDidMount(){
-    var canvas = document.getElementById("myChart");
-    var ctx = canvas.getContext("2d");
-    var myChart = new Chart(ctx, {
-      type: this.props.type1,
-      data: {
-          labels: this.props.labels,
-          datasets: [{
-              label: this.props.label,
-              data: this.props.data,
-              backgroundColor: this.backgroundColors(),
-              borderColor: 'white',
-              borderWidth: 2
-          }]
-      },
-      options: {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero:true
-                  }
-              }]
-          }
-      }
-    });
+    this.updateChart()
   }
 
 
@@ -92,6 +68,7 @@ class Portal extends React.Component {
     let dateRange;
     let dateRange2;
     let singleCat;
+    let chartType;
     return (
       <div className="developerContainer">
         <div className="wrapperDiv">
@@ -107,7 +84,7 @@ class Portal extends React.Component {
                   cat6: category6.value,
                   dateRange: dateRange.value,
                 };
-                  this.props.dispatchGetChartData(info);
+                  this.props.dispatchGetChartCatsData(info);
                   category1.value = "None";
                   category2.value = "None";
                   category3.value = "None";
@@ -122,7 +99,7 @@ class Portal extends React.Component {
                   <label htmlFor="dateRange" >Select your time-span</label><br />
                       <select ref={(node) => { dateRange = node; }}  id="dateRange" required>
                         <option value="hour">Past hour</option>
-                        <option value="day">Past day</option>
+                        <option value="day">Last 24 hours</option>
                         <option value="month">Past month</option>
                         <option value="threeMonths">Past 3 months</option>
                         <option value="sixMonths">Past 6 months</option>
@@ -216,85 +193,120 @@ class Portal extends React.Component {
                     category4.value = "books";
                     category5.value = "electronics";
                     category6.value = "tools";
-                  }}>All available categories</button>
+                  }}>All available categories
+                  </button>
 
                 <br />
                 <div>
-                <br />
-                  <button type='submit' className="form_submit_button">CREATE CHART</button>
-                <br />
+                  <br />
+                    <button type='submit' className="form_submit_button">CREATE CHART</button>
+                  <br />
                 </div>
             </div>
           </form>
 
+
+
+
+
+
+
+
+
+
+
+
           <form encType="multipart/form-data"
-          onSubmit={(e) => {
+            onSubmit={(e) => {
               e.preventDefault();
               const info = {
                 singleCat: singleCat.value,
                 dateRange: dateRange2.value,
               };
-                this.props.dispatchGetChartData(info);
+                this.props.dispatchGetChartSingleData(info);
                 singleCat.value = "None";
                 dateRange2.value = 'day';
-
                 setTimeout(this.updateChart.bind(this), 1200)
-          }}>
+            }}>
 
             <div className="leftSide">
-
-                  <div className="auth_inputChart">
-                    <label htmlFor="dateRange2" >Select your time-span</label><br />
-                      <select ref={(node) => { dateRange2 = node; }}  id="dateRange2" required>
-                        <option value="hour">Past hour</option>
-                        <option value="day">Past day</option>
-                        <option value="month">Past month</option>
-                        <option value="threeMonths">Past 3 months</option>
-                        <option value="sixMonths">Past 6 months</option>
-                        <option value="year">Past year</option>
-                      </select>
-                  </div>
-
-                <div className="auth_inputChart">
-                    <label htmlFor="singleCat" >Select a category</label><br />
-                    <select ref={(node) => { singleCat = node; }}  id="singleCat" required>
-                      <option value="None">None</option>
-                      <option value="appliances">Appliances</option>
-                      <option value="fashion">Clothing, Shoes &amp; Jewelry</option>
-                      <option value="furniture">Furniture</option>
-                      <option value="books">Books</option>
-                      <option value="electronics">Electronics</option>
-                      <option value="tools">Tools &amp; Home Improvement</option>
-                    </select>
-                </div>
+              <div className="auth_inputChart">
+                <label htmlFor="dateRange2" >Select your time-span</label><br />
+                  <select ref={(node) => { dateRange2 = node; }}  id="dateRange2" required>
+                    <option value="hour">Past hour</option>
+                    <option value="day">Past day</option>
+                    <option value="month">Past month</option>
+                    <option value="threeMonths">Past 3 months</option>
+                    <option value="sixMonths">Past 6 months</option>
+                    <option value="year">Past year</option>
+                  </select>
+              </div>
+              <div className="auth_inputChart">
+                  <label htmlFor="singleCat" >Select a category</label><br />
+                  <select ref={(node) => { singleCat = node; }}  id="singleCat" required>
+                    <option value="None">None</option>
+                    <option value="appliances">Appliances</option>
+                    <option value="fashion">Clothing, Shoes &amp; Jewelry</option>
+                    <option value="furniture">Furniture</option>
+                    <option value="books">Books</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="tools">Tools &amp; Home Improvement</option>
+                  </select>
+              </div>
               <button type='submit' className="form_submit_button">CREATE CHART</button>
+            
 
+              <div className="auth_inputChart">
+                <label htmlFor="chartType" ></label>
+                  <select ref={(node) => { chartType = node; }}  id="chartType" required>
+                    <option value="bar">Bar Chart</option>
+                    <option value="line">Line Chart</option>
+                    <option value="pie">Pie Chart</option>
+                    <option value="polarArea">Polar Area Chart</option>
+                  </select>
+              <br />
+              <br />
+              <button className="form_submit_button" onClick={(e) => {
+              e.preventDefault();
+              const info = {
+                type: chartType.value,
+              };
+                this.props.dispatchChartTypeChange(info);
+                category1.value = "None";
+                setTimeout(this.updateChart.bind(this), 1200)
+           }}>Change chart</button>
+            </div>
             </div>
           </form>
-
           <div className="rightSide" id="canvasHolder">
             <canvas id="myChart" width="600" height="500"></canvas>
           </div>
+        </div>
       </div>
-      </div>
-    );
+    )
   }
 }
 
 
 const mapStateToProps = (state) => {
   return {
-    type1: state.devChart.type1,
+    type1: state.chartType.type,
     data: state.devChart.data,
     labels: state.devChart.labels,
-    label: state.devChart.label,
+    label: state.devChart.label,    
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatchGetChartData: (info) => {
-      dispatch(chartActions.getChartData(info))
+    dispatchGetChartCatsData: (info) => {
+      dispatch(chartActions.getChartCatsData(info))
+    },    
+    dispatchGetChartSingleData: (info) => {
+      dispatch(chartActions.getChartSingleData(info))
+    },    
+    dispatchChartTypeChange: (info) => {
+      dispatch(chartActions.getChartType(info))
     }
   }
 }
