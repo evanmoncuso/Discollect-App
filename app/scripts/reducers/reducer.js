@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 const initUserState = {
   zip: null,
-  coords: [],
+  coords: [37.4219999, -122.0840575],
   id: null,
   username: null,
   password: null,
@@ -35,7 +35,7 @@ const users = (state = initUserState, action) => {
     case 'GET_USER_COORDS':
       // currently not being used. potentially for passing to map api?
       return Object.assign({}, state, {
-        coords: [action.lng, action.lat],
+        coords: [action.lat, action.lng],
       });
     case 'GET_USER_ZIP':
       return Object.assign({}, state, {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import itemActions from '../actions/itemActions.js';
+import GoogMap from './GoogMap.jsx';
 
 const CreateListing = ({ dispatchCreateNewListing,  id }) => {
   let title;
@@ -101,6 +102,9 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
           <div className="auth_input">
             <label htmlFor="description">Description</label>
             <textarea ref={(node) => { description = node; }} id="description" required />
+          </div>
+          <div className="map_container" style={{ width: '300px', height: '300px', margin: '0 auto' }}>
+            <GoogMap />
           </div>
           <div className="button_container">
             <button type="submit" className="form_submit_button">Create</button>
