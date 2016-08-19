@@ -175,9 +175,9 @@ const chartType = (state = initChartType, action) => {
 }
 
 const initChartData = {
-  data: [12,22,7,23,15],
-  labels: ['Apples', 'Oranges', 'Pears', 'Peaches', 'Grapes'],
-  label: 'shBoooooooooom',
+  data: [6,12,17,23,35],
+  labels: ['Welcome', 'To', 'Discollect', 'Data', 'Charts!'],
+  label: 'Discollection Information',
 };
 
 const devChart = (state = initChartData, action) => {

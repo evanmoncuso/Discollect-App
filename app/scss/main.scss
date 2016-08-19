@@ -193,6 +193,9 @@ Login / Signup
   color: $light-font;
   margin: 0 6px;
 }
+.form_submit_button:hover {
+  box-shadow: -2px 3px 6px black;
+} 
 
 /*
 ====================
@@ -563,6 +566,7 @@ Footer
 canvas {
   background-color: black;
   box-shadow: 3px 2px 3px darkblue;
+  min-height: 350px;
 }
 
 .leftSide {
@@ -576,13 +580,32 @@ canvas {
   border: solid 1px black;
   height: 500px;
 }
+.leftMapSide {
+  float: left;
+  min-width: 180px;
+  max-width: 180px;
+  margin-top: 20px;
+  margin-left: 20px;
+  text-align: center;
+  background-color: lightgrey;
+  border: solid 1px black;
+  height: 500px;
+}
 
 
 .rightSide {
   float: right;
-  min-width: 600px;
+  padding-top: 90px;
+  padding-right: 20px;  
+  width: 600px;
+}
+
+.mapSide {
+  float: right;
+  max-width: 800px;
   padding-top: 20px;
-  padding-right: 20px;
+  padding-right: 20px;   
+  max-height: 480px;
 }
 
 .developerContainer {
@@ -618,7 +641,8 @@ canvas {
   }
 }
 
-#myChart {
-  width: 400px;
-  height: 400px;
+
+#myMap {
+  min-width: 800px;
+  min-height: 500px
 }

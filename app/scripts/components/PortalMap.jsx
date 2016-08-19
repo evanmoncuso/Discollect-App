@@ -36,7 +36,7 @@ class PortalMap extends React.Component {
             onSubmit={(e) => {
                 e.preventDefault();
                 var datas = this.generateValues();
-                var place = document.getElementById('myChart');
+                var place = document.getElementById('myMap');
                 var map = AmCharts.makeChart( place, {
                   "type": "map",
                   "theme": "light",
@@ -46,7 +46,7 @@ class PortalMap extends React.Component {
                     "areas": datas
                   },
                   "areasSettings": {
-                    "autoZoom": true
+                    "autoZoom": false
                   },
                   "valueLegend": {
                     "right": 10,
@@ -61,17 +61,17 @@ class PortalMap extends React.Component {
                  // this.props.dispatchGetMapData();
                   // setTimeout(this.updateChart.bind(this), 1200)
             }}>
-            <div className="leftSide">
+            <div className="leftMapSide">
 
                 <br />
                 <div>
                 <br />
-                  <button type='submit' className="form_submit_button">UPDATE MAP</button>
+                  <button type='submit' className="form_submit_button">Generate <br /> MAP</button>
                 <br />
                 </div>
             </div>
           </form>
-          <div className="rightSide" id="canvasHolder" id='myChart'>
+          <div className="mapSide" id="myMap">
           </div>
       </div>
       </div>

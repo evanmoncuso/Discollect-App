@@ -30,13 +30,17 @@ const optimisticSetMap = (areas) => (
 
 const chartActions = {
 
+
   getMapData: () => (
     (dispatch) => {
+      var randNum = function() {
+        return (Math.random()*100)+(Math.random()*200)+(Math.random()*200);
+      };
       console.log('into getMapping!')
       var areas = {
-        CA:580,MD:201,CT:124,NY:80,AZ:256,UT:340,
-        IL:366,MI:333,NH:199,FL:455,SD:200,MA:119,
-        AL:202,ND:87,IN:101,MS:10,TX:233,TN:204
+        CA:randNum(),MD:randNum(),CT:randNum(),NY:randNum(),AZ:randNum(),UT:randNum(),
+        IL:randNum(),MI:randNum(),NH:randNum(),FL:randNum(),SD:randNum(),MA:randNum(),
+        AL:randNum(),ND:randNum(),IN:randNum(),MS:randNum(),TX:randNum(),TN:randNum()
       }
       console.log('chartAction updating state with: ',areas)
       dispatch(optimisticSetMap(areas));
