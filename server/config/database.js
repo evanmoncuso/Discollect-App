@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 const secrets = require('../../secrets.js');
-// const secrets = {};
-if (secrets.dbpassword) {
+const secrets = {};
+// if (secrets.dbpassword) {
   var dbpassword = secrets.dbpassword;
   var host = secrets.mysql.host;
   var port = secrets.mysql.port;
