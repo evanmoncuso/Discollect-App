@@ -1,4 +1,6 @@
-const clickModel = require('./clickModel.js');
+const clickModel = require('./clickModel');
+const Listing = require('../listing/listingModel');
+const fetch = require('isomorphic-fetch');
 
 const tracker = (req, res, next) => {
   let item = null;
@@ -6,16 +8,31 @@ const tracker = (req, res, next) => {
     item = req.query.id;
   }
 
-
-  // cannot have a user id of 0, so 8 represents our dummy user
   let user = 8;
-
   if (req.user) {
     user = req.user.dataValues.id;
   }
 
   if (item) {
     clickModel.create({ userId: user, listingId: item });
+    // Listing.findOne({
+    //   where: {
+    //     id: item,
+    //   },
+    // })
+    // .then((resultItem) => {
+    //
+    //   const url = `http://zipcodehelper.herokuapp.com/api/state?zip=${resultItem.zipcode}`;
+    //
+    //   fetch(url)
+    //   .then((resp) => resp.json())
+    //   .then((response) => {
+    //     console.log(response);
+    //     clickModel.create({ userId: user, listingId: item });
+    //   });
+    //   clickModel.create({ userId: user, listingId: item });
+    //
+    // });
   }
 
   next();
