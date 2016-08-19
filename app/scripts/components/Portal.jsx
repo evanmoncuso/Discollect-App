@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Chart from 'chart.js';
+import { browserHistory } from 'react-router';
 import chartActions from '../actions/chartActions.js';
 
 
@@ -27,9 +28,14 @@ class Portal extends React.Component {
   }
 
   updateChart() {
-    var canvas = document.getElementById("myChart").getContext("2d");
-    canvas.clearRect(10,10,600,600);
-    var myChart = new Chart(canvas, {
+    var oldcanv = document.getElementById('myChart');
+    document.getElementById('canvasHolder').removeChild(oldcanv);
+    var canv = document.createElement('canvas');
+    canv.id = 'myChart';
+    document.getElementById('canvasHolder').appendChild(canv);
+    var newCanvas = document.getElementById("myChart").getContext("2d");
+    // canvas.clearRect(10,10,600,600);
+    var myChart = new Chart(newCanvas, {
       type: this.props.type1,
       data: {
           labels: this.props.labels,
@@ -275,6 +281,12 @@ class Portal extends React.Component {
                 category1.value = "None";
                 setTimeout(this.updateChart.bind(this), 1200)
            }}>Change chart</button>
+            <br />
+            <br />
+            <br />
+            <button className="form_submit_button" onClick={(e) => {
+              browserHistory.push('/portalmap')
+           }}>Go to Heat-Map</button>
             </div>
             </div>
           </form>
