@@ -8,6 +8,7 @@ import Listing from './Listing.jsx';
 import Login from './Login.jsx';
 import Signup from './Signup.jsx';
 import Portal from './Portal.jsx';
+import PortalMap from './PortalMap.jsx';
 import Dashboard from './Dashboard.jsx';
 import CreateListing from './CreateListing.jsx';
 import Profile from './Profile.jsx';
@@ -19,6 +20,7 @@ export default (
     <Route path="/login" component={Login} />
     <Route path="/signup" component={Signup} />
     <Route path="/portal" component={Portal} />
+    <Route path="/portalmap" component={PortalMap} />
     <Route path="/dashboard" component={Dashboard} />
     <Route path="/listing/:id" component={Listing} />
     <Route path="/createlisting" component={CreateListing} />

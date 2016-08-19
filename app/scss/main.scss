@@ -590,7 +590,7 @@ canvas {
 
 .rightSide {
   float: right;
-  min-width: 500px;
+  min-width: 600px;
   padding-top: 20px;
   padding-right: 20px;  
 }
@@ -619,11 +619,16 @@ canvas {
   }
   input {
     height: 32px;
-    font-size: 1.4em;
+    font-size: 1.3em;
     font-weight: bold;
-    line-height: 22px;
+    line-height: 21px;
     outline: none;
     background-color: inherit;
     color:$light-font;
   }
+}
+
+#myChart {
+  width: 400px;
+  height: 400px;
 }
