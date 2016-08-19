@@ -30,6 +30,7 @@ module.exports = {
     var message = {
       id: req.user.id,
       username: req.user.username,
+      email: req.user.email,
       zipcode: req.user.zipcode,
       picReference: req.user.picReference,
     };
@@ -62,7 +63,7 @@ module.exports = {
   logout: function(req, res) {
     req.logout();
     req.session.destroy(function(err) {
-      // console.log('in teh part to destroy sesh')  
+      // console.log('in teh part to destroy sesh')
       res.send();
     })
   },

@@ -16,7 +16,6 @@ Grid
 body {
   box-sizing: border-box;
   font-family: $primary-font;
-  background-repeat: repeat;
   background-color: #e7e7e7;
 }
 
@@ -491,6 +490,14 @@ Dashboard View
 .left_flag {
   float: left;
 }
+
+.dev_portal_access {
+  padding:12px;
+  border-left: 4px solid $dark-gray;
+  background-color: $dark-gray;
+  color: $light-font;
+  margin: 0 auto;
+}
 /*
 ====================
 Profile view
@@ -553,23 +560,6 @@ Footer
 ====================
  */
 
-footer {
-  width: 100%;
-  position: sticky;
-  bottom: 0;
-  padding: 12px;
-  text-align: center;
-  font-size: $font-small;
-  color: $light-font;
-  background-color: $dark-gray;
-
-  .made_with,
-  .made_by {
-    display: inline-block;
-    margin: 0 auto;
-  }
-}
-
 canvas {
   background-color: black;
   box-shadow: 3px 2px 3px darkblue;
@@ -592,7 +582,7 @@ canvas {
   float: right;
   min-width: 600px;
   padding-top: 20px;
-  padding-right: 20px;  
+  padding-right: 20px;
 }
 
 .developerContainer {

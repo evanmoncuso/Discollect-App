@@ -7,6 +7,7 @@ const initUserState = {
   username: null,
   password: null,
   picReference: null,
+  dev: false,
 };
 
 const users = (state = initUserState, action) => {
@@ -17,6 +18,7 @@ const users = (state = initUserState, action) => {
         id: action.id,
         username: action.username,
         picReference: action.picReference,
+        email: action.email,
       });
     case 'ID_USER':
       return Object.assign({}, state, {
@@ -46,6 +48,10 @@ const users = (state = initUserState, action) => {
     case 'GET_USER_HISTORY':
       return Object.assign({}, state, {
         history: action.history,
+      });
+    case 'VALIDATE_DEV':
+      return Object.assign({}, state, {
+        dev: true,
       });
     default:
       return state;
@@ -182,10 +188,23 @@ const devChart = (state = initChartData, action) => {
         labels: action.labels,
         label: action.label,
       });
-      default:
+    default:
       return state;
   }
 }
+
+const devAccess = (state = { valid: false }, action) => {
+  switch (action.type) {
+    case 'DEV_VALIDATE':
+      return Object.assign({}, state, {
+        valid: action.valid,
+        reqLimit: action.reqLimit,
+        requests: action.requests,
+      });
+    default:
+      return state;
+  }
+};
 
 const reducer = combineReducers({
   items,
@@ -197,6 +216,7 @@ const reducer = combineReducers({
   devChart,
   devMap,
   chartType,
+  devAccess,
 });
 
 module.exports = {

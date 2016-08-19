@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/evanmoncuso/Discollect-App#readme",
   "dependencies": {
+    "babel-cli": "^6.11.4",
     "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.2",
     "chai": "^3.5.0",
