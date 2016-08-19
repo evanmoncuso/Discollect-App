@@ -10,11 +10,11 @@ class Portal extends React.Component {
  }
 
   randomColorGenerator(){
-    return "rgba(" + Math.ceil(Math.random() * 255) + ', ' 
+    return "rgba(" + Math.ceil(Math.random() * 255) + ', '
     + Math.ceil(Math.random() * 255) + ', ' 
     + Math.ceil(Math.random() * 255) + ', '
     + '1)';
-  }  
+  }
 
   backgroundColors(){
     var arr = [];
@@ -24,7 +24,7 @@ class Portal extends React.Component {
       }
       return arr;
     }
-  }  
+  }
 
   updateChart() {
     var canvas = document.getElementById("myChart").getContext("2d");
@@ -119,7 +119,7 @@ class Portal extends React.Component {
                         <option value="electronics">Electronics</option>
                         <option value="tools">Tools &amp; Home Improvement</option>
                       </select>
-                  </div>  
+                  </div>
 
                   <div className="auth_inputChart">
                     <label htmlFor="category2" ></label>
@@ -132,7 +132,7 @@ class Portal extends React.Component {
                         <option value="electronics">Electronics</option>
                         <option value="tools">Tools &amp; Home Improvement</option>
                       </select>
-                  </div>      
+                  </div>
 
                   <div className="auth_inputChart">
                     <label htmlFor="category3" ></label>
@@ -171,7 +171,7 @@ class Portal extends React.Component {
                         <option value="electronics">Electronics</option>
                         <option value="tools">Tools &amp; Home Improvement</option>
                       </select>
-                  </div>  
+                  </div>
 
                   <div className="auth_inputChart">
                     <label htmlFor="category6" ></label>
@@ -184,7 +184,7 @@ class Portal extends React.Component {
                         <option value="electronics">Electronics</option>
                         <option value="tools">Tools &amp; Home Improvement</option>
                       </select>
-                  </div>  
+                  </div>
                   <button onClick={(e)=>{
                     e.preventDefault();
                     category1.value = "appliances";
@@ -254,7 +254,7 @@ class Portal extends React.Component {
                   </select>
               </div>
               <button type='submit' className="form_submit_button">CREATE CHART</button>
-            
+
 
               <div className="auth_inputChart">
                 <label htmlFor="chartType" ></label>
@@ -293,7 +293,7 @@ const mapStateToProps = (state) => {
     type1: state.chartType.type,
     data: state.devChart.data,
     labels: state.devChart.labels,
-    label: state.devChart.label,    
+    label: state.devChart.label,
   };
 };
 
@@ -301,10 +301,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     dispatchGetChartCatsData: (info) => {
       dispatch(chartActions.getChartCatsData(info))
-    },    
+    },
     dispatchGetChartSingleData: (info) => {
       dispatch(chartActions.getChartSingleData(info))
-    },    
+    },
     dispatchChartTypeChange: (info) => {
       dispatch(chartActions.getChartType(info))
     }
@@ -312,6 +312,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Portal);
-
-
-

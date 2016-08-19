@@ -6,6 +6,13 @@ import SearchBar from './SearchBar.jsx';
 import Registered from './userSignInParts/Registered.jsx';
 import Unregistered from './userSignInParts/Unregistered.jsx';
 
+const hideSearch = {
+  login: true,
+  create: true,
+  signup: true,
+  portal: true,
+  portalMap: true,
+};
 
 const NavBar = ({ username }) => {
   let displayed = username ? <Registered username={username} /> : <Unregistered />;

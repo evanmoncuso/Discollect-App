@@ -5,11 +5,12 @@ import { browserHistory } from 'react-router';
 // const baseUrl = 'http://ec2-54-186-167-115.us-west-2.compute.amazonaws.com';
 const baseUrl = 'http://localhost:3000';
 
-const optimisticSignIn = ({ zipcode, username, id, picReference }) => (
+const optimisticSignIn = ({ zipcode, username, id, picReference, email }) => (
   {
     type: 'LOGIN_VALID',
     zipcode,
     username,
+    email,
     id,
     picReference,
   }

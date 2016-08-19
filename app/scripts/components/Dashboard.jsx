@@ -5,6 +5,7 @@ import { browserHistory } from 'react-router';
 
 import PaneListing from './userListingParts/pane_listing_entry.jsx';
 import AccountInfo from './userListingParts/AccountInfo.jsx';
+import DevPortalAccess from './userListingParts/DevPortalAccess.jsx';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -80,6 +81,9 @@ class Dashboard extends React.Component {
                 </div>
               </div>
             </div>
+          </div>
+          <div>
+            <DevPortalAccess />
           </div>
         </div>
       </div>

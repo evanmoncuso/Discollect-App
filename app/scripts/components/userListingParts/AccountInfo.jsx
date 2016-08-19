@@ -24,7 +24,7 @@ const AccountInfo = ({ username, toggleHistory, view, userId, dispatchUploadProf
       <div className="user_picture">
         <img src={profileImage} alt="user" height={320} />
       </div>
-      <div className="about">{username ? username : 'NOT A VALID USER'}</div>
+      <div className="about">{username ? username : 'NOT ACTIVE USER'}</div>
       <button
         onClick={() => toggleHistory()}
         className="account_history"
