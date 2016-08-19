@@ -55,7 +55,6 @@ Grid
 body {
   box-sizing: border-box;
   font-family: "Lato";
-  background-repeat: repeat;
   background-color: #e7e7e7; }
 
 a {
@@ -201,6 +200,9 @@ Login / Signup
   background-color: #1565C0;
   color: #F7F7F7;
   margin: 0 6px; }
+
+.form_submit_button:hover {
+  box-shadow: -2px 3px 6px black; }
 
 /*
 ====================
@@ -448,6 +450,13 @@ Dashboard View
 .left_flag {
   float: left; }
 
+.dev_portal_access {
+  padding: 12px;
+  border-left: 4px solid #333;
+  background-color: #333;
+  color: #F7F7F7;
+  margin: 0 auto; }
+
 /*
 ====================
 Profile view
@@ -498,23 +507,10 @@ Pane Entry View
 Footer
 ====================
  */
-footer {
-  width: 100%;
-  position: sticky;
-  bottom: 0;
-  padding: 12px;
-  text-align: center;
-  font-size: 14px;
-  color: #F7F7F7;
-  background-color: #333; }
-  footer .made_with,
-  footer .made_by {
-    display: inline-block;
-    margin: 0 auto; }
-
 canvas {
   background-color: black;
-  box-shadow: 3px 2px 3px darkblue; }
+  box-shadow: 3px 2px 3px darkblue;
+  min-height: 350px; }
 
 .leftSide {
   float: left;
@@ -527,11 +523,29 @@ canvas {
   border: solid 1px black;
   height: 500px; }
 
+.leftMapSide {
+  float: left;
+  min-width: 180px;
+  max-width: 180px;
+  margin-top: 20px;
+  margin-left: 20px;
+  text-align: center;
+  background-color: lightgrey;
+  border: solid 1px black;
+  height: 500px; }
+
 .rightSide {
   float: right;
-  min-width: 600px;
+  padding-top: 90px;
+  padding-right: 20px;
+  width: 600px; }
+
+.mapSide {
+  float: right;
+  max-width: 800px;
   padding-top: 20px;
-  padding-right: 20px; }
+  padding-right: 20px;
+  max-height: 480px; }
 
 .developerContainer {
   position: absolute;
@@ -561,6 +575,6 @@ canvas {
     background-color: inherit;
     color: #F7F7F7; }
 
-#myChart {
-  width: 400px;
-  height: 400px; }
+#myMap {
+  min-width: 800px;
+  min-height: 500px; }
