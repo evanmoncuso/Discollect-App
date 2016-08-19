@@ -21,7 +21,7 @@ class GoogMap extends React.Component {
     this.handleMapClick.bind(this);
   }
   handleMapClick(event) {
-    // console.log(event);
+    // console.log(typeof this.props.changeCoords);
     let marker = this.state.marker;
     let newMarker = update(marker, {
       $set: {
@@ -33,6 +33,7 @@ class GoogMap extends React.Component {
     this.setState({
       marker: newMarker,
     });
+    this.props.changeCoords(this.state.marker.position.lat(), this.state.marker.position.lng());
     // console.log(this.state.marker.position.lat(), this.state.marker.position.lng());
   }
   render() {
@@ -40,7 +41,6 @@ class GoogMap extends React.Component {
       <GoogleMapLoader
         containerElement={<div style={{ height: '100%' }} />}
         query={{ libraries: 'geometry,drawing,places,visualization' }}
-        onClick={(e) => {console.log('dbc',e);}}
         googleMapElement={
           <GoogleMap
             defaultZoom={12}
@@ -57,6 +57,7 @@ class GoogMap extends React.Component {
 
 GoogMap.propTypes = {
   userGeoCoords: React.PropTypes.array,
+  // changeCoords: React.PropTypes.function,
 };
 
 const mapStateToProps = (state) => {
