@@ -1,6 +1,6 @@
 import React from 'react';
-import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps';
-// import { default as update } from "react-addons-update";
+import { GoogleMapLoader, GoogleMap, Marker, SearchBox } from 'react-google-maps';
+import { default as update } from "react-addons-update";
 // import { default as canUseDOM } from "can-use-dom";
 import { connect } from 'react-redux';
 // import userActions from '../actions/userActions.js';
@@ -21,25 +21,33 @@ class GoogMap extends React.Component {
     this.handleMapClick.bind(this);
   }
   handleMapClick(event) {
-    let newMarker = this.state.marker;
-    newMarker.position.lat = 37.4219999;
-    newMarker.position.lng = -122.0840575;
+    // console.log(event);
+    let marker = this.state.marker;
+    let newMarker = update(marker, {
+      $set: {
+        position: event.latLng,
+        key: 'SF',
+        defaultAnimation: 2,
+      },
+    });
     this.setState({
       marker: newMarker,
     });
-    console.log(this.state.marker, event);
+    // console.log(this.state.marker.position.lat(), this.state.marker.position.lng());
   }
   render() {
     return (
       <GoogleMapLoader
         containerElement={<div style={{ height: '100%' }} />}
+        query={{ libraries: 'geometry,drawing,places,visualization' }}
+        onClick={(e) => {console.log('dbc',e);}}
         googleMapElement={
           <GoogleMap
             defaultZoom={12}
             defaultCenter={{ lat: this.props.userGeoCoords[0], lng: this.props.userGeoCoords[1] }}
-            onClick={event => this.handleMapClick(event)}
+            onClick={(e)=>this.handleMapClick(e)}
           >
-            <Marker {...this.state.marker} />
+            <Marker {...this.state.marker} draggable={false} />
           </GoogleMap>
         }
       />
