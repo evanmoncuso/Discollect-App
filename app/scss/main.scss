@@ -569,3 +569,66 @@ footer {
     margin: 0 auto;
   }
 }
+
+canvas {
+  background-color: black;
+  box-shadow: 3px 2px 3px darkblue;
+}
+
+.leftSide {
+  float: left;
+  min-width: 260px;
+  max-width: 260px;
+  margin-top: 20px;
+  margin-left: 20px;
+  text-align: center;
+  background-color: lightgrey;
+  border: solid 1px black;
+  height: 500px;
+}
+
+
+.rightSide {
+  float: right;
+  min-width: 600px;
+  padding-top: 20px;
+  padding-right: 20px;  
+}
+
+.developerContainer {
+  position: absolute;
+  margin-top: 160px;
+  margin-left:60px;
+  margin-right:60px;
+}
+
+.wrapperDiv {
+  background-color: darkgrey;
+  border: solid 5px black;
+  margin: 0 auto;
+  min-width: 1200px;
+  height: 540px
+}
+
+.auth_inputChart {
+  display:block;
+  width: 260px;
+  margin: 24px auto;
+  label {
+    display: block;
+  }
+  input {
+    height: 32px;
+    font-size: 1.3em;
+    font-weight: bold;
+    line-height: 21px;
+    outline: none;
+    background-color: inherit;
+    color:$light-font;
+  }
+}
+
+#myChart {
+  width: 400px;
+  height: 400px;
+}

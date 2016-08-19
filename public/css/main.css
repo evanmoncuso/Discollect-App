@@ -3,6 +3,7 @@
    License: none (public domain)
 */
 @import 'https://fonts.googleapis.com/css?family=Lato|Open+Sans:300,400';
+@import 'https://fonts.googleapis.com/css?family=Montserrat';
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -69,8 +70,7 @@ Title bar
 nav {
   width: 100%;
   background-color: #fff;
-  padding: 24px;
-  border-bottom: 2px solid #333;
+  box-shadow: 0 1px 1px #777;
   margin-bottom: 24px;
   position: fixed;
   z-index: 10; }
@@ -79,7 +79,7 @@ nav * {
   padding: 0; }
 
 .nav_title {
-  font-size: 48px;
+  font-size: 42px;
   line-height: 54px;
   margin: 12px 12px 6px 12px;
   color: #555; }
@@ -90,7 +90,7 @@ nav * {
     line-height: 22px; }
 
 h1 {
-  font-size: 48px;
+  font-size: 42px;
   line-height: 54px;
   text-align: center;
   font-family: "Lato";
@@ -106,13 +106,14 @@ h1 {
 
 .nav_title img,
 .nav_title h1 {
+  font-family: "Monserrat";
   display: inline-block;
   z-index: 12; }
 
 .main_container {
   width: 960px;
   margin: 0 auto;
-  top: 200px;
+  top: 180px;
   position: relative; }
 
 .button {
@@ -151,7 +152,8 @@ Search bar
       width: 240px; }
   .search_bar .keywords,
   .search_bar .zip {
-    border-bottom: 1px solid #333;
+    font-size: 22px;
+    color: #424242;
     margin-left: 6px; }
   .search_bar .search_button {
     border: none;
@@ -209,19 +211,20 @@ List View
   color: #fff;
   display: flex;
   flex-wrap: wrap;
-  top: 240px; }
+  top: 180px; }
   .listings_container .listView_entry {
     font-family: "Open Sans";
     color: #424242;
     background-color: #fff;
     padding: 6px;
-    border-left: 4px solid #333;
     margin: 12px 6px;
+    box-shadow: 0 1px 1px #777;
     width: 280px;
     height: 240px;
     z-index: 0; }
     .listings_container .listView_entry h2 {
       text-align: center;
+      font-family: "Monserrat";
       font-size: 32px;
       line-height: 32px; }
     .listings_container .listView_entry .data_container {
@@ -247,6 +250,7 @@ Listing View
   .listing_container .listing_content {
     display: flex; }
   .listing_container h2 {
+    font-family: "Monserrat";
     font-size: 32px;
     text-align: center; }
   .listing_container .image_pane {
@@ -255,17 +259,25 @@ Listing View
       height: 180px; }
   .listing_container .info_pane {
     flex-grow: 1;
-    font-size: 22px;
-    line-height: 32px;
+    font-size: 14px;
+    line-height: 22px;
     margin: 24px; }
+    .listing_container .info_pane .title {
+      text-decoration: underline; }
+    .listing_container .info_pane .data {
+      font-style: italic;
+      text-align: center; }
   .listing_container .listing_description {
-    width: 540px;
+    flex-grow: 1.5;
+    padding: 24px;
     margin: 0 auto; }
+  .listing_container .button_container {
+    margin: 12px; }
   .listing_container .listing_view_button {
+    padding: 12px;
     border: none;
     border-radius: 0;
-    padding: 12px;
-    font-size: 22px;
+    font-size: 14px;
     background-color: #FDD835;
     color: #424242;
     margin: 0 6px; }
@@ -276,7 +288,7 @@ Create Listing View
 ====================
  */
 .create_listing_container {
-  top: 240px;
+  top: 180px;
   padding: 12px;
   border-left: 4px solid #333;
   background-color: #333;
@@ -296,14 +308,19 @@ Create Listing View
     background-color: inherit;
     font-size: 22px;
     color: #F7F7F7; }
-  .create_listing_container .form_submit_button {
-    border: none;
-    border-radius: 0;
-    padding: 12px;
-    font-size: 22px;
-    background-color: #FDD835;
-    color: #424242;
-    margin: 0 6px; }
+  .create_listing_container .button_container {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center; }
+    .create_listing_container .button_container .form_submit_button {
+      width: 120px;
+      border: none;
+      border-radius: 0;
+      padding: 12px;
+      font-size: 22px;
+      background-color: #FDD835;
+      color: #424242;
+      margin: 0 6px; }
 
 /*
 ====================
@@ -311,7 +328,7 @@ Dashboard View
 ====================
  */
 .dashboard_container {
-  top: 240px;
+  top: 180px;
   padding: 12px;
   border-left: 4px solid #333;
   background-color: #333;
@@ -373,15 +390,34 @@ Dashboard View
   padding: 12px 0; }
 
 .user_history {
-  top: 240px;
+  top: 180px;
   padding: 12px;
   border-left: 4px solid #333;
   background-color: #333;
   color: #F7F7F7;
   margin: 0 auto; }
+  .user_history .history_labels {
+    font-size: 32px;
+    color: #F7F7F7;
+    text-align: center;
+    width: 90%;
+    padding: 12px;
+    border-bottom: 1px solid #999;
+    margin: 0 auto; }
+    .user_history .history_labels span {
+      display: inline-block;
+      width: 45%; }
+    .user_history .history_labels .giver {
+      flex-grow: 1; }
+    .user_history .history_labels .taker {
+      flex-grow: 1; }
 
 .hist_list_item {
-  height: 240px; }
+  height: 120px;
+  width: 80%;
+  border-bottom: 1px solid #999;
+  margin: 12px auto;
+  z-index: 4; }
   .hist_list_item .data_container {
     display: inline-block; }
   .hist_list_item h3 {
@@ -389,9 +425,28 @@ Dashboard View
     margin: 12px; }
   .hist_list_item span {
     display: block;
-    margin: 24px; }
-  .hist_list_item .pane_listing_button {
-    float: right; }
+    margin: 6px; }
+  .hist_list_item .flag {
+    vertical-align: bottom;
+    z-index: 2;
+    font-size: 14px;
+    width: 120px;
+    padding: 22px;
+    background-color: #FDD835;
+    color: #424242;
+    text-align: center; }
+
+.right_hist {
+  text-align: right; }
+
+.right_flag {
+  float: right; }
+
+.left_hist {
+  text-align: left; }
+
+.left_flag {
+  float: left; }
 
 /*
 ====================
@@ -437,3 +492,75 @@ Pane Entry View
 .entry_text > span {
   display: block;
   width: 120px; }
+
+/*
+====================
+Footer
+====================
+ */
+footer {
+  width: 100%;
+  position: sticky;
+  bottom: 0;
+  padding: 12px;
+  text-align: center;
+  font-size: 14px;
+  color: #F7F7F7;
+  background-color: #333; }
+  footer .made_with,
+  footer .made_by {
+    display: inline-block;
+    margin: 0 auto; }
+
+canvas {
+  background-color: black;
+  box-shadow: 3px 2px 3px darkblue; }
+
+.leftSide {
+  float: left;
+  min-width: 260px;
+  max-width: 260px;
+  margin-top: 20px;
+  margin-left: 20px;
+  text-align: center;
+  background-color: lightgrey;
+  border: solid 1px black;
+  height: 500px; }
+
+.rightSide {
+  float: right;
+  min-width: 600px;
+  padding-top: 20px;
+  padding-right: 20px; }
+
+.developerContainer {
+  position: absolute;
+  margin-top: 160px;
+  margin-left: 60px;
+  margin-right: 60px; }
+
+.wrapperDiv {
+  background-color: darkgrey;
+  border: solid 5px black;
+  margin: 0 auto;
+  min-width: 1200px;
+  height: 540px; }
+
+.auth_inputChart {
+  display: block;
+  width: 260px;
+  margin: 24px auto; }
+  .auth_inputChart label {
+    display: block; }
+  .auth_inputChart input {
+    height: 32px;
+    font-size: 1.3em;
+    font-weight: bold;
+    line-height: 21px;
+    outline: none;
+    background-color: inherit;
+    color: #F7F7F7; }
+
+#myChart {
+  width: 400px;
+  height: 400px; }

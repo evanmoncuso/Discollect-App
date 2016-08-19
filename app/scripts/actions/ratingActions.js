@@ -23,6 +23,8 @@ const ratingActions = {
       });
     }
   ),
+
+
   getAllUserRatings: (userID) => (
     (dispatch) => {
       const url = 'http://localhost:3000/api/createCollectorRating';
