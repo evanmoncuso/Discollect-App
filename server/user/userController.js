@@ -37,7 +37,7 @@ module.exports = {
   },
 
   signup: function(req, res) {
-    console.log('hit on api/signup');
+    // console.log('hit on api/signup');
     User.findOne({
       where: {username: req.body.username}
     })
@@ -62,7 +62,7 @@ module.exports = {
   logout: function(req, res) {
     req.logout();
     req.session.destroy(function(err) {
-      console.log('in teh part to destroy sesh')  
+      // console.log('in teh part to destroy sesh')  
       res.send();
     })
   },
@@ -74,7 +74,7 @@ module.exports = {
       },
     })
     .then(function(user){
-      console.log('^^^^^',user);
+      // console.log('^^^^^',user);
       res.send(user);
     })
     .catch(function(err){
@@ -83,14 +83,14 @@ module.exports = {
   },
 
   updatePic: function(req, res) {
-    console.log(req.body);
+    // console.log(req.body);
     User.findOne({
       where: {
         id: req.body.userId,
       },
     })
     .then(user => {
-      console.log(user);
+      // console.log(user);
       return user.update({
         picReference: req.body.picReference,
       });

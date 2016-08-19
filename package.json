@@ -11,7 +11,9 @@
     "compile-for-test": "babel app/scripts/actions --out-dir compiledForTests --presets=es2015,react --ignore=node_modules,compiled --source-maps inline",
     "scss:dev": "node-sass -o public/css app/scss/main.scss -w",
     "scss:prod": "node-sass --output-style compressed -o public/css app/scss/main.scss",
-    "server:build": "babel server --out-dir build --presets=es2015 --ignore=node_modules,compiled --source-maps inline"
+    "server:build": "babel server --out-dir build --presets=es2015 --ignore=node_modules,compiled --source-maps inline",
+    "test:react": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test/components",
+    "test:react:watch": "npm run test:react -- --watch"
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,7 @@
     "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.2",
     "chai": "^3.5.0",
+    "chai-jquery": "^2.0.0",
     "cors": "^2.7.1",
     "es6-promise": "^3.2.1",
     "eslint-plugin-import": "^1.12.0",
@@ -34,6 +37,8 @@
     "express": "^4.14.0",
     "express-session": "^1.14.0",
     "isomorphic-fetch": "^2.2.1",
+    "jquery": "^2.2.1",
+    "jsdom": "^8.1.0",
     "mocha": "^3.0.1",
     "moment": "^2.14.1",
     "morgan": "^1.7.0",
@@ -44,7 +49,9 @@
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "react": "^15.3.0",
+    "react-addons-test-utils": "^0.14.8",
     "react-dom": "^15.3.0",
+    "react-google-maps": "^4.11.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.6.1",
     "redux": "^3.5.2",
