@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch';
 
 import { browserHistory } from 'react-router';
 
-const baseUrl = 'http://localhost:4005';
+const baseUrl = 'discollect-dev-portal.herokuapp.com';
 
 const optimisticDevValidate = ({ valid, reqLimit, requests }) => (
   {
