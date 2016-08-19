@@ -10,6 +10,7 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
   let category;
   let description;
   let condition;
+  let latLng = '0, 0';
   let fileTypeLocal = null;
   let filenameLocal = null;
   let imageLocal = null;
@@ -27,6 +28,11 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
     reader.readAsDataURL(file);
   };
 
+  const changeCoords = (latitude, longitude) => {
+    latLng = `${latitude},${longitude}`;
+    // console.log('create listings: ', latLng);
+  };
+
   return (
     <div>
       <div className="main_container create_listing_container">
@@ -37,7 +43,7 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
             const data = {
               title: title.value,
               zipcode: zip.value,
-              status:0,
+              status: 0,
               giverId: id,
               takerId: null,
               picReference: imageLocal,
@@ -46,6 +52,7 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
               category: category.value,
               description: description.value,
               condition: condition.value,
+              coordinates: latLng,
             };
 
             console.log(data);
@@ -57,6 +64,7 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
             category.value = 'all-categories';
             description.value = '';
             condition.value = '5';
+            latLng = '0, 0';
           }}
         >
           <div className="auth_input">
@@ -104,7 +112,7 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
             <textarea ref={(node) => { description = node; }} id="description" required />
           </div>
           <div className="map_container" style={{ width: '300px', height: '300px', margin: '0 auto' }}>
-            <GoogMap />
+            <GoogMap changeCoords={changeCoords} />
           </div>
           <div className="button_container">
             <button type="submit" className="form_submit_button">Create</button>
