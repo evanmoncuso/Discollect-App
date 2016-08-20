@@ -16,7 +16,7 @@ var Listing = db.define('Listing', {
   takerRating: { type: Sequelize.INTEGER, allowNull: false, defaultValue: 0 },
   stateUSA: Sequelize.STRING,
   coordinates: { type: Sequelize.STRING, defaultValue: '0, 0' },
-});
+
 
 Listing.belongsTo(User, {foreignKey: 'giverId', targetKey: 'id'});
 Listing.belongsTo(User, {foreignKey: 'takerId', targetKey: 'id'});

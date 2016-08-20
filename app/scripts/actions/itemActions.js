@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 
 // const baseUrl = 'http://ec2-54-186-167-115.us-west-2.compute.amazonaws.com';
 const baseUrl = 'http://localhost:3000';
+const searchUrl = 'http://localhost:8080';
 
 const optimisticSetItems = (items) => (
   {
@@ -117,29 +118,37 @@ const itemActions = {
   },
 
   searchItem: (query) => (
-    // (dispatch) => {
-    //   const url = baseUrl + '/api/getFilteredListings';
-    //   fetch(url, {
-    //     method: 'PUT',
-    //     body: JSON.stringify(query),
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //   })
-    //   .then((res) => res.json())
-    //   .then((res) => {
-    //     dispatch(optimisticSetItems(res));
-    //     browserHistory.push('/');
-    //   })
-    //   .catch(err => {
-    //     console.log('Search Error: ', err);
-    //   });
-    // }
-    {
-      type: 'UPDATE_SEARCH_PARAMS',
-      keywords: query.keywords || null,
-      category: query.category || null,
-      zip: query.zip || null,
+    (dispatch) => {
+      dispatch({
+        type: 'UPDATE_SEARCH_PARAMS',
+        keywords: query.keywords || null,
+        category: query.category || null,
+        zip: query.zip || null,
+      })
+    }
+  ),
+
+  elasticSearch: (query) => (
+    (dispatch) => {
+      const url = searchUrl + '/listings?keywords=' + query.keywords + '&category=' + query.category + '&coordinates=0,0'+"&distance=10km" ;
+        // TODO TEMPLATE STRING
+      fetch(url)
+      .then((res) => res.json())
+      .then((res) => {
+        console.log('from the search', res.hits.hits)
+        var data = res.hits.hits.map(val=>{
+          val._source.picReference = val._source.picreference;
+          val._source.createdAt = val._source.createdat;
+          return val._source;
+        })
+        // TODO NEW SETSTATE
+
+        dispatch(optimisticSetItems(data));
+        browserHistory.push('/');
+      })
+      .catch(err => {
+        console.log('Search Error: ', err);
+      });
     }
   ),
 

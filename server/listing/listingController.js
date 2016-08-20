@@ -8,7 +8,7 @@ module.exports = {
   getAllListings: function (req, res) {
     // db.query('SELECT  l.id, l.title, l.zipcode, l.takerId, l.status, l.picReference, l.category, l.description, l.condition, l.createdAt, l.giverId, u.username FROM Listings l, users u WHERE l.giverId = u.id ORDER BY 1 ASC;', { type: Sequelize.QueryTypes.SELECT })
     Listing.findAll({
-      attributes: ['id', 'title', 'picReference', 'createdAt', 'zipcode', 'category'],
+      attributes: ['id', 'title', 'picReference', 'createdAt', 'zipcode', 'category', 'coordinates'],
       where: {
         status: 0,
       },
@@ -16,7 +16,6 @@ module.exports = {
       order: [['createdAt', 'DESC']],
     })
     .then((items) => {
-      // console.log(items);
       res.send(items);
     });
   },
