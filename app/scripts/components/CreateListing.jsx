@@ -30,7 +30,7 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
 
   const changeCoords = (latitude, longitude) => {
     latLng = `${latitude},${longitude}`;
-    // console.log('create listings: ', latLng);
+    console.log('create listings: ', latLng);
   };
 
   return (

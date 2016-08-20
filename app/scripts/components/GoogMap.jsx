@@ -11,10 +11,10 @@ class GoogMap extends React.Component {
     this.state = {
       marker: {
         position: {
-          lat: this.props.userGeoCoords[0],
-          lng: this.props.userGeoCoords[1],
+          lat: this.props.userGeoCoords[0] || 37.4219999,
+          lng: this.props.userGeoCoords[1] || -122.0840575,
         },
-        key: 'Taiwan',
+        key: 'SF',
         defaultAnimation: 2,
       },
     };
@@ -34,12 +34,12 @@ class GoogMap extends React.Component {
       marker: newMarker,
     });
     this.props.changeCoords(this.state.marker.position.lat(), this.state.marker.position.lng());
-    // console.log(this.state.marker.position.lat(), this.state.marker.position.lng());
+    console.log('from map comp: ', this.state.marker.position.lat(), this.state.marker.position.lng());
   }
   render() {
     return (
       <GoogleMapLoader
-        containerElement={<div style={{ height: '100%' }} />}
+        containerElement={<div className="reactGoogleMap_containerElement" style={{ height: '100%' }} />}
         query={{ libraries: 'geometry,drawing,places,visualization' }}
         googleMapElement={
           <GoogleMap
@@ -47,7 +47,7 @@ class GoogMap extends React.Component {
             defaultCenter={{ lat: this.props.userGeoCoords[0], lng: this.props.userGeoCoords[1] }}
             onClick={(e)=>this.handleMapClick(e)}
           >
-            <Marker {...this.state.marker} draggable={false} />
+            <Marker {...this.state.marker} draggable={true} />
           </GoogleMap>
         }
       />
