@@ -14,8 +14,8 @@ const optimisticSetItems = (items) => (
 
 const optimisticIndivItem = (item) => (
   {
-    type: 'SET_NEW_ITEM',
-    item,
+    type: 'SET_CURR_ITEM',
+    current: item,
   }
 );
 
@@ -222,7 +222,7 @@ const itemActions = {
 
   getUserHistory: (userId) => (
     (dispatch) => {
-      const url = `https://discollectarchive.herokuapp.com/api/getArchives`;      
+      const url = `https://discollectarchive.herokuapp.com/api/getArchives`;
       fetch(url, {
         method: 'PUT',
         credentials: 'same-origin',

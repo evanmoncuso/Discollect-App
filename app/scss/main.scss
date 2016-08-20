@@ -149,7 +149,7 @@ Login / Signup
 }
 .form_submit_button:hover {
   box-shadow: -2px 3px 6px black;
-} 
+}
 
 /*
 ====================
@@ -406,7 +406,6 @@ Dashboard View
 }
 
 .hist_list_item {
-  // box-shadow: 0 2px 2px red;
   height: 120px;
   width: 80%;
   border-bottom: 1px solid #999;
@@ -607,6 +606,50 @@ map modal
 
 /*
 ====================
+Dev Sign-up Container
+====================
+ */
+
+.dev_signup_container {
+  background-color: $dark-gray;
+  color: $light-font;
+  height: 480px;
+  input {
+    background-color: #fff;
+    color: $dark-font;
+    width: 480px;
+    padding: 12px;
+    margin: 6px;
+  }
+  span {
+    display: block;
+    padding: 12px;
+  }
+  .auth_input {
+    width: 50%;
+  }
+  .api_key_display {
+    margin: 0 auto;
+    text-align: center;
+    padding: 24px;
+  }
+  .api_key_title {
+    font-size: $font-medium;
+  }
+  .api_key_warning {
+    font-size: $font-small;
+    color: #D50000;
+  }
+}
+
+.button_holder {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 12px;
+}
+
+/*
+====================
 Footer
 ====================
  */
@@ -644,7 +687,7 @@ canvas {
 .rightSide {
   float: right;
   padding-top: 90px;
-  padding-right: 20px;  
+  padding-right: 20px;
   width: 600px;
 }
 
@@ -652,7 +695,7 @@ canvas {
   float: right;
   max-width: 800px;
   padding-top: 20px;
-  padding-right: 20px;   
+  padding-right: 20px;
   max-height: 480px;
 }
 

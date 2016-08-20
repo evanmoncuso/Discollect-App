@@ -10,12 +10,6 @@ if (secrets.dbpassword) {
 var db = new Sequelize('discollectDB', 'jordan', dbpassword, {
   host: host,
   port: port,
-  // dialect: 'mysql',
-  // pool: {
-  //   max: 5,
-  //   min: 0,
-  //   idle: 10000,
-  // },
 });
 
 db

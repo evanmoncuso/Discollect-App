@@ -4,9 +4,8 @@ import moment from 'moment';
 import ratingActions from '../../actions/ratingActions.js';
 
 
-const HistoricalListItem = ({ item, userId, rating, dispatchCreateRating,  }) => {
+const HistoricalListItem = ({ item, userId, rating, dispatchCreateRating }) => {
   const timeAgo = moment(item.updatedAt).fromNow();
-  // rating = rating === null || rating < 1;
   let classes = 'hist_list_item ';
   classes += item.giverId === userId ? 'left_hist' : 'right_hist';
 
@@ -24,7 +23,6 @@ const HistoricalListItem = ({ item, userId, rating, dispatchCreateRating,  }) =>
       <div className={flagSide}>{!rating ? (<button
         onClick={() => {
          let rating = prompt("Please give a user rating (1 - 5)");
-          console.log('!!!!!!!!!!!!!!!!!!!', userId, item.giverId, item.id, rating, dispatchCreateRating);
           // dispatchCreateRating('Collector', userId, item.takerId, item.id, rating, 'N/A');
           // console.log('updating a rating with any luck: ', item.title)
           // dispatchUpdateRating(item.id, rating);
@@ -48,9 +46,7 @@ const mapDispatchToProps = (dispatch) => {
     dispatchCloseListing: (listingId) => {
       dispatch(itemActions.closeListing(listingId));
     },
-    // dispatchUpdateRating: (item.id, rating) => {
-    //   dispatch(ratingActions.updateRating(itemId, rating))
-    // }
+
     dispatchCreateRating: (table, raterID, rateeID, listing_id, rating, review) => {
       dispatch(ratingActions.createRating(table, raterID, rateeID, listing_id, rating, review));
     },
@@ -58,5 +54,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 module.exports = connect(mapStateToProps, mapDispatchToProps)(HistoricalListItem);
-
-

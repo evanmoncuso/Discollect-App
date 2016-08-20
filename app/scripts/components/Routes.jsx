@@ -12,6 +12,7 @@ import PortalMap from './PortalMap.jsx';
 import Dashboard from './Dashboard.jsx';
 import CreateListing from './CreateListing.jsx';
 import Profile from './Profile.jsx';
+import DevSignup from './DevSignup.jsx';
 import History from './History.jsx';
 
 export default (
@@ -19,6 +20,7 @@ export default (
     <IndexRoute component={ListView} />
     <Route path="/login" component={Login} />
     <Route path="/signup" component={Signup} />
+    <Route path="/dev-signup" component={DevSignup} />
     <Route path="/portal" component={Portal} />
     <Route path="/portalmap" component={PortalMap} />
     <Route path="/dashboard" component={Dashboard} />
