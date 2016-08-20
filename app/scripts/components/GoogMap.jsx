@@ -14,7 +14,7 @@ class GoogMap extends React.Component {
           lat: this.props.userGeoCoords[0] || 37.4219999,
           lng: this.props.userGeoCoords[1] || -122.0840575,
         },
-        key: 'Taiwan',
+        key: 'SF',
         defaultAnimation: 2,
       },
     };
@@ -47,7 +47,7 @@ class GoogMap extends React.Component {
             defaultCenter={{ lat: this.props.userGeoCoords[0], lng: this.props.userGeoCoords[1] }}
             onClick={(e)=>this.handleMapClick(e)}
           >
-            <Marker {...this.state.marker} draggable={false} />
+            <Marker {...this.state.marker} draggable={true} />
           </GoogleMap>
         }
       />
