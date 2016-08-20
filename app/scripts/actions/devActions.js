@@ -34,7 +34,6 @@ const devActions = {
       })
       .then((result) => result.json())
       .then((result) => {
-        console.log('=================', result);
         if (result.valid) {
           dispatch(optimisticDevValidate(result));
           browserHistory.push('/portal');
@@ -65,7 +64,6 @@ const devActions = {
       })
       .then((res) => res.json())
       .then((res) => {
-        console.log('abcDEF:::: ', res);
         dispatch(optimisticDevCreate(res));
       })
       .catch((err) => {
