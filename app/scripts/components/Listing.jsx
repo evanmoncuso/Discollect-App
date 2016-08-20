@@ -7,17 +7,6 @@ import itemActions from '../actions/itemActions.js';
 const defaultImage = '../../../public/css/ina.jpg';
 
 const Listing = ({ currentListing, userId, userName, dispatchListingStatusChange }) => {
-  // var listIDX = props.params.id;
-  // const curr1 = (listIDX) => {
-  //   for (var i = 0; i < props.currentListing.length; i++) {
-  //     if (props.currentListing[i].id === Number(listIDX)) {
-  //       console.log('found! :', props.currentListing[i])
-  //       return props.currentListing[i];
-  //     }
-  //   }
-  // }
-  // var curr = curr1(listIDX);
-  // var listingID = curr.id;
 
   const backer = () => {
     browserHistory.goBack();
@@ -93,7 +82,7 @@ const Listing = ({ currentListing, userId, userName, dispatchListingStatusChange
 
 const mapStateToProps = (state) => {
   return {
-    currentListing: state.currentItem,
+    currentListing: state.items.current,
     userId: state.users.id,
     userName: state.users.username,
   };

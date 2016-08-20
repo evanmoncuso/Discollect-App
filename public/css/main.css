@@ -128,47 +128,6 @@ h1 {
 
 /*
 ====================
-<<<<<<< 287d7b846b6fb0dd6248f4789884d89a7ea049fd
-Search bar
-====================
- */
-.search_bar {
-  width: 960px;
-  margin: 0 auto;
-  text-align: center; }
-  .search_bar .search_bar_input {
-    height: 32px;
-    font-size: 14px;
-    line-height: 22px;
-    border: none;
-    outline: none;
-    background-color: inherit; }
-  .search_bar .full_input {
-    display: inline-block; }
-    .search_bar .full_input label {
-      display: block;
-      text-align: left; }
-    .search_bar .full_input input {
-      width: 240px; }
-  .search_bar .keywords,
-  .search_bar .zip {
-    font-size: 22px;
-    color: #424242;
-    margin-left: 6px; }
-  .search_bar .search_button {
-    border: none;
-    border-radius: 0;
-    padding: 12px;
-    font-size: 22px;
-    background-color: #D50000;
-    color: #F7F7F7;
-    margin: 0 6px;
-    transition: 0.4s all ease-in; }
-
-/*
-====================
-=======
->>>>>>> Add some styles to map modal
 Login / Signup
 ====================
  */
@@ -452,7 +411,6 @@ Dashboard View
 
 .left_flag {
   float: left; }
-<<<<<<< 287d7b846b6fb0dd6248f4789884d89a7ea049fd
 
 .dev_portal_access {
   padding: 12px;
@@ -460,8 +418,6 @@ Dashboard View
   background-color: #333;
   color: #F7F7F7;
   margin: 0 auto; }
-=======
->>>>>>> Add some styles to map modal
 
 /*
 ====================
@@ -510,82 +466,6 @@ Pane Entry View
 
 /*
 ====================
-<<<<<<< 287d7b846b6fb0dd6248f4789884d89a7ea049fd
-Footer
-====================
- */
-canvas {
-  background-color: black;
-  box-shadow: 3px 2px 3px darkblue;
-  min-height: 350px; }
-
-.leftSide {
-  float: left;
-  min-width: 260px;
-  max-width: 260px;
-  margin-top: 20px;
-  margin-left: 20px;
-  text-align: center;
-  background-color: lightgrey;
-  border: solid 1px black;
-  height: 500px; }
-
-.leftMapSide {
-  float: left;
-  min-width: 180px;
-  max-width: 180px;
-  margin-top: 20px;
-  margin-left: 20px;
-  text-align: center;
-  background-color: lightgrey;
-  border: solid 1px black;
-  height: 500px; }
-
-.rightSide {
-  float: right;
-  padding-top: 90px;
-  padding-right: 20px;
-  width: 600px; }
-
-.mapSide {
-  float: right;
-  max-width: 800px;
-  padding-top: 20px;
-  padding-right: 20px;
-  max-height: 480px; }
-
-.developerContainer {
-  position: absolute;
-  margin-top: 160px;
-  margin-left: 60px;
-  margin-right: 60px; }
-
-.wrapperDiv {
-  background-color: darkgrey;
-  border: solid 5px black;
-  margin: 0 auto;
-  min-width: 1200px;
-  height: 540px; }
-
-.auth_inputChart {
-  display: block;
-  width: 260px;
-  margin: 24px auto; }
-  .auth_inputChart label {
-    display: block; }
-  .auth_inputChart input {
-    height: 32px;
-    font-size: 1.3em;
-    font-weight: bold;
-    line-height: 21px;
-    outline: none;
-    background-color: inherit;
-    color: #F7F7F7; }
-
-#myMap {
-  min-width: 800px;
-  min-height: 500px; }
-=======
 Search bar
 ====================
  */
@@ -663,20 +543,108 @@ map modal
 
 /*
 ====================
+Dev Sign-up Container
+====================
+ */
+.dev_signup_container {
+  background-color: #333;
+  color: #F7F7F7;
+  height: 480px; }
+  .dev_signup_container input {
+    background-color: #fff;
+    color: #424242;
+    width: 480px;
+    padding: 12px;
+    margin: 6px; }
+  .dev_signup_container span {
+    display: block;
+    padding: 12px; }
+  .dev_signup_container .auth_input {
+    width: 50%; }
+  .dev_signup_container .api_key_display {
+    margin: 0 auto;
+    text-align: center;
+    padding: 24px; }
+  .dev_signup_container .api_key_title {
+    font-size: 22px; }
+  .dev_signup_container .api_key_warning {
+    font-size: 14px;
+    color: #D50000; }
+
+.button_holder {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 12px; }
+
+/*
+====================
 Footer
 ====================
  */
-footer {
-  width: 100%;
-  position: sticky;
-  bottom: 0;
-  padding: 12px;
+canvas {
+  background-color: black;
+  box-shadow: 3px 2px 3px darkblue;
+  min-height: 350px; }
+
+.leftSide {
+  float: left;
+  min-width: 260px;
+  max-width: 260px;
+  margin-top: 20px;
+  margin-left: 20px;
   text-align: center;
-  font-size: 14px;
-  color: #F7F7F7;
-  background-color: #333; }
-  footer .made_with,
-  footer .made_by {
-    display: inline-block;
-    margin: 0 auto; }
->>>>>>> Add some styles to map modal
+  background-color: lightgrey;
+  border: solid 1px black;
+  height: 500px; }
+
+.leftMapSide {
+  float: left;
+  min-width: 180px;
+  max-width: 180px;
+  margin-top: 20px;
+  margin-left: 20px;
+  text-align: center;
+  background-color: lightgrey;
+  border: solid 1px black;
+  height: 500px; }
+
+.rightSide {
+  float: right;
+  padding-top: 90px;
+  padding-right: 20px;
+  width: 600px; }
+
+.mapSide {
+  float: right;
+  max-width: 800px;
+  padding-top: 20px;
+  padding-right: 20px;
+  max-height: 480px; }
+
+.developerContainer {
+  position: absolute;
+  margin-top: 160px;
+  margin-left: 60px;
+  margin-right: 60px; }
+
+.wrapperDiv {
+  background-color: darkgrey;
+  border: solid 5px black;
+  margin: 0 auto;
+  min-width: 1200px;
+  height: 540px; }
+
+.auth_inputChart {
+  display: block;
+  width: 260px;
+  margin: 24px auto; }
+  .auth_inputChart label {
+    display: block; }
+  .auth_inputChart input {
+    height: 32px;
+    font-size: 1.3em;
+    font-weight: bold;
+    line-height: 21px;
+    outline: none;
+    background-color: inherit;
+    color: #F7F7F7; }
