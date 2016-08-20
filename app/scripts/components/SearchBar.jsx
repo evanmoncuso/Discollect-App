@@ -55,12 +55,11 @@ class SearchBar extends React.Component {
             const data = {
               category: category.value,
               keywords: keywords.value,
-              zipcodeArray: [zip.value || userZip],
               coordinates: this.state.latLng,
-              radius: this.state.radius,
+              distance: this.state.radius,
             };
             console.log(data);
-            this.props.commitSearch(data);
+            this.props.doElasticSearch(data);
             category.value = 'all-categories';
             keywords.value = '';
             zip.value = '';
@@ -72,14 +71,6 @@ class SearchBar extends React.Component {
               className="search_bar_input keywords"
               ref={(node) => { keywords = node; }}
               onChange={(node) => this.props.commitSearch({ keywords: node.target.value.toLowerCase() })}
-            />
-          </div>
-          <div className="full_input">
-            <label htmlFor="zip">zipcode: </label>
-            <input
-              className="search_bar_input zip"
-              ref={(node) => { zip = node; }}
-              onChange={(node) => this.props.commitSearch({ zip: node.target.value })}
             />
           </div>
           <div className="map_button" onClick={() => { this.toggleModal(); }}>

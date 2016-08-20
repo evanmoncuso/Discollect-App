@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 
 // const baseUrl = 'http://ec2-54-186-167-115.us-west-2.compute.amazonaws.com';
 const baseUrl = 'http://localhost:3000';
-const searchUrl = 'http://localhost:8080';
+const searchUrl = 'http://localhost:8080/listings';
 
 const optimisticSetItems = (items) => (
   {
@@ -130,7 +130,7 @@ const itemActions = {
 
   elasticSearch: (query) => (
     (dispatch) => {
-      const url = searchUrl + '/listings?keywords=' + query.keywords + '&category=' + query.category + '&coordinates=0,0'+"&distance=10km" ;
+      const url = searchUrl + '?keywords=' + query.keywords + '&category=' + query.category + '&coordinates=' + query.coordinates + '&distance=' + query.distance + 'km';
         // TODO TEMPLATE STRING
       fetch(url)
       .then((res) => res.json())
@@ -166,6 +166,11 @@ const itemActions = {
       .then((res) => res.json())
       .then((res) => {
         dispatch(itemActions.getLatestListings());
+        fetch(searchUrl + '/' + num, {
+          method: 'DELETE',
+        }).then(()=>{
+          console.log('deleted from elasticSearch')  
+        })
       })
       .catch((err) => {
         if (err) {
