@@ -104,52 +104,6 @@ h1 {
   font-size: $font-medium;
 }
 
-/*
-====================
-Search bar
-====================
- */
-
-.search_bar {
-  width: 960px;
-  margin: 0 auto;
-  text-align: center;
-  .search_bar_input {
-    height: 32px;
-    font-size: $font-small;
-    line-height: 22px;
-    border: none;
-    outline: none;
-    background-color: inherit;
-  }
-  .full_input {
-    display:inline-block;
-    label {
-      display:block;
-      text-align: left;
-    }
-    input {
-      width: 240px;
-    }
-  }
-  .keywords,
-  .zip {
-    // border-bottom: 1px solid $dark-gray;
-    font-size: $font-medium;
-    color: $dark-font;
-    margin-left: 6px;
-  }
-  .search_button {
-    border: none;
-    border-radius: 0;
-    padding: 12px;
-    font-size: 22px;
-    background-color: #D50000;
-    color: $light-font;
-    margin: 0 6px;
-    transition: 0.4s all ease-in;
-  }
-}
 
 /*
 ====================
@@ -556,6 +510,100 @@ Pane Entry View
   display: block;
   width:120px;
 }
+/*
+====================
+Search bar
+====================
+ */
+
+.search_bar {
+  width: 960px;
+  margin: 0 auto;
+  text-align: center;
+  .search_bar_input {
+    height: 32px;
+    font-size: $font-small;
+    line-height: 22px;
+    border: none;
+    outline: none;
+    background-color: inherit;
+  }
+  .full_input {
+    display:inline-block;
+    border: 1px dotted black; //
+    width: 200px; //
+    label {
+      display:inline-block;
+      text-align: left;
+    }
+    input {
+      width: 240px;
+    }
+  }
+  .keywords,
+  .zip {
+    // border-bottom: 1px solid $dark-gray;
+    font-size: $font-medium;
+    color: $dark-font;
+    margin-left: 6px;
+  }
+  .search_button {
+    border: none;
+    border-radius: 0;
+    padding: 12px;
+    font-size: 22px;
+    background-color: #D50000;
+    color: $light-font;
+    margin: 0 6px;
+    transition: 0.4s all ease-in;
+  }
+  .map_button {
+    height: 49px;
+    border: 1px dotted black;
+    display: inline-block;
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+  .map_button:active {
+    background-color: green;
+  }
+  #category {
+    height: 49px;
+  }
+}
+/*
+====================
+map modal
+====================
+ */
+ .reactGoogleMap_containerElement {
+    height: '100%';
+ }
+ .map_modal {
+  // background-size: cover;
+  // height: 100%;
+  // width:100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  // display: absolute;
+ }
+ .map_modal_content {
+    position: absolute; //for now
+    left: 30%;
+    top: 200px;
+    width: 400px;
+    height: 400px;
+    border: 5px solid rgba(0, 0, 0, 0.8);
+ }
+ .modal_on {
+   display: block;
+ }
+
+ .modal_off {
+   display: none;
+ }
 
 /*
 ====================
@@ -639,10 +687,4 @@ canvas {
     background-color: inherit;
     color:$light-font;
   }
-}
-
-
-#myMap {
-  min-width: 800px;
-  min-height: 500px
 }
