@@ -9,7 +9,6 @@ const DevPortalAccess = ({ userEmail, dispatchDevValidation }) => {
       <div>Access the Developer Portal</div>
       <button
         onClick={() => {
-            console.log('1', userEmail);
             dispatchDevValidation(userEmail);
           }
         }
@@ -30,7 +29,6 @@ const mapStateToProps = (state) => (
 const mapDispatchToProps = (dispatch) => (
   {
     dispatchDevValidation: (email) => {
-      console.log('2', email);
       dispatch(checkDevStatus(email));
     },
   }

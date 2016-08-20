@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 
 import users from './userReducer.js';
-
 import items from './itemReducer.js';
 
 const search = (state = {}, action) => {
@@ -17,47 +16,6 @@ const search = (state = {}, action) => {
         keywords: action.keywords || null,
         category: action.category || null,
         zip: action.zip || null,
-      });
-    default:
-      return state;
-  }
-};
-
-const initialUserListingsState = {
-  active: [],
-  pending: [],
-  waiting: [],
-}
-
-const usersListings = (state = initialUserListingsState, action) => {
-  switch (action.type) {
-    case 'GET_USERS_LISTINGS':
-      return Object.assign({}, state, {
-        active: action.active,
-        pending: action.pending,
-        waiting: action.waiting,
-      });
-    default:
-      return state;
-  }
-};
-
-const initProfileView = {
-  username: '',
-  zipcode: '',
-  rating: '',
-  picReference: '',
-  email: '',
-};
-const profileView = (state = initProfileView, action) => {
-  switch (action.type) {
-    case 'GET_PROFILE_VIEW':
-      return Object.assign({}, state, {
-        username: action.profile.username,
-        zipcode: action.profile.zipcode,
-        rating: action.profile.rating,
-        picReference: action.profile.picReference,
-        email: action.profile.email,
       });
     default:
       return state;
@@ -113,40 +71,15 @@ const devChart = (state = initChartData, action) => {
     default:
       return state;
   }
-}
-
-const devAccess = (state = { valid: false }, action) => {
-  switch (action.type) {
-    case 'DEV_VALIDATE':
-      return Object.assign({}, state, {
-        valid: action.valid,
-        reqLimit: action.reqLimit,
-        requests: action.requests,
-      });
-      case 'DEV_CREATE':
-        return Object.assign({}, state, {
-          valid: action.valid,
-          reqLimit: action.reqLimit,
-          requests: action.requests,
-          key: action.key,
-        });
-      case 'LOGOUT_USER':
-        return { valid: false };
-      default:
-        return state;
-  }
 };
 
 const reducer = combineReducers({
   items,
   users,
   search,
-  usersListings,
-  profileView,
   devChart,
   devMap,
   chartType,
-  devAccess,
 });
 
 module.exports = {

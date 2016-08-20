@@ -28,9 +28,6 @@ const PaneListingEntry = ({ item, closeable, removeable, userID, dispatchCloseLi
             {closeable ? (<button
               className="pane_listing_button close"
               onClick={() => {
-                // let rating = prompt("Please give a user rating (1 - 5)");
-                // console.log('!', userID, item.giverId, item.id, rating, dispatchCreateRating);
-                // dispatchCreateRating('Collector', userID, item.takerId, item.id, rating, 'N/A');
                 dispatchCloseListing(item.id);
             }}>
               Picked up

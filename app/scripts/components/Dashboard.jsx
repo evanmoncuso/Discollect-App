@@ -95,9 +95,9 @@ const mapStateToProps = (state) => {
   return {
     username: state.users.username,
     userID: state.users.id,
-    activeGivingItems: state.usersListings.active,
-    pendingGivingItems: state.usersListings.pending,
-    waitingTakenItems: state.usersListings.waiting,
+    activeGivingItems: state.items.userListings.active,
+    pendingGivingItems: state.items.userListings.pending,
+    waitingTakenItems: state.items.userListings.waiting,
   };
 };
 
@@ -124,6 +124,7 @@ Dashboard.propTypes = {
   userListings: React.PropTypes.array,
   dispatchGetUserListings: React.PropTypes.func,
   dispatchCloseListing: React.PropTypes.func,
+  waitingTakenItems: React.PropTypes.func,
 };
 
 

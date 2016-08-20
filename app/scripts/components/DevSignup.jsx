@@ -62,7 +62,7 @@ DevSignup.propTypes = {
 
 const mapStateToProps = (state) => (
   {
-    apiKey: state.devAccess.key,
+    apiKey: state.users.dev.key,
     currentEmail: state.users.email,
   }
 );

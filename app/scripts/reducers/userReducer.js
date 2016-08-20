@@ -5,7 +5,15 @@ const initUserState = {
   username: null,
   password: null,
   picReference: null,
-  dev: false,
+  dev: {},
+};
+
+const initProfileView = {
+  username: '',
+  zipcode: '',
+  rating: '',
+  picReference: '',
+  email: '',
 };
 
 const users = (state = initUserState, action) => {
@@ -22,11 +30,6 @@ const users = (state = initUserState, action) => {
       return Object.assign({}, state, {
         username: action.username,
         password: action.password,
-      });
-    case 'LOGOUT_USER':
-      return Object.assign({}, state, {
-        username: null,
-        password: null,
       });
     case 'SAVE_USER_ID':
       return Object.assign({}, state, {
@@ -45,10 +48,33 @@ const users = (state = initUserState, action) => {
       return Object.assign({}, state, {
         history: action.history,
       });
-    case 'VALIDATE_DEV':
+    case 'DEV_VALIDATE':
       return Object.assign({}, state, {
-        dev: true,
+        dev: {
+          valid: action.valid,
+          reqLimit: action.reqLimit,
+          requests: action.requests,
+        },
       });
+    case 'DEV_CREATE':
+      return Object.assign({}, state, {
+        dev: {
+          valid: action.valid,
+          reqLimit: action.reqLimit,
+          requests: action.requests,
+          key: action.key,
+        },
+      });
+    // case 'GET_PROFILE_VIEW':
+    //   return Object.assign({}, state, {
+    //     username: action.profile.username,
+    //     zipcode: action.profile.zipcode,
+    //     rating: action.profile.rating,
+    //     picReference: action.profile.picReference,
+    //     email: action.profile.email,
+    //   });
+    case 'LOGOUT_USER':
+      return initUserState;
     default:
       return state;
   }
