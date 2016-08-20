@@ -208,8 +208,10 @@ const devAccess = (state = { valid: false }, action) => {
           requests: action.requests,
           key: action.key,
         });
+      case 'LOGOUT_USER':
+        return { valid: false };
       default:
-      return state;
+        return state;
   }
 };
 
