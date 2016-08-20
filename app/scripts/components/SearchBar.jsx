@@ -107,6 +107,7 @@ class SearchBar extends React.Component {
             <input type="range" name="miles" min="0" max="100" onChange={(e) => { this.handleSlide(e); }} />
             <span>{this.state.radius}</span>
           </div>
+
         </div>
       </div>
     );
@@ -128,6 +129,9 @@ const mapDispatchToProps = (dispatch) => (
   {
     commitSearch: (query) => {
       dispatch(itemActions.searchItem(query));
+    },
+    doElasticSearch: (query) => {
+      dispatch(itemActions.elasticSearch(query));
     },
   }
 );
