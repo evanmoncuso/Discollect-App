@@ -9,9 +9,20 @@ class PortalMap extends React.Component {
   super(props)
  }
 
+  generateMinMax() {
+    var array = [];
+    for (var key in this.props.areas) {
+      array.push(this.props.areas[key])
+    }
+    array = array.sort()
+    var min = Math.floor(array[0]);
+    var max = Math.floor(array[array.length-1]);
+    console.log(min, max)
+    return [min, max];
+  }
+
   generateValues(){
     var res = [];
-    console.log('props.areas: ',this.props.areas)
     for (var key in this.props.areas) {
       res.push({"id": "US-" + key, "value": this.props.areas[key]})
     }
@@ -36,6 +47,10 @@ class PortalMap extends React.Component {
             onSubmit={(e) => {
                 e.preventDefault();
                 var datas = this.generateValues();
+                var ends = this.generateMinMax()
+                var min = ends[0]
+                var max = ends[1]
+                console.log('min and max: ', min, max)
                 var place = document.getElementById('myMap');
                 var map = AmCharts.makeChart( place, {
                   "type": "map",
@@ -43,15 +58,17 @@ class PortalMap extends React.Component {
                   "colorSteps": 10,
                   "dataProvider": {
                     "map": "usaLow",
-                    "areas": datas
+                    "areas": datas,
                   },
                   "areasSettings": {
                     "autoZoom": false
                   },
                   "valueLegend": {
                     "right": 10,
-                    "minValue": "little",
-                    "maxValue": "a lot!"
+                    "minValue": min,
+                    "maxValue": max,
+                    'fontSize': 15,
+                    'color': 'white',
                   },
                   "export": {
                     "enabled": true

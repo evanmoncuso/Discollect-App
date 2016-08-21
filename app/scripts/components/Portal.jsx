@@ -97,7 +97,7 @@ class Portal extends React.Component {
                   category4.value = "None";
                   category5.value = "None";
                   category6.value = "None";
-                  setTimeout(this.updateChart.bind(this), 1200)
+                  setTimeout(this.updateChart.bind(this), 1500)
             }}>
             <div className="leftSide">
 

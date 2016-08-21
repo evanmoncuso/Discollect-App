@@ -666,8 +666,13 @@ Footer
 
 canvas {
   background-color: black;
-  box-shadow: 3px 2px 3px darkblue;
+  border: solid 1px darkgrey;
   min-height: 350px;
+}
+
+#myMap {
+  min-width: 800px;
+  min-height: 460px;
 }
 
 .leftSide {
@@ -679,7 +684,7 @@ canvas {
   margin-right: 10px;
   text-align: center;
   background-color: lightgrey;
-  border: solid 1px black;
+  border: solid 4px darkgrey;
   height: 500px;
 }
 .leftMapSide {
@@ -704,10 +709,12 @@ canvas {
 
 .mapSide {
   float: right;
+  min-width: 800px;
   max-width: 800px;
   padding-top: 20px;
   padding-right: 20px;
   max-height: 480px;
+  min-height: 480px;
 }
 
 .developerContainer {
@@ -718,7 +725,7 @@ canvas {
 }
 
 .wrapperDiv {
-  background-color: darkgrey;
+  background-color: #1f1f2e;
   border: solid 5px black;
   margin: 0 auto;
   min-width: 1200px;
