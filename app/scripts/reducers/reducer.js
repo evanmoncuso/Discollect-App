@@ -56,7 +56,7 @@ const chartType = (state = initChartType, action) => {
 
 const initChartData = {
   data: [6,12,17,23,35],
-  labels: ['Welcome', 'To', 'Discollect', 'Data', 'Charts!'],
+  labels: ['Welcome', 'To', 'Discollect', 'Data', 'Centre!'],
   label: 'Discollection Information',
 };
 

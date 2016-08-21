@@ -56,6 +56,7 @@ const chartActions = {
         TN: randNum(),
       };
       dispatch(optimisticSetMap(areas));
+
     }
   ),
 

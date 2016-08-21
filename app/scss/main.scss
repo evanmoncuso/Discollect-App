@@ -672,10 +672,11 @@ canvas {
 
 .leftSide {
   float: left;
-  min-width: 260px;
-  max-width: 260px;
-  margin-top: 20px;
-  margin-left: 20px;
+  min-width: 230px;
+  max-width: 230px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
   text-align: center;
   background-color: lightgrey;
   border: solid 1px black;
@@ -697,8 +698,8 @@ canvas {
 .rightSide {
   float: right;
   padding-top: 90px;
-  padding-right: 20px;
-  width: 600px;
+  padding-right: 20px;  
+  width: 660px;
 }
 
 .mapSide {
@@ -726,7 +727,7 @@ canvas {
 
 .auth_inputChart {
   display:block;
-  width: 260px;
+  width: 230px;
   margin: 24px auto;
   label {
     display: block;
