@@ -670,10 +670,6 @@ canvas {
   min-height: 350px;
 }
 
-#myMap {
-  min-width: 800px;
-  min-height: 460px;
-}
 
 .leftSide {
   float: left;
@@ -715,6 +711,11 @@ canvas {
   padding-right: 20px;
   max-height: 480px;
   min-height: 480px;
+}
+
+#myMap {
+  min-width: 800px;
+  min-height: 460px;
 }
 
 .developerContainer {

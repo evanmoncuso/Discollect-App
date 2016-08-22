@@ -14,10 +14,13 @@ class PortalMap extends React.Component {
     for (var key in this.props.areas) {
       array.push(this.props.areas[key])
     }
-    array = array.sort()
+    console.log('building minMax array: ', array)
+    array = array.sort( function(a,b) {
+      return a > b
+    })
     var min = Math.floor(array[0]);
     var max = Math.floor(array[array.length-1]);
-    console.log(min, max)
+    console.log('ooooooo',min, max)
     return [min, max];
   }
 
@@ -26,15 +29,44 @@ class PortalMap extends React.Component {
     for (var key in this.props.areas) {
       res.push({"id": "US-" + key, "value": this.props.areas[key]})
     }
+    console.log('----=-=-=-=-=-=-=->>>>', res)
     return res;
   } 
 
 
-  updateMap(datas){
+  updateMap(){
+    var datas = this.generateValues();
+    var ends = this.generateMinMax();
+    var min = ends[0];
+    var max = ends[1];
+    console.log('min and max: ', min, max)
+    var place = document.getElementById('myMap');
+    var map = AmCharts.makeChart( place, {
+      "type": "map",
+      "theme": "light",
+      "colorSteps": 10,
+      "dataProvider": {
+        "map": "usaLow",
+        "areas": datas,
+      },
+      "areasSettings": {
+        "autoZoom": false
+      },
+      "valueLegend": {
+        "right": 10,
+        "minValue": min,
+        "maxValue": max,
+        'fontSize': 15,
+        'color': 'white',
+      },
+      "export": {
+        "enabled": true
+      }
+    });
   }
 
   componentWillMount(){
-    this.props.dispatchGetMapData();
+    // this.props.dispatchGetMapData();
   } 
   
 
@@ -46,34 +78,36 @@ class PortalMap extends React.Component {
           <form encType="multipart/form-data"
             onSubmit={(e) => {
                 e.preventDefault();
-                var datas = this.generateValues();
-                var ends = this.generateMinMax()
-                var min = ends[0]
-                var max = ends[1]
-                console.log('min and max: ', min, max)
-                var place = document.getElementById('myMap');
-                var map = AmCharts.makeChart( place, {
-                  "type": "map",
-                  "theme": "light",
-                  "colorSteps": 10,
-                  "dataProvider": {
-                    "map": "usaLow",
-                    "areas": datas,
-                  },
-                  "areasSettings": {
-                    "autoZoom": false
-                  },
-                  "valueLegend": {
-                    "right": 10,
-                    "minValue": min,
-                    "maxValue": max,
-                    'fontSize': 15,
-                    'color': 'white',
-                  },
-                  "export": {
-                    "enabled": true
-                  }
-                });
+                var updater = this.updateMap.bind(this);
+                this.props.dispatchGetMapData(updater);      ////arghhhhhhh
+                // var datas = this.generateValues();
+                // var ends = this.generateMinMax()
+                // var min = ends[0]
+                // var max = ends[1]
+                // console.log('min and max: ', min, max)
+                // var place = document.getElementById('myMap');
+                // var map = AmCharts.makeChart( place, {
+                //   "type": "map",
+                //   "theme": "light",
+                //   "colorSteps": 10,
+                //   "dataProvider": {
+                //     "map": "usaLow",
+                //     "areas": datas,
+                //   },
+                //   "areasSettings": {
+                //     "autoZoom": false
+                //   },
+                //   "valueLegend": {
+                //     "right": 10,
+                //     "minValue": min,
+                //     "maxValue": max,
+                //     'fontSize': 15,
+                //     'color': 'white',
+                //   },
+                //   "export": {
+                //     "enabled": true
+                //   }
+                // });
                 // console.log('into form - collecting state data: ', this.props.areas)
                  // this.props.dispatchGetMapData();
                   // setTimeout(this.updateChart.bind(this), 1200)
@@ -108,8 +142,8 @@ const mapDispatchToProps = (dispatch) => {
     dispatchGetChartData: (info) => {
       dispatch(chartActions.getChartData(info))
     },     
-    dispatchGetMapData: () => {
-      dispatch(chartActions.getMapData())
+    dispatchGetMapData: (updater) => {
+      dispatch(chartActions.getMapData(updater))
     }    
   }
 }
