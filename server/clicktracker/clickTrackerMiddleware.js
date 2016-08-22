@@ -14,25 +14,16 @@ const tracker = (req, res, next) => {
   }
 
   if (item) {
-    clickModel.create({ userId: user, listingId: item });
-    // Listing.findOne({
-    //   where: {
-    //     id: item,
-    //   },
-    // })
-    // .then((resultItem) => {
-    //
-    //   const url = `http://zipcodehelper.herokuapp.com/api/state?zip=${resultItem.zipcode}`;
-    //
-    //   fetch(url)
-    //   .then((resp) => resp.json())
-    //   .then((response) => {
-    //     console.log(response);
-    //     clickModel.create({ userId: user, listingId: item });
-    //   });
-    //   clickModel.create({ userId: user, listingId: item });
-    //
-    // });
+    Listing.findOne({
+      attributes: ['stateUSA'],
+      where: {
+        id: item,
+      },
+    })
+    .then((listing) => {
+      let state = listing.dataValues.stateUSA;
+      clickModel.create({ userId: user, listingId: item, state: state });
+    });
   }
 
   next();
