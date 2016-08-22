@@ -101,6 +101,7 @@ const itemActions = {
 
   postListingAfterPhoto: (data) => (
     (dispatch) => {
+      console.log(data);
       const url = baseUrl + '/api/createNewListing';
       fetch(url, {
         method: 'POST',

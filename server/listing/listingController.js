@@ -73,7 +73,7 @@ module.exports = {
 
   createNewListing: function(req, res) {
     let zip = req.body.zipcode
-    fetch('http://localhost:4003/api/state?zip=' + zip, {
+    fetch('http://zipcodehelper.herokuapp.com/api/state?zip=' + zip, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -87,11 +87,11 @@ module.exports = {
       .then(list => {
         res.send(list);
       })
-      // .catch((err) => {
-      //   if(err) {
-      //     console.error(err);
-      //   }
-      // });
+      .catch((err) => {
+        if(err) {
+          console.error(err);
+        }
+      });
     })
   },
 
