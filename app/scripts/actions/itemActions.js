@@ -169,7 +169,7 @@ const itemActions = {
       .then((res) => res.json())
       .then((res) => {
         dispatch(itemActions.getLatestListings());
-        fetch(searchUrl + '/' + num, {
+        fetch(searchUrl + '/' + details.listingID, {
           method: 'DELETE',
         }).then(()=>{
           console.log('deleted from elasticSearch')

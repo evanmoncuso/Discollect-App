@@ -59,7 +59,6 @@ class SearchBar extends React.Component {
             this.props.doElasticSearch(data);
             category.value = 'all-categories';
             keywords.value = '';
-            zip.value = '';
           }}
         >
           <div className="full_input">
