@@ -13,7 +13,6 @@ const Login = ({ dispatchLogin }) => {
         <form
           className="login_form"
           onSubmit={(e) => {
-            console.log(e);
             e.preventDefault();
             if (!username.value.trim() && !password.value.trim()) {
               return;

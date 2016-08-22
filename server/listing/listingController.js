@@ -3,6 +3,7 @@ const Listing = require('./listingModel.js');
 const User = require('../user/userModel.js');
 const db = require('../config/database.js');
 const mail = require('./mailingHelper.js');
+const fetch = require('isomorphic-fetch');
 
 module.exports = {
   getAllListings: function (req, res) {
@@ -71,9 +72,26 @@ module.exports = {
   },
 
   createNewListing: function(req, res) {
-    Listing.create(req.body)
-    .then(list => {
-      res.send(list);
+    let zip = req.body.zipcode
+    fetch('http://zipcodehelper.herokuapp.com/api/state?zip=' + zip, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((state) => state.json())
+    .then(({ stateUSA }) => {
+      let data = req.body;
+      data.stateUSA = stateUSA;
+      Listing.create(req.body)
+      .then(list => {
+        res.send(list);
+      })
+      .catch((err) => {
+        if(err) {
+          console.error(err);
+        }
+      });
     })
   },
 

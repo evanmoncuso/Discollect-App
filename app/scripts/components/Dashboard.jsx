@@ -124,7 +124,7 @@ Dashboard.propTypes = {
   userListings: React.PropTypes.array,
   dispatchGetUserListings: React.PropTypes.func,
   dispatchCloseListing: React.PropTypes.func,
-  waitingTakenItems: React.PropTypes.func,
+  waitingTakenItems: React.PropTypes.array,
 };
 
 

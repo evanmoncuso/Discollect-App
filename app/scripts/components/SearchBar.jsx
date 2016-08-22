@@ -8,7 +8,7 @@ class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalState: true,
+      modalState: false,
       latLng: '0,0',
       radius: 10,
     };
@@ -17,24 +17,21 @@ class SearchBar extends React.Component {
   }
   componentDidMount() {
     const context = this;
-    setTimeout(() => {
-      context.setState({
-        modalState: false,
-      });
-    }, 400);
+    // setTimeout(() => {
+    //   context.setState({
+    //     modalState: false,
+    //   });
+    // }, 400);
   }
   toggleModal() {
-    // console.log('before', this.state.modalState);
     this.setState({
       modalState: !this.state.modalState,
     });
-    // console.log('after', this.state.modalState);
   }
   changeCoords(latitude, longitude) {
     this.setState({
       latLng: `${latitude},${longitude}`,
     });
-    // console.log(this.state.latLng, latitude, longitude);
   }
   handleSlide(e) {
     this.setState({

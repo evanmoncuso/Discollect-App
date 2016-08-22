@@ -1,9 +1,7 @@
 import React from 'react';
-import { GoogleMapLoader, GoogleMap, Marker, SearchBox } from 'react-google-maps';
-import { default as update } from "react-addons-update";
-// import { default as canUseDOM } from "can-use-dom";
+import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps';
+import { default as update } from 'react-addons-update';
 import { connect } from 'react-redux';
-// import userActions from '../actions/userActions.js';
 
 class GoogMap extends React.Component {
   constructor(props) {
@@ -20,8 +18,8 @@ class GoogMap extends React.Component {
     };
     this.handleMapClick.bind(this);
   }
+  
   handleMapClick(event) {
-    // console.log(typeof this.props.changeCoords);
     let marker = this.state.marker;
     let newMarker = update(marker, {
       $set: {
@@ -39,7 +37,7 @@ class GoogMap extends React.Component {
   render() {
     return (
       <GoogleMapLoader
-        containerElement={<div className="reactGoogleMap_containerElement" style={{ height: '100%' }} />}
+        containerElement={<div className='reactGoogleMap_containerElement' style={{ height: '100%' }} />}
         query={{ libraries: 'geometry,drawing,places,visualization' }}
         googleMapElement={
           <GoogleMap
