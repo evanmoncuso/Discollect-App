@@ -1,26 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import moment from 'moment';
 import { browserHistory } from 'react-router';
 // import { updateListingStatus } from '../actions/itemActions.js';
 import itemActions from '../actions/itemActions.js';
+
 const defaultImage = '../../../public/css/ina.jpg';
 
 const Listing = ({ currentListing, userId, userName, dispatchListingStatusChange }) => {
-
   const backer = () => {
     browserHistory.goBack();
   };
 
-  let pic = currentListing.picReference || defaultImage;
+  const pic = currentListing.picReference || defaultImage;
 
   const condish = {
-    '1': 'New',
-    '2': 'Excellent',
-    '3': 'Good',
-    '4': 'Fair',
-    '5': 'Salvage',
-  }
+    1: 'New',
+    2: 'Excellent',
+    3: 'Good',
+    4: 'Fair',
+    5: 'Salvage',
+  };
 
   let dibsButton = '';
   if (userId && userId !== currentListing.giverId) {
@@ -72,12 +71,20 @@ const Listing = ({ currentListing, userId, userName, dispatchListingStatusChange
         {dibsButton}
         <button
           className="listing_view_button"
-          onClick={() => backer()}>
+          onClick={() => backer()}
+        >
           BACK
         </button>
       </div>
     </div>
   );
+};
+
+Listing.propTypes = {
+  currentListing: React.PropTypes.object,
+  userId: React.PropTypes.number,
+  userName: React.PropTypes.string,
+  dispatchListingStatusChange: React.PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
@@ -97,5 +104,3 @@ const mapDispatchToProps = (dispatch) => (
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Listing);
-
-// export default Listing;
