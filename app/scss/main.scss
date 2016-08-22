@@ -31,7 +31,8 @@ Title bar
 
 nav {
   width: 100%;
-  background-color: #fff;
+  background-color: $dark-gray;
+  color: $light-font;
   box-shadow: 0 1px 1px #777;
   margin-bottom: 24px;
   position: fixed;
@@ -46,9 +47,9 @@ nav * {
   font-size: $title-font;
   line-height: 54px;
   margin: 12px 12px 6px 12px;
-  color: $med-gray;
+  color: $light-font;
   h4 {
-    color: $med-gray;
+    color: $light-font;
     text-align: center;
     font-size: 18px;
     line-height: 22px;
@@ -581,9 +582,9 @@ map modal
     height: '100%';
  }
  .map_modal {
-  // background-size: cover;
-  // height: 100%;
-  // width:100%;
+  background-size: cover;
+  height: 100%;
+  width:100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
   // display: absolute;
@@ -601,7 +602,10 @@ map modal
  }
 
  .modal_off {
-   display: none;
+   display: block;
+   position: fixed;
+   left: -9999px;
+   transition: left 1s ease;
  }
 
 /*
@@ -624,6 +628,12 @@ Dev Sign-up Container
   span {
     display: block;
     padding: 12px;
+  }
+  p {
+    margin: 0 auto;
+    width: 66%;
+    padding: 6px;
+    font-size: $font-small;
   }
   .auth_input {
     width: 50%;

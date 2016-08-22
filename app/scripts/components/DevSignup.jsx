@@ -19,6 +19,8 @@ const DevSignup = ({ dispatchDevSignup, apiKey, currentEmail }) => {
     <div className="main_container">
       <div className="dev_signup_container">
         <h1>Sign up for a Discollect API key</h1>
+        <p> Thanks for your interest in the Discollect developer portal. You are not currently signed up as a developer in our system. Please enter your email address below and we'll get you set up with an API key for the service. With this key, you will have access to 200 free api calls a day. Once you reach that limit, you'll start receiving a response of 429.</p>
+        <p>For more requests, please contact Discollect support for switch to the enterprise plan.</p>
         <form
           onSubmit={(e) => {
             e.preventDefault();

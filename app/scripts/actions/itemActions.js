@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 // const baseUrl = 'http://ec2-54-186-167-115.us-west-2.compute.amazonaws.com';
 const baseUrl = 'http://localhost:3000';
 const searchUrl = 'http://localhost:8080/listings';
+const zipUrl = 'http://zipcodehelper.herokuapp.com/api/state?zip=';
 
 const optimisticSetItems = (items) => (
   {
@@ -98,24 +99,25 @@ const itemActions = {
     }
   ),
 
-  postListingAfterPhoto: (data) =>
+  postListingAfterPhoto: (data) => (
     (dispatch) => {
-    const url = baseUrl + '/api/createNewListing';
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    .then(res => {
-      dispatch(itemActions.getLatestListings());
-      browserHistory.push('/');
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  },
+      const url = baseUrl + '/api/createNewListing';
+      fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then(res => {
+        dispatch(itemActions.getLatestListings());
+        browserHistory.push('/');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    }
+  ),
 
   searchItem: (query) => (
     (dispatch) => {
@@ -169,7 +171,7 @@ const itemActions = {
         fetch(searchUrl + '/' + num, {
           method: 'DELETE',
         }).then(()=>{
-          console.log('deleted from elasticSearch')  
+          console.log('deleted from elasticSearch')
         })
       })
       .catch((err) => {

@@ -15,5 +15,6 @@ npm-debug.log
 .tags1
 
 secrets.js
+discollect.pem
 
 compiledForTests
