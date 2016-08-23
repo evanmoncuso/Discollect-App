@@ -2,8 +2,7 @@ import fetch from 'isomorphic-fetch';
 
 import { browserHistory } from 'react-router';
 
-// const baseUrl = 'http://ec2-54-186-167-115.us-west-2.compute.amazonaws.com';
-const baseUrl = 'http://localhost:3000';
+const app = 'http://localhost:3000';
 
 const optimisticSignIn = ({ zipcode, username, id, picReference, email }) => (
   {
@@ -41,9 +40,7 @@ const getCoordsAndZip = (dispatch, bool) => {
           zip: res,
         });
       });
-      // ENTER CALL FOR ZIP CODES ARRAY HERE
     }, error => {
-      // navigator error func
       console.log(error);
     }, {
       enableHighAccuracy: true,
@@ -58,7 +55,7 @@ const getCoordsAndZip = (dispatch, bool) => {
 const userActions = {
   createUser: (username, password, email, zip) => (
     (dispatch) => {
-      const url = baseUrl + '/api/signup';
+      const url = `${app}/api/signup`;
       const data = JSON.stringify({
         username,
         password,
@@ -75,7 +72,6 @@ const userActions = {
       })
       .then((res) => res.json())
       .then((res) => {
-        console.log('createUserLogin: ', res);
         browserHistory.push('/');
         dispatch(optimisticSignIn(res));
       })
@@ -90,7 +86,7 @@ const userActions = {
   checkUserLogin: (username, password) => (
     (dispatch) => {
       const data = JSON.stringify({ username, password });
-      const url = baseUrl + '/api/login';
+      const url = `${app}/api/login`;
       fetch(url, {
         method: 'POST',
         credentials: 'same-origin',
@@ -102,8 +98,7 @@ const userActions = {
       .then((res) => res.json())
       .then((response) => {
         dispatch(optimisticSignIn(response));
-        // function call coords&Zip
-        let locationAllowed = confirm('Enable Location Services?');
+        const locationAllowed = confirm('Enable Location Services?');
         getCoordsAndZip(dispatch, locationAllowed);
         browserHistory.push('/');
       })
@@ -116,13 +111,12 @@ const userActions = {
   ),
 
   logoutUserServer: () => {
-    const url = baseUrl + '/api/logout';
-    fetch(url,{
+    const url = `${app}/api/logout`;
+    fetch(url, {
       credentials: 'same-origin',
     })
-    .then((response) => {
-      console.log('on Logout', response);
-        browserHistory.push('/');
+    .then(() => {
+      browserHistory.push('/');
     })
     .catch((err) => {
       if (err) {
@@ -139,28 +133,21 @@ const userActions = {
 
   getUserInfo: () => (
     (dispatch) => {
-      const url = baseUrl + '/api/getUserInfo';
+      const url = `${app}/api/getUserInfo`;
       fetch(url, {
         method: 'GET',
         credentials: 'same-origin',
       })
-      .then(res=> res.json())
-      .then(user =>{
-        user = {
-          zipcode: user.zipcode,
-          id: user.id,
-          email: user.email,
-          username: user.username,
-          picReference: user.picReference,
-        }
-        dispatch(optimisticSignIn(user))
+      .then((res) => res.json())
+      .then((user) => {
+        dispatch(optimisticSignIn(user));
       });
     }
   ),
 
   getUserProfile: (userID) => (
     (dispatch) => {
-      const url = baseUrl + '/api/userProfile';
+      const url = `${app}/api/userProfile`;
       fetch(url, {
         method: 'PUT',
         body: JSON.stringify({ userID }),
@@ -170,7 +157,6 @@ const userActions = {
       })
       .then(res => res.json())
       .then((res) => {
-        console.log(res);
         dispatch({
           type: 'GET_PROFILE_VIEW',
           profile: res,
@@ -188,14 +174,13 @@ const userActions = {
       fetch(urlPhoto, {
         method: 'POST',
         body: JSON.stringify(data),
-          headers: {
-            'Content-Type': 'application/json',
-          },
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
-      .then(response=> response.json())
-      .then((res)=> {
-        console.log('s3 response', res);
-        const url = baseUrl + '/api/updatePic';
+      .then((response) => response.json())
+      .then((res) => {
+        const url = `${app}/api/updatePic`;
         const updateData = {
           userId: data.giverId,
           picReference: res,
@@ -205,15 +190,14 @@ const userActions = {
           credentials: 'same-origin',
           body: JSON.stringify(updateData),
           headers: {
-          'Content-Type': 'application/json',
-        },
+            'Content-Type': 'application/json',
+          },
         })
-        .then(dbRes=> dbRes.json())
+        .then((dbRes) => dbRes.json())
         .then((user) => {
-          console.log('user',user);
           dispatch(optimisticSignIn(user));
-        })
-      })
+        });
+      });
     }
   ),
 };
