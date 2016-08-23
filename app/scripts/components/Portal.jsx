@@ -270,7 +270,7 @@ class Portal extends React.Component {
               };
                 this.props.dispatchChartTypeChange(info);
                 category1.value = "None";
-                this.updateChart();
+                setTimeout(this.updateChart.bind(this), 500);
            }}>Change chart</button>
             <br />
             <br />
