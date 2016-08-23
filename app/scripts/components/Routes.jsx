@@ -24,7 +24,7 @@ export default (
     <Route path="/portal" component={Portal} />
     <Route path="/portalmap" component={PortalMap} />
     <Route path="/dashboard" component={Dashboard} />
-    <Route path="/listing/:id" component={Listing} />
+    <Route path="/listing:id" component={Listing} />
     <Route path="/createlisting" component={CreateListing} />
     <Route path="/profile/:id" component={Profile} />
     <Route path="/history/:id" component={History} />

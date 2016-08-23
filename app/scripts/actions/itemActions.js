@@ -59,7 +59,7 @@ const itemActions = {
         return response.id;
       })
       .then((id) => {
-        browserHistory.push('/listing/' + id);
+        browserHistory.push('/listing'+id);
       })
       .catch((err) => {
         if (err) {
@@ -169,7 +169,7 @@ const itemActions = {
       .then((res) => res.json())
       .then((res) => {
         dispatch(itemActions.getLatestListings());
-        fetch(searchUrl + '/' + num, {
+        fetch(searchUrl + '/' + details.listingID, {
           method: 'DELETE',
         }).then(()=>{
           console.log('deleted from elasticSearch')

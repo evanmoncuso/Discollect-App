@@ -6,7 +6,11 @@ import itemActions from '../actions/itemActions.js';
 
 const defaultImage = '../../../public/css/ina.jpg';
 
-const Listing = ({ currentListing, userId, userName, dispatchListingStatusChange }) => {
+
+const Listing = ({ currentListing, userId, userName, dispatchListingStatusChange, params, dispatchGetListing }) => {
+  if(currentListing.id === undefined) {
+    dispatchGetListing(params.id);
+  }
   const backer = () => {
     browserHistory.goBack();
   };
@@ -97,9 +101,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => (
   {
-   dispatchListingStatusChange: (listingID) => {
-    dispatch(itemActions.updateListingStatus(listingID))
-   },
+    dispatchListingStatusChange: (listingID) => {
+      dispatch(itemActions.updateListingStatus(listingID))
+    },
+    dispatchGetListing: (listingID) => {
+      dispatch(itemActions.getIndividualListing(listingID))
+    },
   }
 );
 
