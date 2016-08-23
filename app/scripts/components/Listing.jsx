@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 // import { updateListingStatus } from '../actions/itemActions.js';
 import itemActions from '../actions/itemActions.js';
-
+import Advert from './Advert.jsx';
 const defaultImage = '../../../public/css/ina.jpg';
 
 
-const Listing = ({ currentListing, userId, userName, dispatchListingStatusChange, params, dispatchGetListing }) => {
+const Listing = ({ currentListing, zipcode, userId, userName, dispatchListingStatusChange, params, dispatchGetListing }) => {
+  console.log('zipcode in Listing -----+++++|||>>>', zipcode)
   if(currentListing.id === undefined) {
     dispatchGetListing(params.id);
   }
@@ -47,6 +48,7 @@ const Listing = ({ currentListing, userId, userName, dispatchListingStatusChange
   }
 
   return (
+  <div>
     <div className="main_container listing_container">
       <h2> {currentListing.title} </h2>
       <div className="listing_content">
@@ -81,6 +83,10 @@ const Listing = ({ currentListing, userId, userName, dispatchListingStatusChange
         </button>
       </div>
     </div>
+    <div className='advert'>
+      <Advert zipcode={zipcode}/>
+    </div>
+  </div>
   );
 };
 
@@ -96,6 +102,7 @@ const mapStateToProps = (state) => {
     currentListing: state.items.current,
     userId: state.users.id,
     userName: state.users.username,
+    zipcode: state.users.zip,
   };
 };
 

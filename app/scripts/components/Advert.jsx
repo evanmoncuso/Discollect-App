@@ -3,30 +3,26 @@ import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
 
 
-let Advert = ({zip}) => {
-  var page = 'https://www.google.com/#q=u+haul+near+' + this.props.zip;
-  console.log('page: ',page)
+let Advert = ({zipcode}) => {
+console.log('hello zipcode: ', zipcode)
   return (
-        <div className='advert'>
+        <div>
           <div className='adverttext'>
             Need help collecting? 
             </div>
-            <div onClick={() => {
-                window.open(page);
-              }}>
-              <img className='advertimg' src='http://bigboystoysrentals.com/wp-content/uploads/2014/04/u-haul-10foot.jpg' />
+            <div>
+              <img className='advertimg' src='http://bigboystoysrentals.com/wp-content/uploads/2014/04/u-haul-10foot.jpg' onClick={() => {
+              window.open('https://www.google.com/#q=u+haul+near+' + zipcode);
+              }}/>
+              <img className='advertimg' src='http://bigboystoysrentals.com/wp-content/uploads/2014/04/u-haul-10foot.jpg' onClick={() => {
+              window.open('https://www.budgettruck.com/locations/ca/' + zipcode);
+              }}/>
             </div>
         </div>
   );
 };
 
 
-const mapStateToProps = (state) => {
- return  {
-    zip: state.users.zip,
-  }
-}
 
-
-export default connect(mapStateToProps, null)(Advert);
+export default Advert;
 

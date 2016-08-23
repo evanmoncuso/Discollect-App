@@ -20,7 +20,7 @@ const users = (state = initUserState, action) => {
   switch (action.type) {
     case 'LOGIN_VALID':
       return Object.assign({}, state, {
-        zip: action.zip,
+        zip: action.zipcode,
         id: action.id,
         username: action.username,
         picReference: action.picReference,
