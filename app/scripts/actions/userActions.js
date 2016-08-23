@@ -2,8 +2,8 @@ import fetch from 'isomorphic-fetch';
 
 import { browserHistory } from 'react-router';
 
-// const baseUrl = 'http://ec2-54-186-167-115.us-west-2.compute.amazonaws.com';
-const baseUrl = 'http://localhost:3000';
+const secrets = require('../../../secrets.js');
+const app = secrets.appHost || 'http://localhost:3000';
 
 const optimisticSignIn = ({ zipcode, username, id, picReference, email }) => (
   {
@@ -58,7 +58,7 @@ const getCoordsAndZip = (dispatch, bool) => {
 const userActions = {
   createUser: (username, password, email, zip) => (
     (dispatch) => {
-      const url = baseUrl + '/api/signup';
+      const url = app + '/api/signup';
       const data = JSON.stringify({
         username,
         password,
@@ -90,7 +90,7 @@ const userActions = {
   checkUserLogin: (username, password) => (
     (dispatch) => {
       const data = JSON.stringify({ username, password });
-      const url = baseUrl + '/api/login';
+      const url = app + '/api/login';
       fetch(url, {
         method: 'POST',
         credentials: 'same-origin',
@@ -116,7 +116,7 @@ const userActions = {
   ),
 
   logoutUserServer: () => {
-    const url = baseUrl + '/api/logout';
+    const url = app + '/api/logout';
     fetch(url,{
       credentials: 'same-origin',
     })
@@ -139,7 +139,7 @@ const userActions = {
 
   getUserInfo: () => (
     (dispatch) => {
-      const url = baseUrl + '/api/getUserInfo';
+      const url = app + '/api/getUserInfo';
       fetch(url, {
         method: 'GET',
         credentials: 'same-origin',
@@ -160,7 +160,7 @@ const userActions = {
 
   getUserProfile: (userID) => (
     (dispatch) => {
-      const url = baseUrl + '/api/userProfile';
+      const url = app + '/api/userProfile';
       fetch(url, {
         method: 'PUT',
         body: JSON.stringify({ userID }),

@@ -1,6 +1,5 @@
 import fetch from 'isomorphic-fetch';
 
-// const baseUrl = 'http://ec2-54-186-167-115.us-west-2.compute.amazonaws.com';
 const baseUrl = 'http://discollect-dev-portal.herokuapp.com';
 
 const optimisticSetChart = ({ data, labels, label }) => (

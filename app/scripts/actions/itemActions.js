@@ -1,8 +1,12 @@
 import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
 
-// const baseUrl = 'http://ec2-54-186-167-115.us-west-2.compute.amazonaws.com';
-const baseUrl = 'http://localhost:3000';
+const secrets = require('../../../secrets.js');
+const app = secrets.appHost || 'http://localhost:3000';
+
+
+console.log(app)
+
 const searchUrl = 'http://localhost:8080/listings';
 const zipUrl = 'http://zipcodehelper.herokuapp.com/api/state?zip=';
 
@@ -24,7 +28,7 @@ const optimisticIndivItem = (item) => (
 const itemActions = {
   getLatestListings: () => (
     (dispatch) => {
-      const url = baseUrl + '/api/getAllListings';
+      const url = app + '/api/getAllListings';
       fetch(url, {
         method: 'GET',
         headers: {
@@ -45,7 +49,7 @@ const itemActions = {
 
   getIndividualListing: (id) => (
     (dispatch) => {
-      const url = baseUrl + '/api/listing?id=' + id;
+      const url = app + '/api/listing?id=' + id;
       fetch(url, {
         method: 'GET',
         headers: {
@@ -72,7 +76,7 @@ const itemActions = {
   postNewListing: (listingData) => (
     (dispatch) => {
       const photoUrl = 'http://photohelper.herokuapp.com/api/createNewListing';
-      const url = baseUrl + '/api/createNewListing';
+      const url = app + '/api/createNewListing';
       if (!listingData.picReference) {
         dispatch(itemActions.postListingAfterPhoto(listingData));
       } else {
@@ -102,7 +106,7 @@ const itemActions = {
   postListingAfterPhoto: (data) => (
     (dispatch) => {
       console.log(data);
-      const url = baseUrl + '/api/createNewListing';
+      const url = app + '/api/createNewListing';
       fetch(url, {
         method: 'POST',
         body: JSON.stringify(data),
@@ -158,7 +162,7 @@ const itemActions = {
   updateListingStatus: (details) => (
     (dispatch) => {
       const num = JSON.stringify(details);
-      const url = baseUrl + '/api/update';
+      const url = app + '/api/update';
       fetch(url, {
         method: 'PUT',
         body: num,
@@ -185,7 +189,7 @@ const itemActions = {
 
   closeListing: (listingID, userID) => (
     (dispatch) => {
-      const url = baseUrl + '/api/closeListing';
+      const url = app + '/api/closeListing';
       fetch(url, {
         method: 'PUT',
         body: JSON.stringify({ listingID }),
@@ -252,7 +256,7 @@ const itemActions = {
 
   getUsersListings: () => (
     (dispatch) => {
-      const url = baseUrl + '/api/getUsersListings';
+      const url = app + '/api/getUsersListings';
       fetch(url, {
         credentials: 'same-origin',
       })
@@ -286,7 +290,7 @@ const itemActions = {
 
   removeListing: (listingID) => (
     (dispatch) => {
-      const url = baseUrl + '/api/removeListing?listingID='+listingID;
+      const url = app + '/api/removeListing?listingID='+listingID;
       fetch(url, {
         method: 'DELETE',
       })
