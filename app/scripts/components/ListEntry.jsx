@@ -27,4 +27,3 @@ let ListEntry = ({ entry, action }) => {
 
 export default ListEntry;
 
-// <Link to={`/profile/${entry.giverId}`} >{props.entry.username}</Link>

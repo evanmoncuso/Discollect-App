@@ -56,10 +56,10 @@ const chartActions = {
     }
   ),
 
-  getChartType: (info) => (
+  getChartType: (info, updater) => (
     (dispatch) => {
       const chartType = info.type;
-      dispatch(optimisticChartType(chartType));
+      dispatch(optimisticChartType(chartType))
     }
   ),
 
@@ -73,7 +73,7 @@ const chartActions = {
       const cat6 = criteria.cat6;
       const timeFrame = criteria.dateRange;
       const url = `${baseUrl}/api/discollect/time/category?
-        cat=${cat1}&cat=${cat2}&cat=${cat3}&cat=${cat4}&cat=${cat5}&cat=${cat6}&&past=${timeFrame}`;
+        cat=${cat1}&cat=${cat2}&cat=${cat3}&cat=${cat4}&cat=${cat5}&cat=${cat6}&past=${timeFrame}`;
       fetch(url, {
         credentials: 'same-origin',
       })

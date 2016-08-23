@@ -91,7 +91,6 @@ class Portal extends React.Component {
                   cat6: category6.value,
                   dateRange: dateRange.value,
                 };
-                console.log('this', this)
                 var updater =  this.updateChart.bind(this);
                   this.props.dispatchGetChartCatsData(info, updater);
                   category1.value = "None";
@@ -100,7 +99,6 @@ class Portal extends React.Component {
                   category4.value = "None";
                   category5.value = "None";
                   category6.value = "None";
-                  // setTimeout(this.updateChart.bind(this), 1500)
             }}>
             <div className="leftSide">
 
@@ -215,16 +213,6 @@ class Portal extends React.Component {
           </form>
 
 
-
-
-
-
-
-
-
-
-
-
           <form encType="multipart/form-data"
             onSubmit={(e) => {
               e.preventDefault();
@@ -236,7 +224,6 @@ class Portal extends React.Component {
                 this.props.dispatchGetChartSingleData(info,updater);
                 singleCat.value = "None";
                 dateRange2.value = 'hour';
-                // setTimeout(this.updateChart.bind(this), 1200)
             }}>
 
             <div className="leftSide">
@@ -283,7 +270,7 @@ class Portal extends React.Component {
               };
                 this.props.dispatchChartTypeChange(info);
                 category1.value = "None";
-                // setTimeout(this.updateChart.bind(this), 1200)
+                this.updateChart();
            }}>Change chart</button>
             <br />
             <br />

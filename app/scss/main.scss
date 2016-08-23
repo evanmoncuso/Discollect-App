@@ -715,7 +715,9 @@ canvas {
 
 #myMap {
   min-width: 800px;
+  max-width: 800px;
   min-height: 460px;
+  max-height: 460px;
 }
 
 .developerContainer {
@@ -726,7 +728,7 @@ canvas {
 }
 
 .wrapperDiv {
-  background-color: #1f1f2e;
+  background-color: #333;
   border: solid 5px black;
   margin: 0 auto;
   min-width: 1200px;
