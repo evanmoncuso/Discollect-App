@@ -20,7 +20,7 @@ const PaneListingEntry = ({ item, closeable, removeable, userID, dispatchCloseLi
           <div className="entry_buttons">
             <Link
               className="pane_listing_button view"
-              to={'/listing/' + item.id}
+              to={'/listing' + item.id}
             >
               View
             </Link>
