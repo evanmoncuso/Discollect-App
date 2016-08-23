@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Chart from 'chart.js';
+import { browserHistory } from 'react-router';
 import chartActions from '../actions/chartActions.js';
 
 
@@ -14,13 +15,11 @@ class PortalMap extends React.Component {
     for (let key in this.props.areas) {
       array.push(this.props.areas[key])
     }
-    console.log('building minMax array: ', array)
-    array = array.sort( function(a,b) {
-      return a > b
+    array.sort( function(a,b) {
+      return a - b;
     })
-    const min = Math.floor(array[0]);
-    const max = Math.floor(array[array.length-1]);
-    console.log('ooooooo',min, max)
+    var min = Math.floor(array[0]);
+    var max = Math.floor(array[array.length-1]);
     return [min, max];
   }
 
@@ -44,6 +43,10 @@ class PortalMap extends React.Component {
       "type": "map",
       "theme": "chalk",
       "colorSteps": 20,
+      'homeButtonClicked': {
+        'type': 'homeButtonClicked',
+        'method': handleClick
+      },
       "dataProvider": {
         "map": "usaLow",
         "areas": datas,
@@ -62,6 +65,11 @@ class PortalMap extends React.Component {
         "enabled": true
       }
     });
+    function handleClick(e) {
+      console.log('evna is a special character')
+      e.preventDefault();
+      browserHistory.push('/portal');
+    }
   }
 
   render() {

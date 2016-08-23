@@ -670,6 +670,12 @@ canvas {
   min-height: 350px;
 }
 
+#myMap {
+  min-width: 800px;
+  max-width: 800px;
+  min-height: 500px;
+  max-height: 500px
+}
 
 .leftSide {
   float: left;
@@ -753,7 +759,7 @@ canvas {
     height: 32px;
     font-size: 1.3em;
     font-weight: bold;
-    line-height: 21px;
+    line-height: 22px;
     outline: none;
     background-color: inherit;
     color:$light-font;
