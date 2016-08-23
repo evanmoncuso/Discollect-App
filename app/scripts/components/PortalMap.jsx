@@ -73,7 +73,32 @@ class PortalMap extends React.Component {
             onSubmit={(e) => {
                 e.preventDefault();
                 var updater = this.updateMap.bind(this);
-                this.props.dispatchGetMapData(updater);
+                this.props.dispatchGetMapData(updater);     
+                var datas = this.generateValues();
+                var place = document.getElementById('myMap');
+                var map = AmCharts.makeChart( place, {
+                  "type": "map",
+                  "theme": "chalk",
+                  "colorSteps": 20,
+                  "dataProvider": {
+                    "map": "usaLow",
+                    "areas": datas
+                  },
+                  "areasSettings": {
+                    "autoZoom": false
+                  },
+                  "valueLegend": {
+                    "right": 10,
+                    "minValue": "little",
+                    "maxValue": "a lot!"
+                  },
+                  "export": {
+                    "enabled": true
+                  }
+                });
+                // console.log('into form - collecting state data: ', this.props.areas)
+                 // this.props.dispatchGetMapData();
+                  // setTimeout(this.updateChart.bind(this), 1200)
             }}>
             <div className="leftMapSide">
 

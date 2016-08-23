@@ -145,8 +145,8 @@ const itemActions = {
           return val._source;
         })
         // TODO NEW SETSTATE
-
         dispatch(optimisticSetItems(data));
+        dispatch(itemActions.searchItem({}));
         browserHistory.push('/');
       })
       .catch(err => {
