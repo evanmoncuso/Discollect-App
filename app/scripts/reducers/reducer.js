@@ -40,7 +40,7 @@ const devMap = (state = initMapData, action) => {
 };
 
 const initChartType = {
-  type: 'bar',
+  type: 'line',
 }
 
 const chartType = (state = initChartType, action) => {
@@ -55,9 +55,9 @@ const chartType = (state = initChartType, action) => {
 }
 
 const initChartData = {
-  data: [6,12,17,23,35],
-  labels: ['Welcome', 'To', 'Discollect', 'Data', 'Charts!'],
-  label: 'Discollection Information',
+  data: [],
+  labels: [],
+  label: 'Welcome to Discollect Data Centre',
 };
 
 const devChart = (state = initChartData, action) => {

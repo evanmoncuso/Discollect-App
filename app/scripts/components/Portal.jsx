@@ -59,6 +59,7 @@ class Portal extends React.Component {
     });
   }
 
+
   componentDidMount(){
     this.updateChart()
   }
@@ -90,14 +91,14 @@ class Portal extends React.Component {
                   cat6: category6.value,
                   dateRange: dateRange.value,
                 };
-                  this.props.dispatchGetChartCatsData(info);
+                var updater =  this.updateChart.bind(this);
+                  this.props.dispatchGetChartCatsData(info, updater);
                   category1.value = "None";
                   category2.value = "None";
                   category3.value = "None";
                   category4.value = "None";
                   category5.value = "None";
                   category6.value = "None";
-                  setTimeout(this.updateChart.bind(this), 1200)
             }}>
             <div className="leftSide">
 
@@ -212,16 +213,6 @@ class Portal extends React.Component {
           </form>
 
 
-
-
-
-
-
-
-
-
-
-
           <form encType="multipart/form-data"
             onSubmit={(e) => {
               e.preventDefault();
@@ -229,10 +220,10 @@ class Portal extends React.Component {
                 singleCat: singleCat.value,
                 dateRange: dateRange2.value,
               };
-                this.props.dispatchGetChartSingleData(info);
+                var updater =  this.updateChart.bind(this);
+                this.props.dispatchGetChartSingleData(info,updater);
                 singleCat.value = "None";
                 dateRange2.value = 'hour';
-                setTimeout(this.updateChart.bind(this), 1200)
             }}>
 
             <div className="leftSide">
@@ -279,7 +270,7 @@ class Portal extends React.Component {
               };
                 this.props.dispatchChartTypeChange(info);
                 category1.value = "None";
-                setTimeout(this.updateChart.bind(this), 1200)
+                this.updateChart();
            }}>Change chart</button>
             <br />
             <br />
@@ -311,11 +302,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatchGetChartCatsData: (info) => {
-      dispatch(chartActions.getChartCatsData(info))
+    dispatchGetChartCatsData: (info, updater) => {
+      dispatch(chartActions.getChartCatsData(info, updater))
     },
-    dispatchGetChartSingleData: (info) => {
-      dispatch(chartActions.getChartSingleData(info))
+    dispatchGetChartSingleData: (info, updater) => {
+      dispatch(chartActions.getChartSingleData(info, updater))
     },
     dispatchChartTypeChange: (info) => {
       dispatch(chartActions.getChartType(info))

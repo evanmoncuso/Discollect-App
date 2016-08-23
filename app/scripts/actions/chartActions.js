@@ -30,43 +30,40 @@ const optimisticSetMap = (areas) => (
 const chartActions = {
 
 
-  getMapData: () => (
+  getMapData: (updater) => (
     (dispatch) => {
-      const randNum = () => (
-        (Math.random() * 100) + (Math.random() * 200) + (Math.random() * 200)
-      );
-      const areas = {
-        CA: randNum(),
-        MD: randNum(),
-        CT: randNum(),
-        NY: randNum(),
-        AZ: randNum(),
-        UT: randNum(),
-        IL: randNum(),
-        MI: randNum(),
-        NH: randNum(),
-        FL: randNum(),
-        SD: randNum(),
-        MA: randNum(),
-        AL: randNum(),
-        ND: randNum(),
-        IN: randNum(),
-        MS: randNum(),
-        TX: randNum(),
-        TN: randNum(),
-      };
-      dispatch(optimisticSetMap(areas));
+      const url = baseUrl + '/api/discollect/state';
+      // const randNum = () => (
+      //   (Math.random() * 100) + (Math.random() * 200) + (Math.random() * 200)
+      // );
+       fetch(url, {
+          credentials: 'same-origin',
+        })
+        .then((res) => res.json())
+        .then((response) => {
+          dispatch(optimisticSetMap(response));
+          // dispatch(optimisticSetChart(response));
+        })
+        .then(() => {
+          updater()
+        })
+        .catch((err) => {
+          if (err) {
+            console.log(err);
+          }
+        });
+
     }
   ),
 
-  getChartType: (info) => (
+  getChartType: (info, updater) => (
     (dispatch) => {
       const chartType = info.type;
-      dispatch(optimisticChartType(chartType));
+      dispatch(optimisticChartType(chartType))
     }
   ),
 
-  getChartCatsData: (criteria) => (
+  getChartCatsData: (criteria, updater) => (
     (dispatch) => {
       const cat1 = criteria.cat1;
       const cat2 = criteria.cat2;
@@ -76,13 +73,16 @@ const chartActions = {
       const cat6 = criteria.cat6;
       const timeFrame = criteria.dateRange;
       const url = `${baseUrl}/api/discollect/time/category?
-        cat=${cat1}&cat=${cat2}&cat=${cat3}&cat=${cat4}&cat=${cat5}&cat=${cat6}&&past=${timeFrame}`;
+        cat=${cat1}&cat=${cat2}&cat=${cat3}&cat=${cat4}&cat=${cat5}&cat=${cat6}&past=${timeFrame}`;
       fetch(url, {
         credentials: 'same-origin',
       })
       .then((res) => res.json())
       .then((response) => {
         dispatch(optimisticSetChart(response));
+      })
+      .then(() => {
+        updater()
       })
       .catch((err) => {
         if (err) {
@@ -91,7 +91,7 @@ const chartActions = {
       });
     }),
 
-  getChartSingleData: (criteria) => (
+  getChartSingleData: (criteria, updater) => (
     (dispatch) => {
       const cat1 = criteria.singleCat;
       const timeFrame = criteria.dateRange;
@@ -102,6 +102,9 @@ const chartActions = {
       .then((res) => res.json())
       .then((response) => {
         dispatch(optimisticSetChart(response));
+      })
+      .then(() => {
+        updater()
       })
       .catch((err) => {
         if (err) {
