@@ -703,6 +703,13 @@ canvas {
   width: 660px;
 }
 
+#myMap{
+  min-width: 800px;
+  max-width: 800px;
+  min-height: 500px;
+  max-height: 500px;
+}
+
 .mapSide {
   float: right;
   min-width: 800px;

@@ -276,7 +276,7 @@ class Portal extends React.Component {
             <br />
             <br />
             <button className="form_submit_button" onClick={(e) => {
-                e.preventDefault();
+              e.preventDefault();
               browserHistory.push('/portalmap')
            }}>Go to Heat-Map</button>
             </div>

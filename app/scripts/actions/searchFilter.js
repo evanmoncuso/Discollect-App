@@ -1,4 +1,5 @@
 const searchFilter = (data, kw, zip, cat) => {
+	console.log('filtering', data, kw, zip, cat);
 	let output = data;
 	if (kw) {
 		let kwMatch = new RegExp(kw);
@@ -16,7 +17,7 @@ const searchFilter = (data, kw, zip, cat) => {
 
 	if(cat) {
 		let catMatch = new RegExp(kw);
-		if (cat !== 'all-categories') {
+		if (cat !== 'all-categories' || cat === null) {
 			output = output.filter((item) => {
 				return item.category === cat;
 			});
