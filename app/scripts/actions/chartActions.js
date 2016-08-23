@@ -65,6 +65,7 @@ const chartActions = {
 
   getChartCatsData: (criteria, updater) => (
     (dispatch) => {
+      console.log(criteria);
       const cat1 = criteria.cat1;
       const cat2 = criteria.cat2;
       const cat3 = criteria.cat3;
@@ -72,13 +73,13 @@ const chartActions = {
       const cat5 = criteria.cat5;
       const cat6 = criteria.cat6;
       const timeFrame = criteria.dateRange;
-      const url = `${baseUrl}/api/discollect/time/category?
-        cat=${cat1}&cat=${cat2}&cat=${cat3}&cat=${cat4}&cat=${cat5}&cat=${cat6}&past=${timeFrame}`;
+      const url = `${baseUrl}/api/discollect/time/category?cat=${cat1}&cat=${cat2}&cat=${cat3}&cat=${cat4}&cat=${cat5}&cat=${cat6}&past=${timeFrame}`;
       fetch(url, {
         credentials: 'same-origin',
       })
       .then((res) => res.json())
       .then((response) => {
+        console.log('===============>>>=', response);
         dispatch(optimisticSetChart(response));
       })
       .then(() => {
