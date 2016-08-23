@@ -59,7 +59,7 @@ const itemActions = {
         return response.id;
       })
       .then((id) => {
-        browserHistory.push('/listing/' + id);
+        browserHistory.push('/listing'+id);
       })
       .catch((err) => {
         if (err) {
