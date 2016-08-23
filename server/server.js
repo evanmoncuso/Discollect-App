@@ -19,7 +19,8 @@ app.use('/api', apiRoutes);
 //
 // // for react router browserHistory
 app.get('/*', (req, res) => {
-  res.redirect('/');
+	res.sendFile(path.join(__dirname, '../public/index.html'));
+  // res.redirect('/');
 });
 
 
