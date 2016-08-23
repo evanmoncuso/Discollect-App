@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import itemActions from '../actions/itemActions.js';
+import userActions from '../actions/userActions.js';
 import { browserHistory } from 'react-router';
 
 import PaneListing from './userListingParts/pane_listing_entry.jsx';
@@ -17,6 +18,7 @@ class Dashboard extends React.Component {
 
   componentWillMount() {
       this.props.dispatchGetUserListings();
+      this.props.dispatchGetEmail(this.props.userID);
   }
 
   closeListingHandler(listingID) {
@@ -114,6 +116,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     dispatchCallForHistory: (userID) => {
       dispatch(itemActions.getUserHistory(userID));
+    },
+    dispatchGetEmail: (userID) => {
+      dispatch(userActions.getUserInfo());
     },
   };
 };
