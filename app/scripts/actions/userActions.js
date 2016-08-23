@@ -149,6 +149,7 @@ const userActions = {
         user = {
           zipcode: user.zipcode,
           id: user.id,
+          email: user.email,
           username: user.username,
           picReference: user.picReference,
         }

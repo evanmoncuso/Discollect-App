@@ -12,7 +12,7 @@ class Portal extends React.Component {
 
   randomColorGenerator(){
     return "rgba(" + Math.ceil(Math.random() * 255) + ', '
-    + Math.ceil(Math.random() * 255) + ', ' 
+    + Math.ceil(Math.random() * 255) + ', '
     + Math.ceil(Math.random() * 255) + ', '
     + '1)';
   }
@@ -276,6 +276,7 @@ class Portal extends React.Component {
             <br />
             <br />
             <button className="form_submit_button" onClick={(e) => {
+                e.preventDefault();
               browserHistory.push('/portalmap')
            }}>Go to Heat-Map</button>
             </div>

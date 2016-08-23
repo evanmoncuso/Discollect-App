@@ -10,16 +10,16 @@ class PortalMap extends React.Component {
  }
 
   generateMinMax() {
-    var array = [];
-    for (var key in this.props.areas) {
+    let array = [];
+    for (let key in this.props.areas) {
       array.push(this.props.areas[key])
     }
     console.log('building minMax array: ', array)
     array = array.sort( function(a,b) {
       return a > b
     })
-    var min = Math.floor(array[0]);
-    var max = Math.floor(array[array.length-1]);
+    const min = Math.floor(array[0]);
+    const max = Math.floor(array[array.length-1]);
     console.log('ooooooo',min, max)
     return [min, max];
   }
@@ -30,7 +30,7 @@ class PortalMap extends React.Component {
       res.push({"id": "US-" + key, "value": this.props.areas[key]})
     }
     return res;
-  } 
+  }
 
 
   updateMap(){
@@ -73,7 +73,7 @@ class PortalMap extends React.Component {
             onSubmit={(e) => {
                 e.preventDefault();
                 var updater = this.updateMap.bind(this);
-                this.props.dispatchGetMapData(updater);     
+                this.props.dispatchGetMapData(updater);
             }}>
             <div className="leftMapSide">
 
@@ -104,14 +104,11 @@ const mapDispatchToProps = (dispatch) => {
   return {
     dispatchGetChartData: (info) => {
       dispatch(chartActions.getChartData(info))
-    },     
+    },
     dispatchGetMapData: (updater) => {
       dispatch(chartActions.getMapData(updater))
-    }    
+    }
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PortalMap);
-
-
-
