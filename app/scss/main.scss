@@ -89,16 +89,60 @@ h1 {
   top: 172px;
   position: relative;
   .filterBar {
-    border: 2px solid black;
+    flex-grow: 1;
     width: 200px;
-    height: 600px;
-    color: black;
+    height: 700px;
+    color: $dark-font;
     float: left;
     background-color: white;
-    padding: 3px;
+    padding: 12px;
+    margin-right: 18px;
     fieldset {
-      border: 1px dotted grey;
+      padding: 12px 0;
     }
+    legend {
+      text-align: center;
+      font-size: $font-medium;
+      font-weight: bold;
+    }
+    .condition_container {
+      width: 120px;
+      margin: 0 auto;
+      text-align: right;
+      label {
+        line-height: 18px;
+        display: inline-block;
+      }
+      input {
+        display:inline-block;
+      }
+    }
+    .filter_location {
+      padding: 6px 0;
+      label {
+        display: block;
+      }
+    }
+    .date_range {
+      text-align: right;
+    }
+    .button_holder {
+      margin: 0 auto;
+    }
+    .form_submit_button {
+      display: inline-block;
+      width: 160px;
+      border: none;
+      border-radius: 0;
+      padding: 12px;
+      font-size: $font-medium;
+      background-color: #1565C0;
+      color: $light-font;
+      margin: 0 auto;
+    }
+  }
+  .listing_flex_box {
+
   }
 }
 
@@ -165,6 +209,9 @@ Login / Signup
 List View
 ====================
  */
+ .listing_flex_box {
+   display: flex;
+ }
 
 .listings_container {
   color: #fff;
@@ -173,14 +220,12 @@ List View
   flex-wrap: wrap;
   width: 960px;
   margin: 0 auto;
-  top: 172px;
   .listView_entry {
     font-family: $secondary-font;
     color: $dark-font;
     background-color: #fff;
     padding: 6px;
     margin: 12px 6px;
-    box-shadow: 0 1px 1px #777;
     width: 220px; //
     height: 220px; //
     z-index: 0;
@@ -648,11 +693,8 @@ map modal
  }
 
  .input.undefined {
-  border: 1px solid transparent;
   border-radius: 1px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
-  // MozBoxSizing: border-box;
   font-size: 14px;
   height: 32px;
   margin-top: 27px;

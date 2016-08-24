@@ -1,54 +1,69 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import searchFilter from '../searchFilter';
 
 const FilterBar = (props) => {
   return (
     <div className="filterBar">
       <form>
-        <fieldset>
+        <fieldset className="condition_container">
           <legend>Condition:</legend>
-          <label htmlFor="new">New</label><input id="new" type="checkbox" /><br />
-          <label htmlFor="exc">Excellent</label><input id="exc" type="checkbox" /><br />
-          <label htmlFor="good">Good</label><input id="good" type="checkbox" /><br />
-          <label htmlFor="fair">Fair</label><input id="fair" type="checkbox" /><br />
-          <label htmlFor="salv">Salvage</label><input id="salv" type="checkbox" /><br />
+            <div className="labelled_checkbox">
+              <label htmlFor="new">New</label>
+              <input id="new" type="checkbox" />
+            </div>
+            <div className="labelled_checkbox">
+              <label htmlFor="exc">Excellent</label>
+              <input id="exc" type="checkbox" />
+              </div>
+            <div className="labelled_checkbox">
+              <label htmlFor="good">Good</label>
+              <input id="good" type="checkbox" />
+            </div>
+            <div className="labelled_checkbox">
+              <label htmlFor="fair">Fair</label>
+              <input id="fair" type="checkbox" />
+            </div>
+            <div className="labelled_checkbox">
+              <label htmlFor="salv">Salvage</label>
+              <input id="salv" type="checkbox" />
+            </div>
         </fieldset>
-        <br />
+
         <fieldset>
           <legend>Categories:</legend>
           <input type="text" />
         </fieldset>
-        <br />
         <fieldset>
           <legend>Keyword:</legend>
           <input type="text" />
         </fieldset>
-        <br />
         <fieldset>
           <legend>Location:</legend>
-          <label htmlFor="zip">Zip Code</label>
-          <input type="text" /><br />
-          <label htmlFor="state">State</label>
-          <input type="text" /><br />
+          <div className="filter_location">
+            <label htmlFor="zip">Zip Code</label>
+            <input type="text" />
+          </div>
+          <div className="filter_location">
+            <label htmlFor="state">State</label>
+            <input type="text" />
+          </div>
           <input type="range" />
         </fieldset>
-        <br />
         <fieldset>
-          <legend>Created At:</legend>
-          <input type="date" />
+          <legend>Posting Date:</legend>
+          <input className="date_range" type="date" />
         </fieldset>
-        <br />
         <fieldset>
-          <legend>Search Description:</legend>
+          <legend>Description:</legend>
           <input type="text" />
         </fieldset>
-        <br />
         <fieldset>
           <legend>Giver Rating:</legend>
           <input type="range" />
         </fieldset>
-        <button type="submit">Filter</button>
+        <div className="button_holder">
+          <button type="submit" className="form_submit_button">Filter</button>
+        </div>
       </form>
     </div>
   );
