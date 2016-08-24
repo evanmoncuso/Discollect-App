@@ -47,7 +47,6 @@ class SearchBar extends React.Component {
     fetch(url)
     .then(res=> res.json())
     .then(data=>{
-      console.log(data);
       context.setState({
         suggestions : data
       });
@@ -58,7 +57,6 @@ class SearchBar extends React.Component {
     this.setState({
       value: newValue
     });
-    console.log(newValue);
   };
 
   onSuggestionsUpdateRequested({ value }) {
@@ -104,6 +102,7 @@ class SearchBar extends React.Component {
     };
     let theme = {
       input : {
+
         position: 'relative',
         width: '280px',
         height: '36px',
@@ -119,7 +118,7 @@ class SearchBar extends React.Component {
         border: '1px solid #aaa',
         backgroundColor: '#fff',
         fontFamily: 'Helvetica',
-        fontWeight: 300,
+        fontWeight: '300',
         fontSize: '16px',
         borderBottomLeftRadius: '4px',
         borderBottomRightRadius: '4px',
