@@ -640,6 +640,21 @@ map modal
    transition: left 1s ease;
  }
 
+ .input.undefined {
+  border: 1px solid transparent;
+  border-radius: 1px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  // MozBoxSizing: border-box;
+  font-size: 14px;
+  height: 32px;
+  margin-top: 27px;
+  outline: none;
+  padding: 0 12px;
+  text-overflow: ellipses;
+  width: 400px;
+ }
+
 /*
 ====================
 Dev Sign-up Container

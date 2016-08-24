@@ -8,7 +8,7 @@ class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalState: true,
+      modalState: false,
       latLng: '0,0',
       radius: 10,
     };
@@ -18,11 +18,11 @@ class SearchBar extends React.Component {
   }
   componentDidMount() {
     const context = this;
-    setTimeout(() => {
-      context.setState({
-        modalState: false,
-      });
-    }, 400);
+    // setTimeout(() => {
+    //   context.setState({
+    //     modalState: false,
+    //   });
+    // }, 400);
   }
   changeCoords(latitude, longitude) {
     this.setState({
@@ -45,6 +45,7 @@ class SearchBar extends React.Component {
     this.setState({
       modalState: !this.state.modalState,
     });
+    console.log(this.state.modalState);
   }
   render() {
     let { userZip } = this.props;
@@ -97,13 +98,17 @@ class SearchBar extends React.Component {
           </select>
           <button className="search_button">search</button>
         </form>
-        <div className={this.state.modalState ? 'map_modal modal_on' : 'map_modal modal_off'}>
-          <div className="map_modal_content">
-            <GoogMap changeCoords={this.changeCoords} />
-            <input type="range" name="miles" min="0" max="100" onChange={(e) => { this.handleSlide(e); }} />
-            <span>{this.state.radius}</span>
-          </div>
-        </div>
+        {
+          this.state.modalState ?
+          (<div className='map_modal modal_on'>
+            <div className="map_modal_content">
+              <GoogMap changeCoords={this.changeCoords} />
+              <input type="range" name="miles" min="0" max="100" onChange={(e) => { this.handleSlide(e); }} />
+              <span>{this.state.radius}</span>
+            </div>
+          </div>)
+          : ''
+        }
         <div className="pagination">
           {
             this.props.searchHits.map((searchHitNum, i) => (
