@@ -68,7 +68,8 @@ Title bar
  */
 nav {
   width: 100%;
-  background-color: #fff;
+  background-color: #333;
+  color: #F7F7F7;
   box-shadow: 0 1px 1px #777;
   margin-bottom: 24px;
   position: fixed;
@@ -81,9 +82,9 @@ nav * {
   font-size: 42px;
   line-height: 54px;
   margin: 12px 12px 6px 12px;
-  color: #555; }
+  color: #F7F7F7; }
   .nav_title h4 {
-    color: #555;
+    color: #F7F7F7;
     text-align: center;
     font-size: 18px;
     line-height: 22px; }
@@ -114,6 +115,16 @@ h1 {
   margin: 0 auto;
   top: 180px;
   position: relative; }
+  .main_container .filterBar {
+    border: 2px solid black;
+    width: 200px;
+    height: 600px;
+    color: black;
+    float: left;
+    background-color: white;
+    padding: 3px; }
+    .main_container .filterBar fieldset {
+      border: 1px dotted grey; }
 
 .button {
   display: block;
@@ -183,8 +194,8 @@ List View
     padding: 6px;
     margin: 12px 6px;
     box-shadow: 0 1px 1px #777;
-    width: 280px;
-    height: 240px;
+    width: 220px;
+    height: 220px;
     z-index: 0; }
     .listings_container .listView_entry h2 {
       text-align: center;
@@ -524,6 +535,9 @@ map modal
   height: '100%'; }
 
 .map_modal {
+  background-size: cover;
+  height: 100%;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1; }
 
@@ -539,7 +553,10 @@ map modal
   display: block; }
 
 .modal_off {
-  display: none; }
+  display: block;
+  position: fixed;
+  left: -9999px;
+  transition: left 1s ease; }
 
 /*
 ====================
@@ -559,6 +576,11 @@ Dev Sign-up Container
   .dev_signup_container span {
     display: block;
     padding: 12px; }
+  .dev_signup_container p {
+    margin: 0 auto;
+    width: 66%;
+    padding: 6px;
+    font-size: 14px; }
   .dev_signup_container .auth_input {
     width: 50%; }
   .dev_signup_container .api_key_display {
@@ -583,18 +605,19 @@ Footer
  */
 canvas {
   background-color: black;
-  box-shadow: 3px 2px 3px darkblue;
+  border: solid 1px darkgrey;
   min-height: 350px; }
 
 .leftSide {
   float: left;
-  min-width: 260px;
-  max-width: 260px;
-  margin-top: 20px;
-  margin-left: 20px;
+  min-width: 230px;
+  max-width: 230px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
   text-align: center;
   background-color: lightgrey;
-  border: solid 1px black;
+  border: solid 4px darkgrey;
   height: 500px; }
 
 .leftMapSide {
@@ -612,14 +635,28 @@ canvas {
   float: right;
   padding-top: 90px;
   padding-right: 20px;
-  width: 600px; }
+  width: 660px; }
+
+#myMap {
+  min-width: 800px;
+  max-width: 800px;
+  min-height: 500px;
+  max-height: 500px; }
 
 .mapSide {
   float: right;
+  min-width: 800px;
   max-width: 800px;
   padding-top: 20px;
   padding-right: 20px;
-  max-height: 480px; }
+  max-height: 480px;
+  min-height: 480px; }
+
+#myMap {
+  min-width: 800px;
+  max-width: 800px;
+  min-height: 460px;
+  max-height: 460px; }
 
 .developerContainer {
   position: absolute;
@@ -628,7 +665,7 @@ canvas {
   margin-right: 60px; }
 
 .wrapperDiv {
-  background-color: darkgrey;
+  background-color: #333;
   border: solid 5px black;
   margin: 0 auto;
   min-width: 1200px;
@@ -636,7 +673,7 @@ canvas {
 
 .auth_inputChart {
   display: block;
-  width: 260px;
+  width: 230px;
   margin: 24px auto; }
   .auth_inputChart label {
     display: block; }

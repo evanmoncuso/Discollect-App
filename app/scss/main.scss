@@ -87,6 +87,18 @@ h1 {
   margin: 0 auto;
   top: 180px;
   position: relative;
+  .filterBar {
+    border: 2px solid black;
+    width: 200px;
+    height: 600px;
+    color: black;
+    float: left;
+    background-color: white;
+    padding: 3px;
+    fieldset {
+      border: 1px dotted grey;
+    }
+  }
 }
 
 .button {
@@ -148,6 +160,7 @@ Login / Signup
   margin: 0 6px;
 }
 
+
 /*
 ====================
 List View
@@ -168,8 +181,9 @@ List View
     background-color: #fff;
     padding: 6px;
     margin: 12px 6px;
-    width: 280px;
-    height: 240px;
+    box-shadow: 0 1px 1px #777;
+    width: 220px; //
+    height: 220px; //
     z-index: 0;
     h2 {
       text-align: center;
