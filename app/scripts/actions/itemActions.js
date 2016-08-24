@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 
 // const baseUrl = 'http://ec2-54-186-167-115.us-west-2.compute.amazonaws.com';
 const baseUrl = 'http://localhost:3000';
-const searchUrl = 'https://mysterious-coast-57298.herokuapp.com/listings';
+const searchUrl = 'http://localhost:8080/listings'; //'https://mysterious-coast-57298.herokuapp.com/listings'; //
 const zipUrl = 'http://zipcodehelper.herokuapp.com/api/state?zip=';
 
 const optimisticSetItems = (items) => (
@@ -133,18 +133,28 @@ const itemActions = {
 
   elasticSearch: (query) => (
     (dispatch) => {
-      const url = searchUrl + '?keywords=' + query.keywords + '&category=' + query.category + '&coordinates=' + query.coordinates + '&distance=' + query.distance + 'km';
-        // TODO TEMPLATE STRING
+      const url = searchUrl + '?keywords=' + query.keywords + '&category=' + query.category + '&coordinates=' + query.coordinates + '&distance=' + query.distance + 'km' + '&startFrom=' + query.startFrom;
+        console.log('url: ', url);
+      dispatch({
+        type: 'SAVE_LAST_QUERY',
+        payload: query,
+      });
+      // TODO TEMPLATE STRING
       fetch(url)
       .then((res) => res.json())
       .then((res) => {
-        console.log('from the search', res.hits.hits)
+        var hits = res.hits.total;
+        console.log('from the search~~~~~~', res, hits);
         var data = res.hits.hits.map(val=>{
           val._source.picReference = val._source.picreference;
           val._source.createdAt = val._source.createdat;
           return val._source;
         })
         // TODO NEW SETSTATE
+        dispatch({
+          type: 'SET_SEARCH_HITS',
+          payload: hits
+        });
         dispatch(optimisticSetItems(data));
         dispatch(itemActions.searchItem({}));
         browserHistory.push('/');
