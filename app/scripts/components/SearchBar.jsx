@@ -119,6 +119,12 @@ class SearchBar extends React.Component {
             }}
           >
             <div className="autosuggest_holder">
+              <div
+                className="map_button"
+                onClick={() => { this.toggleModal(); }}
+              >
+                <img src="location_white.png" alt="choose a location" />
+              </div>
               <Autosuggest
                 className="autosuggest"
                 suggestions={suggestions}

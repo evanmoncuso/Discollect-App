@@ -593,8 +593,8 @@ Search bar
     padding: 0 6px;
     display: inline-block;
     img {
-      width: 48px;
-      height: 48px;
+      width: 36px;
+      height: 36px;
     }
   }
   .map_button:active {
@@ -609,6 +609,11 @@ Search bar
   display: inline-flex;
   position: relative;
   top: 56px;
+  .map_button {
+    background-color: #D50000;
+    height: 48px;
+    border-radius: 6px 0 0 6px;
+  }
   .react-autosuggest__container > input {
     width: 480px;
     height: 48px;
@@ -635,7 +640,7 @@ Search bar
 
 .pagination {
   position: relative;
-  top: 72px
+  top: 60px
 }
 .page_number {
   line-height: 24px;
@@ -809,7 +814,6 @@ canvas {
   max-height: 480px;
   min-height: 480px;
 }
-
 
 .developerContainer {
   margin-left:10%;
