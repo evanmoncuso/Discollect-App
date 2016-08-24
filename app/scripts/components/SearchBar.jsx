@@ -42,7 +42,7 @@ class SearchBar extends React.Component {
 
   getSuggestions(value) {
     var context = this;
-    var url = 'http://localhost:8080/listings/titlesearch?title='+value;
+    var url = 'https://mysterious-coast-57298.herokuapp.com/listings/titlesearch?title='+value;
     fetch(url)
     .then(res=> res.json())
     .then(data=>{
@@ -162,9 +162,9 @@ class SearchBar extends React.Component {
           this.state.modalState ?
           (<div className='map_modal modal_on'>
             <div className="map_modal_content">
-              <GoogMap changeCoords={this.changeCoords} />
               <input type="range" name="miles" min="0" max="100" onChange={(e) => { this.handleSlide(e); }} />
-              <span>{this.state.radius}</span>
+              <span>{this.state.radius} (km)</span>
+              <GoogMap changeCoords={this.changeCoords} />
             </div>
           </div>)
           : ''

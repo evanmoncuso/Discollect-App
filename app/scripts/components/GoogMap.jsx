@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleMapLoader, GoogleMap, Marker, SearchBox } from 'react-google-maps';
+import { GoogleMapLoader, GoogleMap, Marker, SearchBox, DrawingManager } from 'react-google-maps';
 import { default as update } from 'react-addons-update';
 import { connect } from 'react-redux';
 
@@ -22,8 +22,10 @@ class GoogMap extends React.Component {
     };
     this.handleMapClick.bind(this);
     this.handlePlacesChanged = this.handlePlacesChanged.bind(this);
+    // console.log('GOOOOOOOOGLE: ', google);
   }
   handleMapClick(event) {
+    // console.log('from goog map: ', event);
     let marker = this.state.marker;
     let newMarker = update(marker, {
       $set: {
@@ -87,6 +89,7 @@ class GoogMap extends React.Component {
               ref={node => { this.searchBox = node; }}
             />
             <Marker {...this.state.marker} draggable={true} />
+            
           </GoogleMap>
         }
       />
