@@ -42,13 +42,16 @@ class PortalMap extends React.Component {
     var map = AmCharts.makeChart( place, {
       "type": "map",
       "theme": "chalk",
-      "colorSteps": 20,
+      "colorSteps": 30,
       "dataProvider": {
         "map": "usaLow",
         "areas": datas,
       },
       "areasSettings": {
         "autoZoom": false
+      },
+      "zoomControl": {
+        "homeButtonEnabled": false
       },
       "valueLegend": {
         "right": 10,
