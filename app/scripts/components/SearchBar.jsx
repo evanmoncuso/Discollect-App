@@ -42,7 +42,7 @@ class SearchBar extends React.Component {
 
   getSuggestions(value) {
     var context = this;
-    var url = 'http://localhost:8080/listings/titlesearch?title='+value;
+    var url = 'https://mysterious-coast-57298.herokuapp.com/listings/titlesearch?title='+value;
     fetch(url)
     .then(res=> res.json())
     .then(data=>{
