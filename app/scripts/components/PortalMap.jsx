@@ -75,13 +75,13 @@ class PortalMap extends React.Component {
   render() {
 
     return (
-      <div className="developerContainer">
+      <div className="main_container developerContainer">
         <div className="wrapperDiv">
           <form encType="multipart/form-data"
             onSubmit={(e) => {
                 e.preventDefault();
                 var updater = this.updateMap.bind(this);
-                this.props.dispatchGetMapData(updater);     
+                this.props.dispatchGetMapData(updater);
                 var datas = this.generateValues();
                 var place = document.getElementById('myMap');
                 var map = AmCharts.makeChart( place, {

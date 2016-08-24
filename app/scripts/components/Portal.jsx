@@ -77,7 +77,7 @@ class Portal extends React.Component {
     let singleCat;
     let chartType;
     return (
-      <div className="developerContainer">
+      <div className="main_container developerContainer">
         <div className="wrapperDiv">
           <form encType="multipart/form-data"
             onSubmit={(e) => {
