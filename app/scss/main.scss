@@ -67,6 +67,14 @@ h1 {
 .nav_container {
   width: 960px;
   margin: 0 auto;
+  display: flex;
+  .searchbar_holder {
+    flex-grow: 3;
+  }
+  .nav_title,
+  .user_points {
+    flex-grow: 1;
+  }
 }
 
 .nav_title,
@@ -97,6 +105,7 @@ h1 {
     background-color: white;
     padding: 12px;
     margin-right: 18px;
+    margin-top: 12px;
     fieldset {
       padding: 12px 0;
     }
@@ -150,6 +159,7 @@ h1 {
   display: block;
   margin: 12px;
   font-size: $button-font-large;
+  text-align: right;
 }
 
 .user_points {
@@ -375,7 +385,6 @@ Dashboard View
     display: flex;
   }
   .user_items {
-
     flex-grow: 1;
     margin: 0 auto;
     align-items: stretch;
@@ -575,69 +584,9 @@ Search bar
  */
 
 .search_bar {
-  width: 960px;
   margin: 0 auto;
   text-align: center;
-  .search_bar_input {
-    height: 32px;
-    font-size: $font-small;
-    line-height: 22px;
-    border: none;
-    outline: none;
-    background-color: inherit;
-  }
-  .full_input {
-    display:inline-block;
-    width: 200px;
-    label {
-      display:inline-block;
-      text-align: left;
-    }
-    input {
-      width: 240px;
-      height: 48px;
-      font-size: 36px;
-      color: $light-font;
-    }
-    input::-webkit-input-placeholder {
-      font-size: 16px;
-      color: #888;
-      text-align: center;
-    }
-    input:-moz-placeholder {
-      font-size: 16px;
-      color: #888;
-      text-align: center;
-    }
-    input::-moz-placeholder {
-      font-size: 16px;
-      color: #888;
-      text-align: center;
-    }
-    input:-ms-input-placeholder {
-      font-size: 16px;
-      color: #888;
-      text-align: center;
-    }
-  }
-  .keywords,
-  .zip {
-    font-size: $font-medium;
-    color: $dark-font;
-    margin-left: 6px;
-  }
-  .search_button {
-    border: none;
-    border-radius: 0;
-    height: 48px;
-    padding: 12px;
-    font-size: 22px;
-    background-color: #D50000;
-    color: $light-font;
-    margin: 0 6px;
-    transition: 0.4s all ease-in;
-    outline: none;
-  }
+
   .map_button {
     height: 60px;
     width: 60px;
@@ -654,6 +603,45 @@ Search bar
   #category {
     height: 49px;
   }
+}
+
+.autosuggest_holder {
+  display: inline-flex;
+  position: relative;
+  top: 56px;
+  .react-autosuggest__container > input {
+    width: 480px;
+    height: 48px;
+    border: none;
+    margin: 0;
+    background-color: #fff;
+    outline: none;
+    font-size: $font-medium;
+    padding: 0 12px;
+  }
+  .search_button {
+    border: none;
+    border-radius: 0;
+    height: 48px;
+    padding: 12px;
+    display: inline-block;
+    font-size: 22px;
+    background-color: #D50000;
+    color: $light-font;
+    transition: 0.4s all ease-in;
+    outline: none;
+  }
+}
+
+.pagination {
+  position: relative;
+  top: 72px
+}
+.page_number {
+  line-height: 24px;
+  font-size: $font-medium;
+  color: $light-font;
+  padding: 0 6px;
 }
 /*
 ====================

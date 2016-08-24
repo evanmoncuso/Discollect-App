@@ -24,10 +24,12 @@ const NavBar = ({ username }) => {
           <Link to="/"><h1>Discollect</h1></Link>
           <Link to="/dashboard">{welcome}</Link>
         </div>
+        <div className="searchbar_holder">
+          <SearchBar />
+        </div>
         <div className="user_points">
           {displayed}
         </div>
-        <SearchBar />
       </div>
     </nav>
   );
