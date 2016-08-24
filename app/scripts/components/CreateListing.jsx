@@ -28,9 +28,9 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
     reader.readAsDataURL(file);
   };
 
-  const changeCoords = (latitude, longitude) => {
+  const changeCoords = (latitude, longitude, a) => {
     latLng = `${latitude},${longitude}`;
-    console.log('create listings: ', latLng);
+    console.log('create listings: ', latLng, a);
   };
 
   return (

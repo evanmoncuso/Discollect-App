@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 
 // const baseUrl = 'http://ec2-54-186-167-115.us-west-2.compute.amazonaws.com';
 const baseUrl = 'http://localhost:3000';
-const searchUrl = 'http://localhost:8080/listings'; //'https://mysterious-coast-57298.herokuapp.com/listings'; //
+const searchUrl = 'https://mysterious-coast-57298.herokuapp.com/listings'; //'https://mysterious-coast-57298.herokuapp.com/listings'; //
 const zipUrl = 'http://zipcodehelper.herokuapp.com/api/state?zip=';
 
 const optimisticSetItems = (items) => (
