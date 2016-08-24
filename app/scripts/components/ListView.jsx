@@ -3,16 +3,18 @@ import { connect } from 'react-redux';
 import ListEntry from './ListEntry.jsx';
 import itemActions from '../actions/itemActions.js';
 import { browserHistory } from 'react-router';
-
+import FilterBar from './FilterBar.jsx';
 import searchFilter from '../actions/searchFilter.js';
 
 let ListView = ({ dispatchGetItems, items, users, dispatchIndivItem }) => {
   return (
-    <div className="listings_container">
-      {items.map((item, i) => {
-        return <ListEntry key={i} entry={item} action={dispatchIndivItem} />
-      })}
-
+    <div className="main_container">
+      <FilterBar />
+      <div className="listings_container">
+        {items.map((item, i) => {
+          return <ListEntry key={i} entry={item} action={dispatchIndivItem} />
+        })}
+      </div>
     </div>
   );
 };

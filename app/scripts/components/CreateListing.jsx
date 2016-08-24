@@ -111,7 +111,7 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
             <label htmlFor="description">Description</label>
             <textarea ref={(node) => { description = node; }} id="description" required />
           </div>
-          <div className="map_container" style={{ width: '300px', height: '300px', margin: '0 auto' }}>
+          <div className="map_container" style={{ width: '400px', height: '400px', margin: '0 auto' }}>
             <GoogMap changeCoords={changeCoords} />
           </div>
           <div className="button_container">
