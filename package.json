@@ -7,6 +7,7 @@
     "test": "npm run compile-for-test && ./node_modules/.bin/mocha --reporter spec",
     "webpack": "webpack --progress --colors --watch",
     "start": "nodemon server/server.js",
+    "test2": "mocha tests/.setup.js tests/tester.js",
     "mysql": "mysql -h rds-mysql-discollectdb.c0eor5cjwn0u.us-west-1.rds.amazonaws.com -P 3306 -u jordan -p",
     "compile-for-test": "babel app/scripts/actions --out-dir compiledForTests --presets=es2015,react --ignore=node_modules,compiled --source-maps inline",
     "scss:dev": "node-sass -o public/css app/scss/main.scss -w",
@@ -26,13 +27,17 @@
   },
   "homepage": "https://github.com/evanmoncuso/Discollect-App#readme",
   "dependencies": {
+    "babel": "^6.5.2",
     "babel-cli": "^6.11.4",
+    "babel-preset-airbnb": "^2.0.0",
+    "babel-register": "^6.11.6",
     "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.2",
     "chai": "^3.5.0",
     "chai-jquery": "^2.0.0",
     "chart.js": "^2.2.1",
     "cors": "^2.7.1",
+    "enzyme": "^2.4.1",
     "es6-promise": "^3.2.1",
     "eslint-plugin-import": "^1.12.0",
     "eslint-plugin-jsx-a11y": "^2.0.1",
@@ -40,8 +45,8 @@
     "express-session": "^1.14.0",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^2.2.1",
-    "jsdom": "^8.1.0",
-    "mocha": "^3.0.1",
+    "jsdom": "^8.5.0",
+    "mocha": "^3.0.2",
     "moment": "^2.14.1",
     "morgan": "^1.7.0",
     "mysql": "^2.11.1",
@@ -62,6 +67,7 @@
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0",
     "sequelize": "^3.23.6",
+    "sinon": "^1.17.5",
     "webpack": "^1.13.1"
   },
   "devDependencies": {
@@ -74,12 +80,14 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "chai": "^3.5.0",
+    "enzyme": "^2.4.1",
     "eslint": "^3.2.2",
     "eslint-config-airbnb": "^10.0.0",
     "eslint-plugin-import": "^1.12.0",
     "eslint-plugin-jsx-a11y": "^2.0.1",
     "eslint-plugin-react": "^6.0.0",
     "html-webpack-plugin": "^2.22.0",
-    "mocha": "^3.0.1"
+    "mocha": "^3.0.1",
+    "react-addons-test-utils": "^15.0.0-rc.2"
   }
 }

@@ -44,6 +44,25 @@ module.exports = {
     });
   },
 
+  getOldListings: (req, res) => {
+    let userId = req.body.userId;
+    console.log('getting old listings for user: ',userId)
+    Listing.findAll({
+      where: {
+        $and: {
+          $or: [{takerId: userId}, {giverId: userId}],
+          status: 2,
+        }
+      },
+      limit: 50,
+      order: [['createdAt', 'DESC']],
+    })
+    .then((items) => {
+      console.log('old listings coming back!')
+      res.send(items);
+    });
+  },
+
   update: (req, res) => {
     Listing.findOne({
       where: {
@@ -148,10 +167,15 @@ module.exports = {
         id: req.query.listingID,
       },
     })
-    .then(listing =>
-      listing.destroy()
-    ).then(deleted =>
+    .then(listing =>{
+      console.log('about to destroy ', listing)
+     listing.update({
+        status: 3,
+      })
+    }
+    ).then(deleted => {
       res.json(deleted)
+    }
     );
   },
 

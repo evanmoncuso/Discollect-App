@@ -40,7 +40,7 @@ const devMap = (state = initMapData, action) => {
 };
 
 const initChartType = {
-  type: 'line',
+  type: 'bar',
 }
 
 const chartType = (state = initChartType, action) => {
