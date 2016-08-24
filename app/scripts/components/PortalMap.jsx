@@ -43,10 +43,6 @@ class PortalMap extends React.Component {
       "type": "map",
       "theme": "chalk",
       "colorSteps": 20,
-      'homeButtonClicked': {
-        'type': 'homeButtonClicked',
-        'method': handleClick
-      },
       "dataProvider": {
         "map": "usaLow",
         "areas": datas,
@@ -65,20 +61,21 @@ class PortalMap extends React.Component {
         "enabled": true
       }
     });
-    function handleClick(e) {
-      console.log('evna is a special character')
-      e.preventDefault();
-      browserHistory.push('/portal');
-    }
   }
 
   render() {
     return (
       <div className="main_container developerContainer">
         <div className="wrapperDiv">
+            <div className="mapVis" id='mapTitle'>
+            Density of <br />Discollect users <br /> 
+            state by state.
+            </div>
           <form encType="multipart/form-data"
             onSubmit={(e) => {
                 e.preventDefault();
+                // document.getElementById("mapTitle").("display");
+                document.getElementById("mapTitle").className = "mapText"; 
                 var updater = this.updateMap.bind(this);
                 this.props.dispatchGetMapData(updater);
                 var datas = this.generateValues();
@@ -112,9 +109,16 @@ class PortalMap extends React.Component {
                 <br />
                 <div>
                 <br />
+                <br />
+                <br />
                   <button type='submit' className="form_submit_button">Generate <br /> MAP</button>
                 <br />
+                <br />
                 </div>
+                  <button className="mapReturn" onClick={(e)=>{
+                    e.preventDefault();
+                    browserHistory.push('/portal');
+                  }}>Return to <br /> CHARTS</button>
             </div>
           </form>
           <div className="mapSide" id="myMap">

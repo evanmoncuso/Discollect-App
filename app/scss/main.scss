@@ -871,10 +871,32 @@ Footer
 // }
 
 .adverttext {
-  font-size: 2em;
+  font-size: 1.6em;
 }
 
 .advertimg {
   height: 80px;
   margin-right: 10px;
+}
+
+.mapText {
+  visibility: visible;
+  text-align: center;
+  font-size: 1.5em;
+  color: black;
+  font-weight: bold;
+  padding: 5px;
+  position: fixed;
+  margin-top: 210px;
+  margin-left: 220px;
+  background-color: lightgrey;
+  border: solid 2px black;
+}
+
+.mapVis {
+  padding: 5px;
+  position: fixed;
+  margin-top: 210px;
+  margin-left: 220px;
+  visibility: hidden;
 }
