@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import GoogMap from './GoogMap.jsx';
-import itemActions from '../actions/itemActions.js';
 import Autosuggest from 'react-autosuggest';
 import fetch from 'isomorphic-fetch';
+import GoogMap from './GoogMap.jsx';
+import itemActions from '../actions/itemActions.js';
 
 
-function getSuggestionValue(suggestion) { // when suggestion is selected, this function tells
-  return suggestion._source.title;                 // what should be the value of the input
+function getSuggestionValue(suggestion) {
+  return suggestion._source.title;
 }
 
 function renderSuggestion(suggestion) {
@@ -101,79 +101,68 @@ class SearchBar extends React.Component {
       onChange: this.suggestChange.bind(this),
     };
     return (
-      <div className="search_bar">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            const data = {
-              category: category.value,
-              keywords: this.state.value,
-              coordinates: this.state.latLng,
-              distance: this.state.radius,
-              startFrom: 0,
-            };
-            
-            console.log(data);
-            this.props.doElasticSearch(data);
-            category.value = 'all-categories';
-            keywords.value = '';
-          }}
-        >
-          <div className="full_input">
-            <label htmlFor="keywords">keyword: </label>
-            <input
-              className="search_bar_input keywords"
-              ref={(node) => { keywords = node; }}
-              // onChange={(node) => this.props.commitSearch({ keywords: node.target.value.toLowerCase() })}
-            />
-          </div>
-          <div>
-            <Autosuggest
-              suggestions={suggestions}
-              onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested.bind(this)}
-              getSuggestionValue={getSuggestionValue}
-              renderSuggestion={renderSuggestion}
-              inputProps={inputProps} 
-              shouldRenderSuggestions = {function shouldRenderSuggestions(value) {
-                return value.trim().length > 2;}
-              }
-            />
-          </div>
-          <div className="map_button" onClick={() => { this.toggleModal(); }}>
-            <span>Location</span>
-            <img src="pin(1).png" />
-          </div>
-          <select
-            ref={(node) => { category = node; }}
-            id="category"
-            className="search_bar_input full_input"
-            // onChange={(node) => this.props.commitSearch({ category: node.target.value })}
-            required>
-            <option value="all-categories">All Categories</option>
-            <option value="appliances">Appliances</option>
-            <option value="fashion">Clothing, Shoes &amp; Jewelry</option>
-            <option value="books">Books</option>
-            <option value="electronics">Electronics</option>
-            <option value="tools">Tools &amp; Home Improvement</option>
-          </select>
-          <button className="search_button">search</button>
-        </form>
-        {
-          this.state.modalState ?
-          (<div className='map_modal modal_on'>
-            <div className="map_modal_content">
-              <input type="range" name="miles" min="0" max="100" onChange={(e) => { this.handleSlide(e); }} />
-              <span>{this.state.radius} (km)</span>
-              <GoogMap changeCoords={this.changeCoords} />
+      <div className="search_bar_container">
+        <div className="search_bar">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              const data = {
+                category: category.value,
+                keywords: this.state.value,
+                coordinates: this.state.latLng,
+                distance: this.state.radius,
+                startFrom: 0,
+              };
+              this.props.doElasticSearch(data);
+              category.value = 'all-categories';
+              keywords.value = '';
+            }}
+          >
+            <div className="autosuggest_holder">
+              <div
+                className="map_button"
+                onClick={() => { this.toggleModal(); }}
+              >
+                <img src="location_white.png" alt="choose a location" />
+              </div>
+              <Autosuggest
+                className="autosuggest"
+                suggestions={suggestions}
+                onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested.bind(this)}
+                getSuggestionValue={getSuggestionValue}
+                renderSuggestion={renderSuggestion}
+                inputProps={inputProps}
+                shouldRenderSuggestions={function shouldRenderSuggestions(value) {
+                  return value.trim().length > 2;
+                }}
+              />
+              <button className="search_button">search</button>
             </div>
-          </div>)
-          : ''
-        }
-        <div className="pagination">
+          </form>
+          <div className="pagination">
+            {
+              this.props.searchHits.map((searchHitNum, i) => (
+                <a
+                  onClick={() => {
+                    this.getPage(searchHitNum);
+                  }}
+                  className="page_number"
+                  key={i} >
+                {i + 1}
+                </a>
+              ))
+            }
+          </div>
           {
-            this.props.searchHits.map((searchHitNum, i) => (
-              <a onClick={() => { this.getPage(searchHitNum); }} className="pageNumber" key={i}> {i + 1} </a>
-            ))
+            this.state.modalState ?
+            (<div className='map_modal modal_on'>
+              <div className="map_modal_content">
+                <GoogMap changeCoords={this.changeCoords} />
+                <input type="range" name="miles" min="0" max="100" onChange={(e) => { this.handleSlide(e); }} />
+                <span>{this.state.radius}</span>
+              </div>
+            </div>)
+            : ''
           }
         </div>
       </div>
@@ -190,7 +179,6 @@ SearchBar.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    // userCoords: [state.users.coords[0], state.users.coords[1]],
     userZip: state.users.zip,
     searchHits: state.searchHits,
     lastQuery: state.lastQuery,
