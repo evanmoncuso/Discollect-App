@@ -176,7 +176,7 @@ module.exports = {
     });
   },
 
-  listing: function(req, res) {
+  listing: (req, res) => {
     Listing.findOne({
       attributes: ['id', 'title', 'description', 'giverId', 'picReference', 'status', 'condition', 'zipcode'],
       where: {
@@ -189,16 +189,21 @@ module.exports = {
         where: {
           id: listing.giverId,
         },
-      });
+      })
       .then((username) => {
-        console.log(listing);
-        console.log(username.username)
         const listingData = {
-          listing: listing,
+          id: listing.id,
+          title: listing.title,
+          description: listing.description,
+          giverId: listing.giverId,
+          picReference: listing.picReference,
+          status: listing.status,
+          condition: listing.condition,
+          zipcode: listing.zipcode,
           username: username.username,
         };
-        res.json(listing);
-      })
-    })
+        res.json(listingData);
+      });
+    });
   },
-}
+};

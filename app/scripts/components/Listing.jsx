@@ -1,15 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-// import { updateListingStatus } from '../actions/itemActions.js';
 import itemActions from '../actions/itemActions.js';
 import Advert from './Advert.jsx';
-const defaultImage = '../../../public/css/ina.jpg';
 
+const defaultImage = './css/ina.jpg';
 
 const Listing = ({ currentListing, zipcode, userId, userName, dispatchListingStatusChange, params, dispatchGetListing }) => {
-  console.log('zipcode in Listing -----+++++|||>>>', zipcode)
-  if(currentListing.id === undefined) {
+  if (currentListing.id === undefined) {
     dispatchGetListing(params.id);
   }
   const backer = () => {
@@ -31,20 +29,23 @@ const Listing = ({ currentListing, zipcode, userId, userName, dispatchListingSta
     dibsButton = (<button
       className="listing_view_button"
       onClick={(e) => {
-      e.preventDefault();
-      const listingTrigger = {
-        listingID: Number(currentListing.id),
-        giverId: currentListing.giverId,
-        takerId: userId,
-        statusCode: 1,
+        e.preventDefault();
+        const listingTrigger = {
+          listingID: Number(currentListing.id),
+          giverId: currentListing.giverId,
+          takerId: userId,
+          statusCode: 1,
+        };
+        if (userName === undefined || !userName) {
+          browserHistory.push('/signup');
+        } else {
+          dispatchListingStatusChange(listingTrigger);
+          browserHistory.push('/');
+        }
       }
-      if (userName === undefined || !userName) {
-        browserHistory.push('/signup')
-      } else {
-        dispatchListingStatusChange(listingTrigger);
-        browserHistory.push('/');
-      }
-    }}> Call DIBS </button>);
+    }
+    > Call DIBS
+    </button>);
   }
 
   return (
@@ -53,7 +54,7 @@ const Listing = ({ currentListing, zipcode, userId, userName, dispatchListingSta
       <h2> {currentListing.title} </h2>
       <div className="listing_content">
         <div className="image_pane">
-          <img src={currentListing.picReference} alt="listing" />
+          <img src={pic} alt="listing" />
         </div>
         <div className="listing_description">
           {currentListing.description}
@@ -65,7 +66,7 @@ const Listing = ({ currentListing, zipcode, userId, userName, dispatchListingSta
           </div>
           <div className="info_giver">
             <span className="title">given by: </span>
-            <span className="data">{currentListing.giverId}</span>
+            <span className="data">{currentListing.username}</span>
           </div>
           <div className="info_zipcode">
             <span className="title">zipcode: </span>
@@ -101,7 +102,6 @@ const mapStateToProps = (state) => {
   return {
     currentListing: state.items.current,
     userId: state.users.id,
-    userName: state.users.username,
     zipcode: state.users.zip,
   };
 };
