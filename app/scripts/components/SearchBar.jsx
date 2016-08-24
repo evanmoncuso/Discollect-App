@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import GoogMap from './GoogMap.jsx';
 import itemActions from '../actions/itemActions.js';
 import Autosuggest from 'react-autosuggest';
-
+import fetch from 'isomorphic-fetch';
 
 
 function getSuggestionValue(suggestion) { // when suggestion is selected, this function tells
@@ -23,7 +23,7 @@ class SearchBar extends React.Component {
       modalState: false,
       latLng: '0,0',
       radius: 10,
-      value: null,
+      value: '',
       suggestions: [],
     };
     this.changeCoords = this.changeCoords.bind(this);
