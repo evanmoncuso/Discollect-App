@@ -2,7 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import GoogMap from './GoogMap.jsx';
 import itemActions from '../actions/itemActions.js';
+import Autosuggest from 'react-autosuggest';
 
+
+
+function getSuggestionValue(suggestion) { // when suggestion is selected, this function tells
+  return suggestion._source.title;                 // what should be the value of the input
+}
+
+function renderSuggestion(suggestion) {
+  return (
+    <span>{suggestion._source.title}</span>
+  );
+}
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -11,6 +23,8 @@ class SearchBar extends React.Component {
       modalState: false,
       latLng: '0,0',
       radius: 10,
+      value: null,
+      suggestions: [],
     };
     this.changeCoords = this.changeCoords.bind(this);
     this.handleSlide = this.handleSlide.bind(this);
@@ -18,17 +32,51 @@ class SearchBar extends React.Component {
   }
   componentDidMount() {
     const context = this;
-    // setTimeout(() => {
-    //   context.setState({
-    //     modalState: false,
-    //   });
-    // }, 400);
+    setTimeout(() => {
+      context.setState({
+        modalState: false,
+        suggestions: [],
+      });
+    }, 400);
   }
+
+  getSuggestions(value) {
+    var context = this;
+    var url = 'http://localhost:8080/listings/titlesearch?title='+value;
+    fetch(url)
+    .then(res=> res.json())
+    .then(data=>{
+      console.log(data);
+      context.setState({
+        suggestions : data
+      });
+    })
+  }
+
+  suggestChange(event, { newValue }) {
+    this.setState({
+      value: newValue
+    });
+    console.log(newValue);
+  };
+
+  onSuggestionsUpdateRequested({ value }) {
+    var context = this;
+    context.getSuggestions(value);
+  }
+
+  toggleModal() {
+    this.setState({
+      modalState: !this.state.modalState,
+    });
+  }
+
   changeCoords(latitude, longitude) {
     this.setState({
       latLng: `${latitude},${longitude}`,
     });
   }
+
   handleSlide(e) {
     this.setState({
       radius: e.target.value,
@@ -41,17 +89,17 @@ class SearchBar extends React.Component {
     nextQuery.startFrom = searchHitNum;
     this.props.doElasticSearch(nextQuery);
   }
-  toggleModal() {
-    this.setState({
-      modalState: !this.state.modalState,
-    });
-    console.log(this.state.modalState);
-  }
+
   render() {
     let { userZip } = this.props;
     let keywords;
     let zip;
     let category;
+    let { value, suggestions } = this.state;
+    let inputProps = {
+      value,
+      onChange: this.suggestChange.bind(this),
+    };
     return (
       <div className="search_bar">
         <form
@@ -59,7 +107,7 @@ class SearchBar extends React.Component {
             e.preventDefault();
             const data = {
               category: category.value,
-              keywords: keywords.value,
+              keywords: this.state.value,
               coordinates: this.state.latLng,
               distance: this.state.radius,
               startFrom: 0,
@@ -77,6 +125,18 @@ class SearchBar extends React.Component {
               className="search_bar_input keywords"
               ref={(node) => { keywords = node; }}
               // onChange={(node) => this.props.commitSearch({ keywords: node.target.value.toLowerCase() })}
+            />
+          </div>
+          <div>
+            <Autosuggest
+              suggestions={suggestions}
+              onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested.bind(this)}
+              getSuggestionValue={getSuggestionValue}
+              renderSuggestion={renderSuggestion}
+              inputProps={inputProps} 
+              shouldRenderSuggestions = {function shouldRenderSuggestions(value) {
+                return value.trim().length > 2;}
+              }
             />
           </div>
           <div className="map_button" onClick={() => { this.toggleModal(); }}>
