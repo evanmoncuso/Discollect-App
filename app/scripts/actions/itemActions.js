@@ -235,7 +235,8 @@ const itemActions = {
 
   getUserHistory: (userId) => (
     (dispatch) => {
-      const url = `https://discollectarchive.herokuapp.com/api/getArchives`;
+       const url = baseUrl + '/api/getOldListings';
+       console.log('gettin user History');
       fetch(url, {
         method: 'PUT',
         credentials: 'same-origin',
@@ -246,7 +247,7 @@ const itemActions = {
       })
       .then((res) => res.json())
       .then((response) => {
-        console.log(response)
+        console.log('250',response)
         dispatch({
           type: 'GET_USER_HISTORY',
           history: response,
