@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { browserHistory, Link } from 'react-router';
+import { Link } from 'react-router';
 
 import itemActions from '../../actions/itemActions.js';
-import ratingActions from '../../actions/ratingActions.js';
 
 
-const PaneListingEntry = ({ item, closeable, removeable, userID, dispatchCloseListing, dispatchCreateRating, dispatchRemoveListing }) => {
+const PaneListingEntry = ({ item, closeable, removeable, userID, dispatchCloseListing, dispatchRemoveListing }) => {
   closeable = closeable || false;
   removeable = removeable || false;
   return (
@@ -21,7 +20,7 @@ const PaneListingEntry = ({ item, closeable, removeable, userID, dispatchCloseLi
           <div className="entry_buttons">
             <Link
               className="pane_listing_button view"
-              to={'/listing/' + item.id}
+              to={'/listing' + item.id}
             >
               View
             </Link>
@@ -59,9 +58,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     dispatchRemoveListing: (listingId) => {
       dispatch(itemActions.removeListing(listingId));
-    },
-    dispatchCreateRating: (table, raterID, rateeID, listing_id, rating, review) => {
-      dispatch(ratingActions.createRating(table, raterID, rateeID, listing_id, rating, review));
     },
   };
 };

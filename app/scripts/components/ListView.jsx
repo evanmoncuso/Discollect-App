@@ -8,7 +8,7 @@ import searchFilter from '../actions/searchFilter.js';
 
 let ListView = ({ dispatchGetItems, items, users, dispatchIndivItem }) => {
   return (
-    <div className="main_container listings_container">
+    <div className="listings_container">
       {items.map((item, i) => {
         return <ListEntry key={i} entry={item} action={dispatchIndivItem} />
       })}

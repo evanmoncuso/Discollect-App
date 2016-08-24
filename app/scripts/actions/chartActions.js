@@ -1,6 +1,5 @@
 import fetch from 'isomorphic-fetch';
 
-// const baseUrl = 'http://ec2-54-186-167-115.us-west-2.compute.amazonaws.com';
 const baseUrl = 'http://discollect-dev-portal.herokuapp.com';
 
 const optimisticSetChart = ({ data, labels, label }) => (
@@ -28,44 +27,36 @@ const optimisticSetMap = (areas) => (
 
 
 const chartActions = {
-
-
   getMapData: (updater) => (
     (dispatch) => {
       const url = baseUrl + '/api/discollect/state';
-      // const randNum = () => (
-      //   (Math.random() * 100) + (Math.random() * 200) + (Math.random() * 200)
-      // );
-       fetch(url, {
-          credentials: 'same-origin',
-        })
-        .then((res) => res.json())
-        .then((response) => {
-          dispatch(optimisticSetMap(response));
-          // dispatch(optimisticSetChart(response));
-        })
-        .then(() => {
-          updater()
-        })
-        .catch((err) => {
-          if (err) {
-            console.log(err);
-          }
-        });
-
+      fetch(url, {
+        credentials: 'same-origin',
+      })
+      .then((res) => res.json())
+      .then((response) => {
+        dispatch(optimisticSetMap(response));
+      })
+      .then(() => {
+        updater();
+      })
+      .catch((err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
     }
   ),
 
-  getChartType: (info, updater) => (
+  getChartType: (info) => (
     (dispatch) => {
       const chartType = info.type;
-      dispatch(optimisticChartType(chartType))
+      dispatch(optimisticChartType(chartType));
     }
   ),
 
   getChartCatsData: (criteria, updater) => (
     (dispatch) => {
-      console.log(criteria);
       const cat1 = criteria.cat1;
       const cat2 = criteria.cat2;
       const cat3 = criteria.cat3;
@@ -79,11 +70,10 @@ const chartActions = {
       })
       .then((res) => res.json())
       .then((response) => {
-        console.log('===============>>>=', response);
         dispatch(optimisticSetChart(response));
       })
       .then(() => {
-        updater()
+        updater();
       })
       .catch((err) => {
         if (err) {
@@ -105,7 +95,7 @@ const chartActions = {
         dispatch(optimisticSetChart(response));
       })
       .then(() => {
-        updater()
+        updater();
       })
       .catch((err) => {
         if (err) {

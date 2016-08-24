@@ -1,5 +1,4 @@
 const searchFilter = (data, kw, zip, cat) => {
-	// console.log('filtering', data, kw, zip, cat);
 	let output = data;
 	if (kw) {
 		let kwMatch = new RegExp(kw);
