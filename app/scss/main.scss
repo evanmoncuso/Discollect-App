@@ -156,9 +156,12 @@ List View
 
 .listings_container {
   color: #fff;
+  position: relative;
   display: flex;
   flex-wrap: wrap;
-  top: 180px;
+  width: 960px;
+  margin: 0 auto;
+  top: 140px;
   .listView_entry {
     font-family: $secondary-font;
     color: $dark-font;
@@ -301,7 +304,6 @@ Dashboard View
 .dashboard_container {
   top: 180px;
   padding:12px;
-  border-left: 4px solid $dark-gray;
   background-color: $dark-gray;
   color: $light-font;
   margin: 0 auto;
@@ -376,7 +378,6 @@ Dashboard View
 .user_history {
   top: 180px;
   padding:12px;
-  border-left: 4px solid $dark-gray;
   background-color: $dark-gray;
   color: $light-font;
   margin: 0 auto;
@@ -386,7 +387,6 @@ Dashboard View
     text-align: center;
     width:90%;
     padding: 12px;
-    border-bottom: 1px solid #999;
     margin: 0 auto;
     span {
       display: inline-block;
@@ -445,7 +445,6 @@ Dashboard View
 
 .dev_portal_access {
   padding:12px;
-  border-left: 4px solid $dark-gray;
   background-color: $dark-gray;
   color: $light-font;
   margin: 0 auto;
@@ -525,14 +524,36 @@ Search bar
   }
   .full_input {
     display:inline-block;
-    border: 1px dotted black; //
-    width: 200px; //
+    width: 200px;
     label {
       display:inline-block;
       text-align: left;
     }
     input {
       width: 240px;
+      height: 48px;
+      font-size: 36px;
+      color: $light-font;
+    }
+    input::-webkit-input-placeholder {
+      font-size: 16px;
+      color: #888;
+      text-align: center;
+    }
+    input:-moz-placeholder {
+      font-size: 16px;
+      color: #888;
+      text-align: center;
+    }
+    input::-moz-placeholder {
+      font-size: 16px;
+      color: #888;
+      text-align: center;
+    }
+    input:-ms-input-placeholder {
+      font-size: 16px;
+      color: #888;
+      text-align: center;
     }
   }
   .keywords,
@@ -544,20 +565,23 @@ Search bar
   .search_button {
     border: none;
     border-radius: 0;
+    height: 48px;
     padding: 12px;
     font-size: 22px;
     background-color: #D50000;
     color: $light-font;
     margin: 0 6px;
     transition: 0.4s all ease-in;
+    outline: none;
   }
   .map_button {
-    height: 49px;
-    border: 1px dotted black;
+    height: 60px;
+    width: 60px;
+    padding: 0 6px;
     display: inline-block;
     img {
-      width: 30px;
-      height: 30px;
+      width: 48px;
+      height: 48px;
     }
   }
   .map_button:active {
