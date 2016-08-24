@@ -78,7 +78,7 @@ const searchHits = (state = [], action) => {
   switch (action.type) {
     case 'SET_SEARCH_HITS':
       let firstIndices = [];
-      for (let i = 0; i < action.payload; i += 3) {
+      for (let i = 0; i < action.payload; i += 9) {
         firstIndices.push(i);
       }
       return firstIndices;
