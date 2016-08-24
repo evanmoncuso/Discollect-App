@@ -11,7 +11,6 @@ class SearchBar extends React.Component {
       modalState: true,
       latLng: '0,0',
       radius: 10,
-      searchQuery: {},
     };
     this.changeCoords = this.changeCoords.bind(this);
     this.handleSlide = this.handleSlide.bind(this);
@@ -37,6 +36,7 @@ class SearchBar extends React.Component {
     console.log(this.state.radius);
   }
   getPage(searchHitNum) {
+    console.log('>', searchHitNum);
     const nextQuery = this.props.lastQuery;
     nextQuery.startFrom = searchHitNum;
     this.props.doElasticSearch(nextQuery);
@@ -63,9 +63,7 @@ class SearchBar extends React.Component {
               distance: this.state.radius,
               startFrom: 0,
             };
-            this.setState({
-              searchData: data,
-            });
+            
             console.log(data);
             this.props.doElasticSearch(data);
             category.value = 'all-categories';

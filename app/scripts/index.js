@@ -19,7 +19,13 @@ const store = createStore(reducer, applyMiddleware(...middleware));
 
 store.dispatch(userActions.getUserInfo());
 // setInterval(() => {
-  store.dispatch(itemActions.getLatestListings());
+store.dispatch(itemActions.elasticSearch({
+  category: 'all-categories',
+  keywords: '',
+  coordinates: '0,0',
+  distance: 10,
+  startFrom: 0,
+}));
 // }, 3000);
 
 const ProvidedApp = () => (
