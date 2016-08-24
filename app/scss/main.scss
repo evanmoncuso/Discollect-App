@@ -31,6 +31,7 @@ Title bar
 
 nav {
   width: 100%;
+  height: 160px;
   background-color: $dark-gray;
   color: $light-font;
   margin-bottom: 24px;
@@ -85,7 +86,7 @@ h1 {
 .main_container {
   width: 960px;
   margin: 0 auto;
-  top: 180px;
+  top: 172px;
   position: relative;
   .filterBar {
     border: 2px solid black;
@@ -107,7 +108,6 @@ h1 {
   font-size: $button-font-large;
 }
 
-
 .user_points {
   float: right;
 }
@@ -115,7 +115,6 @@ h1 {
 .user_welcome {
   font-size: $font-medium;
 }
-
 
 /*
 ====================
@@ -174,7 +173,7 @@ List View
   flex-wrap: wrap;
   width: 960px;
   margin: 0 auto;
-  top: 140px;
+  top: 172px;
   .listView_entry {
     font-family: $secondary-font;
     color: $dark-font;
@@ -611,33 +610,35 @@ map modal
 ====================
  */
  .reactGoogleMap_containerElement {
-    height: '100%';
+    height: 100%;
  }
+
  .map_modal {
   background-size: cover;
   height: 100%;
   width:100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
-  // display: absolute;
+  left: -9999px;
+  position: fixed;
  }
+
  .map_modal_content {
-    position: absolute; //for now
-    left: 30%;
-    top: 200px;
+    position: absolute;
+    left: 33%;
+    top: 10%;
     width: 400px;
     height: 400px;
     border: 5px solid rgba(0, 0, 0, 0.8);
  }
+
  .modal_on {
    display: block;
+   left: 0;
  }
 
  .modal_off {
    display: block;
-   position: fixed;
-   left: -9999px;
-   transition: left 1s ease;
  }
 
  .input.undefined {
