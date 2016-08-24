@@ -73,6 +73,29 @@ const devChart = (state = initChartData, action) => {
   }
 };
 
+// const initSearchHits = 0;
+const searchHits = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_SEARCH_HITS':
+      let firstIndices = [];
+      for (let i = 0; i < action.payload; i += 3) {
+        firstIndices.push(i);
+      }
+      return firstIndices;
+    default:
+      return state;
+  }
+};
+
+const lastQuery = (state = {}, action) => {
+  switch (action.type) {
+    case 'SAVE_LAST_QUERY':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const reducer = combineReducers({
   items,
   users,
@@ -80,6 +103,8 @@ const reducer = combineReducers({
   devChart,
   devMap,
   chartType,
+  searchHits,
+  lastQuery,
 });
 
 module.exports = {

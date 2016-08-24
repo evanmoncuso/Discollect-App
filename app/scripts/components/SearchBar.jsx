@@ -8,25 +8,22 @@ class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalState: false,
+      modalState: true,
       latLng: '0,0',
       radius: 10,
+      searchQuery: {},
     };
     this.changeCoords = this.changeCoords.bind(this);
     this.handleSlide = this.handleSlide.bind(this);
+    this.getPage = this.getPage.bind(this);
   }
   componentDidMount() {
     const context = this;
-    // setTimeout(() => {
-    //   context.setState({
-    //     modalState: false,
-    //   });
-    // }, 400);
-  }
-  toggleModal() {
-    this.setState({
-      modalState: !this.state.modalState,
-    });
+    setTimeout(() => {
+      context.setState({
+        modalState: false,
+      });
+    }, 400);
   }
   changeCoords(latitude, longitude) {
     this.setState({
@@ -38,6 +35,16 @@ class SearchBar extends React.Component {
       radius: e.target.value,
     });
     console.log(this.state.radius);
+  }
+  getPage(searchHitNum) {
+    const nextQuery = this.props.lastQuery;
+    nextQuery.startFrom = searchHitNum;
+    this.props.doElasticSearch(nextQuery);
+  }
+  toggleModal() {
+    this.setState({
+      modalState: !this.state.modalState,
+    });
   }
   render() {
     let { userZip } = this.props;
@@ -54,7 +61,11 @@ class SearchBar extends React.Component {
               keywords: keywords.value,
               coordinates: this.state.latLng,
               distance: this.state.radius,
+              startFrom: 0,
             };
+            this.setState({
+              searchData: data,
+            });
             console.log(data);
             this.props.doElasticSearch(data);
             category.value = 'all-categories';
@@ -66,7 +77,7 @@ class SearchBar extends React.Component {
             <input
               className="search_bar_input keywords"
               ref={(node) => { keywords = node; }}
-              onChange={(node) => this.props.commitSearch({ keywords: node.target.value.toLowerCase() })}
+              // onChange={(node) => this.props.commitSearch({ keywords: node.target.value.toLowerCase() })}
             />
           </div>
           <div className="map_button" onClick={() => { this.toggleModal(); }}>
@@ -77,7 +88,7 @@ class SearchBar extends React.Component {
             ref={(node) => { category = node; }}
             id="category"
             className="search_bar_input full_input"
-            onChange={(node) => this.props.commitSearch({ category: node.target.value })}
+            // onChange={(node) => this.props.commitSearch({ category: node.target.value })}
             required>
             <option value="all-categories">All Categories</option>
             <option value="appliances">Appliances</option>
@@ -94,7 +105,13 @@ class SearchBar extends React.Component {
             <input type="range" name="miles" min="0" max="100" onChange={(e) => { this.handleSlide(e); }} />
             <span>{this.state.radius}</span>
           </div>
-
+        </div>
+        <div className="pagination">
+          {
+            this.props.searchHits.map((searchHitNum, i) => (
+              <a onClick={() => { this.getPage(searchHitNum); }} className="pageNumber" key={i}> {i + 1} </a>
+            ))
+          }
         </div>
       </div>
     );
@@ -103,12 +120,17 @@ class SearchBar extends React.Component {
 
 SearchBar.propTypes = {
   commitSearch: React.PropTypes.func,
+  searchHits: React.PropTypes.array,
+  lastQuery: React.PropTypes.object,
+  doElasticSearch: React.PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
   return {
     // userCoords: [state.users.coords[0], state.users.coords[1]],
     userZip: state.users.zip,
+    searchHits: state.searchHits,
+    lastQuery: state.lastQuery,
   };
 };
 
