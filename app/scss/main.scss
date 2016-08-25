@@ -961,7 +961,14 @@ Footer
 }
 
 .pickup {
-  background-color: lightgreen;
-  width: 108px;
+  background-color: #00E676;
   text-align: center;
+  display: inline-block;
+  border: none;
+  border-radius: 0;
+  font-size: $font-small;
+  padding: 6px 0;
+  color: $dark-font;
+  margin: 6px;
+  width: 108px;
 }
