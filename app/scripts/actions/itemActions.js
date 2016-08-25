@@ -22,6 +22,32 @@ const optimisticIndivItem = (item) => (
 
 
 const itemActions = {
+  updateListingTakerRating: (listingId, rating) => (
+    (dispatch) => {
+      const details = {
+        listingId: listingId,
+        rating: rating,
+      }; 
+      const url = baseUrl + '/api/updateListingTakerRating';
+      fetch(url, {
+        method: 'PUT',
+        body: JSON.stringify(details),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => res.json())
+      .then((res) => {
+          console.log('Listing taker-rating updated')
+      })
+      .catch((err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
+  ),
+
   getSQLListings: (query) => (
     (dispatch) => {
       const url = baseUrl + '/api/getFilteredListings';
@@ -55,6 +81,7 @@ const itemActions = {
 
   getIndividualListing: (id) => (
     (dispatch) => {
+      console.log('coming through - responsd with: ', id)
       const url = baseUrl + '/api/listing?id=' + id;
       fetch(url, {
         method: 'GET',

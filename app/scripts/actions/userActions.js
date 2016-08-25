@@ -83,6 +83,30 @@ const userActions = {
     }
   ),
 
+
+  updateTakerRating: (takerId, rating) => (    
+    (dispatch) => {
+      const details = {
+        takerId: takerId,
+        rating: rating
+      }; 
+      console.log('Taker-rating updating');
+      const url = app + '/api/updateTakerRating';
+      fetch(url, {
+        method: 'PUT',
+        body: JSON.stringify(details),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .catch((err) => {
+        if (err) {
+          console.log('error!',err);
+        }
+      })
+    }
+  ),
+
   checkUserLogin: (username, password) => (
     (dispatch) => {
       const data = JSON.stringify({ username, password });

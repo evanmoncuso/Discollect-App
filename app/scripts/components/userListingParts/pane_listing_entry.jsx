@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import itemActions from '../../actions/itemActions.js';
+import userActions from '../../actions/userActions.js';
 
 
-const PaneListingEntry = ({ item, closeable, removeable, userID, dispatchCloseListing, dispatchRemoveListing, dispatchIndivItem }) => {
+
+const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingTakerRating, dispatchUpdateTakerRating, userID, dispatchCloseListing, dispatchRemoveListing }) => {
   closeable = closeable || false;
   removeable = removeable || false;
   return (
@@ -18,33 +20,30 @@ const PaneListingEntry = ({ item, closeable, removeable, userID, dispatchCloseLi
             <span className="entry_desc">zipcode: {item.zipcode}</span>
           </div>
           <div className="entry_buttons">
-            <div className="button_container">
-              <button
-                className="yellow_button view"
-                onClick={() => {
-                  dispatchIndivItem(item.id);
-              }}>
-                View
-              </button>
-            </div>
-            {closeable ? (<div className="button_container">
-              <button
-                className="yellow_button close"
-                onClick={() => {
-                  dispatchCloseListing(item.id);
-              }}>
-                Picked Up
-              </button>
-            </div>) : ''}
-            {removeable ? (<div className="button_container">
-              <button
-                className="yellow_button remove"
-                onClick={() => {
-                  dispatchRemoveListing(item.id);
-              }}>
-                Remove
-              </button>
-            </div>) : ''}
+            <Link
+              className="pane_listing_button view"
+              to={'/listing' + item.id}
+            >
+              View
+            </Link>
+            {closeable ? (<button
+              className="pane_listing_button close"
+              onClick={() => {
+                // let rating = prompt("Would many stars out of 5 would you rate the person who picked up the " + item.title);
+                let rating = 5;
+                dispatchUpdateTakerRating(item.takerId, rating);
+                dispatchUpdateListingTakerRating(item.id, rating);
+                dispatchCloseListing(item.id);
+            }}>
+              Picked up
+            </button>) : ''}
+            {removeable ? (<button
+              className="pane_listing_button remove"
+              onClick={() => {
+                dispatchRemoveListing(item.id);
+            }}>
+              Remove
+            </button>) : ''}
           </div>
         </div>
       </div>
@@ -65,6 +64,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     dispatchRemoveListing: (listingId) => {
       dispatch(itemActions.removeListing(listingId));
+    },    
+    dispatchUpdateListingTakerRating: (listingId, rating) => {
+      dispatch(itemActions.updateListingTakerRating(listingId, rating));
+    },
+    dispatchUpdateTakerRating: (takerId, rating) => {
+      dispatch(userActions.updateTakerRating(takerId, rating));
     },
     dispatchIndivItem: (id) => {
       dispatch(itemActions.getIndividualListing(id));

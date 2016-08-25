@@ -5,6 +5,24 @@ const mail = require('./mailingHelper.js');
 const fetch = require('isomorphic-fetch');
 
 module.exports = {
+ 
+  updateListingTakerRating: (req, res) => (
+    Listing.findOne({
+      where: {
+        id: req.body.listingId,
+      },
+    })
+    .then(listing => {
+      listing.update({
+        takerRating: req.body.rating,
+      })
+    })
+    .catch((err) => {
+      console.log('not finding listing,', req.body.listingId)
+      res.status(400).send(err);
+    })
+  ),
+
   getAllListings: function (req, res) {
     Listing.findAll({
       attributes: ['id', 'title', 'picReference', 'createdAt', 'zipcode', 'category', 'coordinates'],

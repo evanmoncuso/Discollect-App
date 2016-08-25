@@ -36,12 +36,8 @@ const Listing = ({ currentListing, zipcode, userId, userName, dispatchListingSta
           takerId: userId,
           statusCode: 1,
         };
-        if (userName === undefined || !userName) {
-          browserHistory.push('/signup');
-        } else {
           dispatchListingStatusChange(listingTrigger);
           browserHistory.push('/');
-        }
       }
     }
     >
@@ -85,13 +81,17 @@ const Listing = ({ currentListing, zipcode, userId, userName, dispatchListingSta
             <div className="info_zipcode">
               <span className="title">zipcode: </span>
               <span className="data">{currentListing.zipcode}</span>
-              <Advert zipcode={zipcode} />
             </div>
           </div>
 
-          <div className="advert_container">
-            <h3>Need help moving this item?</h3>
-            <p>Check out our sponsors for help near you</p>
+          <div className="advert_container" className="advertColor">
+            <h2 className='makeBig'>Need help collecting?</h2>
+            <br />
+            <h3 className='makeMedium'>Check out our <br/>partners near you!</h3>
+          <br />
+          <br />
+          <br />
+              <Advert zipcode={zipcode} />
           </div>
 
         </div>
