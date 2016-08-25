@@ -29,11 +29,11 @@ class Portal extends React.Component {
 
   updateChart() {
     var oldcanv = document.getElementById('myChart');
-    document.getElementById('canvasHolder').removeChild(oldcanv);
-    var canv = document.createElement('canvas');
-    canv.id = 'myChart';
-    document.getElementById('canvasHolder').appendChild(canv);
-    var newCanvas = document.getElementById("myChart").getContext("2d");
+      document.getElementById('canvasHolder').removeChild(oldcanv);
+      var canv = document.createElement('canvas');
+      canv.id = 'myChart';
+      document.getElementById('canvasHolder').appendChild(canv);
+      var newCanvas = document.getElementById("myChart").getContext("2d");
     // canvas.clearRect(10,10,600,600);
     var myChart = new Chart(newCanvas, {
       type: this.props.type1,

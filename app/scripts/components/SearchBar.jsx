@@ -32,10 +32,6 @@ class SearchBar extends React.Component {
     this.handleSlide = this.handleSlide.bind(this);
     this.getPage = this.getPage.bind(this);
   }
-  componentDidMount() {
-    const context = this;
-  }
-
   getSuggestions(value) {
     var context = this;
     var url = 'https://mysterious-coast-57298.herokuapp.com/listings/titlesearch?title='+value;
