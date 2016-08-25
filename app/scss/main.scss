@@ -73,7 +73,7 @@ nav {
   color: $light-font;
   margin-bottom: 24px;
   position: fixed;
-  z-index: 10;
+  z-index: 1000;
 }
 
 nav * {
@@ -127,12 +127,12 @@ h1 {
 .main_container {
   width: 960px;
   margin: 0 auto;
-  top: 172px;
+  top: 108px;
   position: relative;
   .filterBar {
     flex-grow: 1;
     width: 200px;
-    height: 700px;
+    height: 480px;
     color: $dark-font;
     float: left;
     background-color: white;
@@ -637,7 +637,7 @@ Search bar
       border: none;
       outline: none;
       background-color: #fff;
-      padding: 0 6px;
+      padding: 0 12px;
       font-size: $font-medium;
     }
   }
@@ -718,7 +718,7 @@ map modal
  .map_modal_content {
     position: absolute;
     left: 33%;
-    top: 6%;
+    top: 2%;
     width: 450px;
     height: 350px;
     border: 5px solid rgba(0, 0, 0, 0.8);
@@ -726,6 +726,7 @@ map modal
 
  .modal_on {
    display: block;
+   top: 180px;
    left: 0;
  }
 

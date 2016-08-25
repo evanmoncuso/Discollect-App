@@ -1,9 +1,8 @@
 import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
 
-// const baseUrl = 'http://ec2-54-186-167-115.us-west-2.compute.amazonaws.com';
 const baseUrl = 'http://localhost:3000';
-const searchUrl = 'https://mysterious-coast-57298.herokuapp.com/listings'; //'https://mysterious-coast-57298.herokuapp.com/listings'; //
+const searchUrl = 'https://mysterious-coast-57298.herokuapp.com/listings';
 const zipUrl = 'http://zipcodehelper.herokuapp.com/api/state?zip=';
 
 const optimisticSetItems = (items) => (
@@ -27,7 +26,7 @@ const itemActions = {
       const details = {
         listingId: listingId,
         rating: rating,
-      }; 
+      };
       const url = baseUrl + '/api/updateListingTakerRating';
       fetch(url, {
         method: 'PUT',
@@ -50,26 +49,16 @@ const itemActions = {
 
   getSQLListings: (query) => (
     (dispatch) => {
-      const url = baseUrl + '/api/getFilteredListings';
+      const url = baseUrl + '/api/getAllListings';
       fetch(url, {
-        method: 'PUT',
-        body: JSON.stringify(query),
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },
       })
       .then((res) => res.json())
       .then((response) => {
-        console.log('!!!!!!!!!', response);
-        dispatch({
-          type: 'GET_ITEMS',
-          items: response,
-        });
-        dispatch({
-          type: 'SET_SEARCH_HITS',
-          payload: 1,
-        })
-        // browserHistory.push('/');
+        dispatch(optimisticSetItems(response));
       })
       .catch((err) => {
         if (err) {
@@ -138,7 +127,6 @@ const itemActions = {
 
   postListingAfterPhoto: (data) => (
     (dispatch) => {
-      console.log(data);
       const url = baseUrl + '/api/createNewListing';
       fetch(url, {
         method: 'POST',
@@ -171,7 +159,6 @@ const itemActions = {
   elasticSearch: (query) => (
     (dispatch) => {
       const url = searchUrl + '?keywords=' + query.keywords + '&category=' + query.category + '&coordinates=' + query.coordinates + '&distance=' + query.distance + 'km' + '&startFrom=' + query.startFrom;
-        console.log('url: ', url);
       dispatch({
         type: 'SAVE_LAST_QUERY',
         payload: query,
@@ -181,7 +168,6 @@ const itemActions = {
       .then((res) => res.json())
       .then((res) => {
         var hits = res.hits.total;
-        console.log('from the search~~~~~~', res, hits);
         var data = res.hits.hits.map(val=>{
           val._source.picReference = val._source.picreference;
           val._source.createdAt = val._source.createdat;
@@ -190,7 +176,7 @@ const itemActions = {
         // TODO NEW SETSTATE
         dispatch({
           type: 'SET_SEARCH_HITS',
-          payload: hits,
+          payload: hits
         });
         dispatch(optimisticSetItems(data));
         dispatch(itemActions.searchItem({}));
@@ -218,9 +204,7 @@ const itemActions = {
         dispatch(itemActions.getLatestListings());
         fetch(searchUrl + '/' + details.listingID, {
           method: 'DELETE',
-        }).then(()=>{
-          console.log('deleted from elasticSearch')
-        })
+        });
       })
       .catch((err) => {
         if (err) {
