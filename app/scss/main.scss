@@ -87,7 +87,6 @@ nav * {
   color: $light-font;
   h4 {
     color: $light-font;
-    text-align: center;
     font-size: 18px;
     line-height: 22px;
   }
@@ -110,13 +109,6 @@ h1 {
     flex-grow: 1;
   }
 }
-// .searchbar_holder {
-//   top: 100px;
-//   flex-grow: 3;
-//   width: 960px;
-//   margin: 0 auto;
-//   display: fixed;
-// }
 
 .nav_title,
 .user_points {
@@ -179,21 +171,6 @@ h1 {
     .button_holder {
       margin: 0 auto;
     }
-    // .form_submit_button {
-    //   display: inline-block;
-    //   width: 160px;
-    //   border: none;
-    //   border-radius: 0;
-    //   padding: 12px;
-    //   font-size: $font-small;
-    //   background-color: #1565C0;
-    //   color: $light-font;
-    //   margin: 0 auto;
-    //   transition: 0.2s background-color ease-in;
-    // }
-    // .form_submit_button:hover {
-    //   background-color: #073C78;
-    // }
   }
   .listing_flex_box {
 
@@ -247,17 +224,6 @@ Login / Signup
   color: $light-font;
   padding: 12px;
 }
-
-// .form_submit_button {
-//   border: none;
-//   border-radius: 0;
-//   padding: 12px;
-//   font-size: $font-medium;
-//   background-color: #1565C0;
-//   color: $light-font;
-//   margin: 0 6px;
-// }
-
 
 /*
 ====================
@@ -624,91 +590,110 @@ Search bar
 ====================
  */
 
-.search_bar {
-  margin: 0 auto;
-  text-align: center;
-  position: fixed;
+.search_bar_container {
+  position: relative;
   top: 100px;
-  z-index: 10;
-  background-color: $dark-gray;
   width: 100%;
-  height: 100px;
-  .map_button {
-    height: 60px;
-    width: 60px;
-    padding: 0 6px;
+  background-color: $dark-gray;
+}
+
+.react-autosuggest__suggestions-container {
+  position: absolute;
+  width: 480px;
+  background-color: #fff;
+  line-height: 24px;
+  font-size: $font-medium;
+  top: 48px;
+  color:$dark-font;
+  z-index: 100;
+  .react-autosuggest__suggestion {
+    padding: 6px;
+    text-align: center;
+    padding: 6px 0;
+    border-bottom: 1px solid $light-gray;
     display: inline-block;
-    img {
-      width: 36px;
-      height: 36px;
-    }
-    transition: 0.2s all ease-in;
-  }
-  .map_button:hover {
-    background-color: #840000;
-  }
-  #category {
-    height: 49px;
+    width: 100%;
   }
 }
 
-.autosuggest_holder {
-  display: inline-flex;
+.search_holder {
+  width: 960px;
+  margin: 0 auto;
+  z-index: 100;
   position: relative;
-  top: 10px;
-  .map_button {
-    background-color: #D50000;
-    height: 48px;
-    border-radius: 6px 0 0 6px;
+  text-align: center;
+  div {
+    display: inline-flex;
   }
-  .react-autosuggest__container > input {
-    width: 480px;
-    height: 48px;
-    border: none;
-    margin: 0;
-    background-color: #fff;
-    outline: none;
-    font-size: $font-medium;
-    padding: 0 12px;
+  flex-direction: row;
+  .search_form {
+    margin: 0 auto;
   }
+  .react-autosuggest__container {
+    display: inline-flex;
+    input {
+      height: 48px;
+      width: 480px;
+      border: none;
+      outline: none;
+      background-color: #fff;
+      padding: 0 6px;
+      font-size: $font-medium;
+    }
+  }
+  .map_button,
   .search_button {
     line-height: 22px;
     border: none;
-    border-radius: 0;
-    height: 48px;
-    padding: 12px;
     display: inline-block;
-    font-size: 22px;
+    font-size: $font-medium;
     background-color: #D50000;
-    border-radius: 0 6px 6px 0;
     color: $light-font;
-    transition: 0.2s all ease-in;
     outline: none;
+    transition: 0.2s all ease-in;
   }
-  .search_button:hover {
+  .search_button {
+    border-radius: 0 6px 6px 0;
+    height: 48px;
+    vertical-align: top;
+  }
+  .map_button {
+    border-radius: 6px 0 0 6px;
+    padding: 0 6px;
+    height: 48px;
+    img {
+      padding: 0;
+    }
+  }
+  .search_button:hover,
+  .map_button:hover {
     background-color: #840000;
     color: $light-font;
   }
 }
 
 .pagination {
+  z-index: 50;
   position: relative;
-  top: 15px;
+  height: 24px;
+  text-align: center;
+  padding-top: 6px;
+  background-color: $dark-gray;
 }
 .page_number {
-  line-height: 24px;
+  width: 48px;
+  line-height: 22px;
   font-size: $font-medium;
   color: $light-font;
-  padding: 0 10px;
+  padding: 0 24px;
   margin: 5px 3px;
-  border-radius: 25%;
-  border: 1px solid black;
+  border-radius: 6px 6px 0 0;
   color: $dark-gray;
-  background-color: #F7F7F7;
+  background-color: #e7e7e7;
 
 }
 .current {
-  background-color: red;
+  background-color: #D50000;
   color: white;
 }
 /*
@@ -914,16 +899,6 @@ canvas {
 Footer
 ====================
  */
-
-// .advert {
-//   position: absolute;
-//   width: 100%;
-//   height: 120px;
-//   text-align: center;
-//   background-color: lightgrey;
-//   margin-bottom: 0px;
-//   bottom:0;
-// }
 
 .adverttext {
   text-align: center;
