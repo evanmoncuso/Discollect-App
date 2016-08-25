@@ -105,6 +105,29 @@ const userActions = {
         }
       })
     }
+  ),  
+
+  updateGiverRating: (giverId, rating) => (    
+    (dispatch) => {
+      const details = {
+        giverId: giverId,
+        rating: rating
+      }; 
+      console.log('giver-rating updating');
+      const url = app + '/api/updateGiverRating';
+      fetch(url, {
+        method: 'PUT',
+        body: JSON.stringify(details),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .catch((err) => {
+        if (err) {
+          console.log('error!',err);
+        }
+      })
+    }
   ),
 
   checkUserLogin: (username, password) => (

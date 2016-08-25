@@ -7,7 +7,9 @@ import userActions from '../../actions/userActions.js';
 
 
 
-const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGiverRating, dispatchUpdateListingTakerRating, dispatchUpdateTakerRating, dispatchUpdateGiverRating, userID, dispatchCloseListing, dispatchRemoveListing, dispatchIndivItem }) => {
+
+const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGiverRating, dispatchUpdateListingTakerRating, dispatchUpdateTakerRating,dispatchUpdateGiverRating, userID, dispatchCloseListing, dispatchFinalCloseListing, dispatchRemoveListing }) => {
+  let rating;
   closeable = closeable || false;
   removeable = removeable || false;
   return (
@@ -20,42 +22,68 @@ const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGi
             <span className="entry_desc">zipcode: {item.zipcode}</span>
           </div>
           <div className="entry_buttons">
-            <div className="button_container">
-              <button
-                className="yellow_button view"
-                onClick={() => {
-                  dispatchIndivItem(item.id);
-                }}>
-                View
-              </button>
+            <Link
+              className="pane_listing_button view"
+              to={'/listing' + item.id}
+            >
+              View
+            </Link>
+
+            {closeable ? (
+              <form encType="multipart/form-data"
+              onSubmit={(e) => {
+              e.preventDefault();
+              rating = rating.value;
+                dispatchUpdateTakerRating(item.takerId, rating);
+                dispatchUpdateListingTakerRating(item.id, rating);
+                dispatchCloseListing(item.id);
+            }}>
+            <div className="auth_input">Will you rate <br />the transaction?
+              <label htmlFor="rating" ></label>
+                <select ref={(node) => { rating = node; }} id="rating" required>
+                  <option value="5">5 - awesome</option>
+                  <option value="4">4 - good</option>
+                  <option value="3">3 - okay</option>
+                  <option value="2">2 - not great</option>
+                  <option value="1">1 - awful</option>
+                </select>
+              <button type="submit">Submit</button>
+              <br />
             </div>
-            {closeable ? (<div className="button_container">
-              <button
-                className="yellow_button close"
-                onClick={() => {
-                  dispatchCloseListing(item.id);
-                }}>
-                Picked Up
-              </button>
-            </div>) : ''}
-            {removeable ? (<div className="button_container">
-              <button
-                className="yellow_button remove"
-                onClick={() => {
-                  dispatchRemoveListing(item.id);
-                }}>
-                Remove
-              </button>
-            </div>) : ''}
-            {(item.status === 2 && !closeable) ? (<button className='pane_listing_button view'
+            </form>
+            ) : ''}
+
+            {removeable ? (<button
+              className="pane_listing_button remove"
               onClick={() => {
-                console.log('rating transaction!')
-                dispatchUpdateGiverRating(item.giverId, rating);
-                dispatchUpdateListingGiverRating(item.id, rating);
-                dispatchFinalCloseListing(item.id);
-              }}>
-              Rate your transaction!
-            </button>) : ''}
+                dispatchRemoveListing(item.id);
+            }}>
+              Remove
+            </button>) : ''} 
+            {(item.status === 2 && !closeable) ? (
+              <form encType="multipart/form-data"
+              onSubmit={(e) => {
+              e.preventDefault();
+              rating = rating.value;
+              console.log('getting rating! ', rating)
+              dispatchUpdateGiverRating(item.giverId, rating);
+              dispatchUpdateListingGiverRating(item.id, rating);
+              dispatchFinalCloseListing(item.id);
+            }}>
+            <div className="auth_input">Will you rate <br />your discollection?
+              <label htmlFor="rating" ></label>
+                <select ref={(node) => { rating = node; }} id="rating" required>
+                  <option value="5">5 - awesome</option>
+                  <option value="4">4 - good</option>
+                  <option value="3">3 - okay</option>
+                  <option value="2">2 - not great</option>
+                  <option value="1">1 - awful</option>
+                </select>
+              <button type="submit">Submit</button>
+              <br />
+            </div>
+            </form>
+            ) : ''}
             {(item.status === 1 && !closeable) ? (<p className='pickup'>
               Awaiting your collection!
             </p>) : ''}
