@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleMapLoader, GoogleMap, Marker, SearchBox, DrawingManager } from 'react-google-maps';
+import { GoogleMapLoader, GoogleMap, Marker, SearchBox, DrawingManager, ScriptjsLoader } from 'react-google-maps';
 import { default as update } from 'react-addons-update';
 import { connect } from 'react-redux';
 
