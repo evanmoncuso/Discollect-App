@@ -12,7 +12,11 @@ const initItemState = {
 
 const items = (state = initItemState, action) => {
   switch (action.type) {
-    case 'GET_INITIAL_ITEMS':
+    case 'SET_SEARCH_HITS':
+      return Object.assign({}, state, {
+        data: action.payload,
+      });
+    case 'GET_ITEMS':
       return Object.assign({}, state, {
         items: action.items,
       });

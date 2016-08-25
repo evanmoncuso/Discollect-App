@@ -26,3 +26,4 @@ const searchFilter = (data, kw, zip, cat) => {
 }
 
 module.exports = searchFilter;
+
