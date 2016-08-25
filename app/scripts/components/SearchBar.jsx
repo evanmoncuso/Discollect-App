@@ -34,12 +34,6 @@ class SearchBar extends React.Component {
   }
   componentDidMount() {
     const context = this;
-    setTimeout(() => {
-      context.setState({
-        modalState: false,
-        suggestions: [],
-      });
-    }, 400);
   }
 
   getSuggestions(value) {
@@ -49,7 +43,7 @@ class SearchBar extends React.Component {
     .then(res=> res.json())
     .then(data=>{
       context.setState({
-        suggestions : data
+        suggestions : data,
       });
     })
   }
