@@ -5,6 +5,41 @@ const mail = require('./mailingHelper.js');
 const fetch = require('isomorphic-fetch');
 
 module.exports = {
+ 
+  updateListingTakerRating: (req, res) => (
+    Listing.findOne({
+      where: {
+        id: req.body.listingId,
+      },
+    })
+    .then(listing => {
+      listing.update({
+        takerRating: req.body.rating,
+      })
+    })
+    .catch((err) => {
+      console.log('not finding listing,', req.body.listingId)
+      res.status(400).send(err);
+    })
+  ),  
+
+  updateListingGiverRating: (req, res) => (
+    Listing.findOne({
+      where: {
+        id: req.body.listingId,
+      },
+    })
+    .then(listing => {
+      listing.update({
+        giverRating: req.body.rating,
+      })
+    })
+    .catch((err) => {
+      console.log('not finding listing,', req.body.listingId)
+      res.status(400).send(err);
+    })
+  ),
+
   getAllListings: function (req, res) {
     Listing.findAll({
       attributes: ['id', 'title', 'picReference', 'createdAt', 'zipcode', 'category', 'coordinates'],
@@ -55,9 +90,13 @@ module.exports = {
     Listing.findAll({
       where: {
         $and: {
-          $or: [{takerId: userId}, {giverId: userId}],
-          status: 2,
-        }
+          $or: {
+            takerId: userId, giverId: userId
+          },
+          $or: {
+            status: [2,3],
+          }
+        },
       },
       limit: 50,
       order: [['createdAt', 'DESC']],
@@ -167,6 +206,34 @@ module.exports = {
         mail(req, 'closed');
       });
     });
+  },  
+
+  finalCloseListing: (req, res) => {
+    Listing.findOne({
+      where: {
+        id: req.body.listingID,
+      },
+    })
+    .then((item) => (
+      item.update({
+        status: 3,
+      })
+    ))
+    .then((data) => {
+      Listing.findAll({
+        where: {
+          $or: {
+            giverId: data.dataValues.giverId,
+            takerId: data.dataValues.giverId,
+          },
+        },
+        order: [['createdAt', 'DESC']],
+      })
+      .then((items) => {
+        res.send(items);
+        mail(req, 'closed');
+      });
+    });
   },
 
   removeListing: function (req, res) {
@@ -179,7 +246,7 @@ module.exports = {
     .then(listing =>{
       console.log('about to destroy ', listing)
      listing.update({
-        status: 3,
+        status: 4,
       })
     }
     ).then(deleted => {

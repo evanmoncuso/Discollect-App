@@ -22,6 +22,32 @@ const optimisticIndivItem = (item) => (
 
 
 const itemActions = {
+  updateListingTakerRating: (listingId, rating) => (
+    (dispatch) => {
+      const details = {
+        listingId: listingId,
+        rating: rating,
+      }; 
+      const url = baseUrl + '/api/updateListingTakerRating';
+      fetch(url, {
+        method: 'PUT',
+        body: JSON.stringify(details),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => res.json())
+      .then((res) => {
+          console.log('Listing taker-rating updated')
+      })
+      .catch((err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
+  ),
+
   getSQLListings: (query) => (
     (dispatch) => {
       const url = baseUrl + '/api/getFilteredListings';
@@ -55,6 +81,7 @@ const itemActions = {
 
   getIndividualListing: (id) => (
     (dispatch) => {
+      console.log('coming through - responsd with: ', id)
       const url = baseUrl + '/api/listing?id=' + id;
       fetch(url, {
         method: 'GET',
@@ -226,6 +253,50 @@ const itemActions = {
             pending.push(item);
           } else if (item.takerId === userID && item.status === 1) {
             waiting.push(item);
+          } else if (item.takerId === response.id && item.status === 2) {
+            waiting.push(item);
+          }
+        }
+        dispatch({
+          type: 'GET_USERS_LISTINGS',
+          active: active || [],
+          pending: pending || [],
+          waiting: waiting || [],
+        });
+        browserHistory.push('/')
+        browserHistory.push('/dashboard')
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    }
+  ),
+
+  finalCloseListing: (listingID, userID) => (
+    (dispatch) => {
+      const url = baseUrl + '/api/finalCloseListing';
+      fetch(url, {
+        method: 'PUT',
+        body: JSON.stringify({ listingID }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then(res => res.json())
+      .then(res => {
+        let active = [];
+        let pending = [];
+        let waiting = [];
+        console.log(res);
+        for (let item of res) {
+          if (item.giverId === userID && item.status === 0) {
+            active.push(item);
+          } else if (item.giverId === userID && item.status === 1) {
+            pending.push(item);
+          } else if (item.takerId === userID && item.status === 1) {
+            waiting.push(item);
+          } else if (item.takerId === response.id && item.status === 2) {
+            waiting.push(item);
           }
         }
         dispatch({
@@ -257,7 +328,7 @@ const itemActions = {
       })
       .then((res) => res.json())
       .then((response) => {
-        console.log('250',response)
+        console.log('history coming back: ', response)
         dispatch({
           type: 'GET_USER_HISTORY',
           history: response,
@@ -288,6 +359,8 @@ const itemActions = {
           } else if (item.giverId === response.id && item.status === 1) {
             pending.push(item);
           } else if (item.takerId === response.id && item.status === 1) {
+            waiting.push(item);
+          } else if (item.takerId === response.id && item.status === 2) {
             waiting.push(item);
           }
         }

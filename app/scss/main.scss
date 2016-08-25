@@ -325,6 +325,8 @@ Listing View
     border: 1px solid white;
     display: flex;
     .image_pane {
+      margin-left: 10px;
+      margin-top: 10px;
       flex-grow: 0.75;
       img {
         height: 180px;
@@ -355,7 +357,7 @@ Listing View
       }
       .advert_container {
         flex-grow: 0.5;
-        display: block;
+        display: inline-block;
       }
     }
   }
@@ -924,12 +926,43 @@ Footer
 // }
 
 .adverttext {
+  text-align: center;
   font-size: 1.6em;
 }
 
+.makeBig {
+  text-align: center;
+  font-size: 1.7em;
+}
+
+.makeMedium {
+  text-align: center;
+  font-size: 1.4em;
+}
+
+
 .advertimg {
-  height: 80px;
+  height: 85px;
+  width: 130px;
+  font-size: 1.6em;
   margin-right: 10px;
+  margin-left: 55px;
+  margin-bottom: 10px;
+  display: block;
+  box-shadow: 1px 1px 1px black;
+}
+
+.advertColor {
+  background-color: lightgrey;
+  border: solid 1px black;
+  padding: 5px;
+  color: black;
+}
+
+.advertContainer {
+  display: inline-block;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .mapText {
@@ -940,16 +973,22 @@ Footer
   font-weight: bold;
   padding: 5px;
   position: fixed;
-  margin-top: 210px;
+  margin-top: 410px;
   margin-left: 220px;
   background-color: lightgrey;
   border: solid 2px black;
 }
 
 .mapVis {
-  padding: 6px;
+  padding: 5px;
   position: fixed;
   margin-top: 210px;
   margin-left: 220px;
   visibility: hidden;
+}
+
+.pickup {
+  background-color: lightgreen;
+  width: 108px;
+  text-align: center;
 }

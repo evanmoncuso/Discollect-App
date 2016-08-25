@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import userActions from '../../actions/userActions.js';
+import itemActions from '../../actions/itemActions.js';
 
-const AccountInfo = ({ username, toggleHistory, view, userId, dispatchUploadProfilePic, picReference}) => {
+const AccountInfo = ({ username, dispatchGetUserHistory, dispatchIndivItem, toggleHistory, view, userId, dispatchUploadProfilePic, picReference}) => {
   let image;
   let filename;
   let filetype;
@@ -29,7 +30,9 @@ const AccountInfo = ({ username, toggleHistory, view, userId, dispatchUploadProf
           <button
             className="blue_button view"
             onClick={() => {
-              dispatchIndivItem(item.id);
+              console.log('getting history')
+              dispatchGetUserHistory(userId);
+              //updateView to show history?
           }}>
             History
           </button>
@@ -72,6 +75,9 @@ AccountInfo.propTypes = {
   {
     dispatchUploadProfilePic: (data) => {
       dispatch(userActions.uploadProfilePic(data));
+    },    
+    dispatchGetUserHistory: (userId) => {
+      dispatch(itemActions.getUserHistory(userId));
     },
   }
 );

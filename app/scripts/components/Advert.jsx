@@ -2,19 +2,16 @@ import React from 'react';
 
 const Advert = ({ zipcode }) => (
   <div>
-    <div className="adverttext">
-      Need help collecting?
-    </div>
-    <div>
+    <div className="advertContainer">
       <img
-        className="advertimg" src="http://bigboystoysrentals.com/wp-content/uploads/2014/04/u-haul-10foot.jpg"
+        className="advertimg" src="./truck1.jpg"
         alt="advertisement"
         onClick={() => {
           window.open("https://www.google.com/#q=u+haul+near+" + zipcode);
         }}
       />
       <img
-        className="advertimg" src="http://bigboystoysrentals.com/wp-content/uploads/2014/04/u-haul-10foot.jpg"
+        className="advertimg" src="./truck2.jpg"
         alt="advertisement"
         onClick={() => {
         window.open("https://www.budgettruck.com/locations/ca/" + zipcode);
