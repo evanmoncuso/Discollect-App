@@ -163,7 +163,6 @@ const itemActions = {
         type: 'SAVE_LAST_QUERY',
         payload: query,
       });
-      console.log(url)
       // TODO TEMPLATE STRING
       fetch(url)
       .then((res) => res.json())
@@ -368,9 +367,12 @@ const itemActions = {
       fetch(url, {
         method: 'DELETE',
       })
-      .then(res=> {
+      .then(res=> {   
         browserHistory.push('/')
         browserHistory.push('/dashboard')
+         fetch(searchUrl + '/' + listingID, {
+          method: 'DELETE',
+        })
       })
     }
   ),
