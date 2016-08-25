@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
 
-const baseUrl = 'http://localhost:3000';
+const baseUrl = process.env.BASEURL || 'http://localhost:3000';
 const searchUrl = 'https://mysterious-coast-57298.herokuapp.com/listings';
 const zipUrl = 'http://zipcodehelper.herokuapp.com/api/state?zip=';
 
