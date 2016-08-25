@@ -5,10 +5,12 @@ import itemActions from '../actions/itemActions.js';
 import { browserHistory } from 'react-router';
 import FilterBar from './FilterBar.jsx';
 import searchFilter from '../actions/searchFilter.js';
+import SearchBar from './SearchBar.jsx';
 
 let ListView = ({ dispatchGetItems, items, users, dispatchIndivItem }) => {
   return (
     <div className="main_container">
+      <SearchBar />
       <div className="listing_flex_box">
         <FilterBar />
         <div className="listings_container">
