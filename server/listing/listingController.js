@@ -246,7 +246,7 @@ module.exports = {
     .then(listing =>{
       console.log('about to destroy ', listing)
      listing.update({
-        status: 3,
+        status: 4,
       })
     }
     ).then(deleted => {
