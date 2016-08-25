@@ -27,7 +27,7 @@ const Listing = ({ currentListing, zipcode, userId, userName, dispatchListingSta
   let dibsButton = '';
   if (userId && userId !== currentListing.giverId) {
     dibsButton = (<button
-      className="listing_view_button"
+      className="yellow_button"
       onClick={(e) => {
         e.preventDefault();
         const listingTrigger = {
@@ -44,7 +44,8 @@ const Listing = ({ currentListing, zipcode, userId, userName, dispatchListingSta
         }
       }
     }
-    > Call DIBS
+    >
+    Call DIBS
     </button>);
   }
 
@@ -59,10 +60,10 @@ const Listing = ({ currentListing, zipcode, userId, userName, dispatchListingSta
             <div className="button_container">
               {dibsButton}
               <button
-                className="listing_view_button"
+                className="yellow_button"
                 onClick={() => backer()}
                 >
-                BACK
+                back
               </button>
             </div>
           </div>
@@ -92,7 +93,7 @@ const Listing = ({ currentListing, zipcode, userId, userName, dispatchListingSta
             <h3>Need help moving this item?</h3>
             <p>Check out our sponsors for help near you</p>
           </div>
-          
+
         </div>
       </div>
     </div>

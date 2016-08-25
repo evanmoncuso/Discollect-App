@@ -192,21 +192,29 @@ class Portal extends React.Component {
                         <option value="tools">Tools &amp; Home Improvement</option>
                       </select>
                   </div>
-                  <button onClick={(e)=>{
-                    e.preventDefault();
-                    category1.value = "appliances";
-                    category2.value = "fashion";
-                    category3.value = "furniture";
-                    category4.value = "books";
-                    category5.value = "electronics";
-                    category6.value = "tools";
-                  }}>All available categories
-                  </button>
-
-                <br />
+                  <div className="button_container">
+                    <button
+                      type="submit"
+                      className="yellow_button"
+                      onClick={(e)=>{
+                        e.preventDefault();
+                        category1.value = 'appliances';
+                        category2.value = 'fashion';
+                        category3.value = 'furniture';
+                        category4.value = 'books';
+                        category5.value = 'electronics';
+                        category6.value = 'tools';
+                      }}
+                    >
+                      Select All
+                    </button>
+                  </div>
                 <div>
-                  <br />
-                    <button type='submit' className="form_submit_button">CREATE CHART</button>
+                    <div className="button_container">
+                      <button type="submit" className="blue_button">
+                        Create Chart
+                      </button>
+                    </div>
                   <br />
                 </div>
             </div>
@@ -250,8 +258,11 @@ class Portal extends React.Component {
                     <option value="tools">Tools &amp; Home Improvement</option>
                   </select>
               </div>
-              <button type='submit' className="form_submit_button">CREATE CHART</button>
-
+              <div className="button_container">
+                <button type="submit" className="blue_button">
+                  Create Chart
+                </button>
+              </div>
 
               <div className="auth_inputChart">
                 <label htmlFor="chartType" ></label>
@@ -263,22 +274,35 @@ class Portal extends React.Component {
                   </select>
               <br />
               <br />
-              <button className="form_submit_button" onClick={(e) => {
-              e.preventDefault();
-              const info = {
-                type: chartType.value,
-              };
-                this.props.dispatchChartTypeChange(info);
-                category1.value = "None";
-                setTimeout(this.updateChart.bind(this), 500);
-           }}>Change chart</button>
+                <div className="button_container">
+                  <button
+                    type="submit"
+                    className="blue_button"
+                    onClick={(e) => {
+                    e.preventDefault();
+                    const info = {
+                      type: chartType.value,
+                    };
+                      this.props.dispatchChartTypeChange(info);
+                      category1.value = "None";
+                      setTimeout(this.updateChart.bind(this), 500);
+                 }}>
+                    Change Chart
+                  </button>
+                </div>
+
             <br />
             <br />
             <br />
-            <button className="form_submit_button" onClick={(e) => {
-              e.preventDefault();
-              browserHistory.push('/portalmap')
-           }}>Go to Heat-Map</button>
+            <div className="button_container">
+              <button className="blue_button" onClick={(e) => {
+                e.preventDefault();
+                browserHistory.push('/portalmap')
+              }}>
+                Go to Heat-Map
+              </button>
+            </div>
+
             </div>
             </div>
           </form>

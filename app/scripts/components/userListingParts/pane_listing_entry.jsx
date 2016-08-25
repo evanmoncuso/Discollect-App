@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import itemActions from '../../actions/itemActions.js';
 
 
-const PaneListingEntry = ({ item, closeable, removeable, userID, dispatchCloseListing, dispatchRemoveListing }) => {
+const PaneListingEntry = ({ item, closeable, removeable, userID, dispatchCloseListing, dispatchRemoveListing, dispatchIndivItem }) => {
   closeable = closeable || false;
   removeable = removeable || false;
   return (
@@ -18,28 +18,35 @@ const PaneListingEntry = ({ item, closeable, removeable, userID, dispatchCloseLi
             <span className="entry_desc">zipcode: {item.zipcode}</span>
           </div>
           <div className="entry_buttons">
-            <Link
-              className="pane_listing_button view"
-              to={'/listing' + item.id}
-            >
-              View
-            </Link>
-            {closeable ? (<button
-              className="pane_listing_button close"
-              onClick={() => {
-                dispatchCloseListing(item.id);
-            }}>
-              Picked up
-            </button>) : ''}
-            {removeable ? (<button
-              className="pane_listing_button remove"
-              onClick={() => {
-                dispatchRemoveListing(item.id);
-            }}>
-              Remove
-            </button>) : ''}
+            <div className="button_container">
+              <button
+                className="yellow_button view"
+                onClick={() => {
+                  dispatchIndivItem(item.id);
+              }}>
+                View
+              </button>
+            </div>
+            {closeable ? (<div className="button_container">
+              <button
+                className="yellow_button close"
+                onClick={() => {
+                  dispatchCloseListing(item.id);
+              }}>
+                Picked Up
+              </button>
+            </div>) : ''}
+            {removeable ? (<div className="button_container">
+              <button
+                className="yellow_button remove"
+                onClick={() => {
+                  dispatchRemoveListing(item.id);
+              }}>
+                Remove
+              </button>
+            </div>) : ''}
           </div>
-         </div>
+        </div>
       </div>
     </div>
   );
@@ -59,6 +66,10 @@ const mapDispatchToProps = (dispatch) => {
     dispatchRemoveListing: (listingId) => {
       dispatch(itemActions.removeListing(listingId));
     },
+    dispatchIndivItem: (id) => {
+      dispatch(itemActions.getIndividualListing(id));
+    }
+
   };
 };
 

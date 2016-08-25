@@ -32,7 +32,9 @@ const Login = ({ dispatchLogin }) => {
             <input ref={(node) => { password = node; }} id="password" type="password" />
           </div>
 
-          <button type="submit" className="form_submit_button">Login</button>
+          <div className="button_container">
+            <button type="submit" className="blue_button">Login</button>
+          </div>
         </form>
       </div>
     </div>

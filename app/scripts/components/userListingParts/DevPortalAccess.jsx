@@ -7,15 +7,16 @@ const DevPortalAccess = ({ userEmail, dispatchDevValidation }) => {
   return (
     <div className="main_container dev_portal_access">
       <div>Access the Developer Portal</div>
-      <button
-        onClick={() => {
-            dispatchDevValidation(userEmail);
-          }
-        }
-        className="account_history"
-      >
-        Access Dev Portal
-      </button>
+      <div className="button_container">
+        <button
+          className="blue_button"
+          onClick={() => {
+              dispatchDevValidation(userEmail);
+            }}
+        >
+          Access Dev Portal
+        </button>
+      </div>
     </div>
   );
 };

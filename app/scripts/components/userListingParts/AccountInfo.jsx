@@ -25,12 +25,15 @@ const AccountInfo = ({ username, toggleHistory, view, userId, dispatchUploadProf
         <img src={profileImage} alt="user" height={320} />
       </div>
       <div className="about">{username ? username : 'NOT ACTIVE USER'}</div>
-      <button
-        onClick={() => toggleHistory()}
-        className="account_history"
-      >
-        View History
-      </button>
+        <div className="button_container">
+          <button
+            className="blue_button view"
+            onClick={() => {
+              dispatchIndivItem(item.id);
+          }}>
+            History
+          </button>
+        </div>
         <form encType="multipart/form-data" onSubmit={(e)=>{
           e.preventDefault();
           const data = {
@@ -53,7 +56,9 @@ const AccountInfo = ({ username, toggleHistory, view, userId, dispatchUploadProf
             onChange={encodeImage}
           />
         </div>
-        <button type="submit" className="account_history">Upload</button>
+        <div className="button_container">
+          <button type="submit" className="blue_button">Upload</button>
+        </div>
       </form>
     </div>
   );

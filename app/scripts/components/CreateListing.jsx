@@ -55,7 +55,6 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
               coordinates: latLng,
             };
 
-            console.log(data);
             dispatchCreateNewListing(data);
 
             title.value = '';
@@ -97,8 +96,8 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
               <option value="1">Salvage</option>
             </select>
           </div>
-          <div className="auth_input">
-            <label htmlFor="image">Image</label><br />
+          <div className="image_input">
+            <label htmlFor="image">Image</label>
             <input
               ref={(node) => { image = node; }}
               name="photo"
@@ -115,7 +114,7 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
             <GoogMap changeCoords={changeCoords} />
           </div>
           <div className="button_container">
-            <button type="submit" className="form_submit_button">Create</button>
+            <button type="submit" className="blue_button">Create</button>
           </div>
         </form>
       </div>

@@ -8,11 +8,24 @@ const DevSignup = ({ dispatchDevSignup, apiKey, currentEmail }) => {
   let email;
   let displayButton;
   if (apiKey) {
-    displayButton = (<button type="button" className="form_submit_button" onClick={() => {
-        browserHistory.push('/portal')
-      }} > to Portal </button>);
+    displayButton = (
+      <div className="button_container">
+        <button
+          type="submit"
+          className="blue_button"
+          onClick={() => {
+            browserHistory.push('/portal');
+          }} >
+          to Portal
+        </button>
+      </div>
+    );
   } else {
-    displayButton = (<button type="submit" className="form_submit_button">create</button>);
+    displayButton = (
+      <div className="button_container">
+        <button type="submit" className="blue_button">create</button>
+      </div>
+    );
   }
 
   return (
