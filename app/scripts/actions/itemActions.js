@@ -181,7 +181,6 @@ const itemActions = {
         });
         dispatch(optimisticSetItems(data));
         dispatch(itemActions.searchItem({}));
-        browserHistory.push('/');
       })
       .catch(err => {
         console.log('Search Error: ', err);
