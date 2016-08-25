@@ -11,17 +11,15 @@ module.exports = {
     })
     .then((user) => {
       console.log('doing the rating workings for the taker/user: ',user.username)
-      const oldTotal = user.avgRating * user.ratingCount;
-      console.log('1',user.avgRating, user.ratingCount, oldTotal);
-      const newTotal = oldTotal + req.body.rating;
-      console.log('2',newTotal);
-      const newCounter = user.ratingCount + 1;
-      const newAverage = (newTotal / newCounter).toFixed(1); 
-      console.log('3',newAverage)
+      const oldTotal = Number(user.avgRating) * Number(user.ratingCount);
+      const newTotal = Number(oldTotal) + Number(req.body.rating);
+      const newCounter = 1 + Number(user.ratingCount);
+      const newAverage = (Number(newTotal) / Number(newCounter)).toFixed(1); 
       user.update({
         avgRating: newAverage,
         ratingCount: newCounter,
       })
+      res.send();
     })
     .catch((err) => {
       console.log('updateTakerRating issue')
@@ -37,18 +35,16 @@ module.exports = {
       },
     })
     .then((user) => {
-      console.log('doing the rating workings for the taker/user: ',user.username)
-      const oldTotal = user.avgRating * user.ratingCount;
-      console.log('1',user.avgRating, user.ratingCount, oldTotal);
-      const newTotal = oldTotal + req.body.rating;
-      console.log('2',newTotal);
-      const newCounter = user.ratingCount + 1;
-      const newAverage = (newTotal / newCounter).toFixed(1); 
-      console.log('3',newAverage)
+      console.log('doing the rating workings for the giver/user: ',user.username)
+      const oldTotal = Number(user.avgRating) * Number(user.ratingCount);
+      const newTotal = Number(oldTotal) + Number(req.body.rating);
+      const newCounter = 1 + Number(user.ratingCount);
+      const newAverage = (Number(newTotal) / Number(newCounter)).toFixed(1); 
       user.update({
         avgRating: newAverage,
         ratingCount: newCounter,
       })
+      res.send()
     })
     .catch((err) => {
       console.log('updateGiverRating issue')

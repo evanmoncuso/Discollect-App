@@ -23,6 +23,7 @@ const optimisticIndivItem = (item) => (
 const itemActions = {
   updateListingTakerRating: (listingId, rating) => (
     (dispatch) => {
+      console.log('updatin listingtakerrating with ', rating)
       const details = {
         listingId: listingId,
         rating: rating,
@@ -38,6 +39,37 @@ const itemActions = {
       .then((res) => res.json())
       .then((res) => {
           console.log('Listing taker-rating updated')
+        browserHistory.push('/')
+        browserHistory.push('/dashboard')
+      })
+      .catch((err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
+  ),  
+
+  updateListingGiverRating: (listingId, rating) => (
+    (dispatch) => {
+      console.log('updatin listinggiverrating with ', rating)
+      const details = {
+        listingId: listingId,
+        rating: rating,
+      }; 
+      const url = baseUrl + '/api/updateListingGiverRating';
+      fetch(url, {
+        method: 'PUT',
+        body: JSON.stringify(details),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => res.json())
+      .then((res) => {
+          console.log('Listing giver-rating updated')
+        browserHistory.push('/')
+        browserHistory.push('/dashboard')
       })
       .catch((err) => {
         if (err) {
@@ -246,8 +278,8 @@ const itemActions = {
           pending: pending || [],
           waiting: waiting || [],
         });
-        browserHistory.push('/')
-        browserHistory.push('/dashboard')
+        browserHistory.push('/');
+        browserHistory.push('/dashboard');
       })
       .catch(err => {
         console.log(err);
@@ -270,7 +302,6 @@ const itemActions = {
         let active = [];
         let pending = [];
         let waiting = [];
-        console.log(res);
         for (let item of res) {
           if (item.giverId === userID && item.status === 0) {
             active.push(item);
@@ -282,6 +313,7 @@ const itemActions = {
             waiting.push(item);
           }
         }
+        console.log('inbetween finalclose and dispatch')
         dispatch({
           type: 'GET_USERS_LISTINGS',
           active: active || [],

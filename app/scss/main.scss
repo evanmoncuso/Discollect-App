@@ -922,8 +922,6 @@ Footer
   height: 85px;
   width: 130px;
   font-size: 1.6em;
-  margin-right: 10px;
-  margin-left: 55px;
   margin-bottom: 10px;
   display: block;
   box-shadow: 1px 1px 1px black;
@@ -934,6 +932,7 @@ Footer
   border: solid 1px black;
   padding: 5px;
   color: black;
+  width: 180px
 }
 
 .advertContainer {
@@ -975,4 +974,5 @@ Footer
   color: $dark-font;
   margin: 6px;
   width: 108px;
+
 }

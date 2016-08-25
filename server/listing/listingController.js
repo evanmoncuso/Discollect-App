@@ -13,6 +13,7 @@ module.exports = {
       },
     })
     .then(listing => {
+    console.log('back end - updatelistingtakerrating');
       listing.update({
         takerRating: req.body.rating,
       })
@@ -30,6 +31,7 @@ module.exports = {
       },
     })
     .then(listing => {
+    console.log('back end - updatelistingGiverrating')
       listing.update({
         giverRating: req.body.rating,
       })
@@ -89,14 +91,15 @@ module.exports = {
     console.log('getting old listings for user: ',userId)
     Listing.findAll({
       where: {
-        $and: {
-          $or: {
-            takerId: userId, giverId: userId
+          $or: [
+            {takerId: userId}, 
+            {giverId: userId}
+          ],
+          $and: {
+            $or: {
+              status: [2,3]
+            },
           },
-          $or: {
-            status: [2,3],
-          }
-        },
       },
       limit: 50,
       order: [['createdAt', 'DESC']],
@@ -231,7 +234,9 @@ module.exports = {
       })
       .then((items) => {
         res.send(items);
-        mail(req, 'closed');
+      })
+      .catch((err) => {
+        res.status(400).send(err);
       });
     });
   },
@@ -255,26 +260,26 @@ module.exports = {
     );
   },
 
-  getUserHistory: (req, res) => {
-    Listing.findAll({
-      where: {
-        $and: {
-          status: 2,
-          $or: {
-            takerId: req.query.userid,
-            giverId: req.query.userid,
-          },
-        },
-      },
-      order: [['createdAt', 'DESC']],
-    })
-    .then(userHistory => {
-      res.send(JSON.stringify(userHistory));
-    })
-    .catch((err) => {
-      res.status(400).send(err);
-    });
-  },
+  // getUserHistory: (req, res) => {
+  //   Listing.findAll({
+  //     where: {
+  //       $and: {
+  //         status: 2,
+  //         $or: {
+  //           takerId: req.query.userid,
+  //           giverId: req.query.userid,
+  //         },
+  //       },
+  //     },
+  //     order: [['createdAt', 'DESC']],
+  //   })
+  //   .then(userHistory => {
+  //     res.send(JSON.stringify(userHistory));
+  //   })
+  //   .catch((err) => {
+  //     res.status(400).send(err);
+  //   });
+  // },
 
   listing: (req, res) => {
     Listing.findOne({
