@@ -16,6 +16,7 @@ module.exports = function(app, express) {
   router.put('/userProfile', userControl.userProfile);
   router.put('/updatePic', userControl.updatePic);
   router.put('/updateTakerRating', userControl.updateTakerRating);
+  router.put('/updateGiverRating', userControl.updateGiverRating);
 
   // router.get('/listing', listingControl.getListing);
   router.get('/listing', listingControl.listing);
@@ -23,11 +24,13 @@ module.exports = function(app, express) {
   router.get('/getAllListings', listingControl.getAllListings);
   router.put('/getOldListings', listingControl.getOldListings);
   router.put('/updateListingTakerRating', listingControl.updateListingTakerRating);
+  router.put('/updateListingGiverRating', listingControl.updateListingGiverRating);
   router.post('/createNewListing', listingControl.createNewListing);
   router.get('/getUsersListings', listingControl.getUsersListings);
   router.put('/closeListing', listingControl.closeListing);
+  router.put('/finalCloseListing', listingControl.finalCloseListing);
   router.delete('/removeListing', listingControl.removeListing);
-  router.get('/getUserHistory', listingControl.getUserHistory);
+  // router.get('/getUserHistory', listingControl.getUserHistory);
   // router.post('/createDiscollectorRating', discollectorRatingControl.createDiscollectorRating);
   // router.put('/getAllUserDiscollectorRatings', discollectorRatingControl.getAllUserDiscollectorRatings);
   // router.post('/createCollectorRating', collectorRatingControl.createCollectorRating);

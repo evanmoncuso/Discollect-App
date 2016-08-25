@@ -21,6 +21,23 @@ module.exports = {
       console.log('not finding listing,', req.body.listingId)
       res.status(400).send(err);
     })
+  ),  
+
+  updateListingGiverRating: (req, res) => (
+    Listing.findOne({
+      where: {
+        id: req.body.listingId,
+      },
+    })
+    .then(listing => {
+      listing.update({
+        giverRating: req.body.rating,
+      })
+    })
+    .catch((err) => {
+      console.log('not finding listing,', req.body.listingId)
+      res.status(400).send(err);
+    })
   ),
 
   getAllListings: function (req, res) {
@@ -73,9 +90,13 @@ module.exports = {
     Listing.findAll({
       where: {
         $and: {
-          $or: [{takerId: userId}, {giverId: userId}],
-          status: 2,
-        }
+          $or: {
+            takerId: userId, giverId: userId
+          },
+          $or: {
+            status: [2,3],
+          }
+        },
       },
       limit: 50,
       order: [['createdAt', 'DESC']],
@@ -168,6 +189,34 @@ module.exports = {
     .then((item) => (
       item.update({
         status: 2,
+      })
+    ))
+    .then((data) => {
+      Listing.findAll({
+        where: {
+          $or: {
+            giverId: data.dataValues.giverId,
+            takerId: data.dataValues.giverId,
+          },
+        },
+        order: [['createdAt', 'DESC']],
+      })
+      .then((items) => {
+        res.send(items);
+        mail(req, 'closed');
+      });
+    });
+  },  
+
+  finalCloseListing: (req, res) => {
+    Listing.findOne({
+      where: {
+        id: req.body.listingID,
+      },
+    })
+    .then((item) => (
+      item.update({
+        status: 3,
       })
     ))
     .then((data) => {

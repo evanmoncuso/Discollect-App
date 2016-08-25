@@ -27,6 +27,33 @@ module.exports = {
       console.log('updateTakerRating issue')
       res.status(400).send(err);
     });    
+  },   
+
+  updateGiverRating: function(req, res) {
+    console.log(req.body.takerId)
+    User.findOne({
+      where: {
+        id: req.body.giverId,
+      },
+    })
+    .then((user) => {
+      console.log('doing the rating workings for the taker/user: ',user.username)
+      const oldTotal = user.avgRating * user.ratingCount;
+      console.log('1',user.avgRating, user.ratingCount, oldTotal);
+      const newTotal = oldTotal + req.body.rating;
+      console.log('2',newTotal);
+      const newCounter = user.ratingCount + 1;
+      const newAverage = (newTotal / newCounter).toFixed(1); 
+      console.log('3',newAverage)
+      user.update({
+        avgRating: newAverage,
+        ratingCount: newCounter,
+      })
+    })
+    .catch((err) => {
+      console.log('updateGiverRating issue')
+      res.status(400).send(err);
+    });    
   }, 
 
   getUserInfo : function(req, res) {

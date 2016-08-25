@@ -7,7 +7,7 @@ import userActions from '../../actions/userActions.js';
 
 
 
-const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingTakerRating, dispatchUpdateTakerRating, userID, dispatchCloseListing, dispatchRemoveListing }) => {
+const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGiverRating, dispatchUpdateListingTakerRating, dispatchUpdateTakerRating,dispatchUpdateGiverRating, userID, dispatchCloseListing, dispatchRemoveListing }) => {
   closeable = closeable || false;
   removeable = removeable || false;
   return (
@@ -43,7 +43,19 @@ const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingTa
                 dispatchRemoveListing(item.id);
             }}>
               Remove
+            </button>) : ''} 
+            {(item.status === 2 && !closeable) ? (<button className='pane_listing_button view'
+              onClick={() => {
+                console.log('rating transaction!')
+                dispatchUpdateGiverRating(item.giverId, rating);
+                dispatchUpdateListingGiverRating(item.id, rating);
+                dispatchFinalCloseListing(item.id);
+              }}>
+              Rate your transaction!
             </button>) : ''}
+            {(item.status === 1 && !closeable) ? (<p className='pickup'>
+              Awaiting your collection!
+            </p>) : ''}
           </div>
         </div>
       </div>
@@ -61,15 +73,24 @@ const mapDispatchToProps = (dispatch) => {
   return {
     dispatchCloseListing: (listingId) => {
       dispatch(itemActions.closeListing(listingId));
+    },    
+    dispatchFinalCloseListing: (listingId) => {
+      dispatch(itemActions.finalCloseListing(listingId));
     },
     dispatchRemoveListing: (listingId) => {
       dispatch(itemActions.removeListing(listingId));
     },    
     dispatchUpdateListingTakerRating: (listingId, rating) => {
       dispatch(itemActions.updateListingTakerRating(listingId, rating));
+    },    
+    dispatchUpdateListingGiverRating: (listingId, rating) => {
+      dispatch(itemActions.updateListingGiverRating(listingId, rating));
     },
     dispatchUpdateTakerRating: (takerId, rating) => {
       dispatch(userActions.updateTakerRating(takerId, rating));
+    },    
+    dispatchUpdateGiverRating: (giverId, rating) => {
+      dispatch(userActions.updateGiverRating(giverId, rating));
     },
     dispatchIndivItem: (id) => {
       dispatch(itemActions.getIndividualListing(id));
