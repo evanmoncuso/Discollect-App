@@ -27,7 +27,7 @@ export default (
     <Route path="/listing:id" component={Listing} />
     <Route path="/createlisting" component={CreateListing} />
     <Route path="/profile/:id" component={Profile} />
-    <Route path="/history/:id" component={History} />
+    <Route path="/history:id" component={History} />
   </Route>
 );
 

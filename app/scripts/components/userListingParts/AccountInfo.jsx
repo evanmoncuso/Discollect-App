@@ -30,9 +30,7 @@ const AccountInfo = ({ username, dispatchGetUserHistory, dispatchIndivItem, togg
           <button
             className="blue_button view"
             onClick={() => {
-              console.log('getting history')
               dispatchGetUserHistory(userId);
-              //updateView to show history?
           }}>
             History
           </button>
@@ -75,7 +73,7 @@ AccountInfo.propTypes = {
   {
     dispatchUploadProfilePic: (data) => {
       dispatch(userActions.uploadProfilePic(data));
-    },    
+    },
     dispatchGetUserHistory: (userId) => {
       dispatch(itemActions.getUserHistory(userId));
     },

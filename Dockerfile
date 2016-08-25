@@ -20,6 +20,10 @@ RUN npm install
 
 ADD . .
 
+ENV BASEURL http://localhost:3001
+
+ENV TEST magnarp
+
 EXPOSE 3000
 
 CMD ["npm", "start"]
