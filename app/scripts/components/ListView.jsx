@@ -9,14 +9,16 @@ import SearchBar from './SearchBar.jsx';
 
 let ListView = ({ dispatchGetItems, items, users, dispatchIndivItem }) => {
   return (
-    <div className="main_container">
+    <div>
       <SearchBar />
-      <div className="listing_flex_box">
-        <FilterBar />
-        <div className="listings_container">
-          {items.map((item, i) => {
-            return <ListEntry key={i} entry={item} action={dispatchIndivItem} />
-          })}
+      <div className="main_container">
+        <div className="listing_flex_box">
+          <FilterBar />
+          <div className="listings_container">
+            {items.map((item, i) => {
+              return <ListEntry key={i} entry={item} action={dispatchIndivItem} />
+            })}
+          </div>
         </div>
       </div>
     </div>

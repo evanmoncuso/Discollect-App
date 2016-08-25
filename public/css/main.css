@@ -98,7 +98,7 @@ Title bar
  */
 nav {
   width: 100%;
-  height: 160px;
+  height: 100px;
   background-color: #333;
   color: #F7F7F7;
   margin-bottom: 24px;
@@ -130,8 +130,6 @@ h1 {
   width: 960px;
   margin: 0 auto;
   display: flex; }
-  .nav_container .searchbar_holder {
-    flex-grow: 3; }
   .nav_container .nav_title,
   .nav_container .user_points {
     flex-grow: 1; }
@@ -529,7 +527,13 @@ Search bar
  */
 .search_bar {
   margin: 0 auto;
-  text-align: center; }
+  text-align: center;
+  position: fixed;
+  top: 100px;
+  z-index: 10;
+  background-color: #333;
+  width: 100%;
+  height: 100px; }
   .search_bar .map_button {
     height: 60px;
     width: 60px;
@@ -547,7 +551,7 @@ Search bar
 .autosuggest_holder {
   display: inline-flex;
   position: relative;
-  top: 56px; }
+  top: 10px; }
   .autosuggest_holder .map_button {
     background-color: #D50000;
     height: 48px;

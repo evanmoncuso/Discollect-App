@@ -26,6 +26,7 @@ class SearchBar extends React.Component {
       radius: 10,
       value: '',
       suggestions: [],
+      currentPage: 0,
     };
     this.changeCoords = this.changeCoords.bind(this);
     this.handleSlide = this.handleSlide.bind(this);
@@ -94,7 +95,6 @@ class SearchBar extends React.Component {
     let { userZip } = this.props;
     let keywords;
     let zip;
-    let category;
     let { value, suggestions } = this.state;
     let inputProps = {
       value,
@@ -185,13 +185,16 @@ class SearchBar extends React.Component {
             {
               this.props.searchHits.map((searchHitNum, i) => (
                 <a
+                  className={this.state.currentPage === i ? 'current' : ''}
                   onClick={() => {
+                    this.setState({
+                      currentPage: i,
+                    });
                     this.getPage(searchHitNum);
                   }}
                   className="page_number"
-                  key={i} >
-                {i + 1}
-                </a>
+                  key={i}
+                >{i + 1}</a>
               ))
             }
         </div>
