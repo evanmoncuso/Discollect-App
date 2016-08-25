@@ -108,8 +108,8 @@ class Portal extends React.Component {
                         <option value="hour">Past hour</option>
                         <option value="day">Last 24 hours</option>
                         <option value="month">Past month</option>
-                        <option value="threeMonths">Past 3 months</option>
-                        <option value="sixMonths">Past 6 months</option>
+                        <option value="month3">Past 3 months</option>
+                        <option value="month6">Past 6 months</option>
                         <option value="year">Past year</option>
                       </select>
                   </div>
@@ -229,7 +229,7 @@ class Portal extends React.Component {
                 dateRange: dateRange2.value,
               };
                 var updater =  this.updateChart.bind(this);
-                this.props.dispatchGetChartSingleData(info,updater);
+                this.props.dispatchGetChartSingleData(info, updater);
                 singleCat.value = "None";
                 dateRange2.value = 'hour';
             }}>
@@ -241,8 +241,8 @@ class Portal extends React.Component {
                     <option value="hour">Past hour</option>
                     <option value="day">Past day</option>
                     <option value="month">Past month</option>
-                    <option value="threeMonths">Past 3 months</option>
-                    <option value="sixMonths">Past 6 months</option>
+                    <option value="month3">Past 3 months</option>
+                    <option value="month6">Past 6 months</option>
                     <option value="year">Past year</option>
                   </select>
               </div>

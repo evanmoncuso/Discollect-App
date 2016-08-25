@@ -5,7 +5,7 @@ const mail = require('./mailingHelper.js');
 const fetch = require('isomorphic-fetch');
 
 module.exports = {
- 
+
   updateListingTakerRating: (req, res) => (
     Listing.findOne({
       where: {
@@ -19,10 +19,9 @@ module.exports = {
       })
     })
     .catch((err) => {
-      console.log('not finding listing,', req.body.listingId)
       res.status(400).send(err);
     })
-  ),  
+  ),
 
   updateListingGiverRating: (req, res) => (
     Listing.findOne({
@@ -58,8 +57,6 @@ module.exports = {
 
   // getFilteredListings must be invoked with category, zipcodeArray and keywords
   getFilteredListings: (req, res) => {
-    console.log('~~~~~~~~~~~~~~~~~~~~~', req.body);
-    // db.query("SELECT * FROM `listings`", { model: Listing })
     Listing.findAll({
       where: {
         $and: {
@@ -88,11 +85,10 @@ module.exports = {
 
   getOldListings: (req, res) => {
     let userId = req.body.userId;
-    console.log('getting old listings for user: ',userId)
     Listing.findAll({
       where: {
           $or: [
-            {takerId: userId}, 
+            {takerId: userId},
             {giverId: userId}
           ],
           $and: {
@@ -105,7 +101,6 @@ module.exports = {
       order: [['createdAt', 'DESC']],
     })
     .then((items) => {
-      console.log('old listings coming back!')
       res.send(items);
     });
   },
@@ -127,7 +122,6 @@ module.exports = {
       mail(req, 'taken');
     })
     .catch((err) => {
-      // console.log('error updating', err);
       res.status(400).send(err);
     });
   },
@@ -161,7 +155,7 @@ module.exports = {
   },
 
   getUsersListings: (req, res) => {
-    const userId = req.user.id;
+    const userId = req.user.id || req.query.id;
     Listing.findAll({
       where: {
         $or: {
@@ -209,7 +203,7 @@ module.exports = {
         mail(req, 'closed');
       });
     });
-  },  
+  },
 
   finalCloseListing: (req, res) => {
     Listing.findOne({
@@ -242,14 +236,12 @@ module.exports = {
   },
 
   removeListing: function (req, res) {
-    // console.log(req.query["listingID"]);
     Listing.findOne({
       where: {
         id: req.query.listingID,
       },
     })
     .then(listing =>{
-      console.log('about to destroy ', listing)
      listing.update({
         status: 4,
       })

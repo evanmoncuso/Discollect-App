@@ -1,9 +1,9 @@
 import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
+import secrets from '../../../secrets.js';
 
-const baseUrl = process.env.BASEURL || 'http://localhost:3000';
+const baseUrl = secrets.host || 'http://localhost:3000';
 const searchUrl = 'https://mysterious-coast-57298.herokuapp.com/listings';
-const zipUrl = 'http://zipcodehelper.herokuapp.com/api/state?zip=';
 
 const optimisticSetItems = (items) => (
   {
@@ -48,7 +48,7 @@ const itemActions = {
         }
       });
     }
-  ),  
+  ),
 
   updateListingGiverRating: (listingId, rating) => (
     (dispatch) => {
@@ -56,7 +56,7 @@ const itemActions = {
       const details = {
         listingId: listingId,
         rating: rating,
-      }; 
+      };
       const url = baseUrl + '/api/updateListingGiverRating';
       fetch(url, {
         method: 'PUT',
@@ -102,7 +102,6 @@ const itemActions = {
 
   getIndividualListing: (id) => (
     (dispatch) => {
-      console.log('coming through - responsd with: ', id)
       const url = baseUrl + '/api/listing?id=' + id;
       fetch(url, {
         method: 'GET',
@@ -356,14 +355,15 @@ const itemActions = {
     }
   ),
 
-  getUsersListings: () => (
+  getUsersListings: (id) => (
     (dispatch) => {
-      const url = baseUrl + '/api/getUsersListings';
+      const url = baseUrl + '/api/getUsersListings?id=' + id;
       fetch(url, {
         credentials: 'same-origin',
       })
       .then((res) => res.json())
       .then((response) => {
+        console.log('abc=-------==----=--', response);
         let active = [];
         let pending = [];
         let waiting = [];
@@ -398,7 +398,7 @@ const itemActions = {
       fetch(url, {
         method: 'DELETE',
       })
-      .then(res=> {   
+      .then(res=> {
         browserHistory.push('/')
         browserHistory.push('/dashboard')
          fetch(searchUrl + '/' + listingID, {
