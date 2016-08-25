@@ -102,7 +102,6 @@ class SearchBar extends React.Component {
               onSubmit={(e) => {
                 e.preventDefault();
                 const data = {
-                  category: category.value,
                   keywords: this.state.value,
                   coordinates: this.state.latLng,
                   distance: this.state.radius,
@@ -110,7 +109,6 @@ class SearchBar extends React.Component {
                 };
 
                 this.props.doElasticSearch(data);
-                category.value = 'all-categories';
                 this.state.value = '';
               }}
             >
