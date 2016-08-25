@@ -90,17 +90,4 @@ const mapDispatchToProps = (dispatch) => (
 );
 
 export default connect(null, mapDispatchToProps)(FilterBar);
-/*
-        <fieldset>
-          <legend>Posting Date:</legend>
-          <input className="date_range" type="date" />
-        </fieldset>
-        <fieldset>
-          <legend>Description:</legend>
-          <input type="text" />
-        </fieldset>
-        <fieldset>
-          <legend>Giver Rating:</legend>
-          <input type="range" />
-        </fieldset>
-*/
+
