@@ -93,7 +93,7 @@ class SearchBar extends React.Component {
 
   render() {
     let { userZip } = this.props;
-    let keywords;
+    let keywords, category;
     let zip;
     let { value, suggestions } = this.state;
     let inputProps = {
@@ -185,14 +185,13 @@ class SearchBar extends React.Component {
             {
               this.props.searchHits.map((searchHitNum, i) => (
                 <a
-                  className={this.state.currentPage === i ? 'current' : ''}
+                  className={this.state.currentPage === i ? 'page_number current' : 'page_number'}
                   onClick={() => {
                     this.setState({
                       currentPage: i,
                     });
                     this.getPage(searchHitNum);
                   }}
-                  className="page_number"
                   key={i}
                 >{i + 1}</a>
               ))

@@ -690,15 +690,24 @@ Search bar
 }
 
 .pagination {
-  position: absolute;
-  left: 48%;
-  top: 116px
+  position: relative;
+  top: 15px;
 }
 .page_number {
   line-height: 24px;
   font-size: $font-medium;
   color: $light-font;
-  padding: 0 6px;
+  padding: 0 10px;
+  margin: 5px 3px;
+  border-radius: 25%;
+  border: 1px solid black;
+  color: $dark-gray;
+  background-color: #F7F7F7;
+
+}
+.current {
+  background-color: red;
+  color: white;
 }
 /*
 ====================
