@@ -136,7 +136,7 @@ const itemActions = {
         },
       })
       .then(res => {
-        dispatch(itemActions.getLatestListings());
+        // dispatch(itemActions.getLatestListings());
         browserHistory.push('/');
       })
       .catch(err => {
@@ -158,11 +158,12 @@ const itemActions = {
 
   elasticSearch: (query) => (
     (dispatch) => {
-      const url = searchUrl + '?keywords=' + query.keywords + '&category=' + query.category + '&coordinates=' + query.coordinates + '&distance=' + query.distance + 'km' + '&startFrom=' + query.startFrom;
+      const url = searchUrl + '?keywords=' + query.keywords + '&category=all-categories' + '&coordinates=' + query.coordinates + '&distance=' + query.distance + 'km' + '&startFrom=' + query.startFrom;
       dispatch({
         type: 'SAVE_LAST_QUERY',
         payload: query,
       });
+      console.log(url)
       // TODO TEMPLATE STRING
       fetch(url)
       .then((res) => res.json())
@@ -201,7 +202,7 @@ const itemActions = {
       })
       .then((res) => res.json())
       .then((res) => {
-        dispatch(itemActions.getLatestListings());
+        // dispatch(itemActions.getLatestListings());
         fetch(searchUrl + '/' + details.listingID, {
           method: 'DELETE',
         });

@@ -32,15 +32,7 @@ class SearchBar extends React.Component {
     this.handleSlide = this.handleSlide.bind(this);
     this.getPage = this.getPage.bind(this);
   }
-  componentDidMount() {
-    const context = this;
-    setTimeout(() => {
-      context.setState({
-        modalState: false,
-        suggestions: [],
-      });
-    }, 400);
-  }
+
 
   getSuggestions(value) {
     var context = this;
