@@ -5,7 +5,6 @@ import GoogMap from './GoogMap.jsx';
 
 const CreateListing = ({ dispatchCreateNewListing,  id }) => {
   let title;
-  let zip;
   let image;
   let category;
   let description;
@@ -42,7 +41,6 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
             e.preventDefault();
             const data = {
               title: title.value,
-              zipcode: zip.value,
               status: 0,
               giverId: id,
               takerId: null,
@@ -58,7 +56,6 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
             dispatchCreateNewListing(data);
 
             title.value = '';
-            zip.value = '';
             image.value = '';
             category.value = 'all-categories';
             description.value = '';
@@ -69,10 +66,6 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
           <div className="auth_input">
             <label htmlFor="title">Title</label>
             <input ref={(node) => { title = node; }} id="title" required />
-          </div>
-          <div className="auth_input">
-            <label htmlFor="zip" >Zip Code</label>
-            <input ref={(node) => { zip = node; }} id="zip" required />
           </div>
           <div className="auth_input">
             <label htmlFor="category">Categories</label>

@@ -101,14 +101,6 @@ class SearchBar extends React.Component {
       onChange: this.suggestChange.bind(this),
     };
     let theme = {
-      input : {
-
-        position: 'relative',
-        width: '280px',
-        height: '36px',
-        fontSize: '24px',
-        color: '#424242',
-      },
       suggestionsContainer:{
         margin: '0px, 10px, 0px, 10px',
         display: 'block',
@@ -126,7 +118,7 @@ class SearchBar extends React.Component {
       }
     };
     return (
-
+    <div className='search_bar_container'>
       <div className="search_bar">
         <form
           onSubmit={(e) => {
@@ -203,6 +195,7 @@ class SearchBar extends React.Component {
               ))
             }
         </div>
+      </div>
       </div>
     );
   }
