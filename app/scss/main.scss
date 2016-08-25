@@ -127,54 +127,8 @@ h1 {
 .main_container {
   width: 960px;
   margin: 0 auto;
-  top: 108px;
+  top: 124px;
   position: relative;
-  .filterBar {
-    flex-grow: 1;
-    width: 200px;
-    height: 480px;
-    color: $dark-font;
-    float: left;
-    background-color: white;
-    padding: 12px;
-    margin-right: 18px;
-    margin-top: 12px;
-    fieldset {
-      padding: 12px 0;
-    }
-    legend {
-      text-align: center;
-      font-size: $font-medium;
-      font-weight: bold;
-    }
-    .condition_container {
-      width: 120px;
-      margin: 0 auto;
-      text-align: right;
-      label {
-        line-height: 18px;
-        display: inline-block;
-      }
-      input {
-        display:inline-block;
-      }
-    }
-    .filter_location {
-      padding: 6px 0;
-      label {
-        display: block;
-      }
-    }
-    .date_range {
-      text-align: right;
-    }
-    .button_holder {
-      margin: 0 auto;
-    }
-  }
-  .listing_flex_box {
-
-  }
 }
 
 .button {
@@ -232,6 +186,52 @@ List View
  */
  .listing_flex_box {
    display: flex;
+   width: 960px;
+   margin: 0 auto;
+   position: relative;
+   .filterBar {
+     flex-grow: 1;
+     width: 200px;
+     height: 480px;
+     color: $dark-font;
+     float: left;
+     background-color: white;
+     padding: 12px;
+     margin-right: 18px;
+     margin-top: 12px;
+     fieldset {
+       padding: 12px 0;
+     }
+     legend {
+       text-align: center;
+       font-size: $font-medium;
+       font-weight: bold;
+     }
+     .condition_container {
+       width: 120px;
+       margin: 0 auto;
+       text-align: right;
+       label {
+         line-height: 18px;
+         display: inline-block;
+       }
+       input {
+         display:inline-block;
+       }
+     }
+     .filter_location {
+       padding: 6px 0;
+       label {
+         display: block;
+       }
+     }
+     .date_range {
+       text-align: right;
+     }
+     .button_holder {
+       margin: 0 auto;
+     }
+   }
  }
 
 .listings_container {
@@ -335,7 +335,6 @@ Create Listing View
  */
 
 .create_listing_container {
-  top: 180px;
   padding:12px;
   border-left: 4px solid $dark-gray;
   background-color: $dark-gray;
@@ -366,7 +365,6 @@ Dashboard View
  */
 
 .dashboard_container {
-  top: 180px;
   padding:12px;
   background-color: $dark-gray;
   color: $light-font;
@@ -651,6 +649,7 @@ Search bar
     color: $light-font;
     outline: none;
     transition: 0.2s all ease-in;
+    vertical-align: top;
   }
   .search_button {
     border-radius: 0 6px 6px 0;
@@ -659,10 +658,9 @@ Search bar
   }
   .map_button {
     border-radius: 6px 0 0 6px;
-    padding: 0 6px;
+    padding: 0 12px;
     height: 48px;
     img {
-      padding: 0;
     }
   }
   .search_button:hover,
