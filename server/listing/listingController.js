@@ -86,17 +86,21 @@ module.exports = {
   },
 
   createNewListing: (req, res) => {
-    const zip = req.body.zipcode;
-    fetch(`http://zipcodehelper.herokuapp.com/api/state?zip=${zip}`, {
+    let coords = req.body.coordinates.split(',');
+    let lat = coords[0];
+    let lng = coords[1];
+    let url = `http://zipcodehelper.herokuapp.com/api/zip_state?lat=${lat}&lng=${lng}`;
+    fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
     })
-    .then((state) => state.json())
-    .then(({ stateUSA }) => {
+    .then((geoResp) => geoResp.json())
+    .then(({ zip, state }) => {
       const data = req.body;
-      data.stateUSA = stateUSA;
+      data.stateUSA = state;
+      data.zipcode = zip;
       Listing.create(req.body)
       .then(list => {
         res.send(list);
