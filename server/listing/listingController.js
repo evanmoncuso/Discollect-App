@@ -91,14 +91,15 @@ module.exports = {
     console.log('getting old listings for user: ',userId)
     Listing.findAll({
       where: {
-        $and: {
-          $or: {
-            takerId: userId, giverId: userId
+          $or: [
+            {takerId: userId}, 
+            {giverId: userId}
+          ],
+          $and: {
+            $or: {
+              status: [2,3]
+            },
           },
-          $or: {
-            status: [2,3],
-          }
-        },
       },
       limit: 50,
       order: [['createdAt', 'DESC']],
