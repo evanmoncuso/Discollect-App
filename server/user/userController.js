@@ -14,7 +14,7 @@ module.exports = {
       const oldTotal = Number(user.avgRating) * Number(user.ratingCount);
       const newTotal = Number(oldTotal) + Number(req.body.rating);
       const newCounter = 1 + Number(user.ratingCount);
-      const newAverage = (Number(newTotal) / Number(newCounter)).toFixed(1); 
+      const newAverage = (Number(newTotal) / Number(newCounter)).toFixed(1);
       user.update({
         avgRating: newAverage,
         ratingCount: newCounter,
@@ -24,8 +24,8 @@ module.exports = {
     .catch((err) => {
       console.log('updateTakerRating issue')
       res.status(400).send(err);
-    });    
-  },   
+    });
+  },
 
   updateGiverRating: function(req, res) {
     console.log(req.body.takerId)
@@ -35,11 +35,10 @@ module.exports = {
       },
     })
     .then((user) => {
-      console.log('doing the rating workings for the giver/user: ',user.username)
       const oldTotal = Number(user.avgRating) * Number(user.ratingCount);
       const newTotal = Number(oldTotal) + Number(req.body.rating);
       const newCounter = 1 + Number(user.ratingCount);
-      const newAverage = (Number(newTotal) / Number(newCounter)).toFixed(1); 
+      const newAverage = (Number(newTotal) / Number(newCounter)).toFixed(1);
       user.update({
         avgRating: newAverage,
         ratingCount: newCounter,
@@ -49,12 +48,13 @@ module.exports = {
     .catch((err) => {
       console.log('updateGiverRating issue')
       res.status(400).send(err);
-    });    
-  }, 
+    });
+  },
 
   getUserInfo : function(req, res) {
-    if (req.user){
-      User.findOne({where : { id : req.user.id}})
+    let userId = req.user.id || req.query.id;
+    if (userId){
+      User.findOne({where : { id : userId}})
         .then(user => {
           res.json(user);
         });
