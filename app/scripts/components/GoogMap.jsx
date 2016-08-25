@@ -39,6 +39,7 @@ class GoogMap extends React.Component {
   }
   handlePlacesChanged() {
     const places = this.searchBox.getPlaces();
+    console.log(places, places[0]);
     this.setState({
       mapCenter: {
         lat: places[0].geometry.location.lat(),

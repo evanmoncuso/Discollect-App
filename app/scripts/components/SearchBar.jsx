@@ -32,8 +32,6 @@ class SearchBar extends React.Component {
     this.handleSlide = this.handleSlide.bind(this);
     this.getPage = this.getPage.bind(this);
   }
-
-
   getSuggestions(value) {
     var context = this;
     var url = 'https://mysterious-coast-57298.herokuapp.com/listings/titlesearch?title='+value;
@@ -41,7 +39,7 @@ class SearchBar extends React.Component {
     .then(res=> res.json())
     .then(data=>{
       context.setState({
-        suggestions : data
+        suggestions : data,
       });
     })
   }
