@@ -79,6 +79,10 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
               <option value="tools">Tools &amp; Home Improvement</option>
             </select>
           </div>
+          <div className="map_container" style={{ width: '400px', height: '400px', margin: '0 auto' }}>
+            <label htmlFor="location">Location</label>
+            <GoogMap changeCoords={changeCoords} />
+          </div>
           <div className="auth_input">
             <label htmlFor="condition" >Condition</label><br />
             <select ref={(node) => { condition = node; }} id="condition" required>
@@ -102,9 +106,6 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
           <div className="auth_input">
             <label htmlFor="description">Description</label>
             <textarea ref={(node) => { description = node; }} id="description" required />
-          </div>
-          <div className="map_container" style={{ width: '400px', height: '400px', margin: '0 auto' }}>
-            <GoogMap changeCoords={changeCoords} />
           </div>
           <div className="button_container">
             <button type="submit" className="blue_button">Create</button>

@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-import SearchBar from './SearchBar.jsx';
 import Registered from './userSignInParts/Registered.jsx';
 import Unregistered from './userSignInParts/Unregistered.jsx';
 
@@ -23,9 +22,6 @@ const NavBar = ({ username }) => {
         <div className="nav_title">
           <Link to="/"><h1>Discollect</h1></Link>
           <Link to="/dashboard">{welcome}</Link>
-        </div>
-        <div className="searchbar_holder">
-          <SearchBar />
         </div>
         <div className="user_points">
           {displayed}

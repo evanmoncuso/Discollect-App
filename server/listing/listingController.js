@@ -21,23 +21,28 @@ module.exports = {
 
   // getFilteredListings must be invoked with category, zipcodeArray and keywords
   getFilteredListings: (req, res) => {
+    console.log('~~~~~~~~~~~~~~~~~~~~~', req.body);
+    // db.query("SELECT * FROM `listings`", { model: Listing })
     Listing.findAll({
       where: {
         $and: {
           status: 0,
+          category: {
+            $like: req.body.category === 'all-categories' ? '%%' : req.body.category,
+          },
+          condition: {
+            $in: req.body.condition,
+          },
           zipcode: {
-            $or: req.body.zipcodeArray,
-            category: {
-              $like: req.body.category === 'all-categories' ? '%%' : req.body.category,
-            },
-            title: {
-              $like: req.body.keywords ? `%${req.body.keywords}%` : '%%',
-            },
+            $like: req.body.zipcode ? `%${req.body.zipcode}%` : '%%',
+          },
+          title: {
+            $like: req.body.title ? `%${req.body.title}%` : '%%',
           },
         },
-        limit: 50,
-        order: [['createdAt', 'DESC']],
       },
+      limit: 100,
+      order: [['createdAt', 'DESC']],
     })
     .then((listings) => {
       res.send(listings);

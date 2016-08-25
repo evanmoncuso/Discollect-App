@@ -8,7 +8,7 @@ const zipUrl = 'http://zipcodehelper.herokuapp.com/api/state?zip=';
 
 const optimisticSetItems = (items) => (
   {
-    type: 'GET_INITIAL_ITEMS',
+    type: 'GET_ITEMS',
     items,
   }
 );
@@ -22,18 +22,28 @@ const optimisticIndivItem = (item) => (
 
 
 const itemActions = {
-  getLatestListings: () => (
+  getSQLListings: (query) => (
     (dispatch) => {
-      const url = baseUrl + '/api/getAllListings';
+      const url = baseUrl + '/api/getFilteredListings';
       fetch(url, {
-        method: 'GET',
+        method: 'PUT',
+        body: JSON.stringify(query),
         headers: {
           'Content-Type': 'application/json',
         },
       })
       .then((res) => res.json())
       .then((response) => {
-        dispatch(optimisticSetItems(response));
+        console.log('!!!!!!!!!', response);
+        dispatch({
+          type: 'GET_ITEMS',
+          items: response,
+        });
+        dispatch({
+          type: 'SET_SEARCH_HITS',
+          payload: 1,
+        })
+        // browserHistory.push('/');
       })
       .catch((err) => {
         if (err) {
@@ -153,7 +163,7 @@ const itemActions = {
         // TODO NEW SETSTATE
         dispatch({
           type: 'SET_SEARCH_HITS',
-          payload: hits
+          payload: hits,
         });
         dispatch(optimisticSetItems(data));
         dispatch(itemActions.searchItem({}));

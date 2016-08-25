@@ -5,16 +5,20 @@ import itemActions from '../actions/itemActions.js';
 import { browserHistory } from 'react-router';
 import FilterBar from './FilterBar.jsx';
 import searchFilter from '../actions/searchFilter.js';
+import SearchBar from './SearchBar.jsx';
 
 let ListView = ({ dispatchGetItems, items, users, dispatchIndivItem }) => {
   return (
-    <div className="main_container">
-      <div className="listing_flex_box">
-        <FilterBar />
-        <div className="listings_container">
-          {items.map((item, i) => {
-            return <ListEntry key={i} entry={item} action={dispatchIndivItem} />
-          })}
+    <div>
+      <SearchBar />
+      <div className="main_container">
+        <div className="listing_flex_box">
+          <FilterBar />
+          <div className="listings_container">
+            {items.map((item, i) => {
+              return <ListEntry key={i} entry={item} action={dispatchIndivItem} />
+            })}
+          </div>
         </div>
       </div>
     </div>
