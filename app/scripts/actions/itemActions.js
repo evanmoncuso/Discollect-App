@@ -302,7 +302,6 @@ const itemActions = {
   getUserHistory: (userId) => (
     (dispatch) => {
        const url = baseUrl + '/api/getOldListings';
-       console.log('gettin user History');
       fetch(url, {
         method: 'PUT',
         credentials: 'same-origin',
@@ -313,11 +312,11 @@ const itemActions = {
       })
       .then((res) => res.json())
       .then((response) => {
-        console.log('history coming back: ', response)
         dispatch({
           type: 'GET_USER_HISTORY',
           history: response,
         });
+        browserHistory.push('/history'+userId)
       })
       .catch((err) => {
         if (err) {
