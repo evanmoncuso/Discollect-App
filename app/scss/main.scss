@@ -340,6 +340,10 @@ Create Listing View
   background-color: $dark-gray;
   color: $light-font;
   margin: 0 auto;
+  .image_input {
+    margin: 0 auto;
+    text-align: center;
+  }
   select {
     height: 32px;
     font-size: $font-medium;

@@ -7,7 +7,7 @@ import userActions from '../../actions/userActions.js';
 
 
 
-const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGiverRating, dispatchUpdateListingTakerRating, dispatchUpdateTakerRating,dispatchUpdateGiverRating, userID, dispatchCloseListing, dispatchRemoveListing }) => {
+const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGiverRating, dispatchUpdateListingTakerRating, dispatchUpdateTakerRating, dispatchUpdateGiverRating, userID, dispatchCloseListing, dispatchRemoveListing, dispatchIndivItem }) => {
   closeable = closeable || false;
   removeable = removeable || false;
   return (
@@ -20,30 +20,33 @@ const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGi
             <span className="entry_desc">zipcode: {item.zipcode}</span>
           </div>
           <div className="entry_buttons">
-            <Link
-              className="pane_listing_button view"
-              to={'/listing' + item.id}
-            >
-              View
-            </Link>
-            {closeable ? (<button
-              className="pane_listing_button close"
-              onClick={() => {
-                // let rating = prompt("Would many stars out of 5 would you rate the person who picked up the " + item.title);
-                let rating = 5;
-                dispatchUpdateTakerRating(item.takerId, rating);
-                dispatchUpdateListingTakerRating(item.id, rating);
-                dispatchCloseListing(item.id);
-            }}>
-              Picked up
-            </button>) : ''}
-            {removeable ? (<button
-              className="pane_listing_button remove"
-              onClick={() => {
-                dispatchRemoveListing(item.id);
-            }}>
-              Remove
-            </button>) : ''} 
+            <div className="button_container">
+              <button
+                className="yellow_button view"
+                onClick={() => {
+                  dispatchIndivItem(item.id);
+                }}>
+                View
+              </button>
+            </div>
+            {closeable ? (<div className="button_container">
+              <button
+                className="yellow_button close"
+                onClick={() => {
+                  dispatchCloseListing(item.id);
+                }}>
+                Picked Up
+              </button>
+            </div>) : ''}
+            {removeable ? (<div className="button_container">
+              <button
+                className="yellow_button remove"
+                onClick={() => {
+                  dispatchRemoveListing(item.id);
+                }}>
+                Remove
+              </button>
+            </div>) : ''}
             {(item.status === 2 && !closeable) ? (<button className='pane_listing_button view'
               onClick={() => {
                 console.log('rating transaction!')
@@ -73,22 +76,22 @@ const mapDispatchToProps = (dispatch) => {
   return {
     dispatchCloseListing: (listingId) => {
       dispatch(itemActions.closeListing(listingId));
-    },    
+    },
     dispatchFinalCloseListing: (listingId) => {
       dispatch(itemActions.finalCloseListing(listingId));
     },
     dispatchRemoveListing: (listingId) => {
       dispatch(itemActions.removeListing(listingId));
-    },    
+    },
     dispatchUpdateListingTakerRating: (listingId, rating) => {
       dispatch(itemActions.updateListingTakerRating(listingId, rating));
-    },    
+    },
     dispatchUpdateListingGiverRating: (listingId, rating) => {
       dispatch(itemActions.updateListingGiverRating(listingId, rating));
     },
     dispatchUpdateTakerRating: (takerId, rating) => {
       dispatch(userActions.updateTakerRating(takerId, rating));
-    },    
+    },
     dispatchUpdateGiverRating: (giverId, rating) => {
       dispatch(userActions.updateGiverRating(giverId, rating));
     },
