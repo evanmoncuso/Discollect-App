@@ -22,10 +22,8 @@ class GoogMap extends React.Component {
     };
     this.handleMapClick.bind(this);
     this.handlePlacesChanged = this.handlePlacesChanged.bind(this);
-    // console.log('GOOOOOOOOGLE: ', google);
   }
   handleMapClick(event) {
-    // console.log('from goog map: ', event);
     let marker = this.state.marker;
     let newMarker = update(marker, {
       $set: {
@@ -38,11 +36,9 @@ class GoogMap extends React.Component {
       marker: newMarker,
     });
     this.props.changeCoords(this.state.marker.position.lat(), this.state.marker.position.lng());
-    console.log('from map comp: ', this.state.marker.position.lat(), this.state.marker.position.lng());
   }
   handlePlacesChanged() {
     const places = this.searchBox.getPlaces();
-    console.log(places[0].geometry.location.lat(), places[0].geometry.location.lng());
     this.setState({
       mapCenter: {
         lat: places[0].geometry.location.lat(),
@@ -57,20 +53,6 @@ class GoogMap extends React.Component {
     });
   }
   render() {
-    // const inputStyle = {
-    //   border: `1px solid transparent`,
-    //   borderRadius: `1px`,
-    //   boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-    //   boxSizing: `border-box`,
-    //   MozBoxSizing: `border-box`,
-    //   fontSize: `14px`,
-    //   height: `32px`,
-    //   marginTop: `27px`,
-    //   outline: `none`,
-    //   padding: `0 12px`,
-    //   textOverflow: `ellipses`,
-    //   width: `400px`,
-    // };
     return (
       <GoogleMapLoader
         containerElement={<div className='reactGoogleMap_containerElement' style={{ height: '100%' }} />}
@@ -81,7 +63,7 @@ class GoogMap extends React.Component {
             center={{ lat: this.state.mapCenter.lat, lng: this.state.mapCenter.lng }}
             onClick={(e)=>this.handleMapClick(e)}
           >
-            <SearchBox 
+            <SearchBox
               controlPosition={google.maps.ControlPosition.TOP_LEFT}
               onPlacesChanged={this.handlePlacesChanged}
               style={{ width: '200px', height: '32px', fontSize: '14px', margin: '5px' }}
@@ -89,7 +71,6 @@ class GoogMap extends React.Component {
               ref={node => { this.searchBox = node; }}
             />
             <Marker {...this.state.marker} draggable={true} />
-            
           </GoogleMap>
         }
       />
@@ -100,7 +81,6 @@ class GoogMap extends React.Component {
 
 GoogMap.propTypes = {
   userGeoCoords: React.PropTypes.array,
-  // changeCoords: React.PropTypes.function,
 };
 
 const mapStateToProps = (state) => {
@@ -111,12 +91,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => (
   {
-    // commitSearch: (query) => {
-    //   dispatch(userActions.searchItem(query));
-    // },
+
   }
 );
-
-// export default GoogMap;
-
 export default connect(mapStateToProps, mapDispatchToProps)(GoogMap);

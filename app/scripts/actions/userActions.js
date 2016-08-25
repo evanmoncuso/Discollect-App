@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch';
 
 import { browserHistory } from 'react-router';
 
-const app = 'http://localhost:3000';
+const app = process.env.BASEURL || 'http://localhost:3000';
 
 const optimisticSignIn = ({ zipcode, username, id, picReference, email }) => (
   {
@@ -84,12 +84,12 @@ const userActions = {
   ),
 
 
-  updateTakerRating: (takerId, rating) => (    
+  updateTakerRating: (takerId, rating) => (
     (dispatch) => {
       const details = {
         takerId: takerId,
         rating: rating
-      }; 
+      };
       console.log('Taker-rating updating');
       const url = app + '/api/updateTakerRating';
       fetch(url, {
