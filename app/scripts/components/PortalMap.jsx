@@ -71,14 +71,14 @@ class PortalMap extends React.Component {
       <div className="main_container developerContainer">
         <div className="wrapperDiv">
             <div className="mapVis" id='mapTitle'>
-            Density of <br />Discollect users <br /> 
+            Density of <br />Discollect users <br />
             state by state.
             </div>
           <form encType="multipart/form-data"
             onSubmit={(e) => {
                 e.preventDefault();
                 // document.getElementById("mapTitle").("display");
-                document.getElementById("mapTitle").className = "mapText"; 
+                document.getElementById("mapTitle").className = "mapText";
                 var updater = this.updateMap.bind(this);
                 this.props.dispatchGetMapData(updater);
                 var datas = this.generateValues();
@@ -114,14 +114,22 @@ class PortalMap extends React.Component {
                 <br />
                 <br />
                 <br />
-                  <button type='submit' className="form_submit_button">Generate <br /> MAP</button>
+                <div className="button_container">
+                  <button type='submit' className="yellow_button">
+                    Generate Map
+                  </button>
+                </div>
                 <br />
                 <br />
                 </div>
-                  <button className="mapReturn" onClick={(e)=>{
-                    e.preventDefault();
-                    browserHistory.push('/portal');
-                  }}>Return to <br /> CHARTS</button>
+                <div className="button_container">
+                  <button className="yellow_button" onClick={(e)=>{
+                      e.preventDefault();
+                      browserHistory.push('/portal');
+                  }}>
+                    Return to Charts
+                  </button>
+                </div>
             </div>
           </form>
           <div className="mapSide" id="myMap">

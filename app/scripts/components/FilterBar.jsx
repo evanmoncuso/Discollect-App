@@ -61,8 +61,8 @@ const FilterBar = (props) => {
           <legend>Giver Rating:</legend>
           <input type="range" />
         </fieldset>
-        <div className="button_holder">
-          <button type="submit" className="form_submit_button">Filter</button>
+        <div className="button_container">
+          <button type="submit" className="blue_button">Filter</button>
         </div>
       </form>
     </div>

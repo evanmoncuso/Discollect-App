@@ -23,6 +23,43 @@ a {
   text-decoration: none;
   color: inherit;
 }
+.button_container {
+  margin: 6px auto;
+  text-align: center;
+  .blue_button {
+    display: inline-block;
+    width: 160px;
+    border: none;
+    border-radius: 0;
+    padding: 12px;
+    font-size: $font-small;
+    background-color: #1565C0;
+    color: $light-font;
+    margin: 0 auto;
+    transition: 0.2s background-color ease-in;
+  }
+  .blue_button:hover {
+    background-color: #073C78;
+  }
+
+  .yellow_button {
+    text-align: center;
+    display: inline-block;
+    border: none;
+    border-radius: 0;
+    padding: 12px;
+    font-size: $font-small;
+    background-color: #FDD835;
+    color: $dark-font;
+    margin: 6px;
+    width: 108px;
+  }
+
+  .yellow_button:hover {
+    background-color: #FBC02D;
+  }
+}
+
 /*
 ====================
 Title bar
@@ -138,17 +175,21 @@ h1 {
     .button_holder {
       margin: 0 auto;
     }
-    .form_submit_button {
-      display: inline-block;
-      width: 160px;
-      border: none;
-      border-radius: 0;
-      padding: 12px;
-      font-size: $font-medium;
-      background-color: #1565C0;
-      color: $light-font;
-      margin: 0 auto;
-    }
+    // .form_submit_button {
+    //   display: inline-block;
+    //   width: 160px;
+    //   border: none;
+    //   border-radius: 0;
+    //   padding: 12px;
+    //   font-size: $font-small;
+    //   background-color: #1565C0;
+    //   color: $light-font;
+    //   margin: 0 auto;
+    //   transition: 0.2s background-color ease-in;
+    // }
+    // .form_submit_button:hover {
+    //   background-color: #073C78;
+    // }
   }
   .listing_flex_box {
 
@@ -203,15 +244,15 @@ Login / Signup
   padding: 12px;
 }
 
-.form_submit_button {
-  border: none;
-  border-radius: 0;
-  padding: 12px;
-  font-size: $font-medium;
-  background-color: #1565C0;
-  color: $light-font;
-  margin: 0 6px;
-}
+// .form_submit_button {
+//   border: none;
+//   border-radius: 0;
+//   padding: 12px;
+//   font-size: $font-medium;
+//   background-color: #1565C0;
+//   color: $light-font;
+//   margin: 0 6px;
+// }
 
 
 /*
@@ -239,6 +280,7 @@ List View
     width: 220px; //
     height: 220px; //
     z-index: 0;
+    transition: 0.2s box-shadow ease-in;
     h2 {
       text-align: center;
       font-family: $title-style;
@@ -261,6 +303,9 @@ List View
       }
     }
   }
+  .listView_entry:hover {
+    box-shadow: 0 1px 2px #333;
+  }
 }
 
 /*
@@ -279,18 +324,6 @@ Listing View
       flex-grow: 0.75;
       img {
         height: 180px;
-      }
-      .button_container {
-        margin: 12px;
-        .listing_view_button {
-          padding: 12px;
-          border: none;
-          border-radius: 0;
-          font-size: $font-small;
-          background-color: #FDD835;
-          color: $dark-font;
-          margin: 0 6px;
-        }
       }
     }
     .listing_description {
@@ -351,21 +384,6 @@ Create Listing View
     background-color: inherit;
     font-size: $font-medium;
     color: $light-font;
-  }
-  .button_container {
-    width: 50%;
-    margin: 0 auto;
-    text-align: center;
-    .form_submit_button {
-      width: 120px;
-      border: none;
-      border-radius: 0;
-      padding: 12px;
-      font-size: $font-medium;
-      background-color: #FDD835;
-      color: $dark-font;
-      margin: 0 6px;
-    }
   }
 }
 
@@ -521,6 +539,23 @@ Dashboard View
   background-color: $dark-gray;
   color: $light-font;
   margin: 0 auto;
+  text-align: center;
+
+  .form_submit_button {
+    display: inline-block;
+    width: 160px;
+    border: none;
+    border-radius: 0;
+    padding: 12px;
+    font-size: $font-medium;
+    background-color: #1565C0;
+    color: $light-font;
+    margin: 0 auto;
+    transition: 0.2s background-color ease-in;
+  }
+  .form_submit_button:hover {
+    background-color: #073C78;
+  }
 }
 /*
 ====================
@@ -596,9 +631,10 @@ Search bar
       width: 36px;
       height: 36px;
     }
+    transition: 0.2s all ease-in;
   }
-  .map_button:active {
-    background-color: green;
+  .map_button:hover {
+    background-color: #840000;
   }
   #category {
     height: 49px;
@@ -625,6 +661,7 @@ Search bar
     padding: 0 12px;
   }
   .search_button {
+    line-height: 22px;
     border: none;
     border-radius: 0;
     height: 48px;
@@ -632,15 +669,21 @@ Search bar
     display: inline-block;
     font-size: 22px;
     background-color: #D50000;
+    border-radius: 0 6px 6px 0;
     color: $light-font;
-    transition: 0.4s all ease-in;
+    transition: 0.2s all ease-in;
     outline: none;
+  }
+  .search_button:hover {
+    background-color: #840000;
+    color: $light-font;
   }
 }
 
 .pagination {
-  position: relative;
-  top: 60px
+  position: absolute;
+  left: 48%;
+  top: 116px
 }
 .page_number {
   line-height: 24px;
@@ -706,7 +749,7 @@ Dev Sign-up Container
 .dev_signup_container {
   background-color: $dark-gray;
   color: $light-font;
-  height: 480px;
+  height: 600px;
   input {
     background-color: #fff;
     color: $dark-font;

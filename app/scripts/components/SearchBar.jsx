@@ -12,7 +12,7 @@ function getSuggestionValue(suggestion) {
 
 function renderSuggestion(suggestion) {
   return (
-    <span>{suggestion._source.title}</span>
+    <span className="suggestion_span">{suggestion._source.title}</span>
   );
 }
 
@@ -155,7 +155,7 @@ class SearchBar extends React.Component {
           </div>
           {
             this.state.modalState ?
-            (<div className='map_modal modal_on'>
+            (<div className='map_modal modal_on' onClick={() => { this.toggleModal(); }}>
               <div className="map_modal_content">
                 <GoogMap changeCoords={this.changeCoords} />
                 <input type="range" name="miles" min="0" max="100" onChange={(e) => { this.handleSlide(e); }} />

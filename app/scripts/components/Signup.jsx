@@ -55,7 +55,9 @@ const Signup = ({ dispatchSignup }) => {
             <label htmlFor="zip">zip code</label>
             <input ref={(node) => { zip = node; }} id="zip" required />
           </div>
-          <button type="submit" className="form_submit_button">create</button>
+          <div className="button_container">
+            <button type="submit" className="blue_button">Login</button>
+          </div>
         </form>
       </div>
     </div>
