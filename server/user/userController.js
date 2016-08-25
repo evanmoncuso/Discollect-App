@@ -11,7 +11,8 @@ module.exports = {
       const oldTotal = Number(user.avgRating) * Number(user.ratingCount);
       const newTotal = Number(oldTotal) + Number(req.body.rating);
       const newCounter = 1 + Number(user.ratingCount);
-      const newAverage = (Number(newTotal) / Number(newCounter)).toFixed(1);
+      const newAverage = (Number(newTotal) / Number(newCounter)).toFixed(1); 
+      console.log('changed up Taker Rating for ', user.username);
       user.update({
         avgRating: newAverage,
         ratingCount: newCounter,
@@ -34,7 +35,8 @@ module.exports = {
       const oldTotal = Number(user.avgRating) * Number(user.ratingCount);
       const newTotal = Number(oldTotal) + Number(req.body.rating);
       const newCounter = 1 + Number(user.ratingCount);
-      const newAverage = (Number(newTotal) / Number(newCounter)).toFixed(1);
+      const newAverage = (Number(newTotal) / Number(newCounter)).toFixed(1); 
+      console.log('changed up Giver Rating for ', user.username);
       user.update({
         avgRating: newAverage,
         ratingCount: newCounter,

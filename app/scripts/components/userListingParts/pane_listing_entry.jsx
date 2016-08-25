@@ -38,7 +38,7 @@ const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGi
                 dispatchUpdateListingTakerRating(item.id, rating);
                 dispatchCloseListing(item.id);
             }}>
-            <div className="auth_input">Will you rate <br />the transaction?
+            <div className="auth_input rater">Once picked up, please rate <br />the collector?
               <label htmlFor="rating" ></label>
                 <select ref={(node) => { rating = node; }} id="rating" required>
                   <option value="5">5 - awesome</option>
@@ -60,17 +60,18 @@ const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGi
             }}>
               Remove
             </button>) : ''} 
+
+
             {(item.status === 2 && !closeable) ? (
               <form encType="multipart/form-data"
               onSubmit={(e) => {
               e.preventDefault();
               rating = rating.value;
-              console.log('getting rating! ', rating)
               dispatchUpdateGiverRating(item.giverId, rating);
               dispatchUpdateListingGiverRating(item.id, rating);
               dispatchFinalCloseListing(item.id);
             }}>
-            <div className="auth_input">Will you rate <br />your discollection?
+            <div className="auth_input rater">Will you rate <br />your transaction?
               <label htmlFor="rating" ></label>
                 <select ref={(node) => { rating = node; }} id="rating" required>
                   <option value="5">5 - awesome</option>

@@ -13,7 +13,7 @@ module.exports = {
       },
     })
     .then(listing => {
-    console.log('back end - updatelistingtakerrating');
+    console.log('back end - update listing taker rating');
       listing.update({
         takerRating: req.body.rating,
       })
@@ -30,7 +30,7 @@ module.exports = {
       },
     })
     .then(listing => {
-    console.log('back end - updatelistingGiverrating')
+    console.log('back end - update listing Giver rating')
       listing.update({
         giverRating: req.body.rating,
       })
@@ -200,7 +200,7 @@ module.exports = {
       })
       .then((items) => {
         res.send(items);
-        mail(req, 'closed');
+        // mail(req, 'closed');
       });
     });
   },

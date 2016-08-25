@@ -37,8 +37,9 @@ const itemActions = {
       })
       .then((res) => res.json())
       .then((res) => {
-        browserHistory.push('/')
-        browserHistory.push('/dashboard')
+          console.log('Listing taker-rating updated');
+        browserHistory.push('/');
+        browserHistory.push('/dashboard');
       })
       .catch((err) => {
         if (err) {
@@ -52,8 +53,8 @@ const itemActions = {
     (dispatch) => {
       const details = {
         listingId: listingId,
-        rating: rating,
-      };
+        rating: rating
+      }; 
       const url = baseUrl + '/api/updateListingGiverRating';
       fetch(url, {
         method: 'PUT',
@@ -64,8 +65,9 @@ const itemActions = {
       })
       .then((res) => res.json())
       .then((res) => {
-        browserHistory.push('/')
-        browserHistory.push('/dashboard')
+        console.log('Listing giver-rating updated');
+        browserHistory.push('/');
+        browserHistory.push('/dashboard');
       })
       .catch((err) => {
         if (err) {
@@ -282,6 +284,7 @@ const itemActions = {
 
   finalCloseListing: (listingID, userID) => (
     (dispatch) => {
+      let listingID = listingID;
       const url = baseUrl + '/api/finalCloseListing';
       fetch(url, {
         method: 'PUT',
@@ -292,6 +295,7 @@ const itemActions = {
       })
       .then(res => res.json())
       .then(res => {
+        console.log('inbetween finalclose and dispatch', res)
         let active = [];
         let pending = [];
         let waiting = [];
@@ -312,6 +316,8 @@ const itemActions = {
           pending: pending || [],
           waiting: waiting || [],
         });
+      })
+      .then(() => {
         browserHistory.push('/')
         browserHistory.push('/dashboard')
       })
