@@ -26,8 +26,7 @@ describe('Portal', () => {
 
 // // import React from 'react';
 // // import { mount, shallow } from 'enzyme';
-// // import Portal from '../app/scripts/components/Portal.jsx';
-
+// // import Portal from '../app/scripts/components/Portal.jsx';            
 // // describe('<Portal />', () => {
 
 

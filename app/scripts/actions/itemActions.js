@@ -136,7 +136,7 @@ const itemActions = {
         },
       })
       .then(res => {
-        dispatch(itemActions.getLatestListings());
+        // dispatch(itemActions.getLatestListings());
         browserHistory.push('/');
       })
       .catch(err => {
@@ -201,7 +201,7 @@ const itemActions = {
       })
       .then((res) => res.json())
       .then((res) => {
-        dispatch(itemActions.getLatestListings());
+        // dispatch(itemActions.getLatestListings());
         fetch(searchUrl + '/' + details.listingID, {
           method: 'DELETE',
         });

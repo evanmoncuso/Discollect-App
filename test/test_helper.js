@@ -24,7 +24,13 @@ function renderComponent(ComponentClass, props = {}, state = {}) {
   const middleware = [thunk];
   const store = createStore(reducer, applyMiddleware(...middleware));
   store.dispatch(userActions.getUserInfo());
-  store.dispatch(itemActions.getLatestListings());
+  store.dispatch(itemActions.elasticSearch({
+  category: 'all-categories',
+  keywords: '',
+  coordinates: '0,0',
+  distance: 10,
+  startFrom: 0,
+}));
 
   const componentInstance = TestUtils.renderIntoDocument(
     <Provider store={ store }>
