@@ -124,6 +124,14 @@ h1 {
   }
 }
 
+.nav_title > a:hover {
+  transition: 0.2s all ease-in;
+}
+
+.nav_title > a:hover {
+  color: #FDD835;
+}
+
 .main_container {
   width: 960px;
   margin: 0 auto;
@@ -136,6 +144,11 @@ h1 {
   margin: 12px;
   font-size: $button-font-large;
   text-align: right;
+  transition: 0.2s all ease-in;
+}
+
+.button:hover {
+  color: #42A5F5;
 }
 
 .user_points {
