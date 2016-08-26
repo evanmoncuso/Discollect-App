@@ -85,7 +85,9 @@ const chartActions = {
   getChartSingleData: (criteria, updater) => (
     (dispatch) => {
       const cat1 = criteria.singleCat;
+      console.log(cat1);
       const timeFrame = criteria.dateRange;
+      console.log(timeFrame)
       const url = `${baseUrl}/api/discollect/category/time?cat=${cat1}&past=${timeFrame}`;
       fetch(url, {
         credentials: 'same-origin',

@@ -1,9 +1,9 @@
 import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
+import secrets from '../../../secrets.js';
 
-const baseUrl = process.env.BASEURL || 'http://localhost:3000';
+const baseUrl = secrets.host || 'http://localhost:3000';
 const searchUrl = 'https://mysterious-coast-57298.herokuapp.com/listings';
-const zipUrl = 'http://zipcodehelper.herokuapp.com/api/state?zip=';
 
 const optimisticSetItems = (items) => (
   {
@@ -23,7 +23,6 @@ const optimisticIndivItem = (item) => (
 const itemActions = {
   updateListingTakerRating: (listingId, rating) => (
     (dispatch) => {
-      console.log('updatin listingtakerrating with ', rating)
       const details = {
         listingId: listingId,
         rating: rating,
@@ -38,7 +37,6 @@ const itemActions = {
       })
       .then((res) => res.json())
       .then((res) => {
-          console.log('Listing taker-rating updated')
         browserHistory.push('/')
         browserHistory.push('/dashboard')
       })
@@ -48,15 +46,14 @@ const itemActions = {
         }
       });
     }
-  ),  
+  ),
 
   updateListingGiverRating: (listingId, rating) => (
     (dispatch) => {
-      console.log('updatin listinggiverrating with ', rating)
       const details = {
         listingId: listingId,
         rating: rating,
-      }; 
+      };
       const url = baseUrl + '/api/updateListingGiverRating';
       fetch(url, {
         method: 'PUT',
@@ -67,7 +64,6 @@ const itemActions = {
       })
       .then((res) => res.json())
       .then((res) => {
-          console.log('Listing giver-rating updated')
         browserHistory.push('/')
         browserHistory.push('/dashboard')
       })
@@ -102,7 +98,6 @@ const itemActions = {
 
   getIndividualListing: (id) => (
     (dispatch) => {
-      console.log('coming through - responsd with: ', id)
       const url = baseUrl + '/api/listing?id=' + id;
       fetch(url, {
         method: 'GET',
@@ -132,6 +127,7 @@ const itemActions = {
       const photoUrl = 'http://photohelper.herokuapp.com/api/createNewListing';
       const url = baseUrl + '/api/createNewListing';
       if (!listingData.picReference) {
+        browserHistory.push('/');
         dispatch(itemActions.postListingAfterPhoto(listingData));
       } else {
         const photoData = {
@@ -151,6 +147,7 @@ const itemActions = {
         .then((res) => res.json())
         .then((response) => {
           listingData.picReference = response;
+          browserHistory.push('/');
           dispatch(itemActions.postListingAfterPhoto(listingData));
         })
       }
@@ -168,8 +165,6 @@ const itemActions = {
         },
       })
       .then(res => {
-        // dispatch(itemActions.getLatestListings());
-        browserHistory.push('/');
       })
       .catch(err => {
         console.log(err);
@@ -260,7 +255,6 @@ const itemActions = {
         let active = [];
         let pending = [];
         let waiting = [];
-        console.log(res);
         for (let item of res) {
           if (item.giverId === userID && item.status === 0) {
             active.push(item);
@@ -313,7 +307,6 @@ const itemActions = {
             waiting.push(item);
           }
         }
-        console.log('inbetween finalclose and dispatch')
         dispatch({
           type: 'GET_USERS_LISTINGS',
           active: active || [],
@@ -356,9 +349,9 @@ const itemActions = {
     }
   ),
 
-  getUsersListings: () => (
+  getUsersListings: (id) => (
     (dispatch) => {
-      const url = baseUrl + '/api/getUsersListings';
+      const url = baseUrl + '/api/getUsersListings?id=' + id;
       fetch(url, {
         credentials: 'same-origin',
       })
@@ -398,7 +391,7 @@ const itemActions = {
       fetch(url, {
         method: 'DELETE',
       })
-      .then(res=> {   
+      .then(res=> {
         browserHistory.push('/')
         browserHistory.push('/dashboard')
          fetch(searchUrl + '/' + listingID, {

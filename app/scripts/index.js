@@ -13,12 +13,11 @@ import Routes from './components/Routes.jsx';
 import itemActions from './actions/itemActions.js';
 import userActions from './actions/userActions.js';
 
-const middleware = [thunk, logger()]; //
+const middleware = [thunk, logger()];
 
 const store = createStore(reducer, applyMiddleware(...middleware));
 
 store.dispatch(userActions.getUserInfo());
-// setInterval(() => {
 store.dispatch(itemActions.elasticSearch({
   category: 'all-categories',
   keywords: '',
@@ -26,7 +25,6 @@ store.dispatch(itemActions.elasticSearch({
   distance: 10,
   startFrom: 0,
 }));
-// }, 3000);
 
 const ProvidedApp = () => (
   <Provider store={store}>

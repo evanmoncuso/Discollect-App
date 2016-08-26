@@ -1,8 +1,8 @@
 import fetch from 'isomorphic-fetch';
-
 import { browserHistory } from 'react-router';
+import secrets from '../../../secrets.js';
 
-const app = process.env.BASEURL || 'http://localhost:3000';
+const app = secrets.host || 'http://localhost:3000';
 
 const optimisticSignIn = ({ zipcode, username, id, picReference, email }) => (
   {
@@ -90,7 +90,6 @@ const userActions = {
         takerId: takerId,
         rating: rating
       };
-      console.log('Taker-rating updating');
       const url = app + '/api/updateTakerRating';
       fetch(url, {
         method: 'PUT',
@@ -105,14 +104,14 @@ const userActions = {
         }
       })
     }
-  ),  
+  ),
 
-  updateGiverRating: (giverId, rating) => (    
+  updateGiverRating: (giverId, rating) => (
     (dispatch) => {
       const details = {
         giverId: giverId,
         rating: rating
-      }; 
+      };
       console.log('giver-rating updating');
       const url = app + '/api/updateGiverRating';
       fetch(url, {
@@ -178,16 +177,23 @@ const userActions = {
     }
   ),
 
-  getUserInfo: () => (
+  getUserInfo: (userId) => (
     (dispatch) => {
-      const url = `${app}/api/getUserInfo`;
+      let url;
+      if (userId) {
+        url = `${app}/api/getUserInfo?id=${userId}`;
+      } else {
+        url = `${app}/api/getUserInfo`;
+      }
       fetch(url, {
         method: 'GET',
         credentials: 'same-origin',
       })
       .then((res) => res.json())
       .then((user) => {
-        dispatch(optimisticSignIn(user));
+        if (user) {
+          dispatch(optimisticSignIn(user));
+        }
       });
     }
   ),
