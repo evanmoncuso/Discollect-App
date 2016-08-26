@@ -13,7 +13,7 @@ const hideSearch = {
   portalMap: true,
 };
 
-const NavBar = ({ username }) => {
+const NavBar = ({ username, image }) => {
   let displayed = username ? <Registered username={username} /> : <Unregistered />;
   let welcome = username ? <h4>Welcome {username}</h4> : '';
   return (
@@ -38,6 +38,7 @@ Registered.propTypes = {
 const mapStateToProps = (state) => (
   {
     username: state.users.username,
+    image: state.users.picReference,
   }
 );
 

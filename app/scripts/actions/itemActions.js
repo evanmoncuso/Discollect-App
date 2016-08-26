@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
 
 
-const baseUrl = 'http://discollect.net' || 'http://localhost:3000';
+const baseUrl = 'http://localhost:3000'; //'http://discollect.net' ||
 const searchUrl = 'https://mysterious-coast-57298.herokuapp.com/listings';
 
 const optimisticSetItems = (items) => (
@@ -79,16 +79,26 @@ const itemActions = {
 
   getSQLListings: (query) => (
     (dispatch) => {
-      const url = baseUrl + '/api/getAllListings';
+      const url = baseUrl + '/api/getFilteredListings';
       fetch(url, {
-        method: 'GET',
+        method: 'PUT',
+        body: JSON.stringify(query),
         headers: {
           'Content-Type': 'application/json',
         },
       })
       .then((res) => res.json())
       .then((response) => {
-        dispatch(optimisticSetItems(response));
+        // console.log('!!!!!!!!!', response);
+        dispatch({
+          type: 'GET_ITEMS',
+          items: response,
+        });
+        dispatch({
+          type: 'SET_SEARCH_HITS',
+          payload: 1,
+        })
+        // browserHistory.push('/');
       })
       .catch((err) => {
         if (err) {
@@ -97,6 +107,7 @@ const itemActions = {
       });
     }
   ),
+
 
   getIndividualListing: (id) => (
     (dispatch) => {

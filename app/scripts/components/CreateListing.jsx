@@ -63,11 +63,11 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
           }}
         >
           <div className="auth_input">
-            <label htmlFor="title">Title</label>
-            <input ref={(node) => { title = node; }} id="title" required />
+            <label htmlFor="title">Title:</label>
+            <input ref={(node) => { title = node; }} id="title" type='text' required />
           </div>
           <div className="auth_input">
-            <label htmlFor="category">Categories</label>
+            <label htmlFor="category">Categories:</label>
             <select ref={(node) => { category = node; }} id="category" required>
               <option value="all-categories">All Categories</option>
               <option value="appliances">Appliances</option>
@@ -83,7 +83,7 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
             <GoogMap changeCoords={changeCoords} />
           </div>
           <div className="auth_input">
-            <label htmlFor="condition" >Condition</label><br />
+            <label htmlFor="condition" >Condition:</label><br />
             <select ref={(node) => { condition = node; }} id="condition" required>
               <option value="5">New</option>
               <option value="4">Excellent</option>
@@ -93,17 +93,19 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
             </select>
           </div>
           <div className="image_input">
-            <label htmlFor="image">Image</label>
+            <label htmlFor="image">Upload Image</label>
             <input
               ref={(node) => { image = node; }}
-              name="photo"
+              name="image"
+              id="image"
               type="file"
               accept="image/*"
               onChange={handleChange}
+              className="file_input"
             />
           </div>
           <div className="auth_input">
-            <label htmlFor="description">Description</label>
+            <label htmlFor="description">Description:</label>
             <textarea ref={(node) => { description = node; }} id="description" required />
           </div>
           <div className="button_container">

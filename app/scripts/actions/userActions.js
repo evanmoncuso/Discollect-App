@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
 
-const app = 'http://discollect.net' || 'http://localhost:3000';
+const app = 'http://localhost:3000'; //'http://discollect.net' || 
 
 const optimisticSignIn = ({ zipcode, username, id, picReference, email }) => (
   {
@@ -178,6 +178,7 @@ const userActions = {
 
   getUserInfo: (userId) => (
     (dispatch) => {
+      console.log('~~~~~~~~~~~', userId);
       let url;
       if (userId) {
         url = `${app}/api/getUserInfo?id=${userId}`;
@@ -191,6 +192,7 @@ const userActions = {
       .then((res) => res.json())
       .then((user) => {
         if (user) {
+          console.log('~~~~~~~~~~~', user);
           dispatch(optimisticSignIn(user));
         }
       });
