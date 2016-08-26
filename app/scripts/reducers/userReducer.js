@@ -5,6 +5,7 @@ const initUserState = {
   username: null,
   password: null,
   picReference: null,
+  avgRating: 0,
   dev: {},
 };
 
@@ -14,7 +15,9 @@ const initProfileView = {
   rating: '',
   picReference: '',
   email: '',
+
 };
+
 
 const users = (state = initUserState, action) => {
   switch (action.type) {
@@ -25,6 +28,7 @@ const users = (state = initUserState, action) => {
         username: action.username,
         picReference: action.picReference,
         email: action.email,
+        avgRating: action.avgRating,
       });
     case 'ID_USER':
       return Object.assign({}, state, {

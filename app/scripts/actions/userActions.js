@@ -1,9 +1,10 @@
 import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
 
-const app = 'http://localhost:3000'; //'http://discollect.net' || 
 
-const optimisticSignIn = ({ zipcode, username, id, picReference, email }) => (
+// const app = 'http://discollect.net' || 'http://localhost:3000';
+const app = 'http://localhost:3000';
+const optimisticSignIn = ({ zipcode, avgRating, username, id, picReference, email }) => (
   {
     type: 'LOGIN_VALID',
     zipcode,
@@ -11,6 +12,7 @@ const optimisticSignIn = ({ zipcode, username, id, picReference, email }) => (
     email,
     id,
     picReference,
+    avgRating,
   }
 );
 

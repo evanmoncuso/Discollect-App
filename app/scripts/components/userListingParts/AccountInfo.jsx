@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import userActions from '../../actions/userActions.js';
 import itemActions from '../../actions/itemActions.js';
 
-const AccountInfo = ({ username, dispatchGetUserHistory, dispatchIndivItem, toggleHistory, view, userId, dispatchUploadProfilePic, picReference}) => {
+const AccountInfo = ({ username, avgRating, dispatchGetUserHistory, dispatchIndivItem, toggleHistory, view, userId, dispatchUploadProfilePic, picReference}) => {
   let image;
   let filename;
   let filetype;
@@ -26,6 +26,7 @@ const AccountInfo = ({ username, dispatchGetUserHistory, dispatchIndivItem, togg
         <img src={profileImage} alt="user" height={320} />
       </div>
       <div className="about">{username ? username : 'NOT ACTIVE USER'}</div>
+      <div className="about">Rating: {avgRating ? avgRating : ''}</div>
         <div className="button_container">
           <button
             className="blue_button view"
@@ -85,6 +86,7 @@ AccountInfo.propTypes = {
       username: state.users.username,
       userId: state.users.id,
       picReference: state.users.picReference,
+      avgRating: state.users.avgRating,
     };
   };
 

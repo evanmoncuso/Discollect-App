@@ -71,7 +71,7 @@ class PortalMap extends React.Component {
       <div className="main_container developerContainer">
         <div className="wrapperDiv">
             <div className="mapVis" id='mapTitle'>
-            Density of <br />Discollect users <br />
+            Density of <br />Discollect users, <br />
             state by state.
             </div>
           <form encType="multipart/form-data"
