@@ -127,7 +127,6 @@ const itemActions = {
       const photoUrl = 'http://photohelper.herokuapp.com/api/createNewListing';
       const url = baseUrl + '/api/createNewListing';
       if (!listingData.picReference) {
-        browserHistory.push('/');
         dispatch(itemActions.postListingAfterPhoto(listingData));
       } else {
         const photoData = {
@@ -147,7 +146,6 @@ const itemActions = {
         .then((res) => res.json())
         .then((response) => {
           listingData.picReference = response;
-          browserHistory.push('/');
           dispatch(itemActions.postListingAfterPhoto(listingData));
         })
       }
@@ -165,6 +163,7 @@ const itemActions = {
         },
       })
       .then(res => {
+        browserHistory.push('/');
       })
       .catch(err => {
         console.log(err);
