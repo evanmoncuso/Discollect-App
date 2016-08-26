@@ -32,6 +32,7 @@ module.exports = {
       },
     })
     .then((user) => {
+      console.log('username in giver rating is ', user.username)
       const oldTotal = Number(user.avgRating) * Number(user.ratingCount);
       const newTotal = Number(oldTotal) + Number(req.body.rating);
       const newCounter = 1 + Number(user.ratingCount);

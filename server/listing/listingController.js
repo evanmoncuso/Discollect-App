@@ -30,7 +30,7 @@ module.exports = {
       },
     })
     .then(listing => {
-    console.log('back end - update listing Giver rating')
+    console.log('back end - update listing Giver rating', listing.id)
       listing.update({
         giverRating: req.body.rating,
       })

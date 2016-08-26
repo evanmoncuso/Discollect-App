@@ -241,12 +241,13 @@ const itemActions = {
     }
   ),
 
-  closeListing: (listingID, userID) => (
+  closeListing: (listingId, userID) => (
     (dispatch) => {
       const url = baseUrl + '/api/closeListing';
+      console.log('just close listingId: ', listingId, userID);
       fetch(url, {
         method: 'PUT',
-        body: JSON.stringify({ listingID }),
+        body: JSON.stringify({ listingID: listingId }),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -282,13 +283,13 @@ const itemActions = {
     }
   ),
 
-  finalCloseListing: (listingID, userID) => (
+  finalCloseListing: (listingId, userID) => (
     (dispatch) => {
-      let listingID = listingID;
+      console.log('listingId: ', listingId, userID);
       const url = baseUrl + '/api/finalCloseListing';
       fetch(url, {
         method: 'PUT',
-        body: JSON.stringify({ listingID }),
+        body: JSON.stringify({ listingID: listingId }),
         headers: {
           'Content-Type': 'application/json',
         },

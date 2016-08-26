@@ -33,10 +33,11 @@ const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGi
               <form encType="multipart/form-data"
               onSubmit={(e) => {
               e.preventDefault();
+              console.log('listing id of panel ', item.id)
               rating = rating.value;
                 dispatchUpdateTakerRating(item.takerId, rating);
                 dispatchUpdateListingTakerRating(item.id, rating);
-                dispatchCloseListing(item.id);
+                dispatchCloseListing(item.id, userID);
             }}>
             <div className="auth_input rater">Once picked up, please rate <br />the collector?
               <label htmlFor="rating" ></label>
@@ -67,9 +68,10 @@ const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGi
               onSubmit={(e) => {
               e.preventDefault();
               rating = rating.value;
+              console.log('giver rating details:', item.id, userID)
               dispatchUpdateGiverRating(item.giverId, rating);
               dispatchUpdateListingGiverRating(item.id, rating);
-              dispatchFinalCloseListing(item.id);
+              dispatchFinalCloseListing(item.id, userID);
             }}>
             <div className="auth_input rater">Will you rate <br />your transaction?
               <label htmlFor="rating" ></label>
@@ -103,11 +105,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatchCloseListing: (listingId) => {
-      dispatch(itemActions.closeListing(listingId));
+    dispatchCloseListing: (listingId, userID) => {
+      dispatch(itemActions.closeListing(listingId, userID));
     },
-    dispatchFinalCloseListing: (listingId) => {
-      dispatch(itemActions.finalCloseListing(listingId));
+    dispatchFinalCloseListing: (listingId, userID) => {
+      dispatch(itemActions.finalCloseListing(listingId, userID));
     },
     dispatchRemoveListing: (listingId) => {
       dispatch(itemActions.removeListing(listingId));
