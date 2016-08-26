@@ -8,7 +8,7 @@ import userActions from '../../actions/userActions.js';
 
 
 
-const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGiverRating, dispatchUpdateListingTakerRating, dispatchUpdateTakerRating,dispatchUpdateGiverRating, userID, dispatchCloseListing, dispatchFinalCloseListing, dispatchRemoveListing }) => {
+const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGiverRating, dispatchUpdateListingTakerRating, dispatchUpdateTakerRating,dispatchUpdateGiverRating, userID, dispatchCloseListing, dispatchFinalCloseListing, dispatchRemoveListing, dispatchIndivItem }) => {
   let rating;
   closeable = closeable || false;
   removeable = removeable || false;
@@ -22,45 +22,33 @@ const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGi
             <span className="entry_desc">zipcode: {item.zipcode}</span>
           </div>
           <div className="entry_buttons">
-            <Link
-              className="pane_listing_button view"
-              to={'/listing' + item.id}
-            >
-              View
-            </Link>
-
-            {closeable ? (
-              <form encType="multipart/form-data"
-              onSubmit={(e) => {
-              e.preventDefault();
-              console.log('listing id of panel ', item.id)
-              rating = rating.value;
-                dispatchUpdateTakerRating(item.takerId, rating);
-                dispatchUpdateListingTakerRating(item.id, rating);
-                dispatchCloseListing(item.id, userID);
-            }}>
-            <div className="auth_input rater">Once picked up, please rate <br />the collector?
-              <label htmlFor="rating" ></label>
-                <select ref={(node) => { rating = node; }} id="rating" required>
-                  <option value="5">5 - awesome</option>
-                  <option value="4">4 - good</option>
-                  <option value="3">3 - okay</option>
-                  <option value="2">2 - not great</option>
-                  <option value="1">1 - awful</option>
-                </select>
-              <button type="submit">Submit</button>
-              <br />
+            <div className="button_container">
+              <button
+                className="yellow_button view"
+                onClick={() => {
+                  dispatchIndivItem(item.id);
+              }}>
+                View
+              </button>
             </div>
-            </form>
-            ) : ''}
-
-            {removeable ? (<button
-              className="pane_listing_button remove"
-              onClick={() => {
-                dispatchRemoveListing(item.id);
-            }}>
-              Remove
-            </button>) : ''}
+            {closeable ? (<div className="button_container">
+              <button
+                className="yellow_button close"
+                onClick={() => {
+                  dispatchCloseListing(item.id);
+              }}>
+                Picked Up
+              </button>
+            </div>) : ''}
+            {removeable ? (<div className="button_container">
+              <button
+                className="yellow_button remove"
+                onClick={() => {
+                  dispatchRemoveListing(item.id);
+              }}>
+                Remove
+              </button>
+            </div>) : ''}
             {(item.status === 2 && !closeable) ? (
               <form encType="multipart/form-data"
               onSubmit={(e) => {
@@ -127,7 +115,6 @@ const mapDispatchToProps = (dispatch) => {
     dispatchIndivItem: (id) => {
       dispatch(itemActions.getIndividualListing(id));
     }
-
   };
 };
 
