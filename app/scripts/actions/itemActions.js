@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 
 // const app = 'http://discollect.net';
 const app = 'http://localhost:3000';
+
 const searchUrl = 'https://mysterious-coast-57298.herokuapp.com/listings';
 
 const optimisticSetItems = (items) => (
@@ -270,7 +271,7 @@ const itemActions = {
             pending.push(item);
           } else if (item.takerId === userID && item.status === 1) {
             waiting.push(item);
-          } else if (item.takerId === response.id && item.status === 2) {
+          } else if (item.takerId === userID && item.status === 2) {
             waiting.push(item);
           }
         }
@@ -311,7 +312,7 @@ const itemActions = {
             pending.push(item);
           } else if (item.takerId === userID && item.status === 1) {
             waiting.push(item);
-          } else if (item.takerId === response.id && item.status === 2) {
+          } else if (item.takerId === userID && item.status === 2) {
             waiting.push(item);
           }
         }

@@ -5,9 +5,6 @@ import { Link } from 'react-router';
 import itemActions from '../../actions/itemActions.js';
 import userActions from '../../actions/userActions.js';
 
-
-
-
 const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGiverRating, dispatchUpdateListingTakerRating, dispatchUpdateTakerRating,dispatchUpdateGiverRating, userID, dispatchCloseListing, dispatchFinalCloseListing, dispatchRemoveListing, dispatchIndivItem }) => {
   let rating;
   closeable = closeable || false;
@@ -31,15 +28,29 @@ const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGi
                 View
               </button>
             </div>
-            {closeable ? (<div className="button_container">
-              <button
-                className="yellow_button close"
-                onClick={() => {
-                  dispatchCloseListing(item.id);
-              }}>
-                Picked Up
-              </button>
-            </div>) : ''}
+            {closeable ? (
+              <form encType="multipart/form-data"
+              onSubmit={(e) => {
+              e.preventDefault();
+              rating = rating.value;
+                dispatchUpdateTakerRating(item.takerId, rating);
+                dispatchUpdateListingTakerRating(item.id, rating);
+                dispatchCloseListing(item.id, userID);
+            }}>
+            <div className="auth_input rater">Once picked up, please rate <br />the collector?
+              <label htmlFor="rating" ></label>
+                <select ref={(node) => { rating = node; }} id="rating" required>
+                  <option value="5">5 - awesome</option>
+                  <option value="4">4 - good</option>
+                  <option value="3">3 - okay</option>
+                  <option value="2">2 - not great</option>
+                  <option value="1">1 - awful</option>
+                </select>
+              <button type="submit">Submit</button>
+              <br />
+            </div>
+            </form>
+            ) : ''}
             {removeable ? (<div className="button_container">
               <button
                 className="yellow_button remove"
@@ -54,7 +65,6 @@ const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGi
               onSubmit={(e) => {
               e.preventDefault();
               rating = rating.value;
-              console.log('giver rating details:', item.id, userID)
               dispatchUpdateGiverRating(item.giverId, rating);
               dispatchUpdateListingGiverRating(item.id, rating);
               dispatchFinalCloseListing(item.id, userID);
