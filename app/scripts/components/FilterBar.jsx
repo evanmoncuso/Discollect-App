@@ -63,10 +63,10 @@ const FilterBar = (props) => {
             <label htmlFor="zip">Zip Code</label>
             <input type="text" ref={(node) => { _zip = node; }} />
         </fieldset>
-        <div className="button_holder button_container">
+        <div className="button_container">
           <button
             type="submit"
-            className="form_submit_button blue_button"
+            className="blue_button"
           >Filter</button>
         </div>
       </form>
@@ -87,4 +87,3 @@ const mapDispatchToProps = (dispatch) => (
 );
 
 export default connect(null, mapDispatchToProps)(FilterBar);
-

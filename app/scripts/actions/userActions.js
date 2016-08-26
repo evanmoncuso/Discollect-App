@@ -1,9 +1,9 @@
 import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
 
-
-// const app = 'http://discollect.net' || 'http://localhost:3000';
+// const app = 'http://discollect.net';
 const app = 'http://localhost:3000';
+
 const optimisticSignIn = ({ zipcode, avgRating, username, id, picReference, email }) => (
   {
     type: 'LOGIN_VALID',
@@ -113,7 +113,6 @@ const userActions = {
         giverId: giverId,
         rating: rating
       };
-      console.log('giver-rating updating');
       const url = app + '/api/updateGiverRating';
       fetch(url, {
         method: 'PUT',
@@ -180,7 +179,6 @@ const userActions = {
 
   getUserInfo: (userId) => (
     (dispatch) => {
-      console.log('~~~~~~~~~~~', userId);
       let url;
       if (userId) {
         url = `${app}/api/getUserInfo?id=${userId}`;
@@ -194,7 +192,6 @@ const userActions = {
       .then((res) => res.json())
       .then((user) => {
         if (user) {
-          console.log('~~~~~~~~~~~', user);
           dispatch(optimisticSignIn(user));
         }
       });

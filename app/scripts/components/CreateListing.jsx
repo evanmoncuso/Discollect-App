@@ -9,7 +9,7 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
   let category;
   let description;
   let condition;
-  let latLng = '0, 0';
+  let latLng = '0,0';
   let fileTypeLocal = null;
   let filenameLocal = null;
   let imageLocal = null;
@@ -59,7 +59,7 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
             category.value = 'all-categories';
             description.value = '';
             condition.value = '5';
-            latLng = '0, 0';
+            latLng = '0,0';
           }}
         >
           <div className="auth_input">

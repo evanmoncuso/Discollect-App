@@ -1,10 +1,9 @@
 import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
 
+// const app = 'http://discollect.net';
+const app = 'http://localhost:3000';
 
-
-// const baseUrl = 'http://discollect.net' || 'http://localhost:3000';
-const baseUrl = 'http://discollect.net';
 const searchUrl = 'https://mysterious-coast-57298.herokuapp.com/listings';
 
 const optimisticSetItems = (items) => (
@@ -29,7 +28,7 @@ const itemActions = {
         listingId: listingId,
         rating: rating,
       };
-      const url = baseUrl + '/api/updateListingTakerRating';
+      const url = app + '/api/updateListingTakerRating';
       fetch(url, {
         method: 'PUT',
         body: JSON.stringify(details),
@@ -39,7 +38,6 @@ const itemActions = {
       })
       .then((res) => res.json())
       .then((res) => {
-          console.log('Listing taker-rating updated');
         browserHistory.push('/');
         browserHistory.push('/dashboard');
       })
@@ -55,9 +53,9 @@ const itemActions = {
     (dispatch) => {
       const details = {
         listingId: listingId,
-        rating: rating
-      }; 
-      const url = baseUrl + '/api/updateListingGiverRating';
+        rating: rating,
+      };
+      const url = app + '/api/updateListingGiverRating';
       fetch(url, {
         method: 'PUT',
         body: JSON.stringify(details),
@@ -67,7 +65,6 @@ const itemActions = {
       })
       .then((res) => res.json())
       .then((res) => {
-        console.log('Listing giver-rating updated');
         browserHistory.push('/');
         browserHistory.push('/dashboard');
       })
@@ -81,7 +78,7 @@ const itemActions = {
 
   getSQLListings: (query) => (
     (dispatch) => {
-      const url = baseUrl + '/api/getFilteredListings';
+      const url = app + '/api/getAllListings';
       fetch(url, {
         method: 'PUT',
         body: JSON.stringify(query),
@@ -91,7 +88,6 @@ const itemActions = {
       })
       .then((res) => res.json())
       .then((response) => {
-        // console.log('!!!!!!!!!', response);
         dispatch({
           type: 'GET_ITEMS',
           items: response,
@@ -100,7 +96,6 @@ const itemActions = {
           type: 'SET_SEARCH_HITS',
           payload: 1,
         })
-        // browserHistory.push('/');
       })
       .catch((err) => {
         if (err) {
@@ -113,7 +108,7 @@ const itemActions = {
 
   getIndividualListing: (id) => (
     (dispatch) => {
-      const url = baseUrl + '/api/listing?id=' + id;
+      const url = app + '/api/listing?id=' + id;
       fetch(url, {
         method: 'GET',
         headers: {
@@ -140,7 +135,7 @@ const itemActions = {
   postNewListing: (listingData) => (
     (dispatch) => {
       const photoUrl = 'http://photohelper.herokuapp.com/api/createNewListing';
-      const url = baseUrl + '/api/createNewListing';
+      const url = app + '/api/createNewListing';
       if (!listingData.picReference) {
         dispatch(itemActions.postListingAfterPhoto(listingData));
       } else {
@@ -169,7 +164,7 @@ const itemActions = {
 
   postListingAfterPhoto: (data) => (
     (dispatch) => {
-      const url = baseUrl + '/api/createNewListing';
+      const url = app + '/api/createNewListing';
       fetch(url, {
         method: 'POST',
         body: JSON.stringify(data),
@@ -231,7 +226,7 @@ const itemActions = {
   updateListingStatus: (details) => (
     (dispatch) => {
       const num = JSON.stringify(details);
-      const url = baseUrl + '/api/update';
+      const url = app + '/api/update';
       fetch(url, {
         method: 'PUT',
         body: num,
@@ -256,8 +251,7 @@ const itemActions = {
 
   closeListing: (listingId, userID) => (
     (dispatch) => {
-      const url = baseUrl + '/api/closeListing';
-      console.log('just close listingId: ', listingId, userID);
+      const url = app + '/api/closeListing';
       fetch(url, {
         method: 'PUT',
         body: JSON.stringify({ listingID: listingId }),
@@ -277,7 +271,7 @@ const itemActions = {
             pending.push(item);
           } else if (item.takerId === userID && item.status === 1) {
             waiting.push(item);
-          } else if (item.takerId === response.id && item.status === 2) {
+          } else if (item.takerId === userID && item.status === 2) {
             waiting.push(item);
           }
         }
@@ -298,8 +292,7 @@ const itemActions = {
 
   finalCloseListing: (listingId, userID) => (
     (dispatch) => {
-      console.log('listingId: ', listingId, userID);
-      const url = baseUrl + '/api/finalCloseListing';
+      const url = app + '/api/finalCloseListing';
       fetch(url, {
         method: 'PUT',
         body: JSON.stringify({ listingID: listingId }),
@@ -309,7 +302,6 @@ const itemActions = {
       })
       .then(res => res.json())
       .then(res => {
-        console.log('inbetween finalclose and dispatch', res)
         let active = [];
         let pending = [];
         let waiting = [];
@@ -320,7 +312,7 @@ const itemActions = {
             pending.push(item);
           } else if (item.takerId === userID && item.status === 1) {
             waiting.push(item);
-          } else if (item.takerId === response.id && item.status === 2) {
+          } else if (item.takerId === userID && item.status === 2) {
             waiting.push(item);
           }
         }
@@ -343,7 +335,7 @@ const itemActions = {
 
   getUserHistory: (userId) => (
     (dispatch) => {
-       const url = baseUrl + '/api/getOldListings';
+       const url = app + '/api/getOldListings';
       fetch(url, {
         method: 'PUT',
         credentials: 'same-origin',
@@ -370,7 +362,7 @@ const itemActions = {
 
   getUsersListings: (id) => (
     (dispatch) => {
-      const url = baseUrl + '/api/getUsersListings?id=' + id;
+      const url = app + '/api/getUsersListings?id=' + id;
       fetch(url, {
         credentials: 'same-origin',
       })
@@ -406,7 +398,7 @@ const itemActions = {
 
   removeListing: (listingID) => (
     (dispatch) => {
-      const url = baseUrl + '/api/removeListing?listingID='+listingID;
+      const url = app + '/api/removeListing?listingID='+listingID;
       fetch(url, {
         method: 'DELETE',
       })

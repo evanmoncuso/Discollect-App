@@ -5,10 +5,7 @@ import { Link } from 'react-router';
 import itemActions from '../../actions/itemActions.js';
 import userActions from '../../actions/userActions.js';
 
-
-
-
-const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGiverRating, dispatchUpdateListingTakerRating, dispatchUpdateTakerRating,dispatchUpdateGiverRating, userID, dispatchCloseListing, dispatchFinalCloseListing, dispatchRemoveListing }) => {
+const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGiverRating, dispatchUpdateListingTakerRating, dispatchUpdateTakerRating,dispatchUpdateGiverRating, userID, dispatchCloseListing, dispatchFinalCloseListing, dispatchRemoveListing, dispatchIndivItem }) => {
   let rating;
   closeable = closeable || false;
   removeable = removeable || false;
@@ -22,18 +19,19 @@ const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGi
             <span className="entry_desc">zipcode: {item.zipcode}</span>
           </div>
           <div className="entry_buttons">
-            <Link
-              className="pane_listing_button view"
-              to={'/listing' + item.id}
-            >
-              View
-            </Link>
-
+            <div className="button_container">
+              <button
+                className="yellow_button view"
+                onClick={() => {
+                  dispatchIndivItem(item.id);
+              }}>
+                View
+              </button>
+            </div>
             {closeable ? (
               <form encType="multipart/form-data"
               onSubmit={(e) => {
               e.preventDefault();
-              console.log('listing id of panel ', item.id)
               rating = rating.value;
                 dispatchUpdateTakerRating(item.takerId, rating);
                 dispatchUpdateListingTakerRating(item.id, rating);
@@ -53,22 +51,20 @@ const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGi
             </div>
             </form>
             ) : ''}
-
-            {removeable ? (<button
-              className="pane_listing_button remove"
-              onClick={() => {
-                dispatchRemoveListing(item.id);
-            }}>
-              Remove
-            </button>) : ''} 
-
-
+            {removeable ? (<div className="button_container">
+              <button
+                className="yellow_button remove"
+                onClick={() => {
+                  dispatchRemoveListing(item.id);
+              }}>
+                Remove
+              </button>
+            </div>) : ''}
             {(item.status === 2 && !closeable) ? (
               <form encType="multipart/form-data"
               onSubmit={(e) => {
               e.preventDefault();
               rating = rating.value;
-              console.log('giver rating details:', item.id, userID)
               dispatchUpdateGiverRating(item.giverId, rating);
               dispatchUpdateListingGiverRating(item.id, rating);
               dispatchFinalCloseListing(item.id, userID);
@@ -129,7 +125,6 @@ const mapDispatchToProps = (dispatch) => {
     dispatchIndivItem: (id) => {
       dispatch(itemActions.getIndividualListing(id));
     }
-
   };
 };
 

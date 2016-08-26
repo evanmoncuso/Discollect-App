@@ -17,6 +17,7 @@ body {
   box-sizing: border-box;
   font-family: $primary-font;
   background-color: #e7e7e7;
+  font-weight: lighter;
 }
 
 a {
@@ -33,13 +34,13 @@ a {
     border-radius: 3px;
     padding: 12px;
     font-size: $font-small;
-    background-color: #1565C0;
+    background-color: $blue;
     color: $light-font;
     margin: 0 auto;
     transition: 0.2s background-color ease-in;
   }
   .blue_button:hover {
-    background-color: #073C78;
+    background-color: $blue-dark;
   }
 
   .yellow_button {
@@ -49,14 +50,14 @@ a {
     border-radius: 0;
     padding: 12px;
     font-size: $font-small;
-    background-color: #FDD835;
+    background-color: $yellow;
     color: $dark-font;
     margin: 6px;
     width: 108px;
   }
 
   .yellow_button:hover {
-    background-color: #FBC02D;
+    background-color: $yellow-dark;
   }
 }
 
@@ -94,6 +95,7 @@ nav * {
 
 h1 {
   font-size: $title-font;
+  font-weight: 100;
   line-height: 54px;
   text-align: center;
   font-family: $primary-font;
@@ -129,7 +131,7 @@ h1 {
 }
 
 .nav_title > a:hover {
-  color: #FDD835;
+  color: $yellow;
 }
 
 .main_container {
@@ -230,6 +232,7 @@ List View
      float: left;
      background-color: white;
      padding: 12px;
+     border: 1px solid $light-gray;
      margin-right: 18px;
      margin-top: 12px;
      fieldset {
@@ -241,6 +244,7 @@ List View
        font-weight: bold;
      }
      .condition_container {
+       font-weight: 100;
        width: 120px;
        margin: 0 auto;
        text-align: right;
@@ -275,20 +279,22 @@ List View
   width: 960px;
   margin: 0 auto;
   .listView_entry {
-    font-family: $secondary-font;
+    font-weight: 100;
     color: $dark-font;
     background-color: #fff;
     padding: 6px;
+    border: 1px solid $light-gray;
     margin: 12px 6px;
-    width: 220px; //
-    height: 220px; //
+    width: 220px;
+    height: 220px;
     z-index: 0;
-    transition: 0.2s box-shadow ease-in;
     h2 {
+      height: 64px;
       text-align: center;
       font-family: $title-style;
-      font-size: $font-large;
+      font-size: $font-medium;
       line-height: 32px;
+      transition: 0.3s all ease-in;
     }
     .data_container {
       display: flex;
@@ -297,6 +303,11 @@ List View
         img {
           width: 120px;
         }
+      }
+      .created_ago {
+        font-size: $font-small;
+        font-weight: 100;
+        text-align: center;
       }
       .entry_text {
         flex-grow: 2;
@@ -307,7 +318,9 @@ List View
     }
   }
   .listView_entry:hover {
-    box-shadow: 0 1px 2px #333;
+    h2 {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -487,7 +500,7 @@ Dashboard View
     border-radius: 0;
     margin: 12px auto;
     font-size: $font-medium;
-    background-color: #1565C0;
+    background-color: $blue;
     color: $light-font;
   }
 }
@@ -506,7 +519,7 @@ Dashboard View
   border-radius: 0;
   padding: 12px;
   font-size: $font-small;
-  background-color: #FDD835;
+  background-color: $yellow;
   color: $dark-font;
   margin: 6px;
   width: 108px;
@@ -565,7 +578,7 @@ Dashboard View
     font-size: $font-small;
     width: 120px;
     padding: 22px;
-    background-color: #FDD835;
+    background-color: $yellow;
     color: $dark-font;
     text-align: center;
   }
@@ -597,7 +610,7 @@ Dashboard View
     border-radius: 0;
     padding: 12px;
     font-size: $font-medium;
-    background-color: #1565C0;
+    background-color: $blue;
     color: $light-font;
     margin: 0 auto;
     transition: 0.2s background-color ease-in;
@@ -724,7 +737,7 @@ Search bar
     border: none;
     display: inline-block;
     font-size: $font-medium;
-    background-color: #C74029;
+    background-color: $red;
     color: $light-font;
     outline: none;
     transition: 0.2s all ease-in;
@@ -744,7 +757,7 @@ Search bar
   }
   .search_button:hover,
   .map_button:hover {
-    background-color: #840000;
+    background-color: $red-dark;
     color: $light-font;
   }
 }
@@ -770,7 +783,7 @@ Search bar
 
 }
 .current {
-  background-color: #D50000;
+  background-color: $red;
   color: white;
 }
 /*
@@ -863,7 +876,7 @@ Dev Sign-up Container
   }
   .api_key_warning {
     font-size: $font-small;
-    color: #D50000;
+    color: $red;
   }
 }
 
@@ -1059,7 +1072,7 @@ Footer
 
 .rater {
   margin-top: 0;
-  background-color: #FF2615;
+  background-color: $red;
   text-align: center;
   display: inline-block;
   padding: 6px 0;
