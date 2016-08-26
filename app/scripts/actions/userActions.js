@@ -1,10 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
-import secrets from '../../../secrets.js';
-// const secrets = {};
-// secrets.host = 'http://discollect.net';
 
-const app = secrets.host || 'http://localhost:3000';
+const app = 'http://discollect.net' || 'http://localhost:3000';
 
 const optimisticSignIn = ({ zipcode, username, id, picReference, email }) => (
   {
