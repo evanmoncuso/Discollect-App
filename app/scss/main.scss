@@ -369,8 +369,8 @@ Create Listing View
 
 .create_listing_container {
   padding:12px;
-  border-left: 4px solid $dark-gray;
   background-color: $light-gray;
+  border-radius: 10px;
   color: $light-font;
   margin: 0 auto;
   input[type='text'] {
@@ -395,14 +395,16 @@ Create Listing View
     width: 200px;
     height: 30px;
     padding: 5px;
-    margin: 0 auto;
     display: block;
+    // border: 3px solid black;
+    span {
+      margin: 0 5px 5px 9px;
+    }
   }
   label[for='image']:active {
     background-color: black;
-  }
-  textarea {
-    background-color: white;
+    // border: 3px solid black;
+
   }
   .image_input {
     margin: 0 auto;
@@ -419,13 +421,20 @@ Create Listing View
     width: 200px;
     height: 30px;
     display: block;
+    // border: 3px solid black;
   }
   #description {
     border: none;
     outline: none;
-    background-color: inherit;
+    background-color: white;
     font-size: $font-medium;
     color: $light-font;
+    width: 400px;
+    height: 200px;
+    color: $dark-gray;
+    padding: 5px;
+    // border: 3px solid $dark-gray;
+    border-radius: 7px;
   }
 }
 
@@ -715,7 +724,7 @@ Search bar
     border: none;
     display: inline-block;
     font-size: $font-medium;
-    background-color: #D50000;
+    background-color: #C74029;
     color: $light-font;
     outline: none;
     transition: 0.2s all ease-in;

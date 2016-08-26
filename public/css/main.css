@@ -343,8 +343,8 @@ Create Listing View
  */
 .create_listing_container {
   padding: 12px;
-  border-left: 4px solid #333;
   background-color: #999;
+  border-radius: 10px;
   color: #F7F7F7;
   margin: 0 auto; }
   .create_listing_container input[type='text'] {
@@ -367,12 +367,11 @@ Create Listing View
     width: 200px;
     height: 30px;
     padding: 5px;
-    margin: 0 auto;
     display: block; }
+    .create_listing_container label[for='image'] span {
+      margin: 0 5px 5px 9px; }
   .create_listing_container label[for='image']:active {
     background-color: black; }
-  .create_listing_container textarea {
-    background-color: white; }
   .create_listing_container .image_input {
     margin: 0 auto;
     text-align: center; }
@@ -390,9 +389,14 @@ Create Listing View
   .create_listing_container #description {
     border: none;
     outline: none;
-    background-color: inherit;
+    background-color: white;
     font-size: 22px;
-    color: #F7F7F7; }
+    color: #F7F7F7;
+    width: 400px;
+    height: 200px;
+    color: #333;
+    padding: 5px;
+    border-radius: 7px; }
 
 /*
 ====================
@@ -636,7 +640,7 @@ Search bar
     border: none;
     display: inline-block;
     font-size: 22px;
-    background-color: #D50000;
+    background-color: #C74029;
     color: #F7F7F7;
     outline: none;
     transition: 0.2s all ease-in;
@@ -884,6 +888,10 @@ Footer
   text-align: center;
   margin: 0 auto; }
 
+.advertWrap {
+  width: 200px;
+  text-align: center; }
+
 .mapText {
   visibility: visible;
   text-align: center;
@@ -915,3 +923,12 @@ Footer
   color: #424242;
   margin: 6px;
   width: 108px; }
+
+.rater {
+  margin-top: 0;
+  background-color: #FF2615;
+  text-align: center;
+  display: inline-block;
+  padding: 6px 0;
+  margin-bottom: 6px;
+  width: 200px; }

@@ -92,8 +92,11 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
               <option value="1">Salvage</option>
             </select>
           </div>
-          <div className="image_input">
-            <label htmlFor="image">Upload Image</label>
+          <div className="auth_input image_input">
+            <label htmlFor="image">
+              <img src="upload-arrow-with-bar.png" height="25px" width="25px" />
+              <span>Upload Image</span>
+            </label>
             <input
               ref={(node) => { image = node; }}
               name="image"
