@@ -37,8 +37,9 @@ const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGi
                 dispatchUpdateListingTakerRating(item.id, rating);
                 dispatchCloseListing(item.id, userID);
             }}>
-            <div className="auth_input rater">Once picked up, please rate <br />the collector?
-              <label htmlFor="rating" ></label>
+            <div className="auth_input rater">
+              <span className="rater_notice">Will you rate your transaction?</span>
+              <div className="rater_selection">
                 <select ref={(node) => { rating = node; }} id="rating" required>
                   <option value="5">5 - awesome</option>
                   <option value="4">4 - good</option>
@@ -46,8 +47,8 @@ const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGi
                   <option value="2">2 - not great</option>
                   <option value="1">1 - awful</option>
                 </select>
-              <button type="submit">Submit</button>
-              <br />
+                <button type="submit">Submit</button>
+              </div>
             </div>
             </form>
             ) : ''}
@@ -69,8 +70,9 @@ const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGi
               dispatchUpdateListingGiverRating(item.id, rating);
               dispatchFinalCloseListing(item.id, userID);
             }}>
-            <div className="auth_input rater">Will you rate <br />your transaction?
-              <label htmlFor="rating" ></label>
+            <div className="auth_input rater">
+              <span className="rater_notice">Will you rate your transaction?</span>
+              <div className="rater_selection">
                 <select ref={(node) => { rating = node; }} id="rating" required>
                   <option value="5">5 - awesome</option>
                   <option value="4">4 - good</option>
@@ -78,8 +80,8 @@ const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGi
                   <option value="2">2 - not great</option>
                   <option value="1">1 - awful</option>
                 </select>
-              <button type="submit">Submit</button>
-              <br />
+                <button type="submit">Submit</button>
+              </div>
             </div>
             </form>
             ) : ''}
