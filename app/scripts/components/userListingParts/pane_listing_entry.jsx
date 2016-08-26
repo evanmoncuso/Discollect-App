@@ -60,9 +60,7 @@ const PaneListingEntry = ({ item, closeable, removeable, dispatchUpdateListingGi
                 dispatchRemoveListing(item.id);
             }}>
               Remove
-            </button>) : ''} 
-
-
+            </button>) : ''}
             {(item.status === 2 && !closeable) ? (
               <form encType="multipart/form-data"
               onSubmit={(e) => {
