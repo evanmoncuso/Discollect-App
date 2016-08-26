@@ -37,7 +37,6 @@ class PortalMap extends React.Component {
     var ends = this.generateMinMax();
     var min = ends[0];
     var max = ends[1];
-    console.log('min and max: ', min, max)
     var place = document.getElementById('myMap');
     var map = AmCharts.makeChart( place, {
       "type": "map",
