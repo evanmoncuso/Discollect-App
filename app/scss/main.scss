@@ -1013,6 +1013,9 @@ Footer
   font-size: 1.6em;
   margin-bottom: 10px;
   display: block;
+}
+
+.advertimg {
   box-shadow: 1px 1px 1px black;
 }
 
@@ -1078,4 +1081,13 @@ Footer
   padding: 6px 0;
   margin-bottom: 6px;
   width: 200px;
+}
+
+#giphy {
+  margin: 0 auto;
+  margin-left: 260px;
+  z-index: 1003;
+  width: 50%;
+  visibility: hidden;
+  height: 250px;
 }

@@ -26,7 +26,7 @@ const AccountInfo = ({ username, avgRating, dispatchGetUserHistory, dispatchIndi
         <img src={profileImage} alt="user" height={320} />
       </div>
       <div className="about">{username ? username : 'NOT ACTIVE USER'}</div>
-      <div className="about">Rating: {avgRating ? avgRating : ''}</div>
+      <div className="about">Rating:  {avgRating ? avgRating : 0}</div>
         <div className="button_container">
           <button
             className="blue_button view"
