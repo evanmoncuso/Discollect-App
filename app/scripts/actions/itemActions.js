@@ -1,6 +1,8 @@
 import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
 import secrets from '../../../secrets.js';
+// const secrets = {};
+// secrets.host = 'http://discollect.net';
 
 const baseUrl = secrets.host || 'http://localhost:3000';
 const searchUrl = 'https://mysterious-coast-57298.herokuapp.com/listings';
