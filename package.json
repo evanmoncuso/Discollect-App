@@ -4,7 +4,7 @@
   "description": "App for giving away your things",
   "main": "n/a",
   "scripts": {
-    "test": "npm run compile-for-test && ./node_modules/.bin/mocha --reporter spec",
+    "test": "npm run compile-for-test && npm run test:react && ./node_modules/.bin/mocha --reporter spec",
     "webpack": "webpack --progress --colors --watch",
     "start": "nodemon server/server.js",
     "test2": "mocha tests/.setup.js tests/tester.js",
@@ -13,7 +13,7 @@
     "scss:dev": "node-sass -o public/css app/scss/main.scss -w",
     "scss:prod": "node-sass --output-style compressed -o public/css app/scss/main.scss",
     "server:build": "babel server --out-dir build --presets=es2015 --ignore=node_modules,compiled --source-maps inline",
-    "test:react": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test/components",
+    "test:react": "mocha --compilers js:babel-core/register --require ./test/components/test_helper.js --recursive ./test/components",
     "test:react:watch": "npm run test:react -- --watch"
   },
   "repository": {
