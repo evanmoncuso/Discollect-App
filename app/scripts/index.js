@@ -21,7 +21,7 @@ store.dispatch(userActions.getUserInfo());
 store.dispatch(itemActions.elasticSearch({
   category: 'all-categories',
   keywords: '',
-  coordinates: '0,0',
+  coordinates: '0, 0',
   distance: 10,
   startFrom: 0,
 }));
