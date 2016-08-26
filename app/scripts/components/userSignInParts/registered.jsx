@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 
 import { logoutUserClient, logoutUserServer } from '../../actions/userActions.js';
 
-const Registered = ({ dispatchLogout, username }) => (
+const Registered = ({ dispatchLogout, username, image }) => (
   <div className="auth_points">
     <Link to="/dashboard">
       <span className="button dashboard">dashboard</span>
@@ -23,6 +23,12 @@ Registered.propTypes = {
   username: React.PropTypes.string,
 };
 
+const mapStateToProps = (state) => (
+  {
+    image: state.users.picReference,
+  }
+);
+
 
 const mapDispatchToProps = (dispatch) => (
   {
@@ -33,4 +39,6 @@ const mapDispatchToProps = (dispatch) => (
   }
 );
 
-export default connect(null, mapDispatchToProps)(Registered);
+export default connect(mapStateToProps, mapDispatchToProps)(Registered);
+
+// <img src={image || 'http://xacatolicos.com/app/images/avatar/icon-user.png' } style={{width:'50px', height:'50px', borderRadius: '50%'}} />

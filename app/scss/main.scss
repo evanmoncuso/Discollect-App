@@ -30,7 +30,7 @@ a {
     display: inline-block;
     width: 160px;
     border: none;
-    border-radius: 0;
+    border-radius: 3px;
     padding: 12px;
     font-size: $font-small;
     background-color: #1565C0;
@@ -171,6 +171,7 @@ Login / Signup
   margin: 24px auto;
   label {
     display: block;
+    margin-bottom: 3px;
   }
   input {
     height: 32px;
@@ -187,9 +188,28 @@ Login / Signup
 .signup_container {
   width: 540px;
   margin: 0 auto;
-  background-color: $dark-gray;
+  background-color: $light-gray;
+  border-radius: 10px;
   color: $light-font;
   padding: 12px;
+  label {
+
+  }
+  input {
+    border: 1px solid black;
+    width: 100%;
+    position: relative;
+    background-color: white;
+    border-radius: 5px;
+    color: $dark_gray;
+    padding: 3px 7px;
+  }
+  button {
+    border-radius: 5px;
+  }
+  h1 {
+    font-family: $primary-font;
+  }
 }
 
 /*

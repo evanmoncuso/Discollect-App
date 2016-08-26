@@ -13,7 +13,7 @@ import Routes from './components/Routes.jsx';
 import itemActions from './actions/itemActions.js';
 import userActions from './actions/userActions.js';
 
-const middleware = [thunk, logger()];
+const middleware = [thunk];
 
 const store = createStore(reducer, applyMiddleware(...middleware));
 

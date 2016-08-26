@@ -36,23 +36,23 @@ const Signup = ({ dispatchSignup }) => {
           }}
         >
           <div className="auth_input">
-            <label htmlFor="username">username</label>
+            <label htmlFor="username">Username:</label>
             <input ref={(node) => { username = node; }} id="username" type="text" required />
           </div>
           <div className="auth_input">
-            <label htmlFor="password1">password</label>
+            <label htmlFor="password1">Password:</label>
             <input ref={(node) => { password = node; }} id="password1" type="password" required />
           </div>
           <div className="auth_input">
-            <label htmlFor="password2">confirm password</label>
+            <label htmlFor="password2">Confirm Password:</label>
             <input ref={(node) => { confirm = node; }} id="password2" type="password" required />
           </div>
           <div className="auth_input">
-            <label htmlFor="email">email</label>
+            <label htmlFor="email">Email:</label>
             <input ref={(node) => { email = node; }} id="email" type="email" required />
           </div>
           <div className="auth_input">
-            <label htmlFor="zip">zip code</label>
+            <label htmlFor="zip">Zip Code:</label>
             <input ref={(node) => { zip = node; }} id="zip" required />
           </div>
           <div className="button_container">
