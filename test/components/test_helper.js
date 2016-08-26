@@ -9,9 +9,9 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
-import { reducer } from '../app/scripts/reducers/reducer';
-import itemActions from '../app/scripts/actions/itemActions.js';
-import userActions from '../app/scripts/actions/userActions.js';
+import { reducer } from '../../app/scripts/reducers/reducer';
+import itemActions from '../../app/scripts/actions/itemActions.js';
+import userActions from '../../app/scripts/actions/userActions.js';
 
 global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
 global.window = global.document.defaultView;

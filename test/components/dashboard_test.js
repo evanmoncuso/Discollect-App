@@ -1,4 +1,4 @@
-import { renderComponent, expect } from '../test_helper';
+import { renderComponent, expect } from './test_helper';
 import Dashboard from '../../app/scripts/components/Dashboard';
 
 describe('Dashboard', () => {

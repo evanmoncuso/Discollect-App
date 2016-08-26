@@ -1,4 +1,4 @@
-import { renderComponent, expect } from '../test_helper';
+import { renderComponent, expect } from './test_helper';
 import NavBar from '../../app/scripts/components/NavBar';
 
 describe('NavBar', () => {
