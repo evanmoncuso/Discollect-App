@@ -299,6 +299,7 @@ module.exports = {
           condition: listing.condition,
           zipcode: listing.zipcode,
           username: username.username,
+          avgRating: username.avgRating,
         };
         res.json(listingData);
       });

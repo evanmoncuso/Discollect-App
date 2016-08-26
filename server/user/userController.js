@@ -86,6 +86,7 @@ module.exports = {
       email: req.user.email,
       zipcode: req.user.zipcode,
       picReference: req.user.picReference,
+      avgRating: req.user.avgRating,
     };
     res.json(message);
   },

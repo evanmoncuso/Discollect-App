@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Advert = ({ zipcode }) => (
-  <div>
+  <div className='advertWrap'>
     <div className="advertContainer">
       <img
         className="advertimg" src="./truck1.jpg"
