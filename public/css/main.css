@@ -344,9 +344,35 @@ Create Listing View
 .create_listing_container {
   padding: 12px;
   border-left: 4px solid #333;
-  background-color: #333;
+  background-color: #999;
   color: #F7F7F7;
   margin: 0 auto; }
+  .create_listing_container input[type='text'] {
+    background-color: white;
+    color: #333;
+    width: 300px;
+    border-radius: 5px; }
+  .create_listing_container input[type='file'] {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1; }
+  .create_listing_container label[for='image'] {
+    border: 1px solid black;
+    background-color: #333;
+    border-radius: 5px;
+    font-size: 22px;
+    width: 200px;
+    height: 30px;
+    padding: 5px;
+    margin: 0 auto;
+    display: block; }
+  .create_listing_container label[for='image']:active {
+    background-color: black; }
+  .create_listing_container textarea {
+    background-color: white; }
   .create_listing_container .image_input {
     margin: 0 auto;
     text-align: center; }
@@ -356,8 +382,11 @@ Create Listing View
     line-height: 22px;
     border: none;
     outline: none;
-    background-color: inherit;
-    color: #F7F7F7; }
+    background-color: #333;
+    color: #F7F7F7;
+    width: 200px;
+    height: 30px;
+    display: block; }
   .create_listing_container #description {
     border: none;
     outline: none;

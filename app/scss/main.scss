@@ -370,9 +370,40 @@ Create Listing View
 .create_listing_container {
   padding:12px;
   border-left: 4px solid $dark-gray;
-  background-color: $dark-gray;
+  background-color: $light-gray;
   color: $light-font;
   margin: 0 auto;
+  input[type='text'] {
+    background-color: white;
+    color: $dark-gray;
+    width: 300px;
+    border-radius: 5px;
+  }
+  input[type='file'] {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+  label[for='image']{
+    border: 1px solid black;
+    background-color: $dark-gray;
+    border-radius: 5px;
+    font-size: $font-medium;
+    width: 200px;
+    height: 30px;
+    padding: 5px;
+    margin: 0 auto;
+    display: block;
+  }
+  label[for='image']:active {
+    background-color: black;
+  }
+  textarea {
+    background-color: white;
+  }
   .image_input {
     margin: 0 auto;
     text-align: center;
@@ -383,8 +414,11 @@ Create Listing View
     line-height: 22px;
     border: none;
     outline: none;
-    background-color: inherit;
+    background-color: $dark-gray;
     color: $light-font;
+    width: 200px;
+    height: 30px;
+    display: block;
   }
   #description {
     border: none;
