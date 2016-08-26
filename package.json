@@ -25,7 +25,7 @@
   "bugs": {
     "url": "https://github.com/evanmoncuso/Discollect-App/issues"
   },
-  "homepage": "https://github.com/evanmoncuso/Discollect-App#readme",
+  "homepage": "http://discollect.net",
   "dependencies": {
     "babel": "^6.5.2",
     "babel-cli": "^6.11.4",
