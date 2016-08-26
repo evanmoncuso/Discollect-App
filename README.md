@@ -72,6 +72,10 @@ sudo npm install -g bower
 npm install
 bower install
 ```
+## System Architecture
+
+![discollect architecture](https://cloud.githubusercontent.com/assets/15058631/17995842/e2257c1e-6b19-11e6-9157-1562f717becb.png)
+
 
 ### Roadmap
 
