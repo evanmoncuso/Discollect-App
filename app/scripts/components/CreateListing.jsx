@@ -114,7 +114,7 @@ const CreateListing = ({ dispatchCreateNewListing,  id }) => {
           <div className="button_container">
             <button type="submit" className="blue_button">Create</button>
           </div>
-            <img id='giphy' src='https://prepaid.sprint.com/img/loading.gif'/>
+            <img id='giphy' src='./loading.gif'/>
         </form>
       </div>
     </div>
