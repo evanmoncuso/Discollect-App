@@ -37,8 +37,9 @@ const itemActions = {
       })
       .then((res) => res.json())
       .then((res) => {
-        browserHistory.push('/')
-        browserHistory.push('/dashboard')
+          console.log('Listing taker-rating updated');
+        browserHistory.push('/');
+        browserHistory.push('/dashboard');
       })
       .catch((err) => {
         if (err) {
@@ -52,8 +53,8 @@ const itemActions = {
     (dispatch) => {
       const details = {
         listingId: listingId,
-        rating: rating,
-      };
+        rating: rating
+      }; 
       const url = baseUrl + '/api/updateListingGiverRating';
       fetch(url, {
         method: 'PUT',
@@ -64,8 +65,9 @@ const itemActions = {
       })
       .then((res) => res.json())
       .then((res) => {
-        browserHistory.push('/')
-        browserHistory.push('/dashboard')
+        console.log('Listing giver-rating updated');
+        browserHistory.push('/');
+        browserHistory.push('/dashboard');
       })
       .catch((err) => {
         if (err) {
@@ -239,12 +241,13 @@ const itemActions = {
     }
   ),
 
-  closeListing: (listingID, userID) => (
+  closeListing: (listingId, userID) => (
     (dispatch) => {
       const url = baseUrl + '/api/closeListing';
+      console.log('just close listingId: ', listingId, userID);
       fetch(url, {
         method: 'PUT',
-        body: JSON.stringify({ listingID }),
+        body: JSON.stringify({ listingID: listingId }),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -280,18 +283,20 @@ const itemActions = {
     }
   ),
 
-  finalCloseListing: (listingID, userID) => (
+  finalCloseListing: (listingId, userID) => (
     (dispatch) => {
+      console.log('listingId: ', listingId, userID);
       const url = baseUrl + '/api/finalCloseListing';
       fetch(url, {
         method: 'PUT',
-        body: JSON.stringify({ listingID }),
+        body: JSON.stringify({ listingID: listingId }),
         headers: {
           'Content-Type': 'application/json',
         },
       })
       .then(res => res.json())
       .then(res => {
+        console.log('inbetween finalclose and dispatch', res)
         let active = [];
         let pending = [];
         let waiting = [];
@@ -312,6 +317,8 @@ const itemActions = {
           pending: pending || [],
           waiting: waiting || [],
         });
+      })
+      .then(() => {
         browserHistory.push('/')
         browserHistory.push('/dashboard')
       })
