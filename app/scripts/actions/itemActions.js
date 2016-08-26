@@ -78,7 +78,7 @@ const itemActions = {
 
   getSQLListings: (query) => (
     (dispatch) => {
-      const url = app + '/api/getAllListings';
+      const url = app + '/api/getFilteredListings';
       fetch(url, {
         method: 'PUT',
         body: JSON.stringify(query),

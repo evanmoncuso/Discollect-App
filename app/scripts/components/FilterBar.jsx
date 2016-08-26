@@ -15,7 +15,6 @@ const FilterBar = (props) => {
             condition: [(_new.checked ? 5 : 0), (_excellent.checked ? 4 : 0), (_good.checked ? 3 : 0), (_fair.checked ? 2 : 0), (_salvage.checked ? 1 : 0)],
             desc: _desc.value,
           };
-          console.log(query, e.target);
           props.dispatchGetSQLListings(query);
         }}
       >
