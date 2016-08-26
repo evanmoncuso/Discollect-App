@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import itemActions from '../actions/itemActions.js';
 
 const FilterBar = (props) => {
-  let _new, _excellent, _good, _fair, _salvage, _title, _zip, _cat, _rating = 0;
+  let _new, _excellent, _good, _fair, _salvage, _desc, _zip, _cat, _rating = 0;
   return (
     <div className="filterBar">
       <form
@@ -13,7 +13,7 @@ const FilterBar = (props) => {
             zipcode: _zip.value,
             category: _cat.value, // doesn't need to be in an array unless we allow multi-cats
             condition: [(_new.checked ? 5 : 0), (_excellent.checked ? 4 : 0), (_good.checked ? 3 : 0), (_fair.checked ? 2 : 0), (_salvage.checked ? 1 : 0)],
-            title: _title.value,
+            desc: _desc.value,
           };
           console.log(query, e.target);
           props.dispatchGetSQLListings(query);
@@ -55,16 +55,13 @@ const FilterBar = (props) => {
           </select>
         </fieldset>
         <fieldset>
-          <legend>Title:</legend>
-          <input type="text" ref={(node) => { _title = node; }} />
+          <legend>Search Description:</legend>
+          <input type="text" ref={(node) => { _desc = node; }} />
         </fieldset>
         <fieldset>
           <legend>Location:</legend>
             <label htmlFor="zip">Zip Code</label>
             <input type="text" ref={(node) => { _zip = node; }} />
-          <label>User Rating</label>
-          <input type="range" min="0" max="5" ref={(node) => { _rating = node; }} />
-          <span>{_rating}</span>
         </fieldset>
         <div className="button_holder button_container">
           <button

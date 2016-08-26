@@ -70,8 +70,8 @@ module.exports = {
           zipcode: {
             $like: req.body.zipcode ? `%${req.body.zipcode}%` : '%%',
           },
-          title: {
-            $like: req.body.title ? `%${req.body.title}%` : '%%',
+          description: {
+            $like: req.body.desc ? `%${req.body.desc}%` : '%%',
           },
         },
       },

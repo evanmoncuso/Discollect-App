@@ -1,11 +1,9 @@
 import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
 
-
-
 // const baseUrl = 'http://discollect.net' || 'http://localhost:3000';
 const baseUrl = 'http://localhost:3000';
-const searchUrl = 'https://mysterious-coast-57298.herokuapp.com/listings';
+const searchUrl = 'mysterious-coast-57298.herokuapp.com/listings';
 
 const optimisticSetItems = (items) => (
   {
