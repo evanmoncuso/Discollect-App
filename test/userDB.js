@@ -4,33 +4,29 @@ require('isomorphic-fetch');
 var request = require("request");
 var User = require('../server/user/userModel.js'); 
 
+
 describe("User Database", function() {
 
-  var url = "http://localhost:3000";
+  var url = "http://discollect.net";
 
   describe("UserModel", function() {
-    it("returns a status of 200", function(done) {
-      fetch(url)
-       .then(function(response){
-        expect(response.status).to.equal(200);
-        done();
-      });
-    });
     it("hashes passwords", function(done) {
-      this.timeout(4000);
+      this.timeout(2000);
       User.findOne({
         where: {
           username: 'Conradical',
         }
       }).then(user=>{
         console.log('found em')
-        return user.destroy();
+        if (user) {
+          return user.destroy();
+        }
+        return;
       })
       .then(()=>{
         return fetch(url + "/api/signup", {
           method: 'POST',
           headers: {
-            'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
