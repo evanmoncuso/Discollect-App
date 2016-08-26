@@ -48,15 +48,20 @@ module.exports = {
   },
 
   getUserInfo: (req, res) => {
-    const userId = req.user.id || req.query.id;
-    if (userId) {
-      User.findOne({ where: { id: userId } })
-        .then(user => {
-          res.json(user);
-        });
+    let userId
+    if (req.user) {
+      userId = req.user.id;
+    } else if (req.query) {
+      userId = req.query.id;
     } else {
-      res.json({ user: null });
+      res.json({ user: false });
+      return;
     }
+
+    User.findOne({ where: { id: userId } })
+    .then(user => {
+      res.json(user);
+    });
   },
 
   postUser: (req, res) => {
