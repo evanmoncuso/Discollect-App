@@ -136,6 +136,8 @@ const itemActions = {
     (dispatch) => {
       const photoUrl = 'http://photohelper.herokuapp.com/api/createNewListing';
       const url = app + '/api/createNewListing';
+      var giphy = document.getElementById('giphy');
+      giphy.style.visibility = giphy.style.visibility = 'hidden' ? 'visible' : 'hidden';
       if (!listingData.picReference) {
         dispatch(itemActions.postListingAfterPhoto(listingData));
       } else {
@@ -173,6 +175,8 @@ const itemActions = {
         },
       })
       .then(res => {
+      var giphy = document.getElementById('giphy');
+      giphy.style.visibility = giphy.style.visibility = 'hidden' ? 'visible' : 'hidden';
         browserHistory.push('/');
       })
       .catch(err => {
